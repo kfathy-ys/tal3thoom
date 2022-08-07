@@ -72,25 +72,25 @@ class LoginScreen extends StatelessWidget {
                       ),
                       CustomTextField(
                         dIcon: Icons.email,
-                        label: "email" ,
-                        hint: "email" ,
+                        label: "البريد الإلكتروني" ,
+                        hint: "البريد الإلكتروني" ,
                         controller: _emailController,
                         validator: qValidator([
-                          IsRequired("enterEmail" ),
-                          const IsEmail("MustBeEmail" ),
+                          IsRequired(KeysConfig.enterEmail ),
+                          const IsEmail("يجب أن يكون بريد الكتروني" ),
                           MaxLength(30),
                         ]),
                         type: TextInputType.emailAddress,
                       ),
                       CustomTextField(
-                        hint: "password" ,
+                        hint: KeysConfig.password ,
                         icon: Icons.lock_outline,
                         dIcon: Icons.lock_outline,
-                        label: "password" ,
+                        label: KeysConfig.password ,
                         controller: _passwordController,
                         validator: qValidator([
-                          IsRequired("enterPassword" ),
-                          MinLength(6, "minPassword" ),
+                          IsRequired(KeysConfig.enterPassword ),
+                          MinLength(6, KeysConfig.minPassword ),
                           MaxLength(30),
                         ]),
                         type: TextInputType.text,
@@ -115,9 +115,9 @@ class LoginScreen extends StatelessWidget {
                             )
                           : const LoadingFadingCircle(),
                       DoNotHave(
-                        text: "signUpNow" ,
+                        text: KeysConfig.signUpNow ,
                         route: () => navigateTo(context, const SignUpScreen()),
-                        have: "donHave" ,
+                        have: KeysConfig.donHave ,
                       )
                     ],
                   ),

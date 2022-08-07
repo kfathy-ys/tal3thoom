@@ -136,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   label: KeysConfig.email ,
                   controller: _emailController,
                   validator: qValidator([
-                    IsRequired("thisFieldRequired" ),
+                    IsRequired(KeysConfig.thisFieldRequired ),
                   //  IsOptional(),
                     MaxLength(30),
                   ]),
@@ -149,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: _emailController,
                   validator: qValidator([
                     IsRequired(KeysConfig.date ),
-                    const IsEmail("MustBeEmail" ),
+                    const IsEmail(KeysConfig.MustBeEmail ),
 
                   ]),
                   type: TextInputType.emailAddress,
@@ -233,7 +233,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: qValidator([
                     IsRequired(KeysConfig.enterPass ),
 
-                    MinLength(6, "minPassword" ),
+                    MinLength(6, KeysConfig.minPassword ),
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
@@ -247,7 +247,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: qValidator([
                     IsRequired(KeysConfig.confirmPass ),
 
-                    MinLength(6, "minPassword" ),
+                    MinLength(6, KeysConfig.minPassword ),
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
@@ -258,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   label: KeysConfig.phoneNumber ,
                   controller: _phoneController,
                   validator: qValidator([
-                    IsRequired("thisFieldRequired" ),
+                    IsRequired(KeysConfig.thisFieldRequired ),
 
                     MinLength(6),
                     MaxLength(30),

@@ -3,15 +3,17 @@ import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../home/pages/views/reservations_schedule/page/views/avaliable_time.dart';
-import '../../../../../../widgets/appBar.dart';
-import '../../../../../../widgets/constants.dart';
-import '../../../../../view.dart';
+import '../../../../../../../home/pages/views/reservations_schedule/page/views/avaliable_time.dart';
+import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/constants.dart';
+import '../../../../../../view.dart';
 
 
 // ignore: must_be_immutable
 class FirstStageTreatmentReservation extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  FirstStageTreatmentReservation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class FirstStageTreatmentReservation extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

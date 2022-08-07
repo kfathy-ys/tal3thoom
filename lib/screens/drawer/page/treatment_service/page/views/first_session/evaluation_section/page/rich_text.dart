@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../widgets/constants.dart';
+import '../../../../../../../../widgets/constants.dart';
+
 class RichTextCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -1,19 +1,21 @@
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/pre-treatment_questionnaire/view.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/core/helpers/url_luncher.dart';
-import '../../../../../../config/keys.dart';
+import '../../../../../../../config/keys.dart';
 
-import '../../../../../widgets/appBar.dart';
-import '../../../../../widgets/constants.dart';
-import '../../../../../widgets/fast_widget.dart';
-import '../../../../view.dart';
-import '../../../diagnostic_service/page/views/success_page.dart';
-import 'pre-treatment_questionnaire/view.dart';
+import '../../../../../../widgets/appBar.dart';
+import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/fast_widget.dart';
+import '../../../../../view.dart';
+import '../../../../diagnostic_service/page/views/success_page.dart';
 
 
 // ignore: must_be_immutable
 class PaymentTreatment extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  PaymentTreatment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class PaymentTreatment extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
@@ -65,7 +67,7 @@ class PaymentTreatment extends StatelessWidget {
               onPressed: (){
 
               navigateTo(context, SuccessView(title1: "لقد تم عملية الدفع  بنجاح",title2: "الأنتقال إلي الأستبيان ما قبل العلاج",
-                onTap: ()=>navigateTo(context, PretreatmentQuestionnaire()),));
+                onTap: ()=>navigateTo(context, const PretreatmentQuestionnaire()),));
             },),
 
 

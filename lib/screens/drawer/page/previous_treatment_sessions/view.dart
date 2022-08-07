@@ -29,7 +29,7 @@ class _ResultsPreviousTreatmentSessionsState extends State<ResultsPreviousTreatm
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

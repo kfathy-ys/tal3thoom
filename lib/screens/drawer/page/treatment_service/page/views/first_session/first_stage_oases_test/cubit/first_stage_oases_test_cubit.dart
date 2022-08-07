@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../diagnostic_service/page/views/question.dart';
+import '../../../../../../diagnostic_service/page/views/question.dart';
+
 
 
 part 'first_state_oases_test_state.dart';

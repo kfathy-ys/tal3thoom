@@ -305,7 +305,7 @@ import '../../../widgets/appBar.dart';
 import '../../../widgets/constants.dart';
 import '../../../widgets/video_items.dart';
 import '../../view.dart';
-import 'page/views/payment_treatment_service.dart';
+import 'page/views/first_session/payment_treatment_service.dart';
 
 
 // ignore: must_be_immutable
@@ -319,7 +319,7 @@ class TreatmentServiceInduction extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

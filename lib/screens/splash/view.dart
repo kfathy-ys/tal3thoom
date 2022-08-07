@@ -9,6 +9,9 @@ import 'package:tal3thoom/screens/widgets/network_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../auth/login/view.dart';
+import '../widgets/fast_widget.dart';
+
 
 
 class SplashScreen extends StatefulWidget {
@@ -49,8 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: kPrimaryColor,
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeTabScreen()), (route) => false);
-                   // navigateTo(context, LoginScreen());
+                  //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeTabScreen()), (route) => false);
+                    navigateTo(context, LoginScreen());
 
                   },
                   child: Image.asset(

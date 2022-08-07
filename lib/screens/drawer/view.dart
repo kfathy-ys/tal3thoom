@@ -3,8 +3,12 @@ import 'package:tal3thoom/screens/drawer/page/advisors_service/views/expantion_w
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/inductions.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/ssrs_test/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_treatment_session/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_treatment_session/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/pre-treatment_questionnaire/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/treatment_ssi4/views/department_one/view.dart';
 import 'package:tal3thoom/screens/home/view.dart';
 import '../../../../../../config/keys.dart';
 
@@ -16,7 +20,7 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/paym
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/view.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/expantion_widget.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/payment_treatment_service.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/payment_treatment_service.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 
@@ -25,17 +29,15 @@ import '../home/pages/views/reservations_schedule/view.dart';
 import '../widgets/constants.dart';
 import 'page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
 import 'page/previous_treatment_sessions/view.dart';
-import 'page/treatment_service/page/views/first_stage_oases_test/view.dart';
-import 'page/treatment_service/page/views/first_stage_resevation/view.dart';
-import 'page/treatment_service/page/views/first_stage_ssrs_test/view.dart';
-import 'page/treatment_service/page/views/treatment_ssi4/views/department_one/view.dart';
 
-class MenueItems extends StatefulWidget {
+class MenuItems extends StatefulWidget {
+  const MenuItems({Key? key}) : super(key: key);
+
   @override
-  _MenueItemsState createState() => _MenueItemsState();
+  _MenuItemsState createState() => _MenuItemsState();
 }
 
-class _MenueItemsState extends State<MenueItems> {
+class _MenuItemsState extends State<MenuItems> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -75,7 +77,7 @@ class _MenueItemsState extends State<MenueItems> {
             },
             onTapTestOases: () {
               Navigator.of(context).pop();
-              navigateTo(context, DiagnosticOasesTest());
+              navigateTo(context, const DiagnosticOasesTest());
             },
             onTapSSRS: () {
               Navigator.of(context).pop();
@@ -114,27 +116,27 @@ class _MenueItemsState extends State<MenueItems> {
             },
             PretreatmentQuestionnaire: () {
               Navigator.of(context).pop();
-              navigateTo(context, PretreatmentQuestionnaire());
+              navigateTo(context, const PretreatmentQuestionnaire());
             },
             onTaptherapeuticSessions: () {
               Navigator.of(context).pop();
-              navigateTo(context, FirstTreatmentSession());
+              navigateTo(context, const FirstTreatmentSession());
 
             },
             onTapOases: () {
               Navigator.of(context).pop();
-              navigateTo(context, FirstStageOasesTest());
+              navigateTo(context, const FirstStageOasesTest());
 
             },
             onTapSSRS: () {
               Navigator.of(context).pop();
-              navigateTo(context, FirstStageSSRSTreatmentScreen());
+              navigateTo(context, const FirstStageSSRSTreatmentScreen());
 
             },
             onTapSSI4: () {
 
               Navigator.of(context).pop();
-              navigateTo(context, TreatmentSSI4());
+              navigateTo(context, const TreatmentSSI4());
 
             },
             onTapBookSpecialist: () {

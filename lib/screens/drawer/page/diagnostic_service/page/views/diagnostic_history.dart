@@ -32,7 +32,7 @@ final TextEditingController _controller = TextEditingController();
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
 
           context: context,

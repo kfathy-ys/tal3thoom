@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'dart:io';
+import 'dart:developer';
 
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
@@ -10,23 +10,27 @@ import 'package:flutter/material.dart';
 import 'package:queen/validation.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../../../../../config/keys.dart';
-import '../../../../../../../../widgets/appBar.dart';
-import '../../../../../../../../widgets/constants.dart';
-import '../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../widgets/smallButtonSizer.dart';
-import '../../../../../../../../widgets/video_items.dart';
-import '../../../../../../../view.dart';
-import '../../../resevation_diagnostic/view.dart';
+import '../../../../../../../../../../config/keys.dart';
+import '../../../../../../../../../home/pages/views/reservations_schedule/view.dart';
+import '../../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../../widgets/constants.dart';
+import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
+import '../../../../../../../../../widgets/smallButtonSizer.dart';
+import '../../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../view.dart';
+
 
 // ignore: must_be_immutable
-class DiagnosticSSI4Two extends StatefulWidget {
+class TreatmentSSI4Two extends StatefulWidget {
+  const TreatmentSSI4Two({Key? key}) : super(key: key);
+
   @override
-  State<DiagnosticSSI4Two> createState() => _DiagnosticSSI4TwoState();
+  State<TreatmentSSI4Two> createState() => _TreatmentSSI4TwoState();
 }
 
-class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
+class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _firstController = TextEditingController();
 
   @override
@@ -110,7 +114,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
               MediaButton(
                 onPressed: () {
                   navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSI-4 بنجاح",title2: "إنتقال إلي حجز موعد",
-                    onTap: ()=>navigateTo(context, ReservationDiagnostic()),));
+                    onTap: ()=>navigateTo(context, ReservationsSchedule()),));
                 },
                 title: KeysConfig.next ,
               ),
@@ -121,6 +125,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
       ),
     );
   }
+
 
   dynamic video;
 
@@ -173,7 +178,11 @@ Widget uploadedVideo({
     ],
   );
 }
+
   SizedBox buildSizedBox(double height) => SizedBox(
     height: height * 0.05,
   );
+
+
+
 

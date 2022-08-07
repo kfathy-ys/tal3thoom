@@ -1,31 +1,32 @@
-import 'dart:io';
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:queen/validation.dart';
 import 'package:video_player/video_player.dart';
+import '../../../../../../../../../../config/keys.dart';
+import '../../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../../widgets/constants.dart';
+import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
+import '../../../../../../../../../widgets/smallButtonSizer.dart';
+import '../../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../view.dart';
 
-import '../../../../../../../../../config/keys.dart';
-import '../../../../../../../../home/pages/views/reservations_schedule/view.dart';
-import '../../../../../../../../widgets/appBar.dart';
-import '../../../../../../../../widgets/constants.dart';
-import '../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../widgets/smallButtonSizer.dart';
-import '../../../../../../../../widgets/video_items.dart';
-import '../../../../../../../view.dart';
+import '../department_two/view.dart';
 
 // ignore: must_be_immutable
-class TreatmentSSI4Two extends StatefulWidget {
+class TreatmentSSI4 extends StatefulWidget {
+  const TreatmentSSI4({Key? key}) : super(key: key);
+
   @override
-  State<TreatmentSSI4Two> createState() => _TreatmentSSI4TwoState();
+  State<TreatmentSSI4> createState() => _TreatmentSSI4State();
 }
 
-class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
+class _TreatmentSSI4State extends State<TreatmentSSI4> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   final _firstController = TextEditingController();
@@ -37,7 +38,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
@@ -50,8 +51,9 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
           child: Column(
             children: [
               CustomTileContainer(
+                  title: KeysConfig.addComment,
                   widthh: width * 0.5,
-                  title: KeysConfig.definationDiag ,
+
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -69,13 +71,29 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                   ),
                 ),
               ),
-
+              // uploadedVideo(
+              //   height: height * 0.18,
+              //   title: "fullMessage",
+              //   controller: _firstController,
+              //   onPressed1: () {
+              //     _uploadFile(1);
+              //   },
+              //   validator: qValidator([IsRequired("thisFieldRequired")]),
+              //   context: context,
+              // ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 12),
-                child: Image.asset("assets/images/tallk.png"),
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset("assets/images/word.png"),
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 8),
+              InkWell(
+                  onTap: () {
+                    speech.speak(KeysConfig.ssFourWord);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Image.asset("assets/images/Earphone.png"),
+                  )),
+              SizedBox(
                 width: width*0.8,
                 height: height*0.25,
                 child: VideoItems(
@@ -94,20 +112,15 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                 validator: qValidator([IsRequired("thisFieldRequired")]),
                 context: context,
               ),
-              InkWell(
-                  onTap: () {
-                    speech.speak(KeysConfig.ssFourWord2);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Image.asset("assets/images/Earphone.png"),
-                  )),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset("assets/images/record.png"),
+              ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSI-4 بنجاح",title2: "إنتقال إلي حجز موعد",
-                    onTap: ()=>navigateTo(context, ReservationsSchedule()),));
+                  navigateTo(context, TreatmentSSI4Two(),);
                 },
-                title: KeysConfig.next ,
+                title:"متابعة",
               ),
               buildSizedBox(height),
             ],
@@ -116,8 +129,6 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
       ),
     );
   }
-
-
   dynamic video;
 
   File? _file1;
@@ -169,11 +180,7 @@ Widget uploadedVideo({
     ],
   );
 }
-
   SizedBox buildSizedBox(double height) => SizedBox(
     height: height * 0.05,
   );
-
-
-
 

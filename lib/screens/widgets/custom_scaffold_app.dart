@@ -16,7 +16,7 @@ class CustomScaffold extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: kHomeColor,
-          drawer: MenueItems(),
+          drawer: MenuItems(),
           key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,

@@ -1,7 +1,5 @@
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_stage_ssrs_test/view.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallestButton.dart';
@@ -10,11 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import '../../../../../../widgets/appBar.dart';
-import '../../../../../../widgets/constants.dart';
-import '../../../../../view.dart';
+import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/constants.dart';
+import '../../../../../../view.dart';
+import '../first_stage_ssrs_test/view.dart';
+import 'cubit/first_stage_oases_test_cubit.dart';
+
 
 class FirstStageOasesTest extends StatefulWidget {
+  const FirstStageOasesTest({Key? key}) : super(key: key);
+
   @override
   State<FirstStageOasesTest> createState() => _FirstStageOasesTestState();
 }
@@ -31,7 +34,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
         return Scaffold(
           key: cubit.scaffoldKey,
           backgroundColor: kHomeColor,
-          drawer: MenueItems(),
+          drawer: MenuItems(),
           appBar: DynamicAppbar(
               context: context,
               press: () => cubit.scaffoldKey.currentState!.openDrawer()),

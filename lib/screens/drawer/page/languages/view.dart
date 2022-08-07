@@ -25,7 +25,7 @@ class LanguagesScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kAppBarColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: customssAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

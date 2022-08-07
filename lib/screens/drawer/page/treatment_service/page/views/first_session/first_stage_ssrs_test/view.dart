@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../../widgets/appBar.dart';
-import '../../../../../../widgets/constants.dart';
-import '../../../../../../widgets/fast_widget.dart';
-import '../../../../../../widgets/video_items.dart';
-import '../../../../../view.dart';
-import '../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
-import '../../../../diagnostic_service/page/views/success_page.dart';
-
+import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/constants.dart';
+import '../../../../../../../widgets/fast_widget.dart';
+import '../../../../../../../widgets/video_items.dart';
+import '../../../../../../view.dart';
+import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
+import '../../../../../diagnostic_service/page/views/success_page.dart';
 
 // ignore: must_be_immutable
 class FirstStageSSRSTreatmentScreen extends StatefulWidget {
+  const FirstStageSSRSTreatmentScreen({Key? key}) : super(key: key);
+
   @override
   State<FirstStageSSRSTreatmentScreen> createState() => _FirstStageSSRSTreatmentScreenState();
 }
@@ -42,7 +43,7 @@ class _FirstStageSSRSTreatmentScreenState extends State<FirstStageSSRSTreatmentS
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

@@ -33,7 +33,7 @@ class HomeTabScreen extends StatelessWidget {
             return Scaffold(
               key: cubit.scaffoldKey,
               backgroundColor: kHomeColor,
-              drawer: MenueItems(),
+              drawer: MenuItems(),
               appBar: DynamicAppbar(
                   context: context,
                   press: () => cubit.scaffoldKey.currentState!.openDrawer()),

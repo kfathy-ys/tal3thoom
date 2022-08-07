@@ -7,17 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:queen/queen.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../../widgets/appBar.dart';
-import '../../../../../../widgets/constants.dart';
-import '../../../../../../widgets/customButton.dart';
-import '../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../widgets/smallButtonSizer.dart';
-import '../../../../../../widgets/video_items.dart';
-import '../../../../../view.dart';
+
+import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/constants.dart';
+import '../../../../../../../widgets/customButton.dart';
+import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
+import '../../../../../../../widgets/smallButtonSizer.dart';
+import '../../../../../../../widgets/video_items.dart';
+import '../../../../../../view.dart';
 import '../evaluation_section/view.dart';
 
 // ignore: must_be_immutable
 class SlokiScreen extends StatefulWidget {
+  const SlokiScreen({Key? key}) : super(key: key);
+
   @override
   State<SlokiScreen> createState() => _SlokiScreenState();
 }
@@ -33,7 +36,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenueItems(),
+      drawer: MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

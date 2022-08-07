@@ -15,6 +15,8 @@ import '../../../../../view.dart';
 import '../ssrs_test/view.dart';
 
 class DiagnosticOasesTest extends StatefulWidget {
+  const DiagnosticOasesTest({Key? key}) : super(key: key);
+
   @override
   State<DiagnosticOasesTest> createState() => _DiagnosticOasesTestState();
 }
@@ -31,7 +33,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
         return Scaffold(
           key: cubit.scaffoldKey,
           backgroundColor: kHomeColor,
-          drawer: MenueItems(),
+          drawer: MenuItems(),
           appBar: DynamicAppbar(
               context: context,
               press: () => cubit.scaffoldKey.currentState!.openDrawer()),
