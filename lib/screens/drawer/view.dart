@@ -6,9 +6,13 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/ssrs
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_treatment_session/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/pre-treatment_questionnaire/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/treatment_ssi4/views/department_one/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_treatment_sessions/view.dart';
 import 'package:tal3thoom/screens/home/view.dart';
 import '../../../../../../config/keys.dart';
 
@@ -144,11 +148,28 @@ class _MenuItemsState extends State<MenuItems> {
               Navigator.of(context).pop();
               navigateTo(context,  FirstStageTreatmentReservation());
             },
-            onTaptherapeuticSessions2: () {},
-            onTapOases2: () {},
-            onTapSSRS2: () {},
-            onTapSSI42: () {},
-            onTapBookSpecialist2: () {},
+            onTaptherapeuticSessions2: () {
+
+
+              Navigator.of(context).pop();
+              navigateTo(context,  const SecondTreatmentSession());
+            },
+            onTapOases2: () {
+              Navigator.of(context).pop();
+              navigateTo(context,  const SecondStageOasesTest());
+            },
+            onTapSSRS2: () {
+              Navigator.of(context).pop();
+              navigateTo(context,  const SecondStageSSRSTreatmentScreen());
+            },
+            onTapSSI42: () {
+              Navigator.of(context).pop();
+              navigateTo(context,  const SecondTreatmentSSI4Two());
+            },
+            onTapBookSpecialist2: () {
+              Navigator.of(context).pop();
+              navigateTo(context,  FirstStageTreatmentReservation());
+            },
           ),
 
 

@@ -1,4 +1,3 @@
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/pre-treatment_questionnaire/view.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/core/helpers/url_luncher.dart';
@@ -9,6 +8,7 @@ import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/fast_widget.dart';
 import '../../../../../view.dart';
 import '../../../../diagnostic_service/page/views/success_page.dart';
+import '../pre-treatment_questionnaire/view.dart';
 
 
 // ignore: must_be_immutable

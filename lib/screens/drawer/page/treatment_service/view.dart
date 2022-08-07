@@ -312,6 +312,8 @@ import 'page/views/first_session/payment_treatment_service.dart';
 class TreatmentServiceInduction extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
+  TreatmentServiceInduction({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -319,7 +321,7 @@ class TreatmentServiceInduction extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
