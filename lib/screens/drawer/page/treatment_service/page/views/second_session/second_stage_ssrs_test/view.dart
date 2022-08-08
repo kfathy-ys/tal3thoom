@@ -297,7 +297,7 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
 
                   navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSRS بنجاح",title2: "إنتقال إلي إختبار SSI-4",
                     onTap: () {
-                    print("object");
+
                       navigateTo(context, const SecondTreatmentSSI4());
                     },));
                 },),

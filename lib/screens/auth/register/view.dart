@@ -1,3 +1,8 @@
+import 'dart:developer';
+
+import 'package:get/get.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:tal3thoom/screens/auth/register/page/drop_down_six.dart';
 import 'package:tal3thoom/screens/auth/register/page/title_subtitle.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
@@ -42,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final _confirmPassController = TextEditingController();
 
-  final _sexController = TextEditingController();
+  final dateController = TextEditingController();
 
   final _entityNumberController = TextEditingController();
 
@@ -55,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    // double width = MediaQuery.of(context).size.width;
+     double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -146,15 +151,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   dIcon: Icons.date_range,
                   label: KeysConfig.date ,
                   hint:  KeysConfig.date ,
-                  controller: _emailController,
+                  controller: dateController,
                   validator: qValidator([
                     IsRequired(KeysConfig.date ),
-                    const IsEmail(KeysConfig.MustBeEmail ),
+                    const IsEmail(KeysConfig.date ),
 
                   ]),
                   type: TextInputType.emailAddress,
                 ),
-                CustomTextField(
+
+                const DropDownSix(),
+
+              /*  CustomTextField(
                   dIcon: Icons.male_outlined,
                   label: KeysConfig.sex ,
                   hint: KeysConfig.sex ,
@@ -167,7 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   type: TextInputType.text,
-                ),
+                ),*/
                 CustomTextField(
                   dIcon: Icons.real_estate_agent,
                   label: KeysConfig.countryResidence ,
@@ -180,8 +188,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       MaxLength(30),
                     ],
                   ),
+
+
                   type: TextInputType.streetAddress,
                 ),
+
+
                 CustomTextField(
                   dIcon: Icons.edit,
                   label: KeysConfig.entityWork ,
@@ -252,7 +264,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ]),
                   type: TextInputType.text,
                 ),
-                CustomTextField(
+                Container(
+                  height: height*0.13,
+
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 35, vertical: 8),
+                  child: IntlPhoneField(
+
+                    controller: _phoneController,
+                    decoration: InputDecoration(
+
+                      labelStyle: const TextStyle(
+                        fontSize: 16,
+                        color: kPrimaryColor,
+                        fontFamily: "DinReguler",
+                      ),
+
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: kPrimaryColor, width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: kPrimaryColor, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    initialCountryCode: 'SA',
+                    onChanged: (phone) {
+                      log(phone.completeNumber);
+                    },
+                    onCountryChanged: (country) {
+                      log('Country changed to: ' + country.name);
+                    },
+                  ),
+                ),
+              /*  CustomTextField(
                   hint: KeysConfig.phoneNumber ,
                   dIcon: Icons.phone,
                   label: KeysConfig.phoneNumber ,
@@ -264,7 +316,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     MaxLength(30),
                   ]),
                   type: TextInputType.phone,
-                ),
+                ),*/
                 ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
                  // horizontalTitleGap: 10,

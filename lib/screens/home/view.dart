@@ -1,4 +1,9 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:tal3thoom/screens/drawer/view.dart';
+import 'package:tal3thoom/screens/home/pages/views/profile/view.dart';
 import 'package:tal3thoom/screens/widgets/appBar.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -7,18 +12,79 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
 
+import '../widgets/fast_widget.dart';
 import 'cubit/home_tabebar_cubit.dart';
 
 // ignore: must_be_immutable
-class HomeTabScreen extends StatelessWidget {
+class HomeTabScreen extends StatefulWidget {
   final String? userId;
 
-  HomeTabScreen({Key? key, this.userId}) : super(key: key);
-
-  // final ItemsBar _itemsBar = ItemsBar();
-  final token = Prefs.getString('token');
+  const HomeTabScreen({Key? key, this.userId}) : super(key: key);
 
   @override
+  State<HomeTabScreen> createState() => _HomeTabScreenState();
+}
+
+class _HomeTabScreenState extends State<HomeTabScreen> {
+  // final ItemsBar _itemsBar = ItemsBar();
+  final token = Prefs.getString('token');
+/*
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<HomeTabeBarCubit, HomeTabeBarState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+       // ProductModel model;
+        var cubit = BlocProvider.of<HomeTabeBarCubit>(context);
+        return SafeArea(
+          child: Scaffold(
+
+            body: cubit.widgetOptions.elementAt(cubit.index),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: kPrimaryColor,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeTabScreen()));
+              },
+              child: const Icon(
+                Icons.add_shopping_cart,
+              ),
+            ),
+            floatingActionButtonLocation:
+            FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: AnimatedBottomNavigationBar(
+
+             // elevation: 50.0,
+
+              onTap: (index) {
+                cubit.changeIndex(index);
+              },
+              activeIndex: cubit.index,
+
+              icons:  [
+
+                Icons.home,Icons.category,
+
+              ],
+              activeColor: Colors.black,
+              splashColor: Colors.red,
+              inactiveColor: Colors.black,
+              iconSize: 30.0,
+              //backgroundColor: Colors.grey[200],
+              gapLocation: GapLocation.center,
+              notchSmoothness: NotchSmoothness.smoothEdge,
+              leftCornerRadius: 32,
+              rightCornerRadius: 32,
+            ),
+          ),
+        );
+      },
+    );
+  }*/
+
+  @override
+
+
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
@@ -33,7 +99,7 @@ class HomeTabScreen extends StatelessWidget {
             return Scaffold(
               key: cubit.scaffoldKey,
               backgroundColor: kHomeColor,
-              drawer: MenuItems(),
+              drawer: const MenuItems(),
               appBar: DynamicAppbar(
                   context: context,
                   press: () => cubit.scaffoldKey.currentState!.openDrawer()),

@@ -29,7 +29,7 @@ class _ResultsPreviousTreatmentSessionsState extends State<ResultsPreviousTreatm
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
@@ -471,7 +471,7 @@ class _ResultsPreviousTreatmentSessionsState extends State<ResultsPreviousTreatm
                  ),
                ),
               SmallButton(onPressed: (){
-                navigateTo(context, HomeTabScreen());
+                navigateTo(context, const HomeTabScreen());
               }, title: "Skip")
             ]),
       ),

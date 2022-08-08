@@ -33,6 +33,7 @@ dependencies:
   animate_do: ^2.1.0
   calendar_date_picker2: ^0.1.7
   dio: ^4.0.0
+  animated_bottom_navigation_bar: ^1.0.1
   curved_navigation_bar: ^1.0.3
   animated_text_kit: ^4.2.2
   legacy_buttons: ^0.0.1

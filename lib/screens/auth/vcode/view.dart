@@ -66,7 +66,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
                 controller: _emailController,
                 validator: (String? value) {
                   if (value!.isEmpty) {
-                    return "Please enter a verify code";
+                    return "من فضلك أدخل الكود المرسل";
                   }
                   return null;
                 },
@@ -78,7 +78,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
               ),
               CustomButton(
                 color: kPrimaryColor,
-                title: "confirm" ,
+                title: KeysConfig.confirm ,
                 onPressed: () {
                   //Get.to(() => NewPasswordScreen());
                   navigateTo(context, NewPasswordScreen());
@@ -103,7 +103,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
           const SnackBar(
             backgroundColor: Colors.red,
             content: Text(
-                'If you not sent an verification code please try again !',
+                'إذا لم ترسل رمز التحقق ، يرجى المحاولة مرة أخرى!',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
             //mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                'resent' ,
+               KeysConfig.resent ,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: showResetBottom ? Colors.black : kPrimaryColor,

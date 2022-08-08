@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
+import 'constants.dart';
+
 
 
 
@@ -50,9 +52,11 @@ class _VideoItemsState extends State<VideoItems> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      decoration: const BoxDecoration(
-        //color: kPrimaryColor,
-       // borderRadius: BorderRadius.circular(8)
+      //padding: EdgeInsets.symmetric(vertical: 4,),
+      decoration:  BoxDecoration(
+        color: kBlackText,
+          border: Border.all(color: kPrimaryColor ,width: 3)
+       // borderRadius: BorderRadius.circular(4)
       ),
       child: Chewie(
 
