@@ -18,7 +18,12 @@ class SecondStageOasesTestCubit extends Cubit<SecondStageOasesTestState> {
   bool isFirstGroupFinished = false;
   List<CheckBoxItem> selectedQuestions = sixQuestionsList;
 
-  void nextQuestions(){
+  void nextQuestionsOne(){
+
+    index = 0;
+    selectedGroupIndex++;
+    isFinishedAnswered = false;
+    emit(SecondStageOasesTestSuccess());
 
   }
 }

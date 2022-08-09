@@ -36,7 +36,7 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

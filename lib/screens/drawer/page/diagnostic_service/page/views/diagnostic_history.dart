@@ -32,7 +32,7 @@ final TextEditingController _controller = TextEditingController();
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
 
           context: context,
@@ -414,7 +414,7 @@ padding: const EdgeInsets.symmetric(horizontal: 16),
                     onPressed: () {
                      // speech.speak(KeysConfig.studyingPrivatePublicSchool );
                       navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",title2: "إنتقال إلي إختبار Oases",
-                        onTap: ()=>navigateTo(context, DiagnosticOasesTest()),));
+                        onTap: ()=>navigateTo(context, const DiagnosticOasesTest()),));
                     },
                     title: KeysConfig.next ,
                   ),

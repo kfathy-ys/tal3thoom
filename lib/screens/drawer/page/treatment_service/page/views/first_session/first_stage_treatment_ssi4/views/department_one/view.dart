@@ -38,7 +38,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
@@ -118,7 +118,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, TreatmentSSI4Two(),);
+                  navigateTo(context, const TreatmentSSI4Two(),);
                 },
                 title:"متابعة",
               ),

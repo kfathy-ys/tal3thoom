@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
       showNetworkErrorDialog(context, () {
         Navigator.of(context).pop();
         Get.to(() {
-          loggedIn ? HomeTabScreen() : HomeTabScreen();
+          loggedIn ? const HomeTabScreen() : const HomeTabScreen();
         });
       });
     }

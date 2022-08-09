@@ -34,7 +34,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
         return Scaffold(
           key: cubit.scaffoldKey,
           backgroundColor: kHomeColor,
-          drawer: MenuItems(),
+          drawer: const MenuItems(),
           appBar: DynamicAppbar(
               context: context,
               press: () => cubit.scaffoldKey.currentState!.openDrawer()),
@@ -80,13 +80,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
                           child: CustomButton(
-                              onPressed: () {
-                                setState(() {
-                                  cubit.index = 0;
-                                  cubit.selectedGroupIndex++;
-                                  cubit.isFinishedAnswered = false;
-                                });
-                              },
+                              onPressed: ()=>cubit.nextQuestionsOne(),
                               title: "الانتقال الي القسم التالي",
                               color: kButtonGreenDark),
                         )
@@ -106,13 +100,8 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
                           child: CustomButton(
-                              onPressed: () {
-                                setState(() {
-                                  cubit.index = 0;
-                                  cubit.selectedGroupIndex++;
-                                  cubit.isFinishedAnswered = false;
-                                });
-                              },
+                              onPressed: ()=>cubit.nextQuestionsOne(),
+
                               title: "الانتقال الي القسم التالي",
                               color: kButtonGreenDark),
                         )
@@ -130,13 +119,8 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
                     child: CustomButton(
-                        onPressed: () {
-                          setState(() {
-                            cubit.index = 0;
-                            cubit.selectedGroupIndex++;
-                            cubit.isFinishedAnswered = false;
-                          });
-                        },
+                        onPressed: ()=>cubit.nextQuestionsOne(),
+
                         title: "الانتقال الي القسم التالي",
                         color: kButtonGreenDark),
                   )
@@ -158,7 +142,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                     child: CustomButton(
                         onPressed: () {
                           navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار OASES بنجاح",title2: "إنتقال إلي إختبار SSRS",
-                            onTap: ()=>navigateTo(context, FirstStageSSRSTreatmentScreen()),));                        },
+                            onTap: ()=>navigateTo(context, const FirstStageSSRSTreatmentScreen()),));                        },
                         title: " التالي",
                         color: kButtonGreenDark),
                   )

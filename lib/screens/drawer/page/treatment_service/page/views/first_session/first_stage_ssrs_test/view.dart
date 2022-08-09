@@ -43,7 +43,7 @@ class _FirstStageSSRSTreatmentScreenState extends State<FirstStageSSRSTreatmentS
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

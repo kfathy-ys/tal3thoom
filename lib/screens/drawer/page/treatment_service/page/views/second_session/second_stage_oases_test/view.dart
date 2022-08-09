@@ -80,13 +80,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
                           child: CustomButton(
-                              onPressed: () {
-                                setState(() {
-                                  cubit.index = 0;
-                                  cubit.selectedGroupIndex++;
-                                  cubit.isFinishedAnswered = false;
-                                });
-                              },
+                              onPressed: ()=>cubit.nextQuestionsOne(),
+
                               title: "الانتقال الي القسم التالي",
                               color: kButtonGreenDark),
                         )
@@ -106,13 +101,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
                           child: CustomButton(
-                              onPressed: () {
-                                setState(() {
-                                  cubit.index = 0;
-                                  cubit.selectedGroupIndex++;
-                                  cubit.isFinishedAnswered = false;
-                                });
-                              },
+                              onPressed: ()=>cubit.nextQuestionsOne(),
+
                               title: "الانتقال الي القسم التالي",
                               color: kButtonGreenDark),
                         )
@@ -130,13 +120,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
                     child: CustomButton(
-                        onPressed: () {
-                          setState(() {
-                            cubit.index = 0;
-                            cubit.selectedGroupIndex++;
-                            cubit.isFinishedAnswered = false;
-                          });
-                        },
+                        onPressed: ()=>cubit.nextQuestionsOne(),
+
                         title: "الانتقال الي القسم التالي",
                         color: kButtonGreenDark),
                   )

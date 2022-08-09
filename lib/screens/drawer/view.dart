@@ -13,10 +13,10 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_treatment_sessions/view.dart';
-import 'package:tal3thoom/screens/home/view.dart';
 import '../../../../../../config/keys.dart';
 
 import '../home/cubit/home_tabebar_cubit.dart';
+import 'page/advisors_service/views/Reservation_appointment/view.dart';
 import 'page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/induction.dart';
@@ -29,7 +29,6 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 
 import 'package:flutter/material.dart';
-import '../home/pages/views/reservations_schedule/view.dart';
 import '../widgets/constants.dart';
 import 'page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
 import 'page/previous_treatment_sessions/view.dart';
@@ -59,8 +58,9 @@ class _MenuItemsState extends State<MenuItems> {
         child: ListView(physics: const BouncingScrollPhysics(), children: [
           ListTile(
             onTap: () {
+              BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
+
               Navigator.of(context).pop();
-              navigateTo(context, HomeTabScreen());
             },
             leading: Image.asset("assets/images/main.png"),
             title: customText2(title: KeysConfig.home , color: kHomeColor),
@@ -101,8 +101,9 @@ class _MenuItemsState extends State<MenuItems> {
 
           ListTile(
             onTap: () {
+              BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+
               Navigator.of(context).pop();
-              navigateTo(context, ReservationsSchedule());
             },
             leading: Image.asset("assets/images/calendar.png"),
             title: customText2(title: "جدول الحجوزات", color: kHomeColor),
@@ -201,7 +202,12 @@ class _MenuItemsState extends State<MenuItems> {
                 Navigator.of(context).pop();
                 navigateTo(context, AdviserInduction());
               },
-              onTapAppointentReservation: () {}),
+              onTapAppointentReservation: () {
+
+                Navigator.of(context).pop();
+                navigateTo(context, ReservationAppointmentScreen());
+
+              }),
 
 
 
@@ -209,9 +215,10 @@ class _MenuItemsState extends State<MenuItems> {
 
           ListTile(
             onTap: () {
-              int index = 0;
+
+              BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(0);
+
               Navigator.of(context).pop();
-              navigateTo(context, BlocProvider.of<HomeTabeBarCubit>(context).widgetOptions.elementAt(index));
             },
             leading: Image.asset("assets/images/personal file.png"),
             title: customText2(

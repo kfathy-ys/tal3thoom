@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tal3thoom/screens/auth/register/page/drop_down_six.dart';
 import 'package:tal3thoom/screens/auth/register/page/title_subtitle.dart';

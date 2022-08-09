@@ -4,20 +4,17 @@ import 'dart:io';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:queen/queen.dart';
 import 'package:video_player/video_player.dart';
 
 
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
-import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
-import '../evaluation_section/view.dart';
 
 // ignore: must_be_immutable
 class FirstStageAdditionalTrainingScreen extends StatefulWidget {

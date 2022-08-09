@@ -36,7 +36,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

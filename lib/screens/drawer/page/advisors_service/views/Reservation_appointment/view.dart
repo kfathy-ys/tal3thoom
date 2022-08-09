@@ -3,15 +3,10 @@ import 'package:tal3thoom/screens/payment/view.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:tal3thoom/screens/widgets/smallButtonSizer.dart';
-import 'package:video_player/video_player.dart';
-import '../../../../../../config/keys.dart';
-import '../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
-import '../../../../../widgets/video_items.dart';
 import '../../../../view.dart';
-import '../../../diagnostic_service/page/views/success_page.dart';
 import 'page/drop_down_duration.dart';
 
 
@@ -141,8 +136,7 @@ class ReservationAppointmentScreen extends StatelessWidget {
                           MediaButton(
 
                             onPressed: () {
-                              navigateTo(context, SuccessView(title1: "لقد تم حجز موعد مع المختص",title2: "إنتقال إلي جدول الحجوزات",
-                                onTap: ()=>navigateTo(context, Payment()),));
+                          navigateTo(context, Payment());
                             },
                             color: kButtonGreenDark,
                             title: "حجز جلسة",

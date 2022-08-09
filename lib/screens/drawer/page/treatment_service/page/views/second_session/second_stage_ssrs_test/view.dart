@@ -9,7 +9,6 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
-import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 import '../second_stage_treatment_ssi4/views/department_one/view.dart';
 

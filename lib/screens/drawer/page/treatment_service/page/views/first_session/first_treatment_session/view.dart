@@ -31,7 +31,7 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
@@ -182,7 +182,7 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
                   color: kPrimaryColor,
                   title: "متابعة",
                   onPressed: () {
-                    navigateTo(context, SlokiScreen());
+                    navigateTo(context, const SlokiScreen());
                   },
                 ),
               ]),

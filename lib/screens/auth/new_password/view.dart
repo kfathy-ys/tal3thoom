@@ -70,7 +70,7 @@ class NewPasswordScreen extends StatelessWidget {
                 color: kPrimaryColor,
                 title: KeysConfig.save ,
                 onPressed: () {
-                  navigateAndFinish(context, HomeTabScreen());
+                  navigateAndFinish(context, const HomeTabScreen());
                 },
               ),
               SizedBox(

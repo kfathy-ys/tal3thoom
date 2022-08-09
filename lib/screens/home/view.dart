@@ -1,9 +1,4 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:tal3thoom/screens/drawer/view.dart';
-import 'package:tal3thoom/screens/home/pages/views/profile/view.dart';
 import 'package:tal3thoom/screens/widgets/appBar.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -12,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
 
-import '../widgets/fast_widget.dart';
 import 'cubit/home_tabebar_cubit.dart';
 
 // ignore: must_be_immutable

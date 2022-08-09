@@ -33,7 +33,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
         return Scaffold(
           key: cubit.scaffoldKey,
           backgroundColor: kHomeColor,
-          drawer: MenuItems(),
+          drawer: const MenuItems(),
           appBar: DynamicAppbar(
               context: context,
               press: () => cubit.scaffoldKey.currentState!.openDrawer()),
@@ -85,13 +85,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
                           child: CustomButton(
-                              onPressed: () {
-                                setState(() {
-                                  cubit.index = 0;
-                                  cubit.selectedGroupIndex++;
-                                  cubit.isFinishedAnswered = false;
-                                });
-                              },
+                              onPressed:()=>cubit.nextQuestionsOne(),
                               title: "الانتقال الي القسم التالي",
                               color: kButtonGreenDark),
                         )
@@ -111,13 +105,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
                           child: CustomButton(
-                              onPressed: () {
-                                setState(() {
-                                  cubit.index = 0;
-                                  cubit.selectedGroupIndex++;
-                                  cubit.isFinishedAnswered = false;
-                                });
-                              },
+                              onPressed: ()=>cubit.nextQuestionsOne(),
                               title: "الانتقال الي القسم التالي",
                               color: kButtonGreenDark),
                         )
@@ -135,13 +123,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
                     child: CustomButton(
-                        onPressed: () {
-                          setState(() {
-                            cubit.index = 0;
-                            cubit.selectedGroupIndex++;
-                            cubit.isFinishedAnswered = false;
-                          });
-                        },
+                        onPressed: ()=>cubit.nextQuestionsOne(),
                         title: "الانتقال الي القسم التالي",
                         color: kButtonGreenDark),
                   )
