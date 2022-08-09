@@ -27,26 +27,35 @@ class SmallButtonSizer extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        height: MediaQuery.of(context).size.height / 15,
-        width: MediaQuery.of(context).size.width / 4.5,
+        //margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        height: MediaQuery.of(context).size.height / 14,
+        width: MediaQuery.of(context).size.width / 3,
         decoration: BoxDecoration(
             color: color ?? Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: color!, width: 1.5)),
+            borderRadius: BorderRadius.circular(10),
+           border: Border.all(color: color!, width: 1.5),
+
+        ),
         child: Center(
           child: isLoading != true
-              ? Text(title!,
+              ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(image!),
+              // SizedBox(width: width*0.02,),
+              Text(title!,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'DinBold',
                       fontWeight: FontWeight.bold,
-                      fontSize: 16))
+                      fontSize: 12)),
+            ],
+          )
               : SpinKitChasingDots(
-                  size: 20,
-                  color: loadingColor ?? Colors.white,
-                ),
+            size: 20,
+            color: loadingColor ?? Colors.white,
+          ),
         ),
       ),
     );

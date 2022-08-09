@@ -15,6 +15,8 @@ import 'package:tal3thoom/screens/splash/view.dart';
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
+import 'screens/drawer/page/advisors_service/views/Reservation_appointment/view.dart';
+import 'screens/drawer/page/advisors_service/views/inductions.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_additional_traning/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
@@ -111,7 +113,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:    SignUpScreen(),
+            home:    ReservationAppointmentScreen(),
 
 
 

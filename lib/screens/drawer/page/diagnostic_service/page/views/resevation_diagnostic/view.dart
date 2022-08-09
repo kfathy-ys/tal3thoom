@@ -13,6 +13,8 @@ import '../../../../../view.dart';
 class ReservationDiagnostic extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ReservationDiagnostic({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -20,7 +22,7 @@ class ReservationDiagnostic extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),

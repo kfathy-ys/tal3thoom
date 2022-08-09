@@ -5,13 +5,17 @@ import '../../../../../../config/keys.dart';
 
 import '../../../../widgets/appBar.dart';
 import '../../../../widgets/constants.dart';
+import '../../../../widgets/fast_widget.dart';
 import '../../../../widgets/video_items.dart';
 import '../../../view.dart';
+import 'Reservation_appointment/view.dart';
 
 
 // ignore: must_be_immutable
 class AdviserInduction extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  AdviserInduction({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class AdviserInduction extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: kHomeColor,
-      drawer: MenuItems(),
+      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: () => scaffoldKey.currentState!.openDrawer()),
@@ -52,7 +56,7 @@ class AdviserInduction extends StatelessWidget {
                 ),
                 MediaButton(
                   onPressed: () {
-                   // navigateTo(context, DiagnosticHistory());
+                    navigateTo(context, ReservationAppointmentScreen());
                   },
                   title: ("ابدأ"),
                 ),
