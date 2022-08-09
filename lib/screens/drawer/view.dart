@@ -13,6 +13,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_treatment_sessions/view.dart';
+import 'package:tal3thoom/screens/home/view.dart';
 import '../../../../../../config/keys.dart';
 
 import '../home/cubit/home_tabebar_cubit.dart';
@@ -59,7 +60,7 @@ class _MenuItemsState extends State<MenuItems> {
           ListTile(
             onTap: () {
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-
+//navigateTo(context, const HomeTabScreen());
               Navigator.of(context).pop();
             },
             leading: Image.asset("assets/images/main.png"),

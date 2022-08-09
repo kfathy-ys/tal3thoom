@@ -44,7 +44,7 @@ dependencies:
   image_cropper: ^1.5.1
   flutter_rating_bar:
   expansion_card:
-
+  webview_flutter: ^3.0.4
   expansion_tile_card:
   syncfusion_flutter_datepicker: ^20.1.59
   flutter_conditional_rendering: ^2.0.0

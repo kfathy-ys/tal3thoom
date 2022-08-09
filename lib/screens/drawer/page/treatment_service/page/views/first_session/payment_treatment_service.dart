@@ -1,6 +1,7 @@
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/core/helpers/url_luncher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../../../config/keys.dart';
 
 import '../../../../../../widgets/appBar.dart';
@@ -43,20 +44,29 @@ class PaymentTreatment extends StatelessWidget {
                 paymentCard(width, height, context,
                     price: KeysConfig.fifty , onTapPay: () {
 
-                      String web = "https://dev-sas.cpt-it.com/Sas/PaymentTreatment";
-                      Launch.url(web);
+                          navigateTo(context, const WebView(
+                        javascriptMode: JavascriptMode.unrestricted,
+
+                        initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      ));
                       print("object1");
                     }, description: KeysConfig.diagnosis ),
                 paymentCard(width, height, context,
                     price: KeysConfig.hundred , onTapPay: () {
-                      String web = "https://dev-sas.cpt-it.com/Sas/PaymentTreatment";
-                      Launch.url(web);
+                          navigateTo(context, const WebView(
+                        javascriptMode: JavascriptMode.unrestricted,
+
+                        initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      ));
                       print("object2");
                     }, description: KeysConfig.twoSession ),
                 paymentCard(width, height, context,
                     price: KeysConfig.fifty , onTapPay: () {
-                      String web = "https://dev-sas.cpt-it.com/Sas/PaymentTreatment";
-                      Launch.url(web);
+                          navigateTo(context, const WebView(
+                        javascriptMode: JavascriptMode.unrestricted,
+
+                        initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      ));
                       print("object3");
                     }, description: KeysConfig.DiagnosisTreatment ),
 

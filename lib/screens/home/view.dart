@@ -84,42 +84,39 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       onWillPop: () async {
         return onWillPop(context);
       },
-      child: BlocProvider(
-        create: (context) => HomeTabeBarCubit(),
-        child: BlocConsumer<HomeTabeBarCubit, HomeTabeBarState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            final cubit = BlocProvider.of<HomeTabeBarCubit>(context);
-            return Scaffold(
-              key: cubit.scaffoldKey,
+      child: BlocConsumer<HomeTabeBarCubit, HomeTabeBarState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final cubit = BlocProvider.of<HomeTabeBarCubit>(context);
+          return Scaffold(
+            key: cubit.scaffoldKey,
+            backgroundColor: kHomeColor,
+            drawer: const MenuItems(),
+            appBar: DynamicAppbar(
+                context: context,
+                press: () => cubit.scaffoldKey.currentState!.openDrawer()),
+            body: cubit.widgetOptions.elementAt(cubit.index),
+            bottomNavigationBar: CurvedNavigationBar(
+              key: cubit.bottomNavigationKey,
+              index: cubit.index,
+              height: 50.0,
+              items: <Widget>[
+                Image.asset(
+                  "assets/images/Profile 1.png",
+                ),
+                Image.asset("assets/images/main.png"),
+                Image.asset("assets/images/white calendar.png"),
+              ],
+              color: kDarkPrimaryColor,
+              buttonBackgroundColor: kButtonGreenDark,
               backgroundColor: kHomeColor,
-              drawer: const MenuItems(),
-              appBar: DynamicAppbar(
-                  context: context,
-                  press: () => cubit.scaffoldKey.currentState!.openDrawer()),
-              body: cubit.widgetOptions.elementAt(cubit.index),
-              bottomNavigationBar: CurvedNavigationBar(
-                key: cubit.bottomNavigationKey,
-                index: cubit.index,
-                height: 50.0,
-                items: <Widget>[
-                  Image.asset(
-                    "assets/images/Profile 1.png",
-                  ),
-                  Image.asset("assets/images/main.png"),
-                  Image.asset("assets/images/white calendar.png"),
-                ],
-                color: kDarkPrimaryColor,
-                buttonBackgroundColor: kButtonGreenDark,
-                backgroundColor: kHomeColor,
-                animationCurve: Curves.easeInOut,
-                animationDuration: const Duration(milliseconds: 600),
-                onTap: cubit.changeIndex,
-                letIndexChange: (index) => true,
-              ),
-            );
-          },
-        ),
+              animationCurve: Curves.easeInOut,
+              animationDuration: const Duration(milliseconds: 600),
+              onTap: cubit.changeIndex,
+              letIndexChange: (index) => true,
+            ),
+          );
+        },
       ),
     );
   }
