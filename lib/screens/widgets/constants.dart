@@ -152,7 +152,11 @@ Widget customMeduimBoldText(String? title) {
       style: const TextStyle(
           color: kRoundBorderColor, fontSize: 18, fontFamily: 'NeoSansBold'));
 }
-
+Widget custom12Text({required String title ,required Color color}) {
+  return Text(title,
+      style:  TextStyle(
+          color: color, fontSize: 10, fontFamily: 'DinBold'));
+}
 Widget customBoldText({required String title ,required Color color}) {
   return Text(title,
       style:  TextStyle(

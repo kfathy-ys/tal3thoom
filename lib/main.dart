@@ -12,6 +12,7 @@ import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/drawer/page/advisors_service/views/Reservation_appointment/view.dart';
+import 'screens/drawer/page/medical_reports/medical_report_details/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
@@ -106,7 +107,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:    const HomeTabScreen(),
+            home:     MedicalReportsDetails(),
 
 
 

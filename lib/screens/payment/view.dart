@@ -35,50 +35,54 @@ class Payment extends StatelessWidget {
               children: [
                 CustomTileContainer(
                     widthh: width / 2.5,
-                    title: KeysConfig.payment ,
+                    title: KeysConfig.payment,
                     context: context),
-                paymentCard(width, height, context,
-                    price: KeysConfig.fifty , onTapPay: () {
-
-                          navigateTo(context, const WebView(
+                paymentCard(width, height, context, price: KeysConfig.fifty,
+                    onTapPay: () {
+                  navigateTo(
+                      context,
+                      const WebView(
                         javascriptMode: JavascriptMode.unrestricted,
-
-                        initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                        initialUrl:
+                            "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                       ));
-
-
-
-
 
                   print("object1");
-                }, description: KeysConfig.diagnosis ),
-                paymentCard(width, height, context,
-                    price: KeysConfig.hundred , onTapPay: () {
-                          navigateTo(context, const WebView(
+                }, description: KeysConfig.diagnosis),
+                paymentCard(width, height, context, price: KeysConfig.hundred,
+                    onTapPay: () {
+                  navigateTo(
+                      context,
+                      const WebView(
                         javascriptMode: JavascriptMode.unrestricted,
-
-                        initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                        initialUrl:
+                            "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                       ));
                   print("object2");
-                }, description: KeysConfig.twoSession ),
-                paymentCard(width, height, context,
-                    price: KeysConfig.fifty , onTapPay: () {
-                          navigateTo(context, const WebView(
+                }, description: KeysConfig.twoSession),
+                paymentCard(width, height, context, price: KeysConfig.fifty,
+                    onTapPay: () {
+                  navigateTo(
+                      context,
+                      const WebView(
                         javascriptMode: JavascriptMode.unrestricted,
-
-                        initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                        initialUrl:
+                            "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                       ));
                   print("object3");
-                }, description: KeysConfig.DiagnosisTreatment ),
-
-            SmallButton(
-              title: "Skip",
-              onPressed: (){
-
-              navigateTo(context, SuccessView(title1: "لقد تم عملية الدفع  بنجاح",title2: "المرحلة الأولي من التشخيص",
-                onTap: ()=>navigateTo(context, DiagnosticHistory()),));
-            },),
-
+                }, description: KeysConfig.DiagnosisTreatment),
+                SmallButton(
+                  title: "Skip",
+                  onPressed: () {
+                    navigateTo(
+                        context,
+                        SuccessView(
+                          title1: "لقد تم عملية الدفع  بنجاح",
+                          title2: "المرحلة الأولي من التشخيص",
+                          onTap: () => navigateTo(context, DiagnosticHistory()),
+                        ));
+                  },
+                ),
               ],
             ),
           ),
@@ -111,7 +115,7 @@ class Payment extends StatelessWidget {
           customText5(title: price, color: kBlackText),
           SmallButton(
             onPressed: onTapPay,
-            title: KeysConfig.payment ,
+            title: KeysConfig.payment,
           )
         ],
       ),

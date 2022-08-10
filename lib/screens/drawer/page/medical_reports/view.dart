@@ -1,14 +1,18 @@
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
+import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 
 import '../../../widgets/appBar.dart';
 import '../../../widgets/constants.dart';
 import '../../view.dart';
+import 'medical_report_details/view.dart';
 
 
 // ignore: must_be_immutable
 class MedicalReports extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  MedicalReports({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +78,9 @@ class MedicalReports extends StatelessWidget {
                            ],
                          ),
 
-                         CustomButton(title: "عرض التقرير",color: kPrimaryColor,onPressed: (){},)
+                         CustomButton(title: "عرض التقرير",color: kPrimaryColor,onPressed: (){
+                           navigateTo(context, MedicalReportsDetails());
+                         },)
                        ],
                      ),
                    );
