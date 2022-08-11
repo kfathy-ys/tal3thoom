@@ -1,3 +1,4 @@
+import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/custom_container.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/drop_down_spcialist.dart';
 import 'package:tal3thoom/screens/payment/view.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
@@ -7,9 +8,10 @@ import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
 import '../../../../view.dart';
+import '../advisor_payment/view.dart';
+import '../spcializer_profile/view.dart';
+import 'page/drop_down_available_date.dart';
 import 'page/drop_down_duration.dart';
-
-
 
 // ignore: must_be_immutable
 class ReservationAppointmentScreen extends StatelessWidget {
@@ -31,125 +33,60 @@ class ReservationAppointmentScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           height: height,
-          width: width ,
-
+          width: width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomTileContainer(
-                  widthh: width * 0.5,
-                  title:"حجز موعد" ,
-                  context: context),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Align(alignment: Alignment.topRight,child: customText10(title: " 1- من فضلك قم بأختيار الأخصائي :", color: kBlackText)),
-              ),
+                  widthh: width * 0.5, title: "حجز المواعيد", context: context),
+              headTitles(headTitle: " 1- من فضلك قم بأختيار الأخصائي :"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.min,
-                children:  [
+                children: [
                   const DropDownSpecialist(),
-                  SmallButtonSizer(onPressed: (){
-
-                  }, title: "الملف الشخصي",color: kPrimaryColor,image: "assets/images/eye1.png"),
+                  SmallButtonSizer(
+                      onPressed: () {
+                        navigateTo(context, SpecializerProfile());
+                      },
+                      title: "الملف الشخصي",
+                      color: kPrimaryColor,
+                      image: "assets/images/eye1.png"),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Align(alignment: Alignment.topRight,child: customText10(title: " 2- أكثر مدة للجلسة :", color: kBlackText)),
-              ),
+              headTitles(headTitle: "2- أكثر مدة للجلسة :"),
               const DropDownDurations(),
-
-            /*  Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: SmallButtonSizer(onPressed: (){
-
-                }, title: "بحث",color: kPrimaryColor,image: "assets/images/right_arrow.png"),
-              ),*/
+              headTitles(headTitle: "3- أحتر التاريخ المتاح :"),
+              const DropDownAvailableDates(),
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: 8,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(vertical: 16,horizontal: 16),
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
-                      height: height * 0.48,
-                      width: width * 0.8,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: kPrimaryColor)),
+                    return CustomContainer(
+                      height: height * 0.33,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        //crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            child: Image.asset("assets/images/avater2.png"),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            margin: const EdgeInsets.symmetric(vertical: 4),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customText10(
-                                  title: "جنس الاخصائي", color: kPrimaryColor),
-                              customText10(title: "ذكر", color: kTextFieldColor)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customText10(title: "العمل", color: kPrimaryColor),
-                              customText10(title: "وزارة الصحة", color: kTextFieldColor)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customText10(
-                                  title: "اليوم", color: kPrimaryColor),
-                              customText10(title: "الاتنين", color: kTextFieldColor)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customText10(
-                                  title: "التاريخ", color: kPrimaryColor),
-                              customText10(title: "2022-10-29", color: kTextFieldColor)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customText10(
-                                  title: "الساعة", color: kPrimaryColor),
-                              customText10(
-                                  title: "17:59", color: kTextFieldColor)
-                            ],
-                          ),
-
+                          cardItems(title: "المتخصص", subTitle: "المتخصص"),
+                          cardItems(
+                              title: "تاريخ الجلسة", subTitle: "10-12-2022"),
+                          cardItems(title: "وقت البداية", subTitle: "10:00"),
+                          cardItems(title: "وقت النهاية", subTitle: "10:16"),
                           MediaButton(
-
                             onPressed: () {
-                          navigateTo(context, Payment());
+                              navigateTo(context, PaymentAdvisor());
                             },
                             color: kButtonGreenDark,
                             title: "حجز جلسة",
                           ),
-
-
                         ],
                       ),
                     );
                   },
                 ),
               ),
-
             ],
           ),
         ),
@@ -157,7 +94,22 @@ class ReservationAppointmentScreen extends StatelessWidget {
     );
   }
 
-  SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
+  Widget headTitles({required String headTitle}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Align(
+          alignment: Alignment.topRight,
+          child: customText10(title: headTitle, color: kBlackText)),
+    );
+  }
+
+  Widget cardItems({required String title, required String subTitle}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        customText10(title: title, color: kPrimaryColor),
+        customText10(title: subTitle, color: kTextFieldColor)
+      ],
+    );
+  }
 }

@@ -1,4 +1,5 @@
 
+import 'package:tal3thoom/screens/drawer/page/advisors_service/views/spcializer_profile/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/cubit/oases_test_cubit.dart';
 
 import 'package:device_preview/device_preview.dart';
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:     MedicalReportsDetails(),
+            home:     HomeTabScreen(),
 
 
 

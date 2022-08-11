@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,6 +94,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     _profilePic(userName: "Rashad Hamza"),
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.person,
                       label: KeysConfig.userName ,
                       hint: KeysConfig.userName ,
@@ -105,6 +107,7 @@ class _ProfileState extends State<Profile> {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.date_range,
                       label: KeysConfig.date ,
                       hint:  KeysConfig.date ,
@@ -117,6 +120,7 @@ class _ProfileState extends State<Profile> {
                       type: TextInputType.emailAddress,
                     ),
                     CustomTextField(
+                      isEdit: true,
                       hint: KeysConfig.email ,
                       dIcon: Icons.email,
                       label: KeysConfig.email ,
@@ -129,6 +133,7 @@ class _ProfileState extends State<Profile> {
                       type: TextInputType.text,
                     ),
                     CustomTextField(
+                      isEdit: true,
                       hint: KeysConfig.phoneNumber ,
                       dIcon: Icons.phone,
                       label: KeysConfig.phoneNumber ,
@@ -142,6 +147,7 @@ class _ProfileState extends State<Profile> {
                       type: TextInputType.phone,
                     ),
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.location_on_outlined,
                       label: KeysConfig.city ,
                       hint: KeysConfig.city ,
@@ -171,6 +177,7 @@ class _ProfileState extends State<Profile> {
                       type: TextInputType.text,
                     ),
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.real_estate_agent,
                       label: KeysConfig.countryResidence ,
                       hint: KeysConfig.countryResidence ,
@@ -185,7 +192,8 @@ class _ProfileState extends State<Profile> {
                       type: TextInputType.streetAddress,
                     ),
                     CustomTextField(
-                      dIcon: Icons.edit,
+                      isEdit: true,
+                      dIcon: Icons.work_history_outlined,
                       label: KeysConfig.entityWork ,
                       hint: KeysConfig.entityWork ,
                       controller: _entityWorkController,
@@ -200,7 +208,8 @@ class _ProfileState extends State<Profile> {
                     ),
 
                     CustomTextField(
-                      dIcon: Icons.person_add_alt_1,
+                      isEdit: true,
+                      dIcon: Icons.privacy_tip_outlined,
                       label: KeysConfig.entityNumber ,
                       hint: KeysConfig.entityNumber ,
                       controller: _entityNumberController,
@@ -217,9 +226,9 @@ class _ProfileState extends State<Profile> {
 
 
                     state is! RegisterLoading
-                        ? SmallButton(
+                        ? MediaButton(
                         color: kPrimaryColor,
-                        title: KeysConfig.save ,
+                        title: "تعديل" ,
                         onPressed: () {
                           // if (_formKey.currentState!.validate()) {
                           //                           //   cubit.userRegister(

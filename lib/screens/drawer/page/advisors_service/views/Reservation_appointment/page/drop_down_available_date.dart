@@ -4,15 +4,15 @@ import '../../../../../../widgets/constants.dart';
 
 
 
-class DropDownSpecialist extends StatefulWidget {
-  const DropDownSpecialist({Key? key}) : super(key: key);
+class DropDownAvailableDates extends StatefulWidget {
+  const DropDownAvailableDates({Key? key}) : super(key: key);
 
   @override
-  State<DropDownSpecialist> createState() =>
-      _DropDownSpecialistState();
+  State<DropDownAvailableDates> createState() =>
+      _DropDownAvailableDatesState();
 }
 
-class _DropDownSpecialistState extends State<DropDownSpecialist> {
+class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
   String? dropdownValue;
 
   @override
@@ -22,7 +22,7 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-      width: MediaQuery.of(context).size.width / 1.9,
+      width: MediaQuery.of(context).size.width /1.2,
       height: height*0.069,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -35,7 +35,7 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
           // isDense: true,
           //isExpanded: true,
           hint: const Text(
-            "الأخصائي" ' :',
+            "التواريخ المتاحة" ' :',
             style: TextStyle(
               color: kPrimaryColor,
               fontSize: 16,
@@ -57,9 +57,14 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
             });
           },
           items: <String>[
-            "أحمد الكامل ",
-            " خالد الرفاعي",
-            "محمد رشاد",
+            "10-10-2022",
+            "11-10-2022",
+            "13-10-2022",
+            "16-10-2022",
+            "27-10-2022",
+            "28-10-2022",
+            "01-11-2022",
+            "19-11-2022",
 
 
           ].map<DropdownMenuItem<String>>((String value) {

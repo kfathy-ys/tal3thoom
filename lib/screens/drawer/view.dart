@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tal3thoom/screens/auth/login/view.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/expantion_widget.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/inductions.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/view.dart';
@@ -60,7 +61,6 @@ class _MenuItemsState extends State<MenuItems> {
           ListTile(
             onTap: () {
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-//navigateTo(context, const HomeTabScreen());
               Navigator.of(context).pop();
             },
             leading: Image.asset("assets/images/main.png"),
@@ -245,11 +245,16 @@ class _MenuItemsState extends State<MenuItems> {
             imageLeading: "assets/images/message.png",
             title: KeysConfig.contactsUs ,
           ),
-          drawerContents(
-            onTap: () {},
-            imageLeading: "assets/images/Exit.png",
-            title: KeysConfig.signOut ,
+
+          ListTile(
+            onTap: (){
+              Navigator.of( context).pop();
+              navigateTo(context, LoginScreen());
+            },
+            leading: Image.asset("assets/images/Exit.png"),
+            title: customText2(title: KeysConfig.signOut , color: kHomeColor),
           ),
+
         ]),
       ),
     );

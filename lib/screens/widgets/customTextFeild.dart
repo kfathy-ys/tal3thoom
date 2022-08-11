@@ -80,12 +80,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
             labelText: widget.label,
             contentPadding:
             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            icon: widget.isEdit == true
-                ? const Icon(
-              Icons.edit,
-              color: kPrimaryColor,
-            )
-                : null,
+            // icon: widget.isEdit == true
+            //     ? const Icon(
+            //   Icons.edit,
+            //   color: kPrimaryColor,
+            // )
+            //     : null,
             labelStyle: const TextStyle(
               fontSize: 16,
               color: kPrimaryColor,
@@ -106,6 +106,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 Icons.visibility,
                 color: kBlackText,
               ),
+            )
+                :  widget.isEdit == true
+                ? const Icon(
+              Icons.edit,
+              color: kPrimaryColor,
             )
                 : null,
             filled: true,
