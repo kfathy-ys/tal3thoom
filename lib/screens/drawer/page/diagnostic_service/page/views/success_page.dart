@@ -1,30 +1,34 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../home/cubit/home_tabebar_cubit.dart';
+import '../../../../../home/view.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
+import '../../../../../widgets/fast_widget.dart';
 import '../../../../view.dart';
 
 // ignore: must_be_immutable
 class SuccessView extends StatelessWidget {
   final String title1;
   final String title2;
-  final VoidCallback onTap;
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  final VoidCallback? onTap;
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
-   SuccessView({Key? key, required this.title1, required this.title2, required this.onTap}) : super(key: key);
+   SuccessView({Key? key, required this.title1, required this.title2, this.onTap, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: SingleChildScrollView(
         child: Container(
           height: height,
@@ -46,7 +50,16 @@ class SuccessView extends StatelessWidget {
               ),
             ),
 
-            CustomButton(color: kPrimaryColor,onPressed:onTap,
+            CustomButton(color: kPrimaryColor,onPressed:(){
+              if(onTap != null) {
+                onTap!();
+              }
+              else{
+                BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+                navigateTo(context, const HomeTabScreen());
+              }
+
+            }
 
 
             //     (){
@@ -56,7 +69,7 @@ class SuccessView extends StatelessWidget {
 
 
 
-            title: title2
+            ,title: title2
             //"إنتقال إلي إختبار Oases",
             ),
           ]),

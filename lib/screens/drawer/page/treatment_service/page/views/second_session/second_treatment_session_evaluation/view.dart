@@ -16,6 +16,7 @@ import '../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/question.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
+import '../second_stage_additional_traning/view.dart';
 
 
 // ignore: must_be_immutable
@@ -28,7 +29,7 @@ class SecondTreatmentSessionEvaluation extends StatefulWidget {
 }
 
 class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessionEvaluation> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   final _firstController = TextEditingController();
 
   @override
@@ -36,12 +37,12 @@ class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessio
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -53,8 +54,8 @@ class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessio
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTileContainer(
-                      widthh: width / 1.8,
-                      title: "الجلسة العلاجية الثانية",
+                      widthh: width *0.6,
+                      title: "الجلسة العلاجية السادسة عشر",
                       context: context),
                   Align(
                       alignment: Alignment.centerRight,
@@ -250,10 +251,10 @@ class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessio
                       navigateTo(context, Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: SuccessView(title1: "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",title2: "تدريب وتعليم إضافي",
-                          onTap: ()=>navigateTo(context, ReservationsSchedule()),),
+                          onTap: ()=>navigateTo(context, const SecondStageAdditionalTrainingScreen()),),
                       ));
                     },
-                    color: kButtonGreenDark,
+                    color: kPrimaryColor,
                     title: "متابعة",
                   ),
                 ]),

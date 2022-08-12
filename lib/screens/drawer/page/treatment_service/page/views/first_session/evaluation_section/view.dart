@@ -16,6 +16,7 @@ import '../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/question.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
+import '../first_stage_additional_traning/view.dart';
 
 
 // ignore: must_be_immutable
@@ -26,7 +27,7 @@ class EvaluationSectionScreen extends StatefulWidget {
 }
 
 class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   final _firstController = TextEditingController();
 
   @override
@@ -34,12 +35,12 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -247,11 +248,14 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                     onPressed: () {
                       navigateTo(context, Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: SuccessView(title1: "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",title2: "تدريب وتعليم إضافي",
-                          onTap: ()=>navigateTo(context, ReservationsSchedule()),),
+                        child: SuccessView(
+                          title1: "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
+
+                          title2: "تدريب وتعليم إضافي",
+                          onTap: ()=>navigateTo(context, FirstStageAdditionalTrainingScreen()),),
                       ));
                     },
-                    color: kButtonGreenDark,
+                    color: kPrimaryColor,
                     title: "متابعة",
                   ),
                 ]),

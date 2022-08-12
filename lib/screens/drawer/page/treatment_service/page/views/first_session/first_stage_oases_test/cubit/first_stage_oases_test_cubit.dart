@@ -10,7 +10,6 @@ part 'first_state_oases_test_state.dart';
 class FirstStageOasesTestCubit extends Cubit<FirstStageOasesTestState> {
   FirstStageOasesTestCubit() : super(FirstStageOasesTestInitial());
 
-  var scaffoldKey = GlobalKey<ScaffoldState>();
   int index = 0;
   int  totalCounter = 1;
   bool isFinishedAnswered = false;

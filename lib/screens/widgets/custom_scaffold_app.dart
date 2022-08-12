@@ -21,7 +21,7 @@ class CustomScaffold extends StatelessWidget {
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              //press: () => _scaffoldKey.currentState!.openDrawer(),
+              //press: () => __scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: body,
         ),

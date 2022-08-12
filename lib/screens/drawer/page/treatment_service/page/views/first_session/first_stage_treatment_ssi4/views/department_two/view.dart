@@ -29,7 +29,7 @@ class TreatmentSSI4Two extends StatefulWidget {
 }
 
 class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final _firstController = TextEditingController();
 
@@ -38,12 +38,12 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: height,
@@ -75,7 +75,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
 
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 12),
-                child: Image.asset("assets/images/training.png"),
+                child: Image.asset("assets/images/talks.png"),
               ),
               InkWell(
                   onTap: () {

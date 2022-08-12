@@ -6,6 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../../config/keys.dart';
 import '../../../../../home/cubit/home_tabebar_cubit.dart';
 import '../../../../../home/pages/views/reservations_schedule/view.dart';
+import '../../../../../home/view.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
@@ -15,7 +16,7 @@ import '../../../diagnostic_service/page/views/success_page.dart';
 
 // ignore: must_be_immutable
 class PaymentAdvisor extends StatelessWidget {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   PaymentAdvisor({Key? key}) : super(key: key);
 
@@ -24,12 +25,12 @@ class PaymentAdvisor extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: SingleChildScrollView(
         child: Container(
           height: height,
@@ -80,19 +81,16 @@ class PaymentAdvisor extends StatelessWidget {
                   title: "Skip",
                   onPressed: () {
 
-               //   BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-                    // navigateTo(
-                    //     context,
-                    //     SuccessView(
-                    //       title1: "لقد تم عملية الدفع  بنجاح",
-                    //       title2: "الإنتقال إلي جدول الحجوزات",
-                    //       onTap: () {
-                    //         BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-                    //
-                    //
-                    //
-                    //       },
-                    //     ));
+              //    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+
+
+
+                    navigateTo(
+                        context,
+                        SuccessView(
+                          title1: "لقد تم عملية الدفع  بنجاح",
+                          title2: "الإنتقال إلي جدول الحجوزات",
+                        ));
                   },
                 ),
               ],

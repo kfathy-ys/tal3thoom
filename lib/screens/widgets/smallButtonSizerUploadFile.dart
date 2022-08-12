@@ -31,9 +31,9 @@ class SmallButtonSizerUploadFile extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         height: MediaQuery.of(context).size.height / 18,
-        width: MediaQuery.of(context).size.width / 5,
+        width: MediaQuery.of(context).size.width / 4,
         decoration: BoxDecoration(
-          color: color == kSmallIconColor ? kSmallIconColor : kAccentColor,
+          color: color == kSmallIconColor ? kSmallIconColor : kTextFieldColor,
           borderRadius: BorderRadius.circular(8),
           //border: Border.all(color: kPrimaryColor, width: 1.5)
         ),

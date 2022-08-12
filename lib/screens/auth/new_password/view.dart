@@ -11,7 +11,7 @@ import '../register/page/back_icon.dart';
 class NewPasswordScreen extends StatelessWidget {
   NewPasswordScreen({Key? key}) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final _newPassController = TextEditingController();
   final _confirmPssController = TextEditingController();

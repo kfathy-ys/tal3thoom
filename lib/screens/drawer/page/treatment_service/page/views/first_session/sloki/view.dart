@@ -13,6 +13,7 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
 import '../../../../../../../widgets/smallButtonSizer.dart';
+import '../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../evaluation_section/view.dart';
@@ -26,7 +27,7 @@ class SlokiScreen extends StatefulWidget {
 }
 
 class _SlokiScreenState extends State<SlokiScreen> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   final _firstController = TextEditingController();
 
   @override
@@ -34,12 +35,12 @@ class _SlokiScreenState extends State<SlokiScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: height,
@@ -165,7 +166,7 @@ Widget uploadedVideo({
         validator: validator,
         type: TextInputType.text,
       ),
-      SmallButtonSizer(
+      SmallButtonSizerUploadFile(
         title: "Browse",
         onPressed: onPressed1,
         color: kTextFieldColor,

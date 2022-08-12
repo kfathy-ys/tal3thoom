@@ -11,7 +11,7 @@ import '../../../../../view.dart';
 
 // ignore: must_be_immutable
 class ReservationDiagnostic extends StatelessWidget {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   ReservationDiagnostic({Key? key}) : super(key: key);
 
@@ -20,12 +20,12 @@ class ReservationDiagnostic extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: height,

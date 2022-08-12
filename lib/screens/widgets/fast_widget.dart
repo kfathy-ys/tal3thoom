@@ -7,9 +7,9 @@ import 'package:html/parser.dart';
 /*void showSnackBar({
   @required String? text,
   VoidCallback? press,
-  @required GlobalKey<ScaffoldState>? scaffoldKey,
+  @required GlobalKey<ScaffoldState>? _scaffoldKey,
 }) {
-  scaffoldKey!.currentState!.showSnackBar(
+  _scaffoldKey!.currentState!.showSnackBar(
     SnackBar(
       content: Text(
         text!,

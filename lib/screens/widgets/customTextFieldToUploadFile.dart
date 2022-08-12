@@ -50,8 +50,8 @@ class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
   Widget build(BuildContext context) {
     return SizedBox(
       // margin: const EdgeInsets.symmetric(horizontal: 6),
-      height: MediaQuery.of(context).size.height / 16,
-      width: MediaQuery.of(context).size.width / 1.7,
+      height: MediaQuery.of(context).size.height / 18,
+      width: MediaQuery.of(context).size.width / 1.8,
       child: TextFormField(
         enabled: false,
         onTap: widget.onTap,

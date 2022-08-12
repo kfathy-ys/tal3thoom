@@ -11,7 +11,6 @@ class HomeTabeBarCubit extends Cubit<HomeTabeBarState> {
   HomeTabeBarCubit() : super(HomeTabeBarInitial());
   int index = 1;
   final bottomNavigationKey = GlobalKey();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   final  widgetOptions = <Widget>[
     const Profile(),
     MyHomeScreen(),

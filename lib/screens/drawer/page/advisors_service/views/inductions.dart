@@ -13,7 +13,7 @@ import 'Reservation_appointment/view.dart';
 
 // ignore: must_be_immutable
 class AdviserInduction extends StatelessWidget {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   AdviserInduction({Key? key}) : super(key: key);
 
@@ -22,12 +22,12 @@ class AdviserInduction extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: SingleChildScrollView(
         child: SizedBox(
           height: height,

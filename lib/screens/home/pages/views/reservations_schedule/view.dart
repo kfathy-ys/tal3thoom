@@ -6,7 +6,7 @@ import '../../../../widgets/customButton.dart';
 
 // ignore: must_be_immutable
 class ReservationsSchedule extends StatelessWidget {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

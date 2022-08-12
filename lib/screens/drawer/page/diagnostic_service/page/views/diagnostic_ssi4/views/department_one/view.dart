@@ -7,6 +7,7 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/ques
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
+import 'package:tal3thoom/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../../../../../../config/keys.dart';
 
@@ -25,7 +26,7 @@ class DiagnosticSSI4 extends StatefulWidget {
 }
 
 class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   final _firstController = TextEditingController();
 
   @override
@@ -33,12 +34,12 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: height,
@@ -48,7 +49,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
           child: Column(
             children: [
               CustomTileContainer(
-                  title: KeysConfig.addComment,
+                  title: "أختبار SSI-4 ",
                   widthh: width * 0.5,
 
                   context: context),
@@ -169,7 +170,7 @@ Widget uploadedVideo({
         validator: validator,
         type: TextInputType.text,
       ),
-      SmallButtonSizer(
+      SmallButtonSizerUploadFile(
         title: "Browse",
         onPressed: onPressed1,
         color: kTextFieldColor,

@@ -23,6 +23,8 @@ class SecondStageOasesTest extends StatefulWidget {
 }
 
 class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -32,12 +34,12 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
       builder: (context, state) {
         final cubit = BlocProvider.of<SecondStageOasesTestCubit>(context);
         return Scaffold(
-          key: cubit.scaffoldKey,
+          key: _scaffoldKey,
           backgroundColor: kHomeColor,
           drawer: const MenuItems(),
           appBar: DynamicAppbar(
               context: context,
-              press: () => cubit.scaffoldKey.currentState!.openDrawer()),
+              press: () => _scaffoldKey.currentState!.openDrawer()),
           body: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),

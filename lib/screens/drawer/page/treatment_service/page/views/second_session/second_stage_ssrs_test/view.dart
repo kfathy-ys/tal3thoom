@@ -21,7 +21,7 @@ class SecondStageSSRSTreatmentScreen extends StatefulWidget {
 }
 
 class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmentScreen> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool isPressed0 = false;
   bool isPressed1 = false;
@@ -41,12 +41,12 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => scaffoldKey.currentState!.openDrawer()),
+          press: () => _scaffoldKey.currentState!.openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         height: height,
