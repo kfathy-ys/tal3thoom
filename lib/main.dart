@@ -20,6 +20,7 @@ import 'screens/drawer/page/contact_us/view.dart';
 import 'screens/drawer/page/medical_reports/medical_report_details/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
+import 'screens/drawer/page/who_we_are/view.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
 import 'screens/widgets/constants.dart';
 
@@ -112,7 +113,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:  ContactUsScreen(),
+            home:  WhoWEAreScreen(),
 
 
 
