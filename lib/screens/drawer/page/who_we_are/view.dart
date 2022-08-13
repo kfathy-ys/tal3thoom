@@ -1,9 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-import 'package:queen/queen.dart' show Launch;
-import 'package:tal3thoom/config/keys.dart';
+
 
 import '../../../widgets/appBar.dart';
 import '../../../widgets/constants.dart';

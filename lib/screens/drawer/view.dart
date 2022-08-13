@@ -34,6 +34,7 @@ import 'package:flutter/material.dart';
 import '../widgets/constants.dart';
 import 'page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
 import 'page/previous_treatment_sessions/view.dart';
+import 'page/who_we_are/view.dart';
 
 class MenuItems extends StatefulWidget {
   const MenuItems({Key? key}) : super(key: key);
@@ -226,11 +227,16 @@ class _MenuItemsState extends State<MenuItems> {
                 title: KeysConfig.profile , color: kHomeColor),
           ),
 
-          drawerContents(
-            onTap: () {},
-            imageLeading: "assets/images/Exclamation mark.png",
-            title: KeysConfig.aboutUs ,
+          ListTile(
+            onTap: (){
+              Navigator.of( context).pop();
+              navigateTo(context, WhoWEAreScreen());
+            },
+            leading: Image.asset("assets/images/Exclamation mark.png"),
+            title: customText2(title: KeysConfig.aboutUs , color: kHomeColor),
           ),
+
+
           // ListTile(
           //   onTap: (){
           //     Navigator.of( context).pop();
