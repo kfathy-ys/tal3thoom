@@ -24,7 +24,8 @@ class FirstStageOasesTest extends StatefulWidget {
 
 class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {

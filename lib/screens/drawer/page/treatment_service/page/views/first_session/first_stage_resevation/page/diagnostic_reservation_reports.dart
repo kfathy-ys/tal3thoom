@@ -5,12 +5,13 @@ import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/customButton.dart';
 import '../../../../../../../view.dart';
-import '../../../../../view.dart';
+import '../../../second_session/second_stage_induction/view.dart';
 
 
 // ignore: must_be_immutable
 class FirstStageTreatmentReservationReport extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,7 @@ class FirstStageTreatmentReservationReport extends StatelessWidget {
                           title: "تاكيد الحجز",
                           color: kButtonGreenDark,
                           onPressed: () {
-                            navigateAndFinish(context, TreatmentServiceInduction());
+                            navigateAndFinish(context, const TreatmentServiceInduction());
                           },
                         ),
 

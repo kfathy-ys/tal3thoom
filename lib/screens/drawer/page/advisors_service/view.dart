@@ -7,11 +7,11 @@ import '../../../../../../config/keys.dart';
 class AdvisorsService extends StatelessWidget {
   final VoidCallback onTapInductions;
 
-  final VoidCallback onTapAppointentReservation;
+  final VoidCallback onTapAppointmentReservation;
 
   const AdvisorsService({
     required this.onTapInductions,
-    required this.onTapAppointentReservation,
+    required this.onTapAppointmentReservation,
   });
 
   @override
@@ -24,8 +24,8 @@ class AdvisorsService extends StatelessWidget {
         trailing: Image.asset(
           "assets/images/yellow right arrow.png",
         ),
-        title: customText2(
-            title: KeysConfig.advisoriesService , color: kHomeColor),
+        title:
+            customText2(title: KeysConfig.advisoriesService, color: kHomeColor),
         children: [
           Container(
             height: height * 0.08,
@@ -40,8 +40,7 @@ class AdvisorsService extends StatelessWidget {
                     width: 10,
                   ),
                   customText4(
-                      title: KeysConfig.IntroductionService ,
-                      color: kBlackText),
+                      title: KeysConfig.IntroductionService, color: kBlackText),
                 ],
               ),
             ),
@@ -51,15 +50,15 @@ class AdvisorsService extends StatelessWidget {
             color: kRoundBorderColor,
             child: ListTile(
               trailing: const SizedBox.shrink(),
-              onTap: onTapAppointentReservation,
+              onTap: onTapAppointmentReservation,
               title: Row(
                 children: [
-          Image.asset("assets/images/paper.png"),
+                  Image.asset("assets/images/paper.png"),
                   const SizedBox(
                     width: 10,
                   ),
                   customText4(
-                      title: KeysConfig.BookSpecialist , color: kBlackText),
+                      title: KeysConfig.BookSpecialist, color: kBlackText),
                 ],
               ),
             ),

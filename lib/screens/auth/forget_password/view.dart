@@ -13,7 +13,8 @@ import '../../widgets/constants.dart';
 class ForgetPassword extends StatelessWidget {
   ForgetPassword({Key? key}) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
 

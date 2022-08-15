@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import '../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
@@ -27,7 +26,8 @@ class EvaluationSectionScreen extends StatefulWidget {
 }
 
 class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _firstController = TextEditingController();
 
   @override
@@ -252,7 +252,7 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                           title1: "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
 
                           title2: "تدريب وتعليم إضافي",
-                          onTap: ()=>navigateTo(context, FirstStageAdditionalTrainingScreen()),),
+                          onTap: ()=>navigateTo(context, const FirstStageAdditionalTrainingScreen()),),
                       ));
                     },
                     color: kPrimaryColor,
@@ -316,7 +316,7 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

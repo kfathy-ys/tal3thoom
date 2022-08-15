@@ -14,9 +14,10 @@ class SuccessView extends StatelessWidget {
   final String title1;
   final String title2;
   final VoidCallback? onTap;
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-   SuccessView({Key? key, required this.title1, required this.title2, this.onTap, }) : super(key: key);
+
+   const SuccessView({Key? key, required this.title1, required this.title2, this.onTap, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

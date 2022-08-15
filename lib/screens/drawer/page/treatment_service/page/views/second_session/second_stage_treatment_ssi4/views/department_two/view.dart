@@ -15,7 +15,6 @@ import '../../../../../../../../../home/pages/views/reservations_schedule/view.d
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
@@ -30,7 +29,8 @@ class SecondTreatmentSSI4Two extends StatefulWidget {
 }
 
 class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   final _firstController = TextEditingController();
 
@@ -97,7 +97,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
                 ),
               ),
 
-              uploadedVideo(
+              CardUploadVideo(
                 height: height * 0.18,
                 title: "fullMessage",
                 controller: _firstController,
@@ -115,7 +115,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
               MediaButton(
                 onPressed: () {
                   navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSI-4 بنجاح",title2: "إنتقال إلي حجز موعد",
-                    onTap: ()=>navigateTo(context, ReservationsSchedule()),));
+                    onTap: ()=>navigateTo(context, const ReservationsSchedule()),));
                 },
                 title: KeysConfig.next ,
               ),
@@ -154,7 +154,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

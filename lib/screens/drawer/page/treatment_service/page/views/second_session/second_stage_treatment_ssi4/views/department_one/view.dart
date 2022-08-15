@@ -13,7 +13,6 @@ import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
@@ -28,7 +27,8 @@ class SecondTreatmentSSI4 extends StatefulWidget {
 }
 
 class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   final _firstController = TextEditingController();
 
@@ -72,7 +72,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                   ),
                 ),
               ),
-              // uploadedVideo(
+              // CardUploadVideo(
               //   height: height * 0.18,
               //   title: "fullMessage",
               //   controller: _firstController,
@@ -103,7 +103,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                   ),
                 ),
               ),
-              uploadedVideo(
+              CardUploadVideo(
                 height: height * 0.18,
                 title: "fullMessage",
                 controller: _firstController,
@@ -156,7 +156,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

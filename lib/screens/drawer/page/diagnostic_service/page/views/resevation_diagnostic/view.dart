@@ -11,7 +11,7 @@ import '../../../../../view.dart';
 
 // ignore: must_be_immutable
 class ReservationDiagnostic extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  final  _scaffoldKey = GlobalKey<ScaffoldState>();
 
   ReservationDiagnostic({Key? key}) : super(key: key);
 
@@ -108,7 +108,7 @@ class ReservationDiagnostic extends StatelessWidget {
                   ),
                 ),
 
-                AvailableTime(),
+                const AvailableTime(),
                 SmallButton(title: "بحث",onPressed: (){
                   navigateTo(context, DiagnosticReservationReport());
 

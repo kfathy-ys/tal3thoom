@@ -3,18 +3,16 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:queen/queen.dart';
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-import 'package:tal3thoom/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../../../../../../config/keys.dart';
 
 import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/constants.dart';
-import '../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
 import '../department_two/view.dart';
@@ -26,7 +24,8 @@ class DiagnosticSSI4 extends StatefulWidget {
 }
 
 class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _firstController = TextEditingController();
 
   @override
@@ -69,16 +68,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                   ),
                 ),
               ),
-              // uploadedVideo(
-              //   height: height * 0.18,
-              //   title: "fullMessage",
-              //   controller: _firstController,
-              //   onPressed1: () {
-              //     _uploadFile(1);
-              //   },
-              //   validator: qValidator([IsRequired("thisFieldRequired")]),
-              //   context: context,
-              // ),
+
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/word.png"),
@@ -100,14 +90,14 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                   ),
                 ),
               ),
-              uploadedVideo(
+              CardUploadVideo(
                 height: height * 0.18,
                 title: "fullMessage",
                 controller: _firstController,
                 onPressed1: () {
                   _uploadFile(1);
                 },
-                validator: qValidator([IsRequired("thisFieldRequired")]),
+                validator: qValidator([IsRequired(KeysConfig.thisFieldRequired)]),
                 context: context,
               ),
               Padding(
@@ -154,31 +144,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
   }
 }
 
-Widget uploadedVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizerUploadFile(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
-}
+
 SizedBox buildSizedBox(double height) => SizedBox(
   height: height * 0.05,
 );

@@ -25,7 +25,8 @@ class SecondStageAdditionalTrainingScreen extends StatefulWidget {
 }
 
 class _SecondStageAdditionalTrainingScreenState extends State<SecondStageAdditionalTrainingScreen> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _firstController = TextEditingController();
 
   @override
@@ -143,7 +144,7 @@ class _SecondStageAdditionalTrainingScreenState extends State<SecondStageAdditio
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

@@ -9,8 +9,9 @@ import '../../view.dart';
 
 // ignore: must_be_immutable
 class WhoWEAreScreen extends StatelessWidget {
-    WhoWEAreScreen({Key? key}) : super(key: key);
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+    const WhoWEAreScreen({Key? key}) : super(key: key);
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {

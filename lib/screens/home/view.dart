@@ -75,7 +75,8 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       },
     );
   }*/
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
 
@@ -102,11 +103,9 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               index: cubit.index,
               height: 50.0,
               items: <Widget>[
-                Image.asset(
-                  "assets/images/Profile 1.png",
-                ),
-                Image.asset("assets/images/main.png"),
-                Image.asset("assets/images/white calendar.png"),
+                buildImage(  image: 'assets/images/Profile 1.png'),
+                buildImage( image: 'assets/images/main.png'),
+                buildImage(image:'assets/images/white calendar.png' ),
               ],
               color: kDarkPrimaryColor,
               buttonBackgroundColor: kButtonGreenDark,
@@ -120,5 +119,11 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
         },
       ),
     );
+  }
+
+  Image buildImage({required String image}) {
+    return Image.asset(
+              image ,
+              );
   }
 }

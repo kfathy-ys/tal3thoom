@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import '../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
@@ -29,7 +28,8 @@ class SecondTreatmentSessionEvaluation extends StatefulWidget {
 }
 
 class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessionEvaluation> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _firstController = TextEditingController();
 
   @override
@@ -315,7 +315,7 @@ class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessio
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

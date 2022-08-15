@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/page/views/reservation_card.dart';
 
 import '../../../../widgets/constants.dart';
-import '../../../../widgets/customButton.dart';
 
 
 // ignore: must_be_immutable
 class ReservationsSchedule extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+  const ReservationsSchedule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,67 +33,18 @@ class ReservationsSchedule extends StatelessWidget {
                 itemCount: 8,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context ,index){
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 16),
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
-                    height: height*0.45,
-                    width: width*0.8,
-                    decoration: BoxDecoration(
+                  return ReservationCard(
+                      onPressStart: (){},
+                      onPressEnd: (){},
+                      subTitleData: "2022-10-25",
+                      subTitleDay: "السبت",
+                      subTitleDataStart: "2022-10-16",
+                      subTitleStartSessionData: "17:30",
+                      subTitleTypeAppointment: "جلسة إستشارية",
+                      subTitleEvaluation: "⭐⭐⭐");
 
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: kTextFieldColor)
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customText10(title: "التاريخ", color: kPrimaryColor),
-                            customText10(title: "2022-10-25", color: kBlackText)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customText10(title: "اليوم", color: kPrimaryColor),
-                            customText10(title: "السبت", color: kBlackText)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customText10(title: "تاريخ الإصدار", color: kPrimaryColor),
-                            customText10(title: "2022-10-16", color: kBlackText)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customText10(title: "بدء الجلسة", color: kPrimaryColor),
-                            customText10(title: "17:30", color: kBlackText)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customText10(title: "نوع الموعد", color: kPrimaryColor),
-                            customText10(title: "جلسة إستشارية", color: kBlackText)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customText10(title: "التقيم", color: kPrimaryColor),
-                            customText10(title: "⭐⭐⭐", color: kBlackText)
-                          ],
-                        ),
-                        CustomButton(title: "بدء الجلسة",color: kButtonGreenDark,onPressed: (){},),
-                        CustomButton(title: "إلغاء",color: kButtonDashBoard,onPressed: (){},)
-                      ],
-                    ),
-                  );
+
+
                 },
               ),
             )

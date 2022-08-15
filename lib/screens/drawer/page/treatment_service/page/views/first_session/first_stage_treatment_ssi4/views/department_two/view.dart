@@ -29,7 +29,8 @@ class TreatmentSSI4Two extends StatefulWidget {
 }
 
 class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   final _firstController = TextEditingController();
 
@@ -96,7 +97,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                 ),
               ),
 
-              uploadedVideo(
+              CardUploadVideo(
                 height: height * 0.18,
                 title: "fullMessage",
                 controller: _firstController,
@@ -114,7 +115,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
               MediaButton(
                 onPressed: () {
                   navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSI-4 بنجاح",title2: "إنتقال إلي حجز موعد",
-                    onTap: ()=>navigateTo(context, ReservationsSchedule()),));
+                    onTap: ()=>navigateTo(context, const ReservationsSchedule()),));
                 },
                 title: KeysConfig.next ,
               ),
@@ -153,7 +154,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

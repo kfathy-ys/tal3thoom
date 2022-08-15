@@ -1,21 +1,23 @@
+
+import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import '../../../../../../config/keys.dart';
 
-import '../../../../widgets/appBar.dart';
-import '../../../../widgets/constants.dart';
-import '../../../../widgets/fast_widget.dart';
-import '../../../../widgets/video_items.dart';
-import '../../../view.dart';
-import 'Reservation_appointment/view.dart';
+import '../../../../../../../../config/keys.dart';
+import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/constants.dart';
+import '../../../../../../../widgets/video_items.dart';
+import '../../../../../../view.dart';
+import '../../first_session/first_payment_treatment/view.dart';
 
 
 // ignore: must_be_immutable
-class AdviserInduction extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+class TreatmentServiceInduction extends StatelessWidget {
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AdviserInduction({Key? key}) : super(key: key);
+
+  const TreatmentServiceInduction({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,18 @@ class AdviserInduction extends StatelessWidget {
           width: width ,
 
           child: SingleChildScrollView(
-            child: Column(
+            child:
+
+
+            Column(
               children: [
                 CustomTileContainer(
                     widthh: width * 0.5,
-                    title: KeysConfig.definationDiag ,
+                    title: "رحلة العلاج",
                     context: context),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Image.asset("assets/images/advisorInduction.png"),
+                  child: Image.asset("assets/images/treatmentDis.png"),
                 ),
 
                 SizedBox(
@@ -56,11 +61,11 @@ class AdviserInduction extends StatelessWidget {
                 ),
                 MediaButton(
                   onPressed: () {
-                    navigateTo(context, ReservationAppointmentScreen());
+                    navigateTo(context, PaymentTreatment());
                   },
-                  title: ("ابدأ"),
+                  title: KeysConfig.next ,
                 ),
-                buildSizedBox(height),
+                SizedBox(height: height*0.15,),
               ],
             ),
           ),
@@ -70,6 +75,6 @@ class AdviserInduction extends StatelessWidget {
   }
 
   SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
+    height: height * 0.2,
   );
 }

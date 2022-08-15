@@ -1,8 +1,7 @@
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
-import 'package:queen/core/helpers/url_luncher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../drawer/page/diagnostic_service/page/views/diagnostic_history.dart';
+import '../drawer/page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import '../drawer/page/diagnostic_service/page/views/success_page.dart';
 import '../drawer/view.dart';
 import '../widgets/appBar.dart';
@@ -12,7 +11,10 @@ import '../widgets/fast_widget.dart';
 
 // ignore: must_be_immutable
 class Payment extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+  Payment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,66 +27,64 @@ class Payment extends StatelessWidget {
       appBar: DynamicAppbar(
           context: context,
           press: () => _scaffoldKey.currentState!.openDrawer()),
-      body: SingleChildScrollView(
-        child: Container(
-          height: height,
-          width: width,
-          color: kHomeColor,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomTileContainer(
-                    widthh: width / 2.5,
-                    title: KeysConfig.payment,
-                    context: context),
-                paymentCard(width, height, context, price: KeysConfig.fifty,
-                    onTapPay: () {
-                  navigateTo(
-                      context,
-                      const WebView(
-                        javascriptMode: JavascriptMode.unrestricted,
-                        initialUrl:
-                            "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
-                      ));
+      body: Container(
+        height: height,
+        width: width,
+        color: kHomeColor,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTileContainer(
+                  widthh: width / 2.5,
+                  title: KeysConfig.payment,
+                  context: context),
+              paymentCard(width, height, context, price: KeysConfig.fifty,
+                  onTapPay: () {
+                navigateTo(
+                    context,
+                    const WebView(
+                      javascriptMode: JavascriptMode.unrestricted,
+                      initialUrl:
+                          "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                    ));
 
-                  print("object1");
-                }, description: KeysConfig.diagnosis),
-                paymentCard(width, height, context, price: KeysConfig.hundred,
-                    onTapPay: () {
+
+              }, description: KeysConfig.diagnosis),
+              paymentCard(width, height, context, price: KeysConfig.hundred,
+                  onTapPay: () {
+                navigateTo(
+                    context,
+                    const WebView(
+                      javascriptMode: JavascriptMode.unrestricted,
+                      initialUrl:
+                          "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                    ));
+
+              }, description: KeysConfig.twoSession),
+              paymentCard(width, height, context, price: KeysConfig.fifty,
+                  onTapPay: () {
+                navigateTo(
+                    context,
+                    const WebView(
+                      javascriptMode: JavascriptMode.unrestricted,
+                      initialUrl:
+                          "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                    ));
+
+              }, description: KeysConfig.DiagnosisTreatment),
+              SmallButton(
+                title: "Skip",
+                onPressed: () {
                   navigateTo(
                       context,
-                      const WebView(
-                        javascriptMode: JavascriptMode.unrestricted,
-                        initialUrl:
-                            "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      SuccessView(
+                        title1: "لقد تم عملية الدفع  بنجاح",
+                        title2: "المرحلة الأولي من التشخيص",
+                        onTap: () => navigateTo(context, const DiagnosticHistory()),
                       ));
-                  print("object2");
-                }, description: KeysConfig.twoSession),
-                paymentCard(width, height, context, price: KeysConfig.fifty,
-                    onTapPay: () {
-                  navigateTo(
-                      context,
-                      const WebView(
-                        javascriptMode: JavascriptMode.unrestricted,
-                        initialUrl:
-                            "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
-                      ));
-                  print("object3");
-                }, description: KeysConfig.DiagnosisTreatment),
-                SmallButton(
-                  title: "Skip",
-                  onPressed: () {
-                    navigateTo(
-                        context,
-                        SuccessView(
-                          title1: "لقد تم عملية الدفع  بنجاح",
-                          title2: "المرحلة الأولي من التشخيص",
-                          onTap: () => navigateTo(context, DiagnosticHistory()),
-                        ));
-                  },
-                ),
-              ],
-            ),
+                },
+              ),
+            ],
           ),
         ),
       ),

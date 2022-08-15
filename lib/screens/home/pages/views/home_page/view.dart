@@ -1,12 +1,12 @@
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
-import '../../../../drawer/page/advisors_service/views/inductions.dart';
-import '../../../../drawer/page/diagnostic_service/page/views/induction.dart';
-import '../../../../drawer/page/treatment_service/view.dart';
+import '../../../../drawer/page/advisors_service/views/advisor_induction/view.dart';
+import '../../../../drawer/page/treatment_service/page/views/second_session/second_stage_induction/view.dart';
 
 // ignore: must_be_immutable
 class MyHomeScreen extends StatelessWidget {
@@ -36,7 +36,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object1");
-                        navigateTo(context, Induction());
+                        navigateTo(context, InductionDiagnostic());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
@@ -50,7 +50,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object2");
-                        navigateTo(context, TreatmentServiceInduction());
+                        navigateTo(context, const TreatmentServiceInduction());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
@@ -64,7 +64,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object3");
-                        navigateTo(context, MedicalReports());
+                        navigateTo(context, const MedicalReports());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),

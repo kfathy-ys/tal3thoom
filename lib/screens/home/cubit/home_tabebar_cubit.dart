@@ -14,7 +14,7 @@ class HomeTabeBarCubit extends Cubit<HomeTabeBarState> {
   final  widgetOptions = <Widget>[
     const Profile(),
     MyHomeScreen(),
-    ReservationsSchedule(),
+    const ReservationsSchedule(),
   ];
   void changeIndex(int indexed ){
     index = indexed;

@@ -19,7 +19,8 @@ class PretreatmentQuestionnaire extends StatefulWidget {
 }
 
 class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,10 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
         width: width,
         color: kHomeColor,
         child: SingleChildScrollView(
-
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+
                 CustomTileContainer(
                     widthh: width / 1.8,
                     title: "استبيان ما قبل العلاج",
@@ -53,8 +54,7 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                     "assets/images/box01.png",
                   ),
                 ),
-
-          ListView.builder(
+                ListView.builder(
             padding: const EdgeInsets.symmetric(vertical: 4),
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
@@ -145,8 +145,6 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
             },
 
             ),
-
-
                 CustomButton(
                   color: kPrimaryColor,
                   title: "الإنتقال إلي المرحلة العلاجيه الأولي",

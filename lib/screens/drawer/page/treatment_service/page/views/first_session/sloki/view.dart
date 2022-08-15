@@ -12,7 +12,6 @@ import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
@@ -27,7 +26,8 @@ class SlokiScreen extends StatefulWidget {
 }
 
 class _SlokiScreenState extends State<SlokiScreen> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _firstController = TextEditingController();
 
   @override
@@ -71,7 +71,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                     ),
                   ),
                 ),
-                uploadedVideo(
+                CardUploadVideo(
                   height: height * 0.18,
                   title: "fullMessage",
                   controller: _firstController,
@@ -150,7 +150,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
   }
 }
 
-Widget uploadedVideo({
+Widget CardUploadVideo({
   required double height,
   required String title,
   required dynamic validator,

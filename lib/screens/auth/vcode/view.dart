@@ -19,7 +19,8 @@ class VCodeScreen extends StatefulWidget {
 }
 
 class _VCodeScreenState extends State<VCodeScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   final formKey = GlobalKey<FormState>();
 

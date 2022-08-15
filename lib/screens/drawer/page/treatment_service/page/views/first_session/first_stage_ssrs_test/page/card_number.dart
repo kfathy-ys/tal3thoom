@@ -5,8 +5,9 @@ import '../../../../../../../../widgets/constants.dart';
 class CardNumber extends StatelessWidget {
   final VoidCallback onTap ;
   final String title ;
+  final Color color;
 
-  const CardNumber({Key? key, required this.onTap, required this.title}) : super(key: key);
+  const CardNumber({Key? key, required this.onTap, required this.title, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CardNumber extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color:  kTextFieldColor,
+          color:  color,
           borderRadius: BorderRadius.circular(8),
         ),
         width: width*0.15,

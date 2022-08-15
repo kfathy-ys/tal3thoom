@@ -4,6 +4,8 @@ import '../../../../../../widgets/constants.dart';
 
 
 class AvailableTime extends StatefulWidget {
+  const AvailableTime({Key? key}) : super(key: key);
+
   // final List<AvailablePeriods> periods;
   //
   // const AvailableTime({
@@ -54,7 +56,7 @@ class _AvailableTimeState extends State<AvailableTime> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                     "6:35 PM\t\t",
+                     "12:30 PM\t\t",
                    // widget.periods[index].periodFrom ?? '',
                     style: TextStyle(
                       color: _selectedTimeId == 0
@@ -74,7 +76,7 @@ class _AvailableTimeState extends State<AvailableTime> {
                     ),
                   ),
                   Text(
-                    "2:35 PM",
+                    "12:45 PM",
                   //  widget.periods[index].periodTo ?? '',
                     style: TextStyle(
                       color: _selectedTimeId == 0

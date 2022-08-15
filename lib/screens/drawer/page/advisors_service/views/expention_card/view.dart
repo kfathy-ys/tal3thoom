@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../../../../config/keys.dart';
+import '../../../../../../../config/keys.dart';
 
-import '../../../../widgets/constants.dart';
+import '../../../../../widgets/constants.dart';
 
 // ignore: must_be_immutable
 class AdvisorsService extends StatelessWidget {
   final VoidCallback onTapInductions;
 
-  final VoidCallback onTapAppointentReservation;
+  final VoidCallback onTapAppointmentReservation;
 
-  const AdvisorsService({
-    required this.onTapInductions,
-    required this.onTapAppointentReservation,
-  });
+  const AdvisorsService({super.key, required this.onTapInductions, required this.onTapAppointmentReservation});
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +51,7 @@ class AdvisorsService extends StatelessWidget {
             color: kRoundBorderColor,
             child: ListTile(
               trailing: const SizedBox.shrink(),
-              onTap: onTapAppointentReservation,
+              onTap: onTapAppointmentReservation,
               title: Row(
                 children: [
                   Image.asset("assets/images/paper.png"),

@@ -13,6 +13,27 @@ class CheckBoxItem {
   CheckBoxItem({this.name, this.selectedValue, this.onTap,this.answersList ,this.isAvailableTextField=false , this.textFieldValue});
 }
 Speech speech = Speech();
+
+
+
+List<CheckBoxItem> evaluateNumber = [
+  CheckBoxItem(
+
+      selectedValue: "",
+      answersList: [
+        {"name": "1", "value": "1"},
+        {"name": "2", "value": "2"},
+        {"name": "3", "value": "3"},
+        {"name": "4", "value": "4"},
+        {"name": "5", "value": "5"},
+        {"name": "6", "value": "6"},
+        {"name":"7", "value": "7"},
+        {"name": "8", "value": "8"},
+        {"name": "9", "value": "9"},
+
+      ]),
+
+];
 List<CheckBoxItem> firstQuestionsList = [
   CheckBoxItem(
       onTap:()=>  speech.speak(KeysConfig.studyingPrivatePublicSchool ),
@@ -35,7 +56,7 @@ List<CheckBoxItem> firstQuestionsList = [
         {"name": KeysConfig.excellent , "value": "4"},
       ]),
   CheckBoxItem(
-    onTap:()=>  speech.speak(KeysConfig.studyingPrivatePublicSchool ),
+      onTap:()=>  speech.speak(KeysConfig.studyingPrivatePublicSchool ),
       name: KeysConfig.stutteringSchool ,
       selectedValue: "",
       isAvailableTextField: false,
@@ -70,40 +91,21 @@ List<CheckBoxItem> firstQuestionsList = [
         {"name": KeysConfig.VI , "value": "6"},
       ]),
 ];
-
-
-List<CheckBoxItem> evaluateNumber = [
-  CheckBoxItem(
-
-      selectedValue: "",
-      answersList: [
-        {"name": "1", "value": "1"},
-        {"name": "2", "value": "2"},
-        {"name": "3", "value": "3"},
-        {"name": "4", "value": "4"},
-        {"name": "5", "value": "5"},
-        {"name": "6", "value": "6"},
-        {"name":"7", "value": "7"},
-        {"name": "8", "value": "8"},
-        {"name": "9", "value": "9"},
-
-      ]),
-
-];
-
 List<CheckBoxItem> secondQuestionsList = [
   CheckBoxItem(
       onTap:()=>  speech.speak(KeysConfig.studyingPrivatePublicSchool ),
 
       name: "حدِّدْ إذا كانت أي من الأمراض التالية لديك في الماضي",
       selectedValue: "",
+     isAvailableTextField: false,
+
       answersList: [
         {"name": "تشًنُج ", "value": "1"},
         {"name": "مشاكلُ في السمعْ  ", "value": "2"},
         {"name": " مشاكل عصبيةْ ", "value": "3"},
         {"name": " إصابة بالرأسْ   ", "value": "4"},
         {"name": " مشاكل نفسيةْ  ", "value": "5"},
-        {"name": "أخري  ", "value": "6"},
+        {"name": "أخري  ", "value": "other"},
       ]),
 ];
 List<CheckBoxItem> thirdQuestionsList = [
@@ -131,12 +133,13 @@ List<CheckBoxItem> thirdQuestionsList = [
 
       name: "مَنْ أولُ من لاحظ التلعثمُ لديكْ؟ْ",
       selectedValue: "",
+      isAvailableTextField: false,
       answersList: [
         {"name": "انا", "value": "1"},
         {"name": "الأم", "value": "2"},
         {"name": "الاب", "value": "3"},
         {"name": "المعلم", "value": "4"},
-        {"name": "آخرون", "value": "5"},
+        {"name": "آخرون", "value": "other"},
       ]),
   CheckBoxItem(
       onTap:()=>  speech.speak(KeysConfig.studyingPrivatePublicSchool ),
@@ -446,12 +449,13 @@ List<CheckBoxItem> sixQuestionsList = [
   CheckBoxItem(
 
       onTap:()=>  speech.speak(KeysConfig.studyingPrivatePublicSchool ),
+      isAvailableTextField: false,
 
       name: "كيف يمكن وصف التواصلُ البصري؟", selectedValue: "", answersList: [
     {"name": "جيد", "value": "1"},
     {"name": "مقبول", "value": "2"},
     {"name": "ضعيف", "value": "3"},
-    {"name": "أخري", "value": "4"},
+    {"name": "أخري", "value": "other"},
   ]),
 
 ];

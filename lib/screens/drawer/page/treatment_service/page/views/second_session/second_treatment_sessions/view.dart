@@ -22,7 +22,8 @@ class SecondTreatmentSession extends StatefulWidget {
 }
 
 class _SecondTreatmentSessionState extends State<SecondTreatmentSession> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {

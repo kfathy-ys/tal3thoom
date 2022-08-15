@@ -1,18 +1,15 @@
-import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/drop_down_spcialist.dart';
-import 'package:tal3thoom/screens/payment/view.dart';
-import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-import 'package:tal3thoom/screens/widgets/smallButtonSizer.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
-import '../../../../../widgets/fast_widget.dart';
 import '../../../../view.dart';
+import 'views/profile_items.dart';
 
 
 
 // ignore: must_be_immutable
 class SpecializerProfile extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   SpecializerProfile({Key? key}) : super(key: key);
 
@@ -58,13 +55,13 @@ class SpecializerProfile extends StatelessWidget {
                 width: width*0.8,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    buildProfileItem(title:  "الأسم : " ,subtitle: "Mohamed Rashad"),
-                    buildProfileItem(title:  "البريد الإلكتروني : " ,subtitle: ""),
-                    buildProfileItem(title:  "سنوات الخبرة : " ,subtitle: ""),
-                    buildProfileItem(title:  "التعليم : " ,subtitle: ""),
-                    buildProfileItem(title:  "الوظيفة : " ,subtitle: ""),
-                    buildProfileItem(title:  "تاريخ الميلاد : " ,subtitle: ""),
+                  children: const [
+                    ProfileItems(title:  "الأسم : " ,subTitle: "Mohamed Rashad"),
+                    ProfileItems(title:  "البريد الإلكتروني : " ,subTitle: ""),
+                    ProfileItems(title:  "سنوات الخبرة : " ,subTitle: ""),
+                    ProfileItems(title:  "التعليم : " ,subTitle: ""),
+                    ProfileItems(title:  "الوظيفة : " ,subTitle: ""),
+                    ProfileItems(title:  "تاريخ الميلاد : " ,subTitle: ""),
                   ]
 
                 )
@@ -72,19 +69,19 @@ class SpecializerProfile extends StatelessWidget {
               Container(
                 color: kAppBarColor,
                 height: height*0.4,
-                margin: EdgeInsets.symmetric(vertical: 8),
+                margin: const EdgeInsets.symmetric(vertical: 8),
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 width: width*0.8,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    buildProfileItem(title:  "العنوان : " ,subtitle: ""),
-                    buildProfileItem(title:  "جهة العمل : " ,subtitle: ""),
-                    buildProfileItem(title:  "السيرة الذاتية : " ,subtitle: ""),
-                    buildProfileItem(title:  "الجنسية : " ,subtitle: ""),
-                    buildProfileItem(title:  "الجنس : " ,subtitle: ""),
-                    buildProfileItem(title:  "رقم الهوية : " ,subtitle: ""),
-                    buildProfileItem(title:  "سعر جلسة مستشارك : " ,subtitle: ""),
+                  children:  const [
+                    ProfileItems(title:  "العنوان : " ,subTitle: ""),
+                    ProfileItems(title:  "جهة العمل : " ,subTitle: ""),
+                    ProfileItems(title:  "السيرة الذاتية : " ,subTitle: ""),
+                    ProfileItems(title:  "الجنسية : " ,subTitle: ""),
+                    ProfileItems(title:  "الجنس : " ,subTitle: ""),
+                    ProfileItems(title:  "رقم الهوية : " ,subTitle: ""),
+                    ProfileItems(title:  "سعر جلسة مستشارك : " ,subTitle: ""),
                   ]
 
                 )
@@ -101,17 +98,6 @@ class SpecializerProfile extends StatelessWidget {
     );
   }
 
-  Widget buildProfileItem({required String title , required String subtitle}) {
-    return Row(
-
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      customText10(title:title, color: kTextFieldColor),
-                      customText10(title: subtitle, color: kPrimaryColor)
-                    ],
-
-                  );
-  }
 
   SizedBox buildSizedBox(double height) => SizedBox(
     height: height * 0.05,

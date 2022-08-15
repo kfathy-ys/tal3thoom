@@ -1,6 +1,4 @@
 
-import 'package:tal3thoom/screens/auth/login/view.dart';
-import 'package:tal3thoom/screens/drawer/page/advisors_service/views/spcializer_profile/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/cubit/oases_test_cubit.dart';
 
 import 'package:device_preview/device_preview.dart';
@@ -8,19 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
-import 'package:tal3thoom/screens/home/view.dart';
-import 'package:tal3thoom/screens/splash/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
 
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
-import 'screens/drawer/page/advisors_service/views/Reservation_appointment/view.dart';
-import 'screens/drawer/page/advisors_service/views/advisor_payment/view.dart';
-import 'screens/drawer/page/contact_us/view.dart';
-import 'screens/drawer/page/medical_reports/medical_report_details/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
-import 'screens/drawer/page/who_we_are/view.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
 import 'screens/widgets/constants.dart';
 
@@ -113,7 +105,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:  ContactUsScreen(),
+            home:   const PretreatmentQuestionnaire(),
 
 
 

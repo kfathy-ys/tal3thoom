@@ -12,7 +12,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../view.dart';
-import '../ssrs_test/view.dart';
+import '../diagnostic_ssrs_test/view.dart';
 
 class DiagnosticOasesTest extends StatefulWidget {
   const DiagnosticOasesTest({Key? key}) : super(key: key);
@@ -23,7 +23,8 @@ class DiagnosticOasesTest extends StatefulWidget {
 
 class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
 
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +149,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                     child: CustomButton(
                         onPressed: () {
                           navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار OASES بنجاح",title2: "إنتقال إلي إختبار SSRS",
-                            onTap: ()=>navigateTo(context, SSRSDiagnosticsScreen()),));                        },
+                            onTap: ()=>navigateTo(context, const SSRSDiagnosticsScreen()),));                        },
                         title: " التالي",
                         color: kButtonGreenDark),
                   )

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class Res {}
 
 extension AppColors on Colors {

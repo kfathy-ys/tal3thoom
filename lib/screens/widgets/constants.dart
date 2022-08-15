@@ -186,6 +186,8 @@ Widget customText10({required String title ,required Color color}) {
 
           color: color, fontSize: 14, fontFamily: 'DinMedium'));
 }
+
+
 Widget customText5({required String title ,required Color color}) {
   return Text(title,
       style:  TextStyle(

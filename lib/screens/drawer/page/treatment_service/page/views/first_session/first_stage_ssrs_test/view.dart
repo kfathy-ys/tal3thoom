@@ -21,7 +21,8 @@ class FirstStageSSRSTreatmentScreen extends StatefulWidget {
 }
 
 class _FirstStageSSRSTreatmentScreenState extends State<FirstStageSSRSTreatmentScreen> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   bool isPressed0 = false;
   bool isPressed1 = false;

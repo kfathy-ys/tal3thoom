@@ -22,7 +22,8 @@ class FirstTreatmentSession extends StatefulWidget {
 }
 
 class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {

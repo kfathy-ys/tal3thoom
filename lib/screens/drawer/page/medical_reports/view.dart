@@ -1,4 +1,4 @@
-import 'package:tal3thoom/screens/widgets/customButton.dart';
+import 'package:tal3thoom/screens/drawer/page/medical_reports/views/card_items.dart';
 import 'package:flutter/material.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 
@@ -10,9 +10,10 @@ import 'medical_report_details/view.dart';
 
 // ignore: must_be_immutable
 class MedicalReports extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  MedicalReports({Key? key}) : super(key: key);
+
+  const MedicalReports({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,48 +43,13 @@ class MedicalReports extends StatelessWidget {
                   itemCount: 8,
                  physics: const BouncingScrollPhysics(),
                  itemBuilder: (context ,index){
-                   return Container(
-                     margin: const EdgeInsets.symmetric(vertical: 16),
-                     padding: const EdgeInsets.symmetric(horizontal: 14),
-                     height: height*0.3,
-                     width: width*0.8,
-                     decoration: BoxDecoration(
-
-                         borderRadius: BorderRadius.circular(8),
-                         border: Border.all(color: kTextFieldColor)
-                     ),
-                     child: Column(
-                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             customText10(title: "أسم التقارير", color: kPrimaryColor),
-                             customText10(title: "إستشارة طبية", color: kBlackText)
-                           ],
-                         ),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             customText10(title: "أسم المتخصص", color: kPrimaryColor),
-                             customText10(title: "د.محمد زايد", color: kBlackText)
-                           ],
-                         ),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             customText10(title: "تاريخ الإصدار", color: kPrimaryColor),
-                             customText10(title: "2022-10-16", color: kBlackText)
-                           ],
-                         ),
-
-                         CustomButton(title: "عرض التقرير",color: kPrimaryColor,onPressed: (){
-                           navigateTo(context, MedicalReportsDetails());
-                         },)
-                       ],
-                     ),
-                   );
+                   return CardItems(
+                       onPressed: (){
+                         navigateTo(context, const MedicalReportsDetails());
+                       },
+                       subTitleReportName: "إستشارة طبية",
+                       subTitleSpecialistName: "د.محمد زايد",
+                       subTitleDate:  "2022-10-16");
                  },
                 ),
               )

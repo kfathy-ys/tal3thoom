@@ -10,7 +10,8 @@ import '../../success_page.dart';
 
 // ignore: must_be_immutable
 class DiagnosticReservationReport extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,7 @@ class DiagnosticReservationReport extends StatelessWidget {
 
                           onPressed: () {
                             navigateTo(context, SuccessView(title1: "لقد تم حجز موعد مع المختص",title2: "إنتقال إلي جدول الحجوزات",
-                              onTap: ()=>navigateTo(context, ReservationsSchedule()),));
+                              onTap: ()=>navigateTo(context, const ReservationsSchedule()),));
                           },
                           color: kButtonGreenDark,
                           title: "تاكيد الحجز",

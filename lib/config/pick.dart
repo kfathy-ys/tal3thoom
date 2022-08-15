@@ -1,5 +1,5 @@
 // import 'dart:io';
-// import 'package:core/ui/views/image_picked_dialog.dart';
+// import 'package:core/ui/page/image_picked_dialog.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:image_picker/image_picker.dart';
 //

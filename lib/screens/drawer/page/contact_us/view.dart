@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:queen/core/helpers/url_luncher.dart';
 import 'package:tal3thoom/config/keys.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,7 +25,8 @@ class ContactUsScreen extends StatelessWidget {
       "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featured";
 
   ContactUsScreen({Key? key}) : super(key: key);
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class ContactUsScreen extends StatelessWidget {
                         child: Image.asset("assets/images/logoHeader.png"))),
               ),
               FadeInLeftBig(
-                child: Divider(
+                child: const Divider(
                   color: kBlackText,
                 ),
               ),
@@ -122,131 +122,7 @@ class ContactUsScreen extends StatelessWidget {
                       child: Image.asset("assets/images/map.jpeg")),
                 ),
               ),
-              /*          Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
 
-                    InkWell(
-                      onTap: () {
-                        _launchPhoneURL(phone);
-                      },
-                      child: const Directionality(
-                        textDirection:TextDirection.ltr ,
-                        child: Text("966 + (0) 17 266 0007",
-                            style: TextStyle(
-                                color: kBlackText,
-                                fontSize: 16,
-                                fontFamily: 'DinLight')),
-                      ),
-                    ),
-                    Image.asset("assets/images/TelephoneFill.png"),
-                  ],
-                ),
-              ),
-
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-
-
-                    InkWell(
-                      onTap: () {
-                        Launch.url(email);
-                      },
-                      child: const Text("info@mcsc.sa",
-                          style: TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: 'DinLight')),
-                    ),
-                    Image.asset("assets/images/TelephoneFill.png"),
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Launch.url(web);
-                      },
-                      child: const Text("http://stage-lib.cpt-it.com",
-                          style: TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: 'DinLight')),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Image.asset("assets/images/TelephoneFill.png"),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Launch.url(location);
-                },
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                 // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("6868, طريق أبو هريرة , حى المروج , 5473 , الرمز البريديى 62527 مدينة أبها.",
-                        style: TextStyle(
-                            color: kBlackText,
-                            fontSize: 16,
-                            fontFamily: 'DinLight')),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Image.asset("assets/images/TelephoneFill.png"),
-                  ],
-                ),
-              ),
-              FadeInUpBig(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(KeysConfig.YouCanFollowUsSocialMedia,
-                      style: const TextStyle(
-                          color: kSmallIconColor,
-                          fontSize: 16,
-                          fontFamily: 'DinReguler')),
-                ),
-              ),
-              Image.asset("assets/images/TelephoneFill.png"),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Launch.url(youTube);
-                      },
-                      child: Image.asset("assets/images/TelephoneFill.png"),
-                    ),
-
-                    InkWell(
-                      onTap: () {
-                        Launch.url(twitter);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Image.asset("assets/images/TelephoneFill.png"),
-                      ),
-                    ),
-                    // Image.asset("assets/image/Linkedin.png")
-                  ],
-                ),
-              )*/
             ],
           ),
         ),

@@ -13,7 +13,7 @@ class TextTitleSubTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         customBoldText(color: kPrimaryColor,title: KeysConfig.rest ),
-        customBoldText(color: kBlackText,title: KeysConfig.newUser )
+        customBoldText(color: kBlackText,title: KeysConfig.signIn )
       ],
     );
   }

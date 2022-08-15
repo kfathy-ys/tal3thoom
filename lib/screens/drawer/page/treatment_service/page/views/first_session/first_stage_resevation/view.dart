@@ -11,9 +11,10 @@ import '../../../../../../view.dart';
 
 // ignore: must_be_immutable
 class FirstStageTreatmentReservation extends StatelessWidget {
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  FirstStageTreatmentReservation({Key? key}) : super(key: key);
+
+  const FirstStageTreatmentReservation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +109,7 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                   ),
                 ),
 
-                AvailableTime(),
+                const AvailableTime(),
                 SmallButton(title: "بحث",onPressed: (){
                   navigateTo(context, DiagnosticReservationReport());
 

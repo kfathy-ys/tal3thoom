@@ -16,7 +16,8 @@ import '../../../widgets/mediaButton.dart';
 class LanguagesScreen extends StatelessWidget {
   LanguagesScreen({Key? key}) : super(key: key);
 
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
