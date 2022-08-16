@@ -64,10 +64,9 @@ class _MenuItemsState extends State<MenuItems> {
               Navigator.of(context).pop();
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
               navigateTo(context, const HomeTabScreen());
-
             },
             leading: Image.asset("assets/images/main.png"),
-            title: customText2(title: KeysConfig.home , color: kHomeColor),
+            title: customText2(title: KeysConfig.home, color: kHomeColor),
           ),
 
           DiagnosticServices(
@@ -98,25 +97,18 @@ class _MenuItemsState extends State<MenuItems> {
             onTapAppointentReservation: () {
               Navigator.of(context).pop();
               navigateTo(context, ReservationDiagnostic());
-
             },
           ),
 
-
           ListTile(
             onTap: () {
-
-
               Navigator.of(context).pop();
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
               navigateTo(context, const HomeTabScreen());
-
-
             },
             leading: Image.asset("assets/images/calendar.png"),
             title: customText2(title: "جدول الحجوزات", color: kHomeColor),
           ),
-
 
           TreatmentServiceExpansion(
             onTapInductions: () {
@@ -134,55 +126,44 @@ class _MenuItemsState extends State<MenuItems> {
             onTaptherapeuticSessions: () {
               Navigator.of(context).pop();
               navigateTo(context, const FirstTreatmentSession());
-
             },
             onTapOases: () {
               Navigator.of(context).pop();
               navigateTo(context, const FirstStageOasesTest());
-
             },
             onTapSSRS: () {
               Navigator.of(context).pop();
               navigateTo(context, const FirstStageSSRSTreatmentScreen());
-
             },
             onTapSSI4: () {
-
               Navigator.of(context).pop();
               navigateTo(context, const TreatmentSSI4());
-
             },
             onTapBookSpecialist: () {
-
               Navigator.of(context).pop();
-              navigateTo(context,  const FirstStageTreatmentReservation());
+              navigateTo(context, const FirstStageTreatmentReservation());
             },
             onTaptherapeuticSessions2: () {
-
-
               Navigator.of(context).pop();
-              navigateTo(context,  const SecondTreatmentSession());
+              navigateTo(context, const SecondTreatmentSession());
             },
             onTapOases2: () {
               Navigator.of(context).pop();
-              navigateTo(context,  const SecondStageOasesTest());
+              navigateTo(context, const SecondStageOasesTest());
             },
             onTapSSRS2: () {
               Navigator.of(context).pop();
-              navigateTo(context,  const SecondStageSSRSTreatmentScreen());
+              navigateTo(context, const SecondStageSSRSTreatmentScreen());
             },
             onTapSSI42: () {
               Navigator.of(context).pop();
-              navigateTo(context,  const SecondTreatmentSSI4Two());
+              navigateTo(context, const SecondTreatmentSSI4Two());
             },
             onTapBookSpecialist2: () {
               Navigator.of(context).pop();
-              navigateTo(context,  const FirstStageTreatmentReservation());
+              navigateTo(context, const FirstStageTreatmentReservation());
             },
           ),
-
-
-
 
           ListTile(
             onTap: () {
@@ -191,10 +172,8 @@ class _MenuItemsState extends State<MenuItems> {
             },
             leading: Image.asset("assets/images/Files.png"),
             title: customText2(
-                title: KeysConfig.previousTreatmentSessions , color: kHomeColor),
+                title: KeysConfig.previousTreatmentSessions, color: kHomeColor),
           ),
-
-
 
           ListTile(
             onTap: () {
@@ -203,45 +182,34 @@ class _MenuItemsState extends State<MenuItems> {
             },
             leading: Image.asset("assets/images/document.png"),
             title: customText2(
-                title: KeysConfig.medicalReports , color: kHomeColor),
+                title: KeysConfig.medicalReports, color: kHomeColor),
           ),
-          AdvisorsService(
-              onTapInductions: () {
-                Navigator.of(context).pop();
-                navigateTo(context, AdviserInduction());
-              },
-              onTapAppointmentReservation: () {
-
-                Navigator.of(context).pop();
-                navigateTo(context, ReservationAppointmentScreen());
-
-              }),
-
-
-
-
+          AdvisorsService(onTapInductions: () {
+            Navigator.of(context).pop();
+            navigateTo(context, AdviserInduction());
+          }, onTapAppointmentReservation: () {
+            Navigator.of(context).pop();
+            navigateTo(context, ReservationAppointmentScreen());
+          }),
 
           ListTile(
             onTap: () {
               Navigator.of(context).pop();
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(0);
               navigateTo(context, const HomeTabScreen());
-
             },
             leading: Image.asset("assets/images/personal file.png"),
-            title: customText2(
-                title: KeysConfig.profile , color: kHomeColor),
+            title: customText2(title: KeysConfig.profile, color: kHomeColor),
           ),
 
           ListTile(
-            onTap: (){
-              Navigator.of( context).pop();
+            onTap: () {
+              Navigator.of(context).pop();
               navigateTo(context, const WhoWEAreScreen());
             },
             leading: Image.asset("assets/images/Exclamation mark.png"),
-            title: customText2(title: KeysConfig.aboutUs , color: kHomeColor),
+            title: customText2(title: KeysConfig.aboutUs, color: kHomeColor),
           ),
-
 
           // ListTile(
           //   onTap: (){
@@ -255,18 +223,17 @@ class _MenuItemsState extends State<MenuItems> {
           drawerContents(
             onTap: () {},
             imageLeading: "assets/images/message.png",
-            title: KeysConfig.contactsUs ,
+            title: KeysConfig.contactsUs,
           ),
 
           ListTile(
-            onTap: (){
-              Navigator.of( context).pop();
+            onTap: () {
+              Navigator.of(context).pop();
               navigateTo(context, LoginScreen());
             },
             leading: Image.asset("assets/images/Exit.png"),
-            title: customText2(title: KeysConfig.signOut , color: kHomeColor),
+            title: customText2(title: KeysConfig.signOut, color: kHomeColor),
           ),
-
         ]),
       ),
     );

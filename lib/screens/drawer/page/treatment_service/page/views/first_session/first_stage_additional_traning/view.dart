@@ -15,6 +15,7 @@ import '../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
+import '../sloki/views/build_three.dart';
 
 // ignore: must_be_immutable
 class FirstStageAdditionalTrainingScreen extends StatefulWidget {
@@ -70,12 +71,12 @@ class _FirstStageAdditionalTrainingScreenState extends State<FirstStageAdditiona
                 customText3(title: "بعد المشاهدة لمقطع الفيديو قم بالتتدريب علي هذه الامثلة : \n\n الامثلة : ", color: kBlackText),
 
                 SizedBox(height: height*0.02,),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
                 SizedBox(height: height*0.05,),
                 MediaButton(
 
@@ -96,28 +97,6 @@ class _FirstStageAdditionalTrainingScreenState extends State<FirstStageAdditiona
     );
   }
 
-  Widget buildTable(double height, double width,{required Color color , required String title1 , required String title2 , required String title3}) {
-    return Container(
-                height: height*0.059,
-                width: width*0.8,
-
-                decoration: BoxDecoration(
-                  color: color,
-                  border: Border.all(color: kAppBarColor),
-                //  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    customText3(title: title1, color: kBlackText),
-                    customText3(title: title2, color: kBlackText),
-                    customText3(title: title3, color: kBlackText)
-                  ],
-                ),
-              );
-  }
 
   dynamic video;
 
@@ -145,28 +124,4 @@ class _FirstStageAdditionalTrainingScreenState extends State<FirstStageAdditiona
   }
 }
 
-Widget CardUploadVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizer(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
-}
+

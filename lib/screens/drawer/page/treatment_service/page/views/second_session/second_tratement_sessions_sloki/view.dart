@@ -15,6 +15,8 @@ import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
 import '../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
+import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
+import '../../first_session/sloki/views/build_three.dart';
 import '../second_treatment_session_evaluation/view.dart';
 
 // ignore: must_be_immutable
@@ -83,9 +85,9 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
                 ),
 
                 SizedBox(height: height*0.05,),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
+                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
                 SizedBox(height: height*0.05,),
 
                 CustomButton(
@@ -101,28 +103,7 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
     );
   }
 
-  Widget buildTable(double height, double width,{required Color color , required String title1 , required String title2 , required String title3}) {
-    return Container(
-                height: height*0.059,
-                width: width*0.8,
 
-                decoration: BoxDecoration(
-                  color: color,
-                  border: Border.all(color: kAppBarColor),
-                //  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    customText3(title: title1, color: kBlackText),
-                    customText3(title: title2, color: kBlackText),
-                    customText3(title: title3, color: kBlackText)
-                  ],
-                ),
-              );
-  }
 
   dynamic video;
 
@@ -150,28 +131,3 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
   }
 }
 
-Widget CardUploadVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizerUploadFile(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
-}

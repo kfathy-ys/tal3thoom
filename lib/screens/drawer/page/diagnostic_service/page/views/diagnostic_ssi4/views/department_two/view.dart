@@ -15,8 +15,13 @@ import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
-import '../../../../../../treatment_service/page/views/first_session/evaluation_section/view.dart';
+import '../../../../../../treatment_service/page/views/first_session/first_stage_additional_traning/view.dart';
+import '../../../../../../treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/view.dart';
+import '../../../../../../treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_one/view.dart';
+import '../../../../../../treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
+import '../../../../../../treatment_service/page/views/second_session/second_tratement_sessions_sloki/view.dart';
 import '../../../resevation_diagnostic/view.dart';
+import '../department_one/views/upload_video.dart';
 
 // ignore: must_be_immutable
 class DiagnosticSSI4Two extends StatefulWidget {

@@ -19,6 +19,7 @@ class CardUploadVideo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         CustomTextFieldUploadFile(
+
           controller: controller,
           validator: validator,
           type: TextInputType.text,

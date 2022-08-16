@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:tal3thoom/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:video_player/video_player.dart';
 
 
@@ -144,28 +145,4 @@ class _SecondStageAdditionalTrainingScreenState extends State<SecondStageAdditio
   }
 }
 
-Widget CardUploadVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizer(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
-}
+

@@ -16,6 +16,7 @@ import '../../../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
+import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../department_two/view.dart';
 
 // ignore: must_be_immutable
@@ -156,31 +157,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
   }
 }
 
-Widget CardUploadVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizerUploadFile(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
-}
+
   SizedBox buildSizedBox(double height) => SizedBox(
     height: height * 0.05,
   );

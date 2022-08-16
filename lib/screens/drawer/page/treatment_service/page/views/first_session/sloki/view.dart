@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/sloki/views/build_three.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/queen.dart';
 import 'package:video_player/video_player.dart';
-
 
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
@@ -15,6 +15,8 @@ import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
 import '../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
+import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
+import '../../second_session/second_stage_additional_traning/view.dart';
 import '../evaluation_section/view.dart';
 
 // ignore: must_be_immutable
@@ -81,13 +83,27 @@ class _SlokiScreenState extends State<SlokiScreen> {
                   validator: qValidator([IsRequired("thisFieldRequired")]),
                   context: context,
                 ),
-
-                SizedBox(height: height*0.05,),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                buildTable(height, width,color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                SizedBox(height: height*0.05,),
-
+                SizedBox(
+                  height: height * 0.05,
+                ),
+                const BuildTable(
+                    color: kHomeColor,
+                    title1: "مثال1",
+                    title2: "مثال1",
+                    title3: "مثال1"),
+                const BuildTable(
+                    color: kAppBarColor,
+                    title1: "مثال1",
+                    title2: "مثال1",
+                    title3: "مثال1"),
+                const BuildTable(
+                    color: kHomeColor,
+                    title1: "مثال1",
+                    title2: "مثال1",
+                    title3: "مثال1"),
+                SizedBox(
+                  height: height * 0.05,
+                ),
                 CustomButton(
                   color: kPrimaryColor,
                   title: "متابعة",
@@ -99,29 +115,6 @@ class _SlokiScreenState extends State<SlokiScreen> {
         ),
       ),
     );
-  }
-
-  Widget buildTable(double height, double width,{required Color color , required String title1 , required String title2 , required String title3}) {
-    return Container(
-                height: height*0.059,
-                width: width*0.8,
-
-                decoration: BoxDecoration(
-                  color: color,
-                  border: Border.all(color: kAppBarColor),
-                //  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    customText3(title: title1, color: kBlackText),
-                    customText3(title: title2, color: kBlackText),
-                    customText3(title: title3, color: kBlackText)
-                  ],
-                ),
-              );
   }
 
   dynamic video;
@@ -148,30 +141,4 @@ class _SlokiScreenState extends State<SlokiScreen> {
       log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
     }
   }
-}
-
-Widget CardUploadVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizerUploadFile(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
 }

@@ -11,7 +11,9 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-t
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
+import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
+import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
 import 'screens/widgets/constants.dart';
@@ -105,7 +107,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:   const PretreatmentQuestionnaire(),
+            home:   const FirstStageSSRSTreatmentScreen(),
 
 
 

@@ -264,30 +264,7 @@ class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessio
     );
   }
 
-  Widget buildTable(double height, double width,
-      {required Color color,
-      required String title1,
-      required String title2,
-      required String title3}) {
-    return Container(
-      height: height * 0.059,
-      width: width * 0.8,
-      decoration: BoxDecoration(
-        color: color,
-        border: Border.all(color: kAppBarColor),
-        //  borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          customText3(title: title1, color: kBlackText),
-          customText3(title: title2, color: kBlackText),
-          customText3(title: title3, color: kBlackText)
-        ],
-      ),
-    );
-  }
+
 
   dynamic video;
 
@@ -315,28 +292,4 @@ class _SecondTreatmentSessionEvaluationState extends State<SecondTreatmentSessio
   }
 }
 
-Widget CardUploadVideo({
-  required double height,
-  required String title,
-  required dynamic validator,
-  required TextEditingController controller,
-  required VoidCallback onPressed1,
-  required BuildContext context,
-}) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      CustomTextFieldUploadFile(
-        controller: controller,
-        validator: validator,
-        type: TextInputType.text,
-      ),
-      SmallButtonSizer(
-        title: "Browse",
-        onPressed: onPressed1,
-        color: kTextFieldColor,
-        image: "assets/images/eye.png",
-      ),
-    ],
-  );
-}
+

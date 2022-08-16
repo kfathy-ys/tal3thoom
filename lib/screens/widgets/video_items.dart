@@ -39,7 +39,7 @@ class _VideoItemsState extends State<VideoItems> {
       // Errors can occur for example when trying to play a video
       // from a non-existent URL
       errorBuilder: (context, errorMessage) {
-        return Center(
+        return     Center(
           child: Text(
             errorMessage,
             style: const TextStyle(color: Colors.white),
