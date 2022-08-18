@@ -6,11 +6,8 @@ import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart' hide Trans;
 import 'package:queen/validation.dart';
 import '../../../../../../config/keys.dart';
-
-
 
 import '../../widgets/alerts.dart';
 import '../../widgets/constants.dart';
@@ -36,13 +33,26 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            Alert.success(state.model.messages.toString());
+            //Alert.success(state.model.messages.toString());
+            Alert.success(
+              "مرحبا بكم في تطبيق كلامي",
+              desc: "تم تسجيل الدخول بنجاح",
+            );
 
-            Get.offAll(() => HomeTabScreen(
-                  userId: state.model.data!.userId!.toString(),
+            navigateAndFinish(
+                context,
+                HomeTabScreen(
+                  userId: state.model.data!.userId!,
                 ));
+            // Get.offAll(() => HomeTabScreen(
+            //       userId: state.model.data!.userId!.toString(),
+            //     ));
           } else if (state is LoginError) {
-            Alert.error(state.msg.toString());
+            // Alert.error(state.msg.toString());
+            Alert.error(
+              "عزيزي العميل",
+              desc: "الرجاء التاكد من البريد الإلكتروني وكلمة المرور",
+            );
           }
         },
         builder: (context, state) {
@@ -72,52 +82,51 @@ class LoginScreen extends StatelessWidget {
                       ),
                       CustomTextField(
                         dIcon: Icons.email,
-                        label: "البريد الإلكتروني" ,
-                        hint: "البريد الإلكتروني" ,
+                        label: "البريد الإلكتروني",
+                        hint: "البريد الإلكتروني",
                         controller: _emailController,
                         validator: qValidator([
-                          IsRequired(KeysConfig.enterEmail ),
-                          const IsEmail("يجب أن يكون بريد الكتروني" ),
+                          IsRequired(KeysConfig.enterEmail),
+                          const IsEmail("يجب أن يكون بريد الكتروني"),
                           MaxLength(30),
                         ]),
                         type: TextInputType.emailAddress,
                       ),
                       CustomTextField(
-                        hint: KeysConfig.password ,
+                        hint: KeysConfig.password,
                         icon: Icons.lock_outline,
                         dIcon: Icons.lock_outline,
-                        label: KeysConfig.password ,
+                        label: KeysConfig.password,
                         controller: _passwordController,
                         validator: qValidator([
-                          IsRequired(KeysConfig.enterPassword ),
-                          MinLength(6, KeysConfig.minPassword ),
+                          IsRequired(KeysConfig.enterPassword),
+                          MinLength(6, KeysConfig.minPassword),
                           MaxLength(30),
                         ]),
                         type: TextInputType.text,
                       ),
                       RecoveryWidget(
                         onTap: () {
-
-                      navigateTo(context, ForgetPassword());
+                          navigateTo(context, ForgetPassword());
                         },
                       ),
                       state is! LoginLoading
                           ? CustomButton(
                               color: kPrimaryColor,
-                              title: KeysConfig.signIn ,
+                              title: KeysConfig.signIn,
                               onPressed: () {
-                                // if (_formKey.currentState!.validate()) {
-                                //   cubit.userLogin(
-                                //       email: _emailController.text,
-                                //       password: _passwordController.text);
-                                // }
+                                if (_formKey.currentState!.validate()) {
+                                  cubit.userLogin(
+                                      email: _emailController.text,
+                                      password: _passwordController.text);
+                                }
                               },
                             )
                           : const LoadingFadingCircle(),
                       DoNotHave(
-                        text: KeysConfig.signUpNow ,
+                        text: KeysConfig.signUpNow,
                         route: () => navigateTo(context, const SignUpScreen()),
-                        have: KeysConfig.donHave ,
+                        have: KeysConfig.donHave,
                       )
                     ],
                   ),

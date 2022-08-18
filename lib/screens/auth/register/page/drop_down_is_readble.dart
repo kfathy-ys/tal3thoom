@@ -3,30 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../widgets/constants.dart';
 
-enum TypeSex { Male, Female }
-class DropDownSix extends StatefulWidget {
+enum TypeRead { Read, UnRead }
+class DropDownRead extends StatefulWidget {
   final String? initial;
   final ValueChanged<String> onChanged;
-  const DropDownSix({Key? key, required this.onChanged, this.initial})
+  const DropDownRead({Key? key, required this.onChanged, this.initial})
       : super(key: key);
 
   @override
-  State<DropDownSix> createState() =>
-      _DropDownSixState();
+  State<DropDownRead> createState() =>
+      _DropDownReadState();
 }
 
-class _DropDownSixState extends State<DropDownSix> {
-  TypeSex? selected;
+class _DropDownReadState extends State<DropDownRead> {
+  TypeRead? selected;
   String? valueSelected;
 
   @override
   void initState() {
     if (widget.initial != null) {
-      if (widget.initial == "Male") {
-        selected = TypeSex.Male;
+      if (widget.initial == "Read") {
+        selected = TypeRead.Read;
         valueSelected = widget.initial;
       } else {
-        selected = TypeSex.Female;
+        selected = TypeRead.UnRead;
         valueSelected = widget.initial;
       }
     }
@@ -35,7 +35,7 @@ class _DropDownSixState extends State<DropDownSix> {
 
   @override
   Widget build(BuildContext context) {
-     double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
@@ -47,13 +47,13 @@ class _DropDownSixState extends State<DropDownSix> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<TypeSex>(
+        child: DropdownButton<TypeRead>(
           value: selected,
           // autofocus: true,
           // isDense: true,
           //isExpanded: true,
           hint: const Text(
-            "الجنس" ' :',
+            "النوع" ' :',
             style: TextStyle(
               color: kPrimaryColor,
               fontSize: 16,
@@ -69,22 +69,22 @@ class _DropDownSixState extends State<DropDownSix> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (TypeSex? newValue) {
+          onChanged: (TypeRead? newValue) {
             if (newValue == null) return;
 
             setState(() {
               selected = newValue;
-              if (selected == TypeSex.Male) {
-                valueSelected = "Male";
+              if (selected == TypeRead.Read) {
+                valueSelected = "R";
               } else {
-                valueSelected = "Female";
+                valueSelected = "N";
               }
               widget.onChanged(valueSelected!);
             });
           },
-          items: TypeSex.values
-              .map<DropdownMenuItem<TypeSex>>((TypeSex value) {
-            return DropdownMenuItem<TypeSex>(
+          items: TypeRead.values
+              .map<DropdownMenuItem<TypeRead>>((TypeRead value) {
+            return DropdownMenuItem<TypeRead>(
               value: value,
               child: Text(
                 describeEnum(value).tr,

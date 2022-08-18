@@ -103,10 +103,11 @@ class KeysConfig {
   static const enterCountry = "من فضلك حدد الدولة";
   static const userNameDots = "أسم المستخدم :";
   static const emailDots = "البريد الإلكتروني :";
-  static const phoneDots = "رقم الهاتفstatic cons :t ";
-  static const countryDots = "أسم الدولةstatic cons :t ";
-  static const AccessNumberDots = "رقم النفاذstatic cons :t ";
+  static const phoneDots = "رقم الهاتف :";
+  static const countryDots = "أسم الدولة :";
+  static const AccessNumberDots = "رقم النفاذ : ";
   static const passwordDots = "كلمة المرور : ";
+  static const  notSimilar  = "كلمة المرور غير مطابقه";
   static const fakeName = "محمد رشاد";
   static const saudi = "المملكه العربية السعودية";
   static const dataRegister = "تاريخ تسجيل الجساب";

@@ -35,17 +35,17 @@ class LoginCubit extends Cubit<LoginState> {
       Prefs.setString("token", res.data["data"]["token"]);
       Prefs.setString("userId", res.data["data"]["userId"]);
 
-      Prefs.setString("fullName", loginModel.data!.fullName!);
+      Prefs.setString("fullName", loginModel.data!.userName!);
       Prefs.setString("email", loginModel.data!.email!);
       Prefs.setString("phoneNumber", loginModel.data!.phoneNumber!);
 
-      Prefs.setString("firstName", loginModel.data!.fullName!);
+      Prefs.setString("firstName", loginModel.data!.userName!);
       Prefs.setString("lastName", loginModel.data!.email!);
 
       log("${res.data["data"]["token"]}");
       log("${res.data["data"]["userId"]}");
 
-      log("${res.data["data"]["fullName"]}");
+      log("${res.data["data"]["userName"]}");
       log("${res.data["data"]["email"]}");
       log("${res.data["data"]["phoneNumber"]}");
 

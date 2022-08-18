@@ -1,4 +1,7 @@
 
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:tal3thoom/screens/auth/login/view.dart';
+import 'package:tal3thoom/screens/auth/register/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/cubit/oases_test_cubit.dart';
 
 import 'package:device_preview/device_preview.dart';
@@ -98,7 +101,7 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {
-          return MaterialApp(
+          return GetMaterialApp(
 
             debugShowCheckedModeBanner: false,
             builder: (context, child) {
@@ -107,7 +110,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:   const FirstStageSSRSTreatmentScreen(),
+            home:    const SignUpScreen(),
 
 
 

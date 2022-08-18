@@ -13,34 +13,52 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterModel? register;
 
+  String? typeSexId;
+  String onSexTypeChanged(String value) => typeSexId = value;
+  String? typeReadId;
+  String onReadTypeChanged(String value) => typeReadId = value;
+
+  //var userId = Prefs.getString("userId");
+
   Future<void> userRegister({
-    required String fName,
-    required String lName,
-    required String fullName,
-    required String phone,
-    required String country,
+    required String firstName,
+    required String middleName,
+    required String lastName,
     required String email,
     required String password,
-    required String userName,
+    required String phoneNumber,
+
+    required String countryPhoneCode,
+    required String birthDate,
+    required String nationality,
+    required String country,
+    required String city,
+    required String workPlace,
+
   }) async {
     emit(RegisterLoading());
     try {
       final res = await NetWork.post(
-        'Accounts/Register',
+        'Patients/AddPatient',
         body: {
+          "id": 0,
+          "firstName": firstName,
+          "middleName": middleName,
+          "lastName": lastName,
+          "fullName": "",
           "email": email,
           "password": password,
-          "firstName": fName,
-          "lastName": lName,
-          "nameArabic": fullName,
-          "phoneNumber": phone,
-          "location": country,
-          "userName": userName,
-          "defaultRole": "Visitor",
-          "active": true,
-          "activationPageUrl": null,
-          "roleName": ["Visitor"],
-          "userId":null
+          "phoneNumber": phoneNumber,
+          "countryPhoneCode": countryPhoneCode,
+          "gender": typeSexId,
+          "birthDate": birthDate,
+          "nationality": nationality,
+          "idCardNumber": "",
+          "country": country,
+          "city": city,
+          "neighborhood": "",
+          "workPlace": workPlace,
+          "type": typeReadId
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
