@@ -5,13 +5,14 @@ import 'package:tal3thoom/screens/auth/register/model/models.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../config/dio_helper/dio.dart';
+import '../../../widgets/date_convertors.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
-  RegisterModel? register;
+  //RegisterModel? register;
 
   String? typeSexId;
   String onSexTypeChanged(String value) => typeSexId = value;
@@ -51,7 +52,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           "phoneNumber": phoneNumber,
           "countryPhoneCode": countryPhoneCode,
           "gender": typeSexId,
-          "birthDate": birthDate,
+          "birthDate":  birthDate,
           "nationality": nationality,
           "idCardNumber": "",
           "country": country,
@@ -64,6 +65,24 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
+      //
+      // RegisterModel registerModel = registerModel.fromJson((res.data));
+      // Prefs.setString("token", res.data["data"]["token"]);
+      // Prefs.setString("userId", res.data["data"]["userId"]);
+      //
+      // Prefs.setString("fullName", registerModel.data!.!);
+      // Prefs.setString("email", registerModel.data!.email!);
+      // Prefs.setString("phoneNumber", registerModel.data!.phoneNumber!);
+      //
+      // Prefs.setString("firstName", registerModel.data!.userName!);
+      // Prefs.setString("lastName", registerModel.data!.email!);
+      //
+      // log("${res.data["data"]["token"]}");
+      // log("${res.data["data"]["userId"]}");
+      //
+      // log("${res.data["data"]["userName"]}");
+      // log("${res.data["data"]["email"]}");
+      // log("${res.data["data"]["phoneNumber"]}");
       emit(RegisterSuccess(RegisterModel.fromJson(res.data)));
     } catch (e, st) {
       log(e.toString());

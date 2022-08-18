@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/validation.dart';
 import '../../widgets/alerts.dart';
+import '../../widgets/custom_textFornField_range.dart';
 import '../../widgets/donotHave.dart';
 import '../../widgets/loading.dart';
 import '../login/view.dart';
@@ -149,34 +150,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ]),
                   type: TextInputType.text,
                 ),
-                CustomTextField(
-                  dIcon: Icons.date_range,
-                  label: KeysConfig.date,
-                  hint: KeysConfig.date,
+
+                CustomTextFieldRange(
+                  dIcon: Icons.date_range_outlined,
+                  hint: "تاريخ الميلاد",
                   controller: _dateController,
-                  validator: qValidator([
-                    IsRequired(KeysConfig.date),
-                   // const IsEmail(KeysConfig.date),
-                  ]),
-                  type: TextInputType.emailAddress,
+                  onTap: ()async {
+                    await  showDatePicker(
+                      context: context,
+
+                      firstDate: DateTime(1950),
+                      lastDate: DateTime(2030),
+                      initialDate: DateTime(1950),
+
+                    ).then(( value) {
+                      if(value == null) return;
+                      _dateController.text= value.toString().substring(0,10);
+
+                    //  provider.onRageChanges(value);
+                    });
+
+
+                  },
+
                 ),
+                // CustomTextField(
+                //   dIcon: Icons.date_range,
+                //   label: KeysConfig.date,
+                //   hint: KeysConfig.date,
+                //   controller: _dateController,
+                //   validator: qValidator([
+                //     IsRequired(KeysConfig.date),
+                //    // const IsEmail(KeysConfig.date),
+                //   ]),
+                //   type: TextInputType.emailAddress,
+                // ),
                 DropDownSix(onChanged: cubit.onSexTypeChanged),
                 DropDownRead(onChanged: cubit.onReadTypeChanged),
 
-                /*  CustomTextField(
-                  dIcon: Icons.male_outlined,
-                  label: KeysConfig.sex ,
-                  hint: KeysConfig.sex ,
-                  controller: _sexController,
-                  validator: qValidator(
-                    [
-                      IsRequired(KeysConfig.sex ),
 
-                      MaxLength(30),
-                    ],
-                  ),
-                  type: TextInputType.text,
-                ),*/
                 CustomTextField(
                   dIcon: Icons.real_estate_agent,
                   label: KeysConfig.countryResidence,
@@ -241,19 +253,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   type: TextInputType.text,
                 ),
-                CustomTextField(
-                  dIcon: Icons.location_on_outlined,
-                  label: KeysConfig.city,
-                  hint: KeysConfig.city,
-                  controller: _cityController,
-                  validator: qValidator(
-                    [
-                      IsRequired(KeysConfig.city),
-                      MaxLength(30),
-                    ],
-                  ),
-                  type: TextInputType.streetAddress,
-                ),
+
                 CustomTextField(
                   dIcon: Icons.person_add_alt_1,
                   label: KeysConfig.entityNumber,
@@ -357,9 +357,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   type: TextInputType.phone,
                 ),
                 CustomTextField(
-                  hint: "كود الدولة" ,
+                  hint: "مثال : +966" ,
                   dIcon: Icons.key,
-                  label: "+966" ,
+                  label: "كود الدولة" ,
                   controller: _countryPhoneCode,
                   validator: qValidator([
                     IsRequired(KeysConfig.thisFieldRequired ),
