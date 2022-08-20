@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/network_dialog.dart';
@@ -11,8 +12,6 @@ import 'package:get/get.dart';
 
 import '../auth/login/view.dart';
 import '../widgets/fast_widget.dart';
-
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,6 +22,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool loggedIn = true;
+  var userId = Prefs.getString("userId");
 
   @override
   void initState() {
@@ -45,23 +45,29 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 30),
               child: Card(
-
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
                 color: kPrimaryColor,
                 child: InkWell(
-                  onTap: () {
-                  //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeTabScreen()), (route) => false);
-                    navigateTo(context, LoginScreen());
+                  onTap: () => userId.isNotEmpty
+                      ? Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeTabScreen()),
+                          (route) => false)
 
-                  },
+
+                      : Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  LoginScreen()),
+                          (route) => false),
+
+
                   child: Image.asset(
-
                     'assets/images/arrow splash icon.png',
-                    scale:1.2,
-
-
+                    scale: 1.2,
                   ),
                 ),
               ),

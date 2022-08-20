@@ -16,20 +16,19 @@ import '../../../widgets/mediaButton.dart';
 class LanguagesScreen extends StatelessWidget {
   LanguagesScreen({Key? key}) : super(key: key);
 
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kAppBarColor,
       drawer: const MenuItems(),
-      appBar: customssAppbar(
+      appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

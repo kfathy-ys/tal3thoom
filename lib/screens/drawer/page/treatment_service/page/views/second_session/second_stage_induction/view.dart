@@ -14,9 +14,7 @@ import '../../first_session/first_payment_treatment/view.dart';
 
 // ignore: must_be_immutable
 class TreatmentServiceInduction extends StatelessWidget {
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
+       
   const TreatmentServiceInduction({Key? key}) : super(key: key);
 
   @override
@@ -24,12 +22,12 @@ class TreatmentServiceInduction extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: SizedBox(
           height: height,

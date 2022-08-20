@@ -19,8 +19,7 @@ class VCodeScreen extends StatefulWidget {
 }
 
 class _VCodeScreenState extends State<VCodeScreen> {
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
 
   final formKey = GlobalKey<FormState>();
 
@@ -47,7 +46,7 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
     // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      key: _scaffoldKey,
+      
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

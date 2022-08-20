@@ -1,5 +1,7 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tal3thoom/screens/auth/login/view.dart';
 import 'package:tal3thoom/screens/auth/register/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/cubit/oases_test_cubit.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
+import 'package:tal3thoom/screens/splash/view.dart';
 
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
@@ -19,57 +22,72 @@ import 'screens/drawer/page/treatment_service/page/views/first_session/first_sta
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
+import 'screens/translations/locale key-value.dart';
 import 'screens/widgets/constants.dart';
-
+import 'dart:async';
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  //await EasyLocalization.ensureInitialized();
-  await App.boot();
-  //await Firebase.initializeApp();
-  //await GetStorage.init();
-
-  Bloc.observer = MyBlocObserver();
-  // FCMConfig.instance.messaging.getToken().then((token) {
-  //   print(token);
-  // });
-  //
-  // await FCMConfig.instance.init(
-  //   defaultAndroidChannel: const AndroidNotificationChannel(
-  //     'high_importance_channel', // same as value from android setup
-  //     'Fcm config',
-  //     importance: Importance.high,
-  //     sound: RawResourceAndroidNotificationSound('notification'),
-  //   ),
-  //
-  //
-  //
-  //
-  // ); // may be nul
-
-  runApp(
-    QueenBuilder(
-      enableDevtools: false,
-      builder: (context) {
-        return DevicePreview(
-          enabled: true,
-          builder: (context) => const MyApp(
+  await runZonedGuarded(() async{
+    WidgetsFlutterBinding.ensureInitialized();
+    //await EasyLocalization.ensureInitialized();
 
 
-          ),
-        );
-      },
-    ),
-  );
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      // systemNavigationBarColor: kButtonRedDark, // navigation bar color
-      statusBarColor: kPrimaryColor, // status bar color
-    ),
-  );
+    await App.boot();
+    //await Firebase.initializeApp();
+    await GetStorage.init();
+
+
+
+    Bloc.observer = MyBlocObserver();
+    // FCMConfig.instance.messaging.getToken().then((token) {
+    //   print(token);
+    // });
+    //
+    // await FCMConfig.instance.init(
+    //   defaultAndroidChannel: const AndroidNotificationChannel(
+    //     'high_importance_channel', // same as value from android setup
+    //     'Fcm config',
+    //     importance: Importance.high,
+    //     sound: RawResourceAndroidNotificationSound('notification'),
+    //   ),
+    //
+    //
+    //
+    //
+    // ); // may be nul
+
+    runApp(
+      QueenBuilder(
+        enableDevtools: false,
+        builder: (context) {
+          return DevicePreview(
+            enabled: true,
+            builder: (context) => const MyApp(
+
+
+            ),
+          );
+        },
+      ),
+    );
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        // systemNavigationBarColor: kButtonRedDark, // navigation bar color
+        statusBarColor: kPrimaryColor, // status bar color
+      ),
+    );
+  }, (error, stack) {
+
+         if (kDebugMode) {
+           print(error);
+           print(stack);
+         }
+
+  });
+
 }
 
 class MyApp extends StatelessWidget {
@@ -102,7 +120,8 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {
           return GetMaterialApp(
-
+            translations: LocaleString(),
+            locale: const Locale('ar', 'EG'),
             debugShowCheckedModeBanner: false,
             builder: (context, child) {
               return Directionality(
@@ -110,7 +129,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:    const SignUpScreen(),
+            home:    const SplashScreen(),
 
 
 

@@ -75,8 +75,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       },
     );
   }*/
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
 
   @override
 
@@ -91,15 +90,15 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
         builder: (context, state) {
           final cubit = BlocProvider.of<HomeTabeBarCubit>(context);
           return Scaffold(
-            key: _scaffoldKey,
+            
             backgroundColor: kHomeColor,
             drawer: const MenuItems(),
             appBar: DynamicAppbar(
                 context: context,
-                press: () => _scaffoldKey.currentState!.openDrawer()),
+                press: (context) => Scaffold.of(context).openDrawer()),
             body: cubit.widgetOptions.elementAt(cubit.index),
             bottomNavigationBar: CurvedNavigationBar(
-              key: cubit.bottomNavigationKey,
+            //  key: cubit.bottomNavigationKey,
               index: cubit.index,
               height: 50.0,
               items: <Widget>[

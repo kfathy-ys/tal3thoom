@@ -13,8 +13,7 @@ import '../../widgets/constants.dart';
 class ForgetPassword extends StatelessWidget {
   ForgetPassword({Key? key}) : super(key: key);
 
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
   final formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
 
@@ -24,7 +23,7 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
     //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      key: _scaffoldKey,
+      
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

@@ -7,8 +7,7 @@ import 'constants.dart';
 
 class CustomScaffold extends StatelessWidget {
   CustomScaffold({Key? key, required this.body}) : super(key: key);
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
   final Widget body;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: const MenuItems(),
-          key: _scaffoldKey,
+          
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,

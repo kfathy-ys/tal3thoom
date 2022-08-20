@@ -7,7 +7,7 @@ import 'constants.dart';
 
 
 class DynamicAppbar extends StatelessWidget  with PreferredSizeWidget{
-  final VoidCallback press;
+  final ValueChanged<BuildContext> press;
   final BuildContext context;
 
   const DynamicAppbar({Key? key, required this.press, required this.context}) : super(key: key);
@@ -25,7 +25,7 @@ class DynamicAppbar extends StatelessWidget  with PreferredSizeWidget{
 
           ListTile(
             leading: InkWell(
-                onTap: press, child: Image.asset("assets/images/side menu.png")),
+                onTap: ()=>press(context), child: Image.asset("assets/images/side menu.png")),
             trailing:       GestureDetector(onTap: ()=>Navigator.of( context).pop(), child: Image.asset("assets/images/menu arrow.png"))
             ,
           )

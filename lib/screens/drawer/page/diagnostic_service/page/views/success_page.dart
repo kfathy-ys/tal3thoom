@@ -14,7 +14,6 @@ class SuccessView extends StatelessWidget {
   final String title1;
   final String title2;
   final VoidCallback? onTap;
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
    const SuccessView({Key? key, required this.title1, required this.title2, this.onTap, }) : super(key: key);
@@ -24,12 +23,12 @@ class SuccessView extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: Container(
           height: height,

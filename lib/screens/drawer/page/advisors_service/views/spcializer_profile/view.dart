@@ -8,8 +8,7 @@ import 'views/profile_items.dart';
 
 // ignore: must_be_immutable
 class SpecializerProfile extends StatelessWidget {
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
 
   SpecializerProfile({Key? key}) : super(key: key);
 
@@ -18,12 +17,12 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: SizedBox(
           height: height,

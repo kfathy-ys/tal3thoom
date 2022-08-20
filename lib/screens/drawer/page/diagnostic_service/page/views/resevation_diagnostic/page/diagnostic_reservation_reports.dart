@@ -10,20 +10,18 @@ import '../../success_page.dart';
 
 // ignore: must_be_immutable
 class DiagnosticReservationReport extends StatelessWidget {
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SizedBox(
         height: height,
         width: width,

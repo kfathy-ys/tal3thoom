@@ -26,21 +26,19 @@ class FirstStageAdditionalTrainingScreen extends StatefulWidget {
 }
 
 class _FirstStageAdditionalTrainingScreenState extends State<FirstStageAdditionalTrainingScreen> {
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final _firstController = TextEditingController();
+         final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: height,

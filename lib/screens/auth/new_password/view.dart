@@ -22,7 +22,7 @@ class NewPasswordScreen extends StatelessWidget {
     //double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      key: _scaffoldKey,
+      
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,

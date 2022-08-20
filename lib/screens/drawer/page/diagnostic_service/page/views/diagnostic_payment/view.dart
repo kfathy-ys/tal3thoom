@@ -13,9 +13,7 @@ import '../diagnostic_history/view.dart';
 
 // ignore: must_be_immutable
 class DiagnosticPayment extends StatelessWidget {
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
+       
   DiagnosticPayment({Key? key}) : super(key: key);
 
   @override
@@ -23,12 +21,12 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: Container(
           height: height,
@@ -49,7 +47,7 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
                           const WebView(
                             javascriptMode: JavascriptMode.unrestricted,
                             initialUrl:
-                                "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                           ));
                       print("object1");
                     },
@@ -62,7 +60,7 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
                           const WebView(
                             javascriptMode: JavascriptMode.unrestricted,
                             initialUrl:
-                                "https://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                           ));
 
                       print("object2");
@@ -76,7 +74,7 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
                           const WebView(
                             javascriptMode: JavascriptMode.unrestricted,
                             initialUrl:
-                                "https://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                           ));
                       print("object3");
                     },
@@ -93,8 +91,9 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
                           ));
                     },
                     title: "Skip"),
-
-                SizedBox(height: height*0.1,)
+                SizedBox(
+                  height: height * 0.1,
+                )
               ],
             ),
           ),

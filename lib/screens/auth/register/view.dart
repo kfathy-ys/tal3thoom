@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:animate_do/animate_do.dart';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tal3thoom/screens/auth/register/page/drop_down_is_readble.dart';
 import 'package:tal3thoom/screens/auth/register/page/drop_down_six.dart';
@@ -62,6 +64,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool value = false;
 
+   String? countryValue = "";
+    String? stateValue = "";
+    String? cityValue = "";
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -97,82 +103,98 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: height * 0.05,
                 ),
                 const IconBack(),
+          FadeInDownBig(
+            child: Column(
+              children: [
                 SizedBox(
                     height: height * 0.15,
                     child: Image.asset("assets/images/logoregister.png")),
                 const TextTitleSubTitle(),
+              ],
+            ),
+          ),
                 SizedBox(
                   height: height * 0.02,
                 ),
-                CustomTextField(
-                  dIcon: Icons.person,
-                  label: KeysConfig.firstName,
-                  hint: KeysConfig.firstName,
-                  controller: _firstNameController,
-                  validator: qValidator([
-                    IsRequired(KeysConfig.enterFullName),
-                  ]),
-                  type: TextInputType.name,
+                FadeInLeftBig(
+                  child: CustomTextField(
+                    dIcon: Icons.person,
+                    label: KeysConfig.firstName,
+                    hint: KeysConfig.firstName,
+                    controller: _firstNameController,
+                    validator: qValidator([
+                      IsRequired(KeysConfig.enterFullName),
+                    ]),
+                    type: TextInputType.name,
+                  ),
                 ),
-                CustomTextField(
-                  dIcon: Icons.person,
-                  label: KeysConfig.dadName,
-                  hint: KeysConfig.dadName,
-                  controller: _dadNameController,
-                  validator: qValidator([
-                    IsRequired(KeysConfig.thisFieldRequired),
-                    // IsOptional(),
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.name,
+                FadeInRightBig(
+                  child: CustomTextField(
+                    dIcon: Icons.person,
+                    label: KeysConfig.dadName,
+                    hint: KeysConfig.dadName,
+                    controller: _dadNameController,
+                    validator: qValidator([
+                      IsRequired(KeysConfig.thisFieldRequired),
+                      // IsOptional(),
+                      MaxLength(30),
+                    ]),
+                    type: TextInputType.name,
+                  ),
                 ),
-                CustomTextField(
-                  dIcon: Icons.person,
-                  label: KeysConfig.familyName,
-                  hint: KeysConfig.familyName,
-                  controller: _familyNameControlller,
-                  validator: qValidator([
-                    IsRequired(KeysConfig.dadName),
-                    // IsOptional(),
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.name,
+                FadeInLeftBig(
+                  child: CustomTextField(
+                    dIcon: Icons.person,
+                    label: KeysConfig.familyName,
+                    hint: KeysConfig.familyName,
+                    controller: _familyNameControlller,
+                    validator: qValidator([
+                      IsRequired(KeysConfig.dadName),
+                      // IsOptional(),
+                      MaxLength(30),
+                    ]),
+                    type: TextInputType.name,
+                  ),
                 ),
-                CustomTextField(
-                  hint: KeysConfig.email,
-                  dIcon: Icons.email,
-                  label: KeysConfig.email,
-                  controller: _emailController,
-                  validator: qValidator([
-                    IsRequired(KeysConfig.thisFieldRequired),
-                    //  IsOptional(),
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.text,
+                FadeInRightBig(
+                  child: CustomTextField(
+                    hint: KeysConfig.email,
+                    dIcon: Icons.email,
+                    label: KeysConfig.email,
+                    controller: _emailController,
+                    validator: qValidator([
+                      IsRequired(KeysConfig.thisFieldRequired),
+                      //  IsOptional(),
+                      MaxLength(30),
+                    ]),
+                    type: TextInputType.text,
+                  ),
                 ),
 
-                CustomTextFieldRange(
-                  dIcon: Icons.date_range_outlined,
-                  hint: "تاريخ الميلاد",
-                  controller: _dateController,
-                  onTap: ()async {
-                    await  showDatePicker(
-                      context: context,
+                FadeInRightBig(
+                  child: CustomTextFieldRange(
+                    dIcon: Icons.date_range_outlined,
+                    hint: "تاريخ الميلاد",
+                    controller: _dateController,
+                    onTap: ()async {
+                      await  showDatePicker(
+                        context: context,
 
-                      firstDate: DateTime(1950),
-                      lastDate: DateTime(2030),
-                      initialDate: DateTime(1950),
+                        firstDate: DateTime(1950),
+                        lastDate: DateTime(2030),
+                        initialDate: DateTime(1950),
 
-                    ).then(( value) {
-                      if(value == null) return;
-                      _dateController.text= value.toString().substring(0,10);
+                      ).then(( value) {
+                        if(value == null) return;
+                        _dateController.text= value.toString().substring(0,10);
 
-                    //  provider.onRageChanges(value);
-                    });
+                      //  provider.onRageChanges(value);
+                      });
 
 
-                  },
+                    },
 
+                  ),
                 ),
                 // CustomTextField(
                 //   dIcon: Icons.date_range,
@@ -185,35 +207,133 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //   ]),
                 //   type: TextInputType.emailAddress,
                 // ),
-                DropDownSix(onChanged: cubit.onSexTypeChanged),
-                DropDownRead(onChanged: cubit.onReadTypeChanged),
+                FadeInLeftBig(child: DropDownSix(onChanged: cubit.onSexTypeChanged)),
+                FadeInRightBig(child: DropDownRead(onChanged: cubit.onReadTypeChanged)),
+            /*    Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0,vertical: 12),
+                  child: CSCPicker(
+                    ///Enable disable state dropdown [OPTIONAL PARAMETER]
+                    showStates: true,
 
 
-                CustomTextField(
-                  dIcon: Icons.real_estate_agent,
-                  label: KeysConfig.countryResidence,
-                  hint: KeysConfig.countryResidence,
-                  controller: _countryController,
-                  validator: qValidator(
-                    [
-                      IsRequired(KeysConfig.countryResidence),
-                      MaxLength(30),
-                    ],
+                    /// Enable disable city drop down [OPTIONAL PARAMETER]
+                    showCities: true,
+
+
+                    ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                    flagState: CountryFlag.DISABLE,
+
+                    ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
+                    dropdownDecoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        color: Colors.white,
+                        border:
+                        Border.all(color: Colors.grey.shade300, width: 1)),
+
+                    ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
+                    disabledDropdownDecoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(const Radius.circular(10)),
+                        color: Colors.grey.shade300,
+                        border:
+                        Border.all(color: Colors.grey.shade300, width: 1)),
+
+                    ///placeholders for dropdown search field
+                    countrySearchPlaceholder: "الدولة",
+                    stateSearchPlaceholder: "المدينة",
+                    citySearchPlaceholder: "الحي السكني",
+
+                    ///labels for dropdown
+                    countryDropdownLabel: "الدولة",
+                    stateDropdownLabel: "المدينة",
+                    cityDropdownLabel: "الحي السكني",
+
+                    ///Default Country
+                    defaultCountry: DefaultCountry.Saudi_Arabia,
+
+                    ///Disable country dropdown (Note: use it with default country)
+                    //disableCountry: true,
+
+                    ///selected item style [OPTIONAL PARAMETER]
+                    selectedItemStyle: const TextStyle(
+                      fontSize: 16,
+                      color: kPrimaryColor,
+                      fontFamily: "DinMedium",
+                    ),
+
+                    ///DropdownDialog Heading style [OPTIONAL PARAMETER]
+                    dropdownHeadingStyle: const TextStyle(
+                      fontSize: 17,
+                      color: kPrimaryColor,
+                      fontFamily: "DinMedium",),
+
+                    ///DropdownDialog Item style [OPTIONAL PARAMETER]
+                    dropdownItemStyle: const TextStyle(
+                        fontSize: 16,
+                        color: kPrimaryColor,
+                        fontFamily: "DinMedium",
+                    ),
+
+                    ///Dialog box radius [OPTIONAL PARAMETER]
+                    dropdownDialogRadius: 10.0,
+
+                    ///Search bar radius [OPTIONAL PARAMETER]
+                    searchBarRadius: 10.0,
+
+                    ///triggers once country selected in dropdown
+                    onCountryChanged: (String? value) {
+                      setState(() {
+                        ///store value in country variable
+                        countryValue = value;
+                      });
+                    },
+
+                    ///triggers once state selected in dropdown
+                    onStateChanged: (String?  value) {
+                      setState(() {
+                        ///store value in state variable
+                        stateValue = value;
+                      });
+                    },
+
+                    ///triggers once city selected in dropdown
+                    onCityChanged: (value) {
+                      setState(() {
+                        ///store value in city variable
+                        cityValue = value;
+                      });
+                    },
                   ),
-                  type: TextInputType.streetAddress,
+                ),*/
+
+                FadeInLeftBig(
+                  child: CustomTextField(
+                    dIcon: Icons.real_estate_agent,
+                    label: KeysConfig.countryResidence,
+                    hint: KeysConfig.countryResidence,
+                    controller: _countryController,
+                    validator: qValidator(
+                      [
+                        IsRequired(KeysConfig.countryResidence),
+                        MaxLength(30),
+                      ],
+                    ),
+                    type: TextInputType.streetAddress,
+                  ),
                 ),
-                CustomTextField(
-                  dIcon: Icons.location_on_rounded,
-                  label: "المدينة",
-                  hint: "المدينة",
-                  controller: _city,
-                  validator: qValidator(
-                    [
-                      IsRequired(KeysConfig.countryResidence),
-                      MaxLength(30),
-                    ],
+                FadeInRightBig(
+                  child: CustomTextField(
+                    dIcon: Icons.location_on_rounded,
+                    label: "المدينة",
+                    hint: "المدينة",
+                    controller: _city,
+                    validator: qValidator(
+                      [
+                        IsRequired(KeysConfig.countryResidence),
+                        MaxLength(30),
+                      ],
+                    ),
+                    type: TextInputType.streetAddress,
                   ),
-                  type: TextInputType.streetAddress,
                 ),
                 CustomTextField(
                   dIcon: Icons.add_location_alt_outlined,
@@ -307,12 +427,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                   type: TextInputType.text,
                 ),
-             /*   Container(
+               /* Container(
                   height: height * 0.13,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
                   child: IntlPhoneField(
                     controller: _phoneController,
+
                     decoration: InputDecoration(
                       labelStyle: const TextStyle(
                         fontSize: 16,

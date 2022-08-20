@@ -25,7 +25,6 @@ class ContactUsScreen extends StatelessWidget {
       "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featured";
 
   ContactUsScreen({Key? key}) : super(key: key);
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
   @override
@@ -33,12 +32,12 @@ class ContactUsScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         width: width,
         height: height,

@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/config/keys.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
@@ -6,17 +7,15 @@ import 'package:video_player/video_player.dart';
 
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/loading.dart';
 import '../../../../../../widgets/video_items.dart';
 import '../../../../../view.dart';
 import '../diagnostic_payment/view.dart';
-
-
+import 'cubit/diagnostic_induction_cubit.dart';
 
 // ignore: must_be_immutable
 class InductionDiagnostic extends StatelessWidget {
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
+       
   InductionDiagnostic({Key? key}) : super(key: key);
 
   @override
@@ -24,44 +23,72 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: SizedBox(
         height: height,
-        width: width ,
-
+        width: width,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
                   widthh: width * 0.5,
-                  title: KeysConfig.definationDiag ,
+                  title: KeysConfig.definationDiag,
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/dignostics.png"),
               ),
+              BlocProvider(
+                create: (context) => DiagnosticInductionCubit(),
+                child: BlocConsumer<DiagnosticInductionCubit,
+                    DiagnosticInductionState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    final cubit =
+                        BlocProvider.of<DiagnosticInductionCubit>(context);
 
-              SizedBox(
-                width: width*0.8,
-                height: height*0.25,
-                child: VideoItems(
-                  videoPlayerController: VideoPlayerController.network(
-                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                  ),
+                    if (state is DiagnosticInductionLoading) {
+                      return const Center(
+                        child: LoadingFadingCircle(),
+                      );
+                    }
+                    if (state is DiagnosticInductionSuccess) {
+                      return SizedBox(
+                        width: width * 0.8,
+                        height: height * 0.25,
+                        //'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+
+                        // "http://dev-sas.cpt-it.com/api/media/Introduction.mp4"
+                        ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
+                        child: VideoItems(
+                          videoPlayerController: VideoPlayerController.network(
+                              "http://dev-sas.cpt-it.com/api/" +
+                                  state.inductionDiagnosticModel.data!.videoUrl
+                                      .toString()),
+                        ),
+                      );
+                    }
+                    if (state is DiagnosticInductionError) {
+                      return Text(state.meg);
+                    }
+                    return const SizedBox();
+                  },
                 ),
               ),
               MediaButton(
                 onPressed: () {
                   navigateTo(context, DiagnosticPayment());
                 },
-                title: KeysConfig.next ,
+                title: KeysConfig.next,
               ),
-              SizedBox(height: height*0.2,),
+              SizedBox(
+                height: height * 0.2,
+              ),
             ],
           ),
         ),
@@ -70,6 +97,6 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
   }
 
   SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
+        height: height * 0.05,
+      );
 }

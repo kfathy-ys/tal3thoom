@@ -10,7 +10,7 @@ part 'home_tabebar_state.dart';
 class HomeTabeBarCubit extends Cubit<HomeTabeBarState> {
   HomeTabeBarCubit() : super(HomeTabeBarInitial());
   int index = 1;
-  final bottomNavigationKey = GlobalKey();
+ // final bottomNavigationKey = GlobalKey();
   final  widgetOptions = <Widget>[
     const Profile(),
     MyHomeScreen(),

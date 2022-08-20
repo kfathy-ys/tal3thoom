@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:tal3thoom/screens/auth/forget_password/view.dart';
 import 'package:tal3thoom/screens/auth/login/page/recovery_password.dart';
 import 'package:tal3thoom/screens/auth/register/view.dart';
@@ -73,55 +74,67 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: height * 0.2,
                       ),
-                      SizedBox(
-                          height: height * 0.15,
-                          child: Image.asset("assets/images/logoregister.png")),
-                      const TextTitleSubTitle(),
+                     FadeInDownBig(
+                       child: Column(
+                         children: [
+                           SizedBox(
+                               height: height * 0.15,
+                               child: Image.asset("assets/images/logoregister.png")),
+                           const TextTitleSubTitle()
+                         ],
+                       ),
+                     ),
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      CustomTextField(
-                        dIcon: Icons.email,
-                        label: "البريد الإلكتروني",
-                        hint: "البريد الإلكتروني",
-                        controller: _emailController,
-                        validator: qValidator([
-                          IsRequired(KeysConfig.enterEmail),
-                          const IsEmail("يجب أن يكون بريد الكتروني"),
-                          MaxLength(30),
-                        ]),
-                        type: TextInputType.emailAddress,
+                      FadeInLeftBig(
+                        child: CustomTextField(
+                          dIcon: Icons.email,
+                          label: "البريد الإلكتروني",
+                          hint: "البريد الإلكتروني",
+                          controller: _emailController,
+                          validator: qValidator([
+                            IsRequired(KeysConfig.enterEmail),
+                            const IsEmail("يجب أن يكون بريد الكتروني"),
+                            MaxLength(30),
+                          ]),
+                          type: TextInputType.emailAddress,
+                        ),
                       ),
-                      CustomTextField(
-                        hint: KeysConfig.password,
-                        icon: Icons.lock_outline,
-                        dIcon: Icons.lock_outline,
-                        label: KeysConfig.password,
-                        controller: _passwordController,
-                        validator: qValidator([
-                          IsRequired(KeysConfig.enterPassword),
-                          MinLength(6, KeysConfig.minPassword),
-                          MaxLength(30),
-                        ]),
-                        type: TextInputType.text,
+                      FadeInRightBig(
+                        child: CustomTextField(
+                          hint: KeysConfig.password,
+                          icon: Icons.lock_outline,
+                          dIcon: Icons.lock_outline,
+                          label: KeysConfig.password,
+                          controller: _passwordController,
+                          validator: qValidator([
+                            IsRequired(KeysConfig.enterPassword),
+                            MinLength(6, KeysConfig.minPassword),
+                            MaxLength(30),
+                          ]),
+                          type: TextInputType.text,
+                        ),
                       ),
                       RecoveryWidget(
                         onTap: () {
-                          navigateTo(context, ForgetPassword());
+                        //  navigateTo(context, ForgetPassword());
                         },
                       ),
                       state is! LoginLoading
-                          ? CustomButton(
-                              color: kPrimaryColor,
-                              title: KeysConfig.signIn,
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  cubit.userLogin(
-                                      email: _emailController.text,
-                                      password: _passwordController.text);
-                                }
-                              },
-                            )
+                          ? FadeInUpBig(
+                            child: CustomButton(
+                                color: kPrimaryColor,
+                                title: KeysConfig.signIn,
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    cubit.userLogin(
+                                        email: _emailController.text,
+                                        password: _passwordController.text);
+                                  }
+                                },
+                              ),
+                          )
                           : const LoadingFadingCircle(),
                       DoNotHave(
                         text: KeysConfig.signUpNow,

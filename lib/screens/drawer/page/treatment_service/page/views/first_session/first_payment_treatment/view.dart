@@ -14,8 +14,7 @@ import '../../pre-treatment_questionnaire/view.dart';
 
 // ignore: must_be_immutable
 class PaymentTreatment extends StatelessWidget {
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+     
 
   PaymentTreatment({Key? key}) : super(key: key);
 
@@ -24,12 +23,12 @@ final _scaffoldKey = GlobalKey<ScaffoldState>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         height: height,
         width: width,

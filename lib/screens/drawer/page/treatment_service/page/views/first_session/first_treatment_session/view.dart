@@ -20,19 +20,17 @@ class FirstTreatmentSession extends StatefulWidget {
 }
 
 class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
+         @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: height,

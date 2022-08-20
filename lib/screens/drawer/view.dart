@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/auth/login/view.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/expention_card/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
@@ -219,17 +220,23 @@ class _MenuItemsState extends State<MenuItems> {
           //   leading: Image.asset("assets/images/Exclamation mark.png"),
           //   title: customText2(title: KeysConfig.language , color: kHomeColor),
           // ),
-
-          drawerContents(
-            onTap: () {},
-            imageLeading: "assets/images/message.png",
-            title: KeysConfig.contactsUs,
+          ListTile(
+            onTap: () {
+              Navigator.of(context).pop();
+             // navigateTo(context, const WhoWEAreScreen());
+            },
+            leading: Image.asset("assets/images/message.png"),
+            title: customText2(title:  KeysConfig.contactsUs, color: kHomeColor),
           ),
+
 
           ListTile(
             onTap: () {
               Navigator.of(context).pop();
+
+
               navigateTo(context, LoginScreen());
+              Prefs.clear();
             },
             leading: Image.asset("assets/images/Exit.png"),
             title: customText2(title: KeysConfig.signOut, color: kHomeColor),
@@ -240,26 +247,4 @@ class _MenuItemsState extends State<MenuItems> {
   }
 }
 
-Widget drawerContents({
-  required VoidCallback onTap,
-  required String imageLeading,
-  required String title,
-  String? imageTrailing,
-  VoidCallback? onTapArrow,
-  List<Widget>? children,
-}) {
-  return InkWell(
-    onTap: onTap,
-    child: ExpansionTile(
-      backgroundColor: kPrimaryColor,
-      children: children ?? [const SizedBox.shrink()],
-      leading: Image.asset(imageLeading),
-      trailing: onTapArrow == null
-          ? const SizedBox.shrink()
-          : imageTrailing == null
-              ? const SizedBox.shrink()
-              : Image.asset(imageTrailing),
-      title: customText2(title: title, color: kHomeColor),
-    ),
-  );
-}
+

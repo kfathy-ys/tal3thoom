@@ -30,9 +30,7 @@ class TreatmentSSI4Two extends StatefulWidget {
 }
 
 class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
+       
   final _firstController = TextEditingController();
 
   @override
@@ -40,12 +38,12 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
-          press: () => _scaffoldKey.currentState!.openDrawer()),
+          press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: height,

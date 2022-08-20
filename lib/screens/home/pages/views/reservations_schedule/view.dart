@@ -6,9 +6,7 @@ import '../../../../widgets/constants.dart';
 
 // ignore: must_be_immutable
 class ReservationsSchedule extends StatelessWidget {
-  static final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
+       
   const ReservationsSchedule({Key? key}) : super(key: key);
 
   @override
