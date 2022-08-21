@@ -80,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                            SizedBox(
                                height: height * 0.15,
                                child: Image.asset("assets/images/logoregister.png")),
-                           const TextTitleSubTitle()
+                           const TextTitleSubTitle(HeadTitle: KeysConfig.signIn,)
                          ],
                        ),
                      ),

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:tal3thoom/screens/auth/register/model/models.dart';
 import 'package:meta/meta.dart';
+import 'package:tal3thoom/screens/widgets/alerts.dart';
 
 import '../../../../config/dio_helper/dio.dart';
 import '../../../widgets/date_convertors.dart';
@@ -63,7 +64,8 @@ class RegisterCubit extends Cubit<RegisterState> {
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
-        throw res.data['message'];
+        //throw res.data['message'];
+        Alert.error("يجب إكمال الحقول المطلوبة");
       }
       //
       // RegisterModel registerModel = registerModel.fromJson((res.data));

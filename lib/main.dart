@@ -1,4 +1,5 @@
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
@@ -26,6 +27,8 @@ import 'screens/home/cubit/home_tabebar_cubit.dart';
 import 'screens/translations/locale key-value.dart';
 import 'screens/widgets/constants.dart';
 import 'dart:async';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() async {
   await runZonedGuarded(() async{
     WidgetsFlutterBinding.ensureInitialized();
@@ -127,7 +130,17 @@ class MyApp extends StatelessWidget {
             translations: LocaleString(),
             locale: const Locale('ar', 'EG'),
             debugShowCheckedModeBanner: false,
+            supportedLocales: const [
+              Locale('en'),
+              Locale('ar'),
 
+            ],
+            localizationsDelegates:  const [
+              CountryLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
             builder: (context, child) {
               return Directionality(
                 textDirection: TextDirection.rtl,
