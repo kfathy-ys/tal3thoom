@@ -99,6 +99,7 @@ dependencies:
       url: https://github.com/maxzod/queen.git
       ref: f6cc4532a9690809d0ed3c5f1ae8717f1baf38d7
   provider: ^6.0.3
+  country_picker: ^2.0.15
 
 
 

@@ -18,6 +18,7 @@ import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
+import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
@@ -114,6 +115,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<HomeTabeBarCubit>(
           create: (context) => HomeTabeBarCubit(),
         ),
+        BlocProvider<DiagnosticPaymentCubit>(
+          create: (context) => DiagnosticPaymentCubit(),
+        ),
 
 
       ],
@@ -123,6 +127,7 @@ class MyApp extends StatelessWidget {
             translations: LocaleString(),
             locale: const Locale('ar', 'EG'),
             debugShowCheckedModeBanner: false,
+
             builder: (context, child) {
               return Directionality(
                 textDirection: TextDirection.rtl,

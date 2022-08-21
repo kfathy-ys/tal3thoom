@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:tal3thoom/config/keys.dart';
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +84,11 @@ class InductionDiagnostic extends StatelessWidget {
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, DiagnosticPayment());
+
+               //   Get.to(()=>BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment() );
+                  BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment();
+                 // navigateTo(context,  BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment());
+                //Get.to(()=> DiagnosticPayment());
                 },
                 title: KeysConfig.next,
               ),
