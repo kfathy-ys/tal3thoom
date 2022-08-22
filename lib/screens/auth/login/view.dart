@@ -58,13 +58,13 @@ class LoginScreen extends StatelessWidget {
           final cubit = BlocProvider.of<LoginCubit>(context);
           return Scaffold(
             backgroundColor: kHomeColor,
-            body: SingleChildScrollView(
-              child: SizedBox(
-                height: height,
-                width: width,
-                child: Form(
-                  autovalidateMode: AutovalidateMode.always,
-                  key: _formKey,
+            body: SizedBox(
+              height: height,
+              width: width,
+              child: Form(
+                autovalidateMode: AutovalidateMode.always,
+                key: _formKey,
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,

@@ -147,7 +147,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:    const SignUpScreen(),
+            home:    const SplashScreen(),
 
 
 

@@ -127,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         IsRequired(KeysConfig.thisFieldRequired),
                       ]),
                         textInputFormatter: [
-                    FilteringTextInputFormatter.allow(RegExp('[a-z A-Z á-ú Á-Ú]')),
+                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
                 ],
                       type: TextInputType.name,
                     ),
@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         MaxLength(30),
                       ]),
                       textInputFormatter: [
-                        FilteringTextInputFormatter.allow(RegExp('[a-z A-Z á-ú Á-Ú]')),
+                        FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
                       ],
                       type: TextInputType.name,
                     ),
@@ -161,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         MaxLength(30),
                       ]),
                       textInputFormatter: [
-                        FilteringTextInputFormatter.allow(RegExp('[a-z A-Z á-ú Á-Ú]')),
+                        FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
                       ],
                       type: TextInputType.name,
                     ),
