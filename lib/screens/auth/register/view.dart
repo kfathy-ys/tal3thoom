@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:animate_do/animate_do.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:csc_picker/csc_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tal3thoom/screens/auth/register/page/drop_down_is_readble.dart';
@@ -20,7 +21,6 @@ import '../../widgets/custom_textFornField_range.dart';
 import '../../widgets/donotHave.dart';
 import '../../widgets/loading.dart';
 import '../login/view.dart';
-import '../vcode/view.dart';
 import 'cubit/register_cubit.dart';
 import 'page/back_icon.dart';
 import '../../../../../../config/keys.dart';
@@ -44,7 +44,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final _passController = TextEditingController();
   final _nationality = TextEditingController();
-  final _country = TextEditingController();
   final _city = TextEditingController();
 
   final _familyNameControlller = TextEditingController();
@@ -62,13 +61,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final _entityWorkController = TextEditingController();
 
-  final _cityController = TextEditingController();
-
   bool value = false;
 
-   String? countryValue = "";
-    String? stateValue = "";
-    String? cityValue = "";
+  String? countryValue = "";
+  String? stateValue = "";
+  String? cityValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +80,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           //Prefs.setString('token', state.registerModel.);
           //  Get.offAll(() =>  LoginScreen());
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) =>  LoginScreen()),
+              MaterialPageRoute(builder: (context) => LoginScreen()),
               (Route<dynamic> route) => false);
           Alert.success('تم تسجيل بنجاح');
         } else if (state is RegisterError) {
-          Alert.error(state.msg);
+          //Alert.error(state.msg);
+          Alert.error("خطأ في  تسجيل البيانات",
+              desc:
+                  "المعلومات المدخلة غير صالحة الرجاء ملئ الحقول والتاكد من صحة البيانات المطلوبة");
         }
       }, builder: (context, state) {
         final cubit = BlocProvider.of<RegisterCubit>(context);
@@ -96,27 +96,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
           body: Form(
             key: _formKey,
             child: SingleChildScrollView(
-
               child: Column(
-                //shrinkWrap: true,
-              //  physics: const BouncingScrollPhysics(),
-              //   padding: EdgeInsets.only(
-              //       bottom: MediaQuery.of(context).viewInsets.bottom),
                 children: [
                   SizedBox(
                     height: height * 0.05,
                   ),
                   const IconBack(),
-          FadeInDownBig(
-              child: Column(
-                children: [
-                  SizedBox(
-                      height: height * 0.15,
-                      child: Image.asset("assets/images/logoregister.png")),
-                  const TextTitleSubTitle(HeadTitle: KeysConfig.signUpNow ),
-                ],
-              ),
-          ),
+                  FadeInDownBig(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            height: height * 0.15,
+                            child:
+                                Image.asset("assets/images/logoregister.png")),
+                        const TextTitleSubTitle(
+                            HeadTitle: KeysConfig.signUpNow),
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     height: height * 0.02,
                   ),
@@ -129,6 +126,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
                       ]),
+                        textInputFormatter: [
+                    FilteringTextInputFormatter.allow(RegExp('[a-z A-Z á-ú Á-Ú]')),
+                ],
                       type: TextInputType.name,
                     ),
                   ),
@@ -143,6 +143,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // IsOptional(),
                         MaxLength(30),
                       ]),
+                      textInputFormatter: [
+                        FilteringTextInputFormatter.allow(RegExp('[a-z A-Z á-ú Á-Ú]')),
+                      ],
                       type: TextInputType.name,
                     ),
                   ),
@@ -157,6 +160,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // IsOptional(),
                         MaxLength(30),
                       ]),
+                      textInputFormatter: [
+                        FilteringTextInputFormatter.allow(RegExp('[a-z A-Z á-ú Á-Ú]')),
+                      ],
                       type: TextInputType.name,
                     ),
                   ),
@@ -180,30 +186,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       dIcon: Icons.date_range_outlined,
                       hint: "تاريخ الميلاد",
                       controller: _dateController,
-
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
                         //  IsOptional(),
                         MaxLength(30),
                       ]),
-                      onTap: ()async {
-                        await  showDatePicker(
+                      onTap: () async {
+                        await showDatePicker(
                           context: context,
-
                           firstDate: DateTime(1950),
                           lastDate: DateTime(2030),
                           initialDate: DateTime(1950),
+                        ).then((value) {
+                          if (value == null) return;
+                          _dateController.text =
+                              value.toString().substring(0, 10);
 
-                        ).then(( value) {
-                          if(value == null) return;
-                          _dateController.text= value.toString().substring(0,10);
-
-                        //  provider.onRageChanges(value);
+                          //  provider.onRageChanges(value);
                         });
-
-
                       },
-
                     ),
                   ),
                   // CustomTextField(
@@ -217,9 +218,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //   ]),
                   //   type: TextInputType.emailAddress,
                   // ),
-                  FadeInLeftBig(child: DropDownSix(onChanged: cubit.onSexTypeChanged)),
-                  FadeInRightBig(child: DropDownRead(onChanged: cubit.onReadTypeChanged)),
-                 /* Padding(
+                  FadeInLeftBig(
+                      child: DropDownSix(onChanged: cubit.onSexTypeChanged)),
+                  FadeInRightBig(
+                      child: DropDownRead(onChanged: cubit.onReadTypeChanged)),
+                  /* Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0,vertical: 12),
                     child: CSCPicker(
                       ///Enable disable state dropdown [OPTIONAL PARAMETER]
@@ -333,13 +336,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context: context,
 
                           exclude: <String>['ar', 'EG'],
-                          favorite: <String>['SA','EG'],
+                          favorite: <String>['SA', 'EG'],
                           //showPhoneCode: true,
 
                           onSelect: (Country country) {
-
                             setState(() {
-                              _countryController.text= country.nameLocalized!;
+                              _countryController.text = country.nameLocalized!;
 
                               //.replaceAll(RegExp('[^A-Za-z]'), ' ')
                             });
@@ -357,7 +359,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               prefixIcon: const Icon(Icons.search),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                  color:
+                                      const Color(0xFF8C98A8).withOpacity(0.2),
                                 ),
                               ),
                             ),
@@ -373,8 +376,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: "المدينة",
                       controller: _city,
                       validator: qValidator([
-                       // IsRequired(KeysConfig.thisFieldRequired),
-                          IsOptional(),
+                        // IsRequired(KeysConfig.thisFieldRequired),
+                        IsOptional(),
                         MinLength(3),
                         MaxLength(30),
                       ]),
@@ -387,8 +390,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hint: "الحي السكني",
                     controller: _neighborhood,
                     validator: qValidator([
-                    //  IsRequired(KeysConfig.thisFieldRequired),
-                       IsOptional(),
+                      //  IsRequired(KeysConfig.thisFieldRequired),
+                      IsOptional(),
 
                       MaxLength(30),
                     ]),
@@ -411,7 +414,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextField(
                     dIcon: Icons.location_city_rounded,
                     label: "الجنسية",
-                    hint:  "الجنسية",
+                    hint: "الجنسية",
                     controller: _nationality,
                     validator: qValidator(
                       [
@@ -420,19 +423,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     type: TextInputType.text,
-
                     onTap: () {
                       showCountryPicker(
                         context: context,
 
                         exclude: <String>['ar', 'EG'],
-                        favorite: <String>['SA','EG'],
+                        favorite: <String>['SA', 'EG'],
                         //showPhoneCode: true,
 
                         onSelect: (Country country) {
-
                           setState(() {
-                            _nationality.text= country.nameLocalized!;
+                            _nationality.text = country.nameLocalized!;
 
                             //.replaceAll(RegExp('[^A-Za-z]'), ' ')
                           });
@@ -468,8 +469,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       [
                         IsRequired(KeysConfig.thisFieldRequired),
                         MaxLength(30),
+                        IsNumber(),
                       ],
                     ),
+                    textInputFormatter: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
                     type: TextInputType.number,
                   ),
                   CustomTextField(
@@ -480,7 +485,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _passController,
                     validator: qValidator([
                       IsRequired(KeysConfig.enterPass),
-                      MinLength(6,"يجب أن تحتوي كلمة المرور على 6 حروف على الأقل منها حروف كبيرة وحروف صغيرة وأرقام وعلامات خاصة"),
+                      MinLength(6,
+                          "يجب أن تحتوي كلمة المرور على 6 حروف على الأقل منها حروف كبيرة وحروف صغيرة وأرقام وعلامات خاصة"),
                       MaxLength(30),
                     ]),
                     type: TextInputType.text,
@@ -491,16 +497,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     dIcon: Icons.lock_outline,
                     label: KeysConfig.confirmPass,
                     controller: _confirmPassController,
-                    // validator: qValidator([
-                    //   IsRequired(KeysConfig.confirmPass ),
-                    //   Match(KeysConfig.notSimilar,caseSensitive: true,error: KeysConfig.notSimilar ),
-                    //   MinLength(6, KeysConfig.minPassword ),
-                    //   MaxLength(30),
-                    // ],
-                    //
-                    //
-                    // ),
-
                     validator: (val) {
                       if (val!.isEmpty) {
                         return KeysConfig.thisFieldRequired;
@@ -518,7 +514,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
                     child: IntlPhoneField(
                       controller: _phoneController,
-
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(
                           fontSize: 16,
@@ -549,7 +544,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                     ),
                   ),
-                    /*CustomTextField(
+                  /*CustomTextField(
                     hint: KeysConfig.phoneNumber ,
                     dIcon: Icons.phone,
                     label: KeysConfig.phoneNumber ,
@@ -563,50 +558,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     type: TextInputType.phone,
                   ),*/
 
-                CustomTextField(
-                  dIcon: Icons.key,
-                  hint: "مثال : +966",
-                  label: "كود الدولة",
+                  CustomTextField(
+                    dIcon: Icons.key,
+                    hint: "مثال : +966",
+                    label: "كود الدولة",
                     controller: _countryPhoneCode,
-                  validator: qValidator([
-                    IsRequired(KeysConfig.thisFieldRequired ),
-                    MinLength(2),
-                    MaxLength(30),
-                  ]),
+                    validator: qValidator([
+                      IsRequired(KeysConfig.thisFieldRequired),
+                      MinLength(2),
+                      MaxLength(30),
+                    ]),
                     onTap: () {
-                       showCountryPicker(
-                      context: context,
+                      showCountryPicker(
+                        context: context,
+                        exclude: <String>['ar', 'EG'],
+                        favorite: <String>['SA'],
+                        showPhoneCode: true,
+                        onSelect: (Country country) {
+                          setState(() {
+                            _countryPhoneCode.text = country.displayName
+                                .replaceAll(RegExp('[^0-9]'), '');
+                          });
 
-                      exclude: <String>['ar', 'EG'],
-                      favorite: <String>['SA'],
-                      showPhoneCode: true,
-                      onSelect: (Country country) {
-                        setState(() {
-                          _countryPhoneCode.text= country.displayName.replaceAll(RegExp('[^0-9]'), '');
-                        });
-
-                        print('Select country: ${country.displayName}');
-                      },
-                      countryListTheme: CountryListThemeData(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40.0),
-                          topRight: Radius.circular(40.0),
-                        ),
-                        inputDecoration: InputDecoration(
-                          labelText: 'Search',
-                          hintText: 'Start typing to search',
-                          prefixIcon: const Icon(Icons.search),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: const Color(0xFF8C98A8).withOpacity(0.2),
+                          print('Select country: ${country.displayName}');
+                        },
+                        countryListTheme: CountryListThemeData(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(40.0),
+                            topRight: Radius.circular(40.0),
+                          ),
+                          inputDecoration: InputDecoration(
+                            labelText: 'Search',
+                            hintText: 'Start typing to search',
+                            prefixIcon: const Icon(Icons.search),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: const Color(0xFF8C98A8).withOpacity(0.2),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
+                      );
                     },
                   ),
-              /*    CustomTextField(
+                  /*    CustomTextField(
                     hint: "مثال : +966" ,
                     dIcon: Icons.key,
                     label: "كود الدولة" ,
@@ -651,7 +646,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ? CustomButton(
                           color: kPrimaryColor,
                           title: KeysConfig.createAccount,
-                          onPressed: () async{
+                          onPressed: () async {
                             /// TODO:: must remove in integrated
                             // MaterialPageRoute(
                             //     builder: (context) => const VCodeScreen());
@@ -676,14 +671,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 email: _emailController.text,
                                 password: _passController.text,
                                 phoneNumber: _phoneController.text,
-
                                 countryPhoneCode: _countryPhoneCode.text,
                                 birthDate: _dateController.text,
                                 nationality: _nationality.text,
                                 country: _countryController.text,
                                 city: _city.text,
                                 workPlace: _entityWorkController.text,
-
                               );
                             }
                           })

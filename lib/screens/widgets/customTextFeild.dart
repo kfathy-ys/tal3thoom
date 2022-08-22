@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'constants.dart';
 
@@ -8,6 +9,7 @@ class CustomTextField extends StatefulWidget {
   final String? hint;
   final String? label;
   final TextInputType? type;
+  final List<TextInputFormatter>? textInputFormatter;
   final ValueChanged<String>? onsave;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -36,7 +38,7 @@ class CustomTextField extends StatefulWidget {
     this.eIcon,
     this.edit,
     this.isEdit,
-    this.line,
+    this.line,  this.textInputFormatter,
   });
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -69,6 +71,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
           obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
           keyboardType: widget.type,
           onChanged: (widget.onsave),
+
+
+
+          inputFormatters: widget.textInputFormatter,
+
+
+
           style: const TextStyle(fontSize: 14, color: kPrimaryColor),
           decoration: InputDecoration(
             hintText: widget.hint,
@@ -86,6 +95,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             //   color: kPrimaryColor,
             // )
             //     : null,
+
             labelStyle: const TextStyle(
               fontSize: 16,
               color: kPrimaryColor,

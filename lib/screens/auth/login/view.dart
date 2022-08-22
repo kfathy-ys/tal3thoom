@@ -45,9 +45,7 @@ class LoginScreen extends StatelessWidget {
                 HomeTabScreen(
                   userId: state.model.data!.userId!,
                 ));
-            // Get.offAll(() => HomeTabScreen(
-            //       userId: state.model.data!.userId!.toString(),
-            //     ));
+
           } else if (state is LoginError) {
             // Alert.error(state.msg.toString());
             Alert.error(
@@ -74,16 +72,19 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: height * 0.2,
                       ),
-                     FadeInDownBig(
-                       child: Column(
-                         children: [
-                           SizedBox(
-                               height: height * 0.15,
-                               child: Image.asset("assets/images/logoregister.png")),
-                           const TextTitleSubTitle(HeadTitle: KeysConfig.signIn,)
-                         ],
-                       ),
-                     ),
+                      FadeInDownBig(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                height: height * 0.15,
+                                child: Image.asset(
+                                    "assets/images/logoregister.png")),
+                            const TextTitleSubTitle(
+                              HeadTitle: KeysConfig.signIn,
+                            )
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: height * 0.02,
                       ),
@@ -98,6 +99,7 @@ class LoginScreen extends StatelessWidget {
                             const IsEmail("يجب أن يكون بريد الكتروني"),
                             MaxLength(30),
                           ]),
+
                           type: TextInputType.emailAddress,
                         ),
                       ),
@@ -118,12 +120,12 @@ class LoginScreen extends StatelessWidget {
                       ),
                       RecoveryWidget(
                         onTap: () {
-                        //  navigateTo(context, ForgetPassword());
+                          //  navigateTo(context, ForgetPassword());
                         },
                       ),
                       state is! LoginLoading
                           ? FadeInUpBig(
-                            child: CustomButton(
+                              child: CustomButton(
                                 color: kPrimaryColor,
                                 title: KeysConfig.signIn,
                                 onPressed: () {
@@ -134,7 +136,7 @@ class LoginScreen extends StatelessWidget {
                                   }
                                 },
                               ),
-                          )
+                            )
                           : const LoadingFadingCircle(),
                       DoNotHave(
                         text: KeysConfig.signUpNow,
