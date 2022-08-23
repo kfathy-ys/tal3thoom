@@ -92,7 +92,7 @@ class _CustomTextFieldRangeState extends State<CustomTextFieldRange> {
             fontFamily: "DinReguler",
           ),
           hintStyle: const TextStyle(
-              fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
+              fontSize: 14, color: kPrimaryColor, fontFamily: "DinReguler"),
           suffixIcon: widget.icon == Icons.lock_outline
               ? IconButton(
             onPressed: _visibility,

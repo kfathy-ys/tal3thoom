@@ -1,33 +1,32 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_readable/flutter_readable.dart';
 import 'package:get/get.dart';
 
 import 'constants.dart';
 
-
-class DynamicAppbar extends StatelessWidget  with PreferredSizeWidget{
+class DynamicAppbar extends StatelessWidget with PreferredSizeWidget {
   final ValueChanged<BuildContext> press;
   final BuildContext context;
 
-  const DynamicAppbar({Key? key, required this.press, required this.context}) : super(key: key);
-
+  const DynamicAppbar({Key? key, required this.press, required this.context})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Stack(
-
         children: [
           Image.asset("assets/images/RectangleAppBar.png"),
-
-
           ListTile(
             leading: InkWell(
-                onTap: ()=>press(context), child: Image.asset("assets/images/side menu.png")),
-            trailing:       GestureDetector(onTap: ()=>Navigator.of( context).pop(), child: Image.asset("assets/images/menu arrow.png"))
-            ,
+                onTap: () => press(context),
+                child: Image.asset("assets/images/side menu.png")),
+            trailing: context.canPop ? InkWell(
+                onTap: () => Navigator.of(context).pop(),
+                child: Image.asset("assets/images/menu arrow.png")) : null
           )
         ],
       ),
@@ -37,8 +36,6 @@ class DynamicAppbar extends StatelessWidget  with PreferredSizeWidget{
   @override
   Size get preferredSize => AppBar().preferredSize;
 }
-
-
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String? title;
@@ -134,14 +131,15 @@ AppBar customAppbar(
 }
 
 AppBar customssAppbar(
-    {bool isIcons = false, IconData? icons, String? title,required VoidCallback press, context}) {
+    {bool isIcons = false,
+    IconData? icons,
+    String? title,
+    required VoidCallback press,
+    context}) {
   return AppBar(
     backgroundColor: kAppBarColor,
-
     toolbarHeight: 43,
-
     shape: const RoundedRectangleBorder(
-
       borderRadius: BorderRadius.all(
         Radius.circular(25),
       ),
@@ -149,28 +147,28 @@ AppBar customssAppbar(
     leading: InkWell(
         onTap: press, child: Image.asset("assets/images/side menu.png")),
     actions: [
-      GestureDetector(onTap: ()=>Navigator.of( context).pop(), child: Image.asset("assets/images/menu arrow.png"))
+      GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: Image.asset("assets/images/menu arrow.png"))
     ],
     elevation: 0,
   );
 }
 
-
-Widget dynamicAppbar({required VoidCallback press , required BuildContext context}){
+Widget dynamicAppbar(
+    {required VoidCallback press, required BuildContext context}) {
   return Stack(
     children: [
       Image.asset("assets/images/RectangleAppBar.png"),
-
-
       ListTile(
         leading: InkWell(
-          onTap: press, child: Image.asset("assets/images/side menu.png")),
-      trailing:       GestureDetector(onTap: ()=>Navigator.of( context).pop(), child: Image.asset("assets/images/menu arrow.png"))
-        ,
+            onTap: press, child: Image.asset("assets/images/side menu.png")),
+        trailing: GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: Image.asset("assets/images/menu arrow.png")),
       )
     ],
   );
-
 }
 
 class Tal3thomAppbar extends StatelessWidget with PreferredSizeWidget {

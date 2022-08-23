@@ -40,11 +40,17 @@ class LoginScreen extends StatelessWidget {
               desc: "تم تسجيل الدخول بنجاح",
             );
 
-            navigateAndFinish(
-                context,
-                HomeTabScreen(
-                  userId: state.model.data!.userId!,
-                ));
+            // navigateAndFinish(
+            //     context,
+            //     HomeTabScreen(
+            //       userId: state.model.data!.userId!,
+            //     ));
+
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) =>   HomeTabScreen(
+                         userId: state.model.data!.userId!,
+                      )),
+                    (Route<dynamic> route) => false);
 
           } else if (state is LoginError) {
             // Alert.error(state.msg.toString());
@@ -58,92 +64,94 @@ class LoginScreen extends StatelessWidget {
           final cubit = BlocProvider.of<LoginCubit>(context);
           return Scaffold(
             backgroundColor: kHomeColor,
-            body: SizedBox(
-              height: height,
-              width: width,
-              child: Form(
-                autovalidateMode: AutovalidateMode.always,
-                key: _formKey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: height * 0.2,
-                      ),
-                      FadeInDownBig(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                                height: height * 0.15,
-                                child: Image.asset(
-                                    "assets/images/logoregister.png")),
-                            const TextTitleSubTitle(
-                              HeadTitle: KeysConfig.signIn,
-                            )
-                          ],
+            body: SingleChildScrollView(
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: Form(
+                  autovalidateMode: AutovalidateMode.always,
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: height * 0.2,
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.02,
-                      ),
-                      FadeInLeftBig(
-                        child: CustomTextField(
-                          dIcon: Icons.email,
-                          label: "البريد الإلكتروني",
-                          hint: "البريد الإلكتروني",
-                          controller: _emailController,
-                          validator: qValidator([
-                            IsRequired(KeysConfig.enterEmail),
-                            const IsEmail("يجب أن يكون بريد الكتروني"),
-                            MaxLength(30),
-                          ]),
+                        FadeInDownBig(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                  height: height * 0.15,
+                                  child: Image.asset(
+                                      "assets/images/logoregister.png")),
+                              const TextTitleSubTitle(
+                                HeadTitle: KeysConfig.signIn,
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        FadeInLeftBig(
+                          child: CustomTextField(
+                            dIcon: Icons.email,
+                            label: "البريد الإلكتروني",
+                            hint: "البريد الإلكتروني",
+                            controller: _emailController,
+                            validator: qValidator([
+                              IsRequired(KeysConfig.enterEmail),
+                              const IsEmail("يجب أن يكون بريد الكتروني"),
+                              MaxLength(30),
+                            ]),
 
-                          type: TextInputType.emailAddress,
+                            type: TextInputType.emailAddress,
+                          ),
                         ),
-                      ),
-                      FadeInRightBig(
-                        child: CustomTextField(
-                          hint: KeysConfig.password,
-                          icon: Icons.lock_outline,
-                          dIcon: Icons.lock_outline,
-                          label: KeysConfig.password,
-                          controller: _passwordController,
-                          validator: qValidator([
-                            IsRequired(KeysConfig.enterPassword),
-                            MinLength(6, KeysConfig.minPassword),
-                            MaxLength(30),
-                          ]),
-                          type: TextInputType.text,
+                        FadeInRightBig(
+                          child: CustomTextField(
+                            hint: KeysConfig.password,
+                            icon: Icons.lock_outline,
+                            dIcon: Icons.lock_outline,
+                            label: KeysConfig.password,
+                            controller: _passwordController,
+                            validator: qValidator([
+                              IsRequired(KeysConfig.enterPassword),
+                              MinLength(6, KeysConfig.minPassword),
+                              MaxLength(30),
+                            ]),
+                            type: TextInputType.text,
+                          ),
                         ),
-                      ),
-                      RecoveryWidget(
-                        onTap: () {
-                          //  navigateTo(context, ForgetPassword());
-                        },
-                      ),
-                      state is! LoginLoading
-                          ? FadeInUpBig(
-                              child: CustomButton(
-                                color: kPrimaryColor,
-                                title: KeysConfig.signIn,
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    cubit.userLogin(
-                                        email: _emailController.text,
-                                        password: _passwordController.text);
-                                  }
-                                },
-                              ),
-                            )
-                          : const LoadingFadingCircle(),
-                      DoNotHave(
-                        text: KeysConfig.signUpNow,
-                        route: () => navigateTo(context, const SignUpScreen()),
-                        have: KeysConfig.donHave,
-                      )
-                    ],
+                        RecoveryWidget(
+                          onTap: () {
+                            //  navigateTo(context, ForgetPassword());
+                          },
+                        ),
+                        state is! LoginLoading
+                            ? FadeInUpBig(
+                                child: CustomButton(
+                                  color: kPrimaryColor,
+                                  title: KeysConfig.signIn,
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      cubit.userLogin(
+                                          email: _emailController.text,
+                                          password: _passwordController.text);
+                                    }
+                                  },
+                                ),
+                              )
+                            : const LoadingFadingCircle(),
+                        DoNotHave(
+                          text: KeysConfig.signUpNow,
+                          route: () => navigateTo(context, const SignUpScreen()),
+                          have: KeysConfig.donHave,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

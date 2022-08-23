@@ -16,6 +16,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-t
 import 'package:tal3thoom/screens/splash/view.dart';
 
 import 'config/bloc_observer.dart';
+import 'config/routes/path.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
@@ -127,6 +128,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {
           return GetMaterialApp(
+            // getPages: AppPages.routes,
             translations: LocaleString(),
             locale: const Locale('ar', 'EG'),
             debugShowCheckedModeBanner: false,
@@ -147,7 +149,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:    const SplashScreen(),
+            home:     SplashScreen(),
 
 
 

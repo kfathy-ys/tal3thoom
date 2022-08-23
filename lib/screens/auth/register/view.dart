@@ -18,6 +18,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/validation.dart';
 import '../../widgets/alerts.dart';
 import '../../widgets/custom_textFornField_range.dart';
+import '../../widgets/custom_text_field_phone.dart';
+import '../../widgets/custom_text_filed_country_code.dart';
 import '../../widgets/donotHave.dart';
 import '../../widgets/loading.dart';
 import '../login/view.dart';
@@ -125,6 +127,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _firstNameController,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
+                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+
                       ]),
                         textInputFormatter: [
                     FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
@@ -140,6 +144,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _dadNameController,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
+                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+
                         // IsOptional(),
                         MaxLength(30),
                       ]),
@@ -157,6 +163,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _familyNameControlller,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
+                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+
                         // IsOptional(),
                         MaxLength(30),
                       ]),
@@ -376,9 +384,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: "المدينة",
                       controller: _city,
                       validator: qValidator([
-                        // IsRequired(KeysConfig.thisFieldRequired),
-                        IsOptional(),
-                        MinLength(3),
+                         IsRequired(KeysConfig.thisFieldRequired),
+                     //   IsOptional(),
+                       // MinLength(3),
                         MaxLength(30),
                       ]),
                       type: TextInputType.streetAddress,
@@ -392,7 +400,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: qValidator([
                       //  IsRequired(KeysConfig.thisFieldRequired),
                       IsOptional(),
-
+                      MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
                       MaxLength(30),
                     ]),
                     type: TextInputType.streetAddress,
@@ -405,7 +413,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: qValidator(
                       [
                         IsRequired(KeysConfig.thisFieldRequired),
-                        MinLength(3),
+                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
                         MaxLength(30),
                       ],
                     ),
@@ -467,9 +475,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _entityNumberController,
                     validator: qValidator(
                       [
-                        IsRequired(KeysConfig.thisFieldRequired),
+                       // MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+
+                        IsOptional(),
+                      //  IsRequired(KeysConfig.thisFieldRequired),
                         MaxLength(30),
-                        IsNumber(),
+
                       ],
                     ),
                     textInputFormatter: [
@@ -508,7 +519,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                     type: TextInputType.text,
                   ),
-                  Container(
+                 /* Container(
                     height: height * 0.13,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
@@ -543,64 +554,76 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         log('Country changed to: ' + country.name);
                       },
                     ),
-                  ),
-                  /*CustomTextField(
-                    hint: KeysConfig.phoneNumber ,
-                    dIcon: Icons.phone,
-                    label: KeysConfig.phoneNumber ,
-                    controller: _phoneController,
-                    validator: qValidator([
-                      IsRequired(KeysConfig.thisFieldRequired ),
-                      MinLength(10,"يجب ان يكون الحد الأدني 10 أرقام "),
-
-                      MaxLength(30),
-                    ]),
-                    type: TextInputType.phone,
                   ),*/
 
-                  CustomTextField(
-                    dIcon: Icons.key,
-                    hint: "مثال : +966",
-                    label: "كود الدولة",
-                    controller: _countryPhoneCode,
-                    validator: qValidator([
-                      IsRequired(KeysConfig.thisFieldRequired),
-                      MinLength(2),
-                      MaxLength(30),
-                    ]),
-                    onTap: () {
-                      showCountryPicker(
-                        context: context,
-                        exclude: <String>['ar', 'EG'],
-                        favorite: <String>['SA'],
-                        showPhoneCode: true,
-                        onSelect: (Country country) {
-                          setState(() {
-                            _countryPhoneCode.text = country.displayName
-                                .replaceAll(RegExp('[^0-9]'), '');
-                          });
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomTextFieldPhoneCode(
+                        dIcon: Icons.key,
+                        hint: "مثال : +966",
+                        label: "كود الدولة",
+                        controller: _countryPhoneCode,
+                        validator: qValidator([
+                          IsRequired(KeysConfig.thisFieldRequired),
+                          MinLength(2),
+                          MaxLength(30),
+                        ]),
+                        onTap: () {
+                          showCountryPicker(
+                            context: context,
+                            exclude: <String>['ar', 'EG'],
+                            favorite: <String>['SA'],
+                            showPhoneCode: true,
+                            onSelect: (Country country) {
+                              setState(() {
+                                _countryPhoneCode.text = country.displayName
+                                    .replaceAll(RegExp('[^0-9]'), '');
+                              });
 
-                          print('Select country: ${country.displayName}');
-                        },
-                        countryListTheme: CountryListThemeData(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(40.0),
-                            topRight: Radius.circular(40.0),
-                          ),
-                          inputDecoration: InputDecoration(
-                            labelText: 'Search',
-                            hintText: 'Start typing to search',
-                            prefixIcon: const Icon(Icons.search),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: const Color(0xFF8C98A8).withOpacity(0.2),
+                              print('Select country: ${country.displayName}');
+                            },
+                            countryListTheme: CountryListThemeData(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40.0),
+                                topRight: Radius.circular(40.0),
+                              ),
+                              inputDecoration: InputDecoration(
+                                labelText: 'Search',
+                                hintText: 'Start typing to search',
+                                prefixIcon: const Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    },
+                          );
+                        },
+                      ),
+                      CustomTextFieldPhone(
+                        hint: KeysConfig.phoneNumber ,
+                        dIcon: Icons.phone,
+                        label: KeysConfig.phoneNumber ,
+                        controller: _phoneController,
+                        validator: qValidator([
+                          IsRequired(KeysConfig.thisFieldRequired ),
+                          MinLength(10,"يجب ان يكون الحد الأدني 10 أرقام "),
+
+                          MaxLength(30),
+                        ]),
+                        type: TextInputType.phone,
+                        textInputFormatter: [
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                        ],
+                      ),
+
+
+                    ],
                   ),
+
                   /*    CustomTextField(
                     hint: "مثال : +966" ,
                     dIcon: Icons.key,
