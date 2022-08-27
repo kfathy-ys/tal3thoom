@@ -328,6 +328,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   FadeInLeftBig(
                     child: CustomTextField(
+                      read: true,
                       dIcon: Icons.real_estate_agent,
                       label: "الدولة",
                       hint: "الدولة",
@@ -420,6 +421,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     type: TextInputType.text,
                   ),
                   CustomTextField(
+                    read: true,
+
                     dIcon: Icons.location_city_rounded,
                     label: "الجنسية",
                     hint: "الجنسية",
@@ -561,6 +564,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CustomTextFieldPhoneCode(
+                        read: true,
+
                         dIcon: Icons.key,
                         hint: "مثال : +966",
                         label: "كود الدولة",
@@ -574,7 +579,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           showCountryPicker(
                             context: context,
                             exclude: <String>['ar', 'EG'],
-                            favorite: <String>['SA'],
+                            favorite: <String>['SA','EG'],
                             showPhoneCode: true,
                             onSelect: (Country country) {
                               setState(() {

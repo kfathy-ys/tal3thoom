@@ -56,6 +56,19 @@ class LoadingFadingCircle extends StatelessWidget {
     );
   }
 }
+class LoadingFadingCubeGrid extends StatelessWidget {
+  const LoadingFadingCubeGrid({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: SpinKitCubeGrid(
+        size: 40,
+        color: kPrimaryColor,
+      ),
+    );
+  }
+}
 
 class LoadingFadingCircleSmall extends StatelessWidget {
   const LoadingFadingCircleSmall({Key? key}) : super(key: key);

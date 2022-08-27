@@ -359,7 +359,7 @@ class KeysConfig {
       "هل كنت تدرس في مدرسة أهلية أم حكوميةْ؟";
   static const government = "حكومية";
   static const eligibility = "أهلية";
-  static const averageGrade = "ما هو متوسطُ التقديرْ الذي تتحصل عليه كل عامْ؟";
+  static const averageGrade = "ما هو متوسطُ  الذي تتحصل عليه كل عامْ؟";
   static const acceptable = "مقبول";
   static const good = "جيد";
   static const veryGood = "جيد جدا";

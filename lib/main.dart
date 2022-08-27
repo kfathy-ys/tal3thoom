@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
 import 'package:tal3thoom/screens/splash/view.dart';
 
@@ -20,6 +21,7 @@ import 'config/routes/path.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
+import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
@@ -122,6 +124,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<DiagnosticPaymentCubit>(
           create: (context) => DiagnosticPaymentCubit(),
         ),
+        BlocProvider<DiagnosticHistoryQuestionCubit>(
+          create: (context) => DiagnosticHistoryQuestionCubit(),
+        ),
 
 
       ],
@@ -149,7 +154,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:     SplashScreen(),
+            home:     const DiagnosticHistory(),
 
 
 

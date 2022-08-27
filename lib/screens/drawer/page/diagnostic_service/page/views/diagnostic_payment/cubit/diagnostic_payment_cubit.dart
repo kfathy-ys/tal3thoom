@@ -15,16 +15,18 @@ import '../view.dart';
 part 'diagnostic_payment_state.dart';
 
 class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
-  DiagnosticPaymentCubit() : super(DiagnosticPaymentInitial()){
+  DiagnosticPaymentCubit() : super(DiagnosticPaymentInitial()) {
     getDiagnosticPayment();
   }
+
   DiagnosticPaymentModel? diagnosticPaymentModel;
+
   Future<void> getDiagnosticPayment() async {
     emit(DiagnosticPaymentLoading());
     try {
-
       final userId = Prefs.getString("userId");
-      final res = await NetWork.get('SubscriptionStages/GetPatientSubscriptionStages/$userId');
+      final res = await NetWork.get(
+          'SubscriptionStages/GetPatientSubscriptionStages/$userId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -33,7 +35,7 @@ class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
       }
 
       emit(DiagnosticPaymentSuccess(
-          diagnosticPaymentModel:  DiagnosticPaymentModel.fromJson(res.data)));
+          diagnosticPaymentModel: DiagnosticPaymentModel.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -41,30 +43,45 @@ class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
     }
   }
 
-checkDiagnosticPayment()  async {
-  final userId = Prefs.getString("userId");
-  final res = await NetWork.get('SubscriptionStages/GetPatientSubscriptionStages/$userId');
-  diagnosticPaymentModel = DiagnosticPaymentModel.fromJson(res.data);
-  print(diagnosticPaymentModel?.data!.toString());
-  print(diagnosticPaymentModel?.toJson());
-  print(diagnosticPaymentModel?.data!.length);
-       //  print("Mohamed 0 " );
-      if((diagnosticPaymentModel?.data![0]) == 1){
-        print("التاريخ المرضي " );
-        Alert.success("تم العملية بنجاح",desc: "تم عملية الدفع المسبقة بشكل صحيح");
-        Get.to(() => const DiagnosticHistory());
-      }else  if(( (diagnosticPaymentModel?.data![0]) == 1 ) && ( (diagnosticPaymentModel?.data![1]) == 2 )  ){
-        print("Mohamed 2 " );
-     //   print(diagnosticPaymentModel?.data![0]);
-      //  print(diagnosticPaymentModel?.data![1]);
-        Alert.success("تم العملية بنجاح",desc: "تم عملية الدفع المسبقة بشكل صحيح");
-        Get.to(() => const FirstTreatmentSession());
-      }else{
-     //   print(diagnosticPaymentModel?.data![0]);
-       // print(diagnosticPaymentModel?.data![1]);
-        Get.to(() => DiagnosticPayment());
-        Alert.error("الرجاء إتمام عملية الدفع", desc: "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-      }
+  checkDiagnosticPayment() async {
+    final userId = Prefs.getString("userId");
+    final res = await NetWork.get(
+        'SubscriptionStages/GetPatientSubscriptionStages/$userId');
+    diagnosticPaymentModel = DiagnosticPaymentModel.fromJson(res.data);
+    print(diagnosticPaymentModel?.data!.toString());
+    print(diagnosticPaymentModel?.toJson());
+    print(diagnosticPaymentModel?.data!.length);
+    //  print("Mohamed 0 " );
 
+    if (diagnosticPaymentModel!.data!.isEmpty) {
+      //   print(diagnosticPaymentModel?.data![0]);
+      // print(diagnosticPaymentModel?.data![1]);
+
+      Alert.error("الرجاء إتمام عملية الدفع",
+          desc:
+              "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+      Get.to(() => DiagnosticPayment());
+
+    } else if ((diagnosticPaymentModel?.data![0]) == 1) {
+      print("التاريخ المرضي ");
+      Alert.success("تم العملية بنجاح",
+          desc: "تم عملية الدفع المسبقة بشكل صحيح");
+      Get.to(() => const DiagnosticHistory());
+    } else if (((diagnosticPaymentModel?.data![0]) == 1) &&
+        ((diagnosticPaymentModel?.data![1]) == 2)) {
+      print("Mohamed 2 ");
+      //   print(diagnosticPaymentModel?.data![0]);
+      //  print(diagnosticPaymentModel?.data![1]);
+      Alert.success("تم العملية بنجاح",
+          desc: "تم عملية الدفع المسبقة بشكل صحيح");
+      Get.to(() => const FirstTreatmentSession());
+    } else {
+      //   print(diagnosticPaymentModel?.data![0]);
+      // print(diagnosticPaymentModel?.data![1]);
+      //  Get.to(() => DiagnosticPayment());
+      Alert.error("الرجاء إتمام عملية الدفع",
+          desc:
+              "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+    }
   }
 }
