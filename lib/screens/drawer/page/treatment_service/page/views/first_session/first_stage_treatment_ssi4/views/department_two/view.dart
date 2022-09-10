@@ -7,6 +7,7 @@ import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:queen/validation.dart';
 import 'package:video_player/video_player.dart';
 
@@ -35,8 +36,8 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -46,14 +47,14 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
-        height: height,
-        width: width ,
+        height: context.height,
+        width: context.width ,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
-                  widthh: width * 0.5,
+                  widthh: context.width * 0.5,
                   title: KeysConfig.definationDiag ,
                   context: context),
               Padding(
@@ -64,8 +65,8 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
 
 
               SizedBox(
-                width: width*0.8,
-                height: height*0.25,
+                width: context.width*0.8,
+                height: context.height*0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -87,8 +88,8 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                   )),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8),
-                width: width*0.8,
-                height: height*0.25,
+                width: context.width*0.8,
+                height: context.height*0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -97,7 +98,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
               ),
 
               CardUploadVideo(
-                height: height * 0.18,
+                height: context.height * 0.18,
                 title: "fullMessage",
                 controller: _firstController,
                 onPressed1: () {
@@ -118,7 +119,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                 },
                 title: KeysConfig.next ,
               ),
-              buildSizedBox(height),
+              buildSizedBox(context.height),
             ],
           ),
         ),

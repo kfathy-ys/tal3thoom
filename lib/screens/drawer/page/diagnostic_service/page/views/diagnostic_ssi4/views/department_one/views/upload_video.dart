@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';

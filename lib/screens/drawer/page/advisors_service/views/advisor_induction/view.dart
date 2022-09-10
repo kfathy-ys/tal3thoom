@@ -1,5 +1,6 @@
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../../../config/keys.dart';
 import '../../../../../widgets/appBar.dart';
@@ -7,6 +8,7 @@ import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
 import '../../../../../widgets/video_items.dart';
 import '../../../../view.dart';
+import 'package:get/get.dart';
 import '../Reservation_appointment/view.dart';
 
 
@@ -20,8 +22,8 @@ class AdviserInduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -30,14 +32,14 @@ class AdviserInduction extends StatelessWidget {
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),
       body: SizedBox(
-        height: height,
-        width: width ,
+        height: context.height,
+        width: context.width ,
 
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
-                  widthh: width * 0.5,
+                  widthh: context.width * 0.5,
                   title: KeysConfig.definationDiag ,
                   context: context),
               Padding(
@@ -46,8 +48,8 @@ class AdviserInduction extends StatelessWidget {
               ),
 
               SizedBox(
-                width: width*0.8,
-                height: height*0.25,
+                width: context.width*0.8,
+                height: context.height*0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -60,7 +62,7 @@ class AdviserInduction extends StatelessWidget {
                 },
                 title: ("ابدأ"),
               ),
-              buildSizedBox(height),
+              buildSizedBox(context.height),
             ],
           ),
         ),

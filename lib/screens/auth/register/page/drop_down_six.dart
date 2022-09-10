@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:tal3thoom/config/keys.dart';
 import '../../../widgets/constants.dart';
 
@@ -36,8 +37,8 @@ class _DropDownSixState extends State<DropDownSix> {
 
   @override
   Widget build(BuildContext context) {
-     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+      // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return DropdownButtonHideUnderline(
       child: Container(
         // padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),

@@ -32,8 +32,8 @@ class _SlokiScreenState extends State<SlokiScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -43,15 +43,15 @@ class _SlokiScreenState extends State<SlokiScreen> {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTileContainer(
-                    widthh: width / 1.8,
+                    widthh: context.width / 1.8,
                     title: "الجلسة العلاجية الأولي",
                     context: context),
                 Padding(
@@ -63,8 +63,8 @@ class _SlokiScreenState extends State<SlokiScreen> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
-                  width: width * 0.8,
-                  height: height * 0.25,
+                  width: context.width * 0.8,
+                  height: context.height * 0.25,
                   child: VideoItems(
                     videoPlayerController: VideoPlayerController.network(
                       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -72,7 +72,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                   ),
                 ),
                 CardUploadVideo(
-                  height: height * 0.18,
+                  height: context.height * 0.18,
                   title: "fullMessage",
                   controller: _firstController,
                   onPressed1: () {
@@ -82,7 +82,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                   context: context,
                 ),
                 SizedBox(
-                  height: height * 0.05,
+                  height: context.height * 0.05,
                 ),
                 const BuildTable(
                     color: kHomeColor,
@@ -100,7 +100,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                     title2: "مثال1",
                     title3: "مثال1"),
                 SizedBox(
-                  height: height * 0.05,
+                  height: context.height * 0.05,
                 ),
                 CustomButton(
                   color: kPrimaryColor,

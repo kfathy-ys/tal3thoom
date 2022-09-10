@@ -2,6 +2,7 @@
 import 'package:tal3thoom/screens/drawer/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../../../config/keys.dart';
 
@@ -20,8 +21,8 @@ class LanguagesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kAppBarColor,
@@ -32,18 +33,18 @@ class LanguagesScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            height: height,
-            width: width * 0.85,
+            height: context.height,
+            width: context.width * 0.85,
             color: kHomeColor,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   CustomTile(
-                      widthh: width * 0.5,
+                      widthh: context.width * 0.5,
                       title: KeysConfig.languages ,
                       context: context),
                   SizedBox(
-                    height: height * 0.4,
+                    height: context.height * 0.4,
                   ),
                   MediaButton(
                     onPressed: () {

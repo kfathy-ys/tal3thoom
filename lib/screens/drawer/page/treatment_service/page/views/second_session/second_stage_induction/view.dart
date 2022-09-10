@@ -2,6 +2,7 @@
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../../../config/keys.dart';
@@ -19,8 +20,8 @@ class TreatmentServiceInduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -30,8 +31,8 @@ class TreatmentServiceInduction extends StatelessWidget {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: height,
-          width: width ,
+          height: context.height,
+          width: context.width ,
 
           child: SingleChildScrollView(
             child:
@@ -40,7 +41,7 @@ class TreatmentServiceInduction extends StatelessWidget {
             Column(
               children: [
                 CustomTileContainer(
-                    widthh: width * 0.5,
+                    widthh: context.width * 0.5,
                     title: "رحلة العلاج",
                     context: context),
                 Padding(
@@ -49,8 +50,8 @@ class TreatmentServiceInduction extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  width: width*0.8,
-                  height: height*0.25,
+                  width: context.width*0.8,
+                  height: context.height*0.25,
                   child: VideoItems(
                     videoPlayerController: VideoPlayerController.network(
                       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -63,7 +64,7 @@ class TreatmentServiceInduction extends StatelessWidget {
                   },
                   title: KeysConfig.next ,
                 ),
-                SizedBox(height: height*0.15,),
+                SizedBox(height: context.height*0.15,),
               ],
             ),
           ),

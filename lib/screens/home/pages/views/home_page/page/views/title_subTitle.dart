@@ -2,6 +2,7 @@
 
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class TitleSubTitle extends StatelessWidget {
@@ -31,7 +32,7 @@ class TitleSubTitle extends StatelessWidget {
               style: const TextStyle(
                   color: kSmallIconColor, fontSize: 20, fontFamily: 'DinBold')),
           SizedBox(
-            width: width * 0.2,
+            width: context.width * 0.2,
           ),
           InkWell(
             onTap: onTap,

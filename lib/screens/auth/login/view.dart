@@ -6,6 +6,9 @@ import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/validation.dart';
 import '../../../../../../config/keys.dart';
@@ -27,8 +30,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -66,8 +69,8 @@ class LoginScreen extends StatelessWidget {
             backgroundColor: kHomeColor,
             body: SingleChildScrollView(
               child: SizedBox(
-                height: height,
-                width: width,
+                height: context.height,
+                width: context.width,
                 child: Form(
                   autovalidateMode: AutovalidateMode.always,
                   key: _formKey,
@@ -77,13 +80,13 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: height * 0.2,
+                          height: context.height * 0.2,
                         ),
                         FadeInDownBig(
                           child: Column(
                             children: [
                               SizedBox(
-                                  height: height * 0.15,
+                                  height: context.height * 0.15,
                                   child: Image.asset(
                                       "assets/images/logoregister.png")),
                               const TextTitleSubTitle(
@@ -93,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: height * 0.02,
+                          height: context.height * 0.02,
                         ),
                         FadeInLeftBig(
                           child: CustomTextField(

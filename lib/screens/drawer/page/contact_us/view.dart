@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:queen/core/helpers/url_luncher.dart';
 import 'package:tal3thoom/config/keys.dart';
@@ -29,8 +30,8 @@ class ContactUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -39,8 +40,8 @@ class ContactUsScreen extends StatelessWidget {
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
-        width: width,
-        height: height,
+        width: context.width,
+        height: context.height,
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
         child: SingleChildScrollView(
           child: Column(
@@ -48,13 +49,13 @@ class ContactUsScreen extends StatelessWidget {
             children: [
               Center(
                 child: CustomTileContainer(
-                    widthh: width * 0.5,
+                    widthh: context.width * 0.5,
                     title: KeysConfig.contactsUs,
                     context: context),
               ),
               FadeInUp(
                 child: SizedBox(
-                    height: height * 0.15,
+                    height: context.height * 0.15,
                     child: InkWell(
                         onTap: (){
                            Launch.url(web);
@@ -116,8 +117,8 @@ class ContactUsScreen extends StatelessWidget {
                     Launch.url(location);
                   },
                   child: SizedBox(
-                      height: height * 0.3,
-                      width: width * 0.8,
+                      height: context.height * 0.3,
+                      width: context.width * 0.8,
                       child: Image.asset("assets/images/map.jpeg")),
                 ),
               ),

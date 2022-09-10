@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:get/get.dart' hide Trans;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:html/parser.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
@@ -128,13 +129,13 @@ Widget CustomTile({ required double widthh,required String title,required BuildC
     ),
   );
 }
-Widget CustomCurvedContainer({required String title,required BuildContext context}){
-  double height = MediaQuery.of(context).size.height;
-  double width = MediaQuery.of(context).size.width;
+Widget CustomCurvedContainer({required String title}){
+  // double height = MediaQuery.of(context).size.height;
+  // double width = MediaQuery.of(context).size.width;
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 10),
-    width: width/1.8,
-    height:height*0.075 ,
+    width: Get.width/1.8,
+    height:Get.height*0.075 ,
     decoration: const BoxDecoration(
       color: kPrimaryColor,
         borderRadius: BorderRadius.only(
@@ -304,8 +305,8 @@ void archiveClientsActions(
     context: context,
     builder: (_) {
       return SizedBox(
-        height: height * 0.2,
-        width: width,
+        height: context.height * 0.2,
+        width: context.width,
         child: StreamBuilder<Object>(
             stream: null,
             builder: (context, snapshot) {
@@ -314,15 +315,15 @@ void archiveClientsActions(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: height * 0.01,
+                    height: context.height * 0.01,
                   ),
-                  classificationContainer(height, width,
+                  classificationContainer(context.height, context.width,
                       onTap: onTapToArchive,
                       classificationName: 'إلي الأرشيف'),
                   classificationContainer(height, width,
                       onTap: onTapConnectedDone,
                       classificationName: 'تم التواصل'),
-                  classificationContainer(height, width,
+                  classificationContainer(context.height, context.width,
                       onTap: onTapNotRespond, classificationName: 'لم يرد'),
                 ],
               );
@@ -366,8 +367,8 @@ Future<void> showConfirmationDialog(BuildContext context,
     builder: (BuildContext context) => CupertinoAlertDialog(
       title: Image.asset(
         image,
-        width: width * 2,
-        height: height * 0.15,
+        width: context.width * 2,
+        height: context.height * 0.15,
         fit: BoxFit.contain,
       ),
       content: SizedBox(
@@ -375,7 +376,7 @@ Future<void> showConfirmationDialog(BuildContext context,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: height * 0.02,
+              height: context.height * 0.02,
             ),
             Text(
               title,
@@ -386,7 +387,7 @@ Future<void> showConfirmationDialog(BuildContext context,
                   color: kBlackText),
             ),
             SizedBox(
-              height: height * 0.02,
+              height: context.height * 0.02,
             ),
             SizedBox(
               child: Row(
@@ -550,12 +551,12 @@ Future<bool> CustomDialog(
 }
 
 //constant functions
-double sizeFromHeight(BuildContext context, double fraction,
+double sizeFromheight(BuildContext context, double fraction,
     {bool removeAppBarSize = true}) {
-  double deviceHeight = MediaQuery.of(context).size.height;
+  double deviceheight = MediaQuery.of(context).size.height;
   fraction = (removeAppBarSize
-          ? (deviceHeight - AppBar().preferredSize.height)
-          : deviceHeight) /
+          ? (deviceheight - AppBar().preferredSize.height)
+          : deviceheight) /
       (fraction == 0 ? 1 : fraction);
   return fraction;
 }
@@ -566,21 +567,21 @@ double sizeFromWidth(BuildContext context, double fraction) {
 }
 
 class SizeConfig {
-  static double screenHeight = 0.0;
+  static double screenheight = 0.0;
   static double screenWidth = 0.0;
 
   void init(BuildContext context) {
     MediaQueryData _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
-    screenHeight = _mediaQueryData.size.height;
+    screenheight = _mediaQueryData.size.height;
   }
 }
 
 // Get the proportionate height as per screen size
-double getProportionateScreenHeight(double inputHeight) {
-  double screenHeight = SizeConfig.screenHeight;
+double getProportionateScreenheight(double inputheight) {
+  double screenheight = SizeConfig.screenheight;
   // 812 is the layout height that designer use
-  return (inputHeight / 812.0) * screenHeight;
+  return (inputheight / 812.0) * screenheight;
 }
 
 // Get the proportionate height as per screen size

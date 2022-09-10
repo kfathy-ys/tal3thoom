@@ -4,6 +4,7 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diag
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../config/keys.dart';
@@ -21,8 +22,8 @@ class DiagnosticPayment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -43,14 +44,14 @@ class DiagnosticPayment extends StatelessWidget {
         if (state is DiagnosticPaymentSuccess) {
           return SingleChildScrollView(
             child: Container(
-              height: height,
-              width: width,
+              height: context.height,
+              width: context.width,
               color: kHomeColor,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     CustomTileContainer(
-                        widthh: width / 2.5,
+                        widthh: context.width / 2.5,
                         title: KeysConfig.payment,
                         context: context),
                     PaymentCard(
@@ -111,7 +112,7 @@ class DiagnosticPayment extends StatelessWidget {
                         },
                         title: "Skip"),
                     SizedBox(
-                      height: height * 0.1,
+                      height: context.height * 0.1,
                     )
                   ],
                 ),

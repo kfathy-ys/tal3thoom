@@ -6,6 +6,7 @@ import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallestButton.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -27,8 +28,8 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
        
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return BlocConsumer<OasesTestCubit, OasesTestState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -43,14 +44,14 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
           body: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-              height: height,
-              width: width,
+              height: context.height,
+              width: context.width,
               color: kHomeColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTileContainer(
-                      widthh: width / 2,
+                      widthh: context.width / 2,
                       title: "إختبار OASES",
                       context: context),
                   customText6(
@@ -85,7 +86,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                         ),
                   cubit.selectedGroupIndex != 0
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(width, height, cubit,
+                      : customDepartmentWidget(context.width, context.height, cubit,
                           itemsList: sixQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
@@ -105,7 +106,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${fifthQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 1
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(width, height, cubit,
+                      : customDepartmentWidget(context.width, context.height, cubit,
                           itemsList: fifthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
@@ -124,7 +125,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${forthQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 2
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(width, height, cubit,
+                      : customDepartmentWidget(context.width, context.height, cubit,
                           itemsList: forthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
@@ -143,7 +144,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${thirdQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 3
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(width, height, cubit,
+                      : customDepartmentWidget(context.width, context.height, cubit,
                           itemsList: thirdQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 3
                       ? Expanded(
@@ -177,8 +178,8 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
       {required List<CheckBoxItem> itemsList}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: width * 0.9,
-      height: height * 0.2,
+      width: context.width * 0.9,
+      height:height * 0.2,
       decoration: BoxDecoration(
           color: kSkyLightColor, borderRadius: BorderRadius.circular(8)),
       child: Column(
@@ -214,8 +215,8 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Container(
-                                        width: width * 0.08,
-                                        height: height * 0.05,
+                                        width: context.width * 0.08,
+                                        height: context.height * 0.05,
                                         decoration: BoxDecoration(
                                           color: kTextColor,
                                           borderRadius:

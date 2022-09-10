@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:edge_alerts/edge_alerts.dart';
 import 'package:flutter_readable/flutter_readable.dart';

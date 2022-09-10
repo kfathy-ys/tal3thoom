@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../../widgets/constants.dart';
 
@@ -8,8 +9,8 @@ class DepartmentCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,8 +23,8 @@ class DepartmentCounter extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           color: kBlackText,
-          width: width * 0.6,
-          height: height * 0.002,
+          width: context.width * 0.6,
+          height: context.height * 0.002,
         ),
       ],
     );

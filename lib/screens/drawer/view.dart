@@ -29,6 +29,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/constants.dart';
 import 'page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import 'page/diagnostic_service/page/views/diagnostic_payment/view.dart';
@@ -47,8 +48,8 @@ class MenuItems extends StatefulWidget {
 class _MenuItemsState extends State<MenuItems> {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.only(bottom: 50, top: 65),
       child: Drawer(

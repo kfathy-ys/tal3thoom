@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../home/cubit/home_tabebar_cubit.dart';
 import '../../../../../home/view.dart';
@@ -20,8 +21,8 @@ class SuccessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -31,11 +32,11 @@ class SuccessView extends StatelessWidget {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: Container(
-          height: height,
-          width: width,
+          height: context.height,
+          width: context.width,
           color: kHomeColor,
           child: Column(children: [
-            SizedBox(height: height*0.3,),
+            SizedBox(height: context.height*0.3,),
             customText7(
                 title: title1,
                 //"لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
@@ -43,8 +44,8 @@ class SuccessView extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               color: kSkyLightColor,
-              width: width * 0.85,
-              height: height * 0.28,
+              width: context.width * 0.85,
+              height: context.height * 0.28,
               child: Center(
                 child: Image.asset("assets/images/success.png"),
               ),

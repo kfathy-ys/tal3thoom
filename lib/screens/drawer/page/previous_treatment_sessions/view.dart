@@ -3,6 +3,7 @@ import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:video_player/video_player.dart';
 
@@ -26,8 +27,8 @@ class _ResultsPreviousTreatmentSessionsState
        
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -37,8 +38,8 @@ class _ResultsPreviousTreatmentSessionsState
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
@@ -47,7 +48,7 @@ class _ResultsPreviousTreatmentSessionsState
               children: [
                 Center(
                   child: CustomTileContainer(
-                      widthh: width / 1.5,
+                      widthh: context.width / 1.5,
                       title: "نتائج الجلسات العلاجية السابقة",
                       context: context),
                 ),
@@ -64,8 +65,8 @@ class _ResultsPreviousTreatmentSessionsState
                 Center(
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 8),
-                    width: width * 0.8,
-                    height: height * 0.25,
+                    width: context.width * 0.8,
+                    height: context.height * 0.25,
                     child: VideoItems(
                       videoPlayerController: VideoPlayerController.network(
                         'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -74,7 +75,7 @@ class _ResultsPreviousTreatmentSessionsState
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.4,
+                  height: context.height * 0.4,
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     shrinkWrap: true,
@@ -85,13 +86,13 @@ class _ResultsPreviousTreatmentSessionsState
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            buildContainerIndex(width, height, index: index),
+                            buildContainerIndex(context.width, context.height, index: index),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 4),
-                              width: width * 0.8,
-                              height: height * 0.14,
+                              width: context.width * 0.8,
+                              height: context.height * 0.14,
                               decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(8),
@@ -170,8 +171,8 @@ class _ResultsPreviousTreatmentSessionsState
                 Center(
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 8),
-                    width: width * 0.8,
-                    height: height * 0.25,
+                    width: context.width * 0.8,
+                    height: context.height * 0.25,
                     child: VideoItems(
                       videoPlayerController: VideoPlayerController.network(
                         'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -180,7 +181,7 @@ class _ResultsPreviousTreatmentSessionsState
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.4,
+                  height: context.height * 0.4,
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     shrinkWrap: true,
@@ -191,13 +192,13 @@ class _ResultsPreviousTreatmentSessionsState
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            buildContainerIndex(width, height,index:  index),
+                            buildContainerIndex(context.width, context.height,index:  index),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 4),
-                              width: width * 0.8,
-                              height: height * 0.14,
+                              width: context.width * 0.8,
+                              height: context.height * 0.14,
                               decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(8),
@@ -274,15 +275,15 @@ class _ResultsPreviousTreatmentSessionsState
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        buildColumn(height, width,
+                        buildColumn(context.height, context.width,
                             curve: false,
                             head: "عدد أسئلة القسم المعرفى",
                             answer: "1"),
-                        buildColumn(height, width,
+                        buildColumn(context.height, context.width,
                             curve: false,
                             head: "الإجابات الصحيحة",
                             answer: "2"),
-                        buildColumnWithImage(height, width,
+                        buildColumnWithImage(context.height, context.width,
                             head: "عرض الفيديو الخاص بالمريض (القسم السلوكى )",
                             curve: false,
                             onTap: () {}),
@@ -296,15 +297,15 @@ class _ResultsPreviousTreatmentSessionsState
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        buildColumn(height, width,
+                        buildColumn(context.height, context.width,
                             curve: false,
                             head: "التقيمات",
                             answer: "تقييم المستوى فى الجلسة الحالية"),
-                        buildColumn(height, width,
+                        buildColumn(context.height, context.width,
                             curve: false,
                             head: "تقيم المريض لذاتة",
                             answer: "2"),
-                        buildColumn(height, width,
+                        buildColumn(context.height, context.width,
                             curve: false,
                             head: "تقيم الأخصائي للمريض",
                             answer: "2"),
@@ -318,7 +319,7 @@ class _ResultsPreviousTreatmentSessionsState
                     },
                     title: "Skip"),
                 SizedBox(
-                  height: height * 0.1,
+                  height: context.height * 0.1,
                 )
               ]),
         ),
@@ -351,8 +352,8 @@ class _ResultsPreviousTreatmentSessionsState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: height * 0.1,
-          width: width * 0.3,
+          height: context.height * 0.1,
+          width: context.width * 0.3,
           decoration: const BoxDecoration(
             color: kPrimaryColor,
             // borderRadius: BorderRadius.only(topLeft: Radius.circular(8),bottomLeft:  Radius.circular(8),)
@@ -362,8 +363,8 @@ class _ResultsPreviousTreatmentSessionsState
           ),
         ),
         Container(
-          height: height * 0.1,
-          width: width * 0.3,
+          height: context.height * 0.1,
+          width: context.width * 0.3,
           decoration: BoxDecoration(
             color: kAppBarColor,
             borderRadius: curve
@@ -377,8 +378,8 @@ class _ResultsPreviousTreatmentSessionsState
             child: InkWell(
               onTap: onTap,
               child: Container(
-                  width: width * 0.1,
-                  height: height * 0.05,
+                  width: context.width * 0.1,
+                  height: context.height * 0.05,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: kButtonGreenDark,
@@ -397,8 +398,8 @@ class _ResultsPreviousTreatmentSessionsState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: height * 0.1,
-          width: width * 0.3,
+          height: context.height * 0.1,
+          width: context.width * 0.3,
           decoration: BoxDecoration(
               color: kPrimaryColor,
               borderRadius: curve
@@ -412,8 +413,8 @@ class _ResultsPreviousTreatmentSessionsState
           ),
         ),
         Container(
-          height: height * 0.1,
-          width: width * 0.3,
+          height: context.height * 0.1,
+          width: context.width * 0.3,
           decoration: const BoxDecoration(
               color: kAppBarColor,
               borderRadius: BorderRadius.only(

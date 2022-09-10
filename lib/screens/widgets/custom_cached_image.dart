@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -16,14 +17,14 @@ customCachedNetworkImage({
       child: Image.asset(
         'assets/image/logo2021.jpg',
         height: 100,
-        width: width,
+        width: context.width,
         fit: BoxFit.contain,
       ),
     );
   } else {
     return Container(
         color: Colors.pinkAccent,
-        width: width,
+        width: context.width,
         child: CachedNetworkImage(
             imageUrl: url,
             fit: fit,
@@ -41,7 +42,7 @@ customCachedNetworkImage({
                   Image.asset(
                     'assets/image/logo2021.jpg',
                     height: 100,
-                    width: width,
+                    width: context.width,
                     fit: BoxFit.contain,
                   ),
                   Text(

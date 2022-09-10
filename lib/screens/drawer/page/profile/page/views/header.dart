@@ -1,5 +1,6 @@
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class HeaderTitle extends StatelessWidget {
@@ -12,13 +13,13 @@ class HeaderTitle extends StatelessWidget {
   //Icons.person
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: height * 0.02,
+          height: context.height * 0.02,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +30,7 @@ class HeaderTitle extends StatelessWidget {
               size: 30,
             ),
             SizedBox(
-              width: width * 0.02,
+              width: context.width * 0.02,
             ),
             Text(title,
                 style: const TextStyle(
@@ -37,7 +38,7 @@ class HeaderTitle extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: height * 0.02,
+          height: context.height * 0.02,
         ),
         Image.asset(
           'assets/images/line.png',

@@ -4,6 +4,7 @@ import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get.dart'hide Trans;
 import '../../../../../../config/keys.dart';
 
@@ -30,11 +31,11 @@ class ForgetPassword extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: context.height * 0.05,
               ),
           const IconBack(),
               SizedBox(
-                height: height * 0.2,
+                height: context.height * 0.2,
               ),
 
               CustomTextField(
@@ -51,7 +52,7 @@ class ForgetPassword extends StatelessWidget {
                 type: TextInputType.emailAddress,
               ),
               SizedBox(
-                height: height * 0.05,
+                height: context.height * 0.05,
               ),
               CustomButton(
                 color: kPrimaryColor,
@@ -61,7 +62,7 @@ class ForgetPassword extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: height * 0.01,
+                height: context.height * 0.01,
               ),
               GestureDetector(
                 onTap: () => Get.to(() {

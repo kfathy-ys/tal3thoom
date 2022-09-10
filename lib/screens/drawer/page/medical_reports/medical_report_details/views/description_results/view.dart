@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 class DescriptionResult extends StatelessWidget {
@@ -10,16 +11,16 @@ class DescriptionResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
           SizedBox(
             //color: Colors.amber,
-            width: width,
-            height: height * 0.05,
+            width: context.width,
+            height: context.height * 0.05,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

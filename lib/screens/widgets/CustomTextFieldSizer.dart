@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'constants.dart';
 
@@ -54,8 +55,8 @@ class _CustomTextFieldState extends State<CustomTextFieldSizer> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return ListView(
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -70,8 +71,8 @@ class _CustomTextFieldState extends State<CustomTextFieldSizer> {
             //       color: kBlackText, fontSize: 16, fontFamily: 'DinLight'),
             // ),
             Container(
-              height: height * 0.085,
-              width: width * 0.6,
+              height: context.height * 0.085,
+              width: context.width * 0.6,
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: TextFormField(
                 onTap: widget.onTap,

@@ -1,4 +1,3 @@
-
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -9,6 +8,7 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diag
 
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
@@ -33,16 +33,13 @@ import 'dart:async';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
-  await runZonedGuarded(() async{
+  await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     //await EasyLocalization.ensureInitialized();
-
 
     await App.boot();
     //await Firebase.initializeApp();
     await GetStorage.init();
-
-
 
     Bloc.observer = MyBlocObserver();
     // FCMConfig.instance.messaging.getToken().then((token) {
@@ -68,10 +65,7 @@ void main() async {
         builder: (context) {
           return DevicePreview(
             enabled: true,
-            builder: (context) => const MyApp(
-
-
-            ),
+            builder: (context) => const MyApp(),
           );
         },
       ),
@@ -87,19 +81,16 @@ void main() async {
       ),
     );
   }, (error, stack) {
-
-         if (kDebugMode) {
-           print(error);
-           print(stack);
-         }
-
+    if (kDebugMode) {
+      print(error);
+      print(stack);
+    }
   });
-
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -116,8 +107,6 @@ class MyApp extends StatelessWidget {
         BlocProvider<SecondStageOasesTestCubit>(
           create: (context) => SecondStageOasesTestCubit(),
         ),
-
-
         BlocProvider<HomeTabeBarCubit>(
           create: (context) => HomeTabeBarCubit(),
         ),
@@ -127,8 +116,6 @@ class MyApp extends StatelessWidget {
         BlocProvider<DiagnosticHistoryQuestionCubit>(
           create: (context) => DiagnosticHistoryQuestionCubit(),
         ),
-
-
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {
@@ -140,9 +127,8 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),
-
             ],
-            localizationsDelegates:  const [
+            localizationsDelegates: const [
               CountryLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
@@ -154,10 +140,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:     const DiagnosticHistory(),
-
-
-
+            home:  const DiagnosticHistory(),
           );
         },
       ),

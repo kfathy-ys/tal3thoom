@@ -1,6 +1,7 @@
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/views/payment_card.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../../../../config/keys.dart';
 
@@ -20,8 +21,8 @@ class PaymentTreatment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -30,14 +31,14 @@ class PaymentTreatment extends StatelessWidget {
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
-                  widthh: width / 2.5,
+                  widthh: context.width / 2.5,
                   title: KeysConfig.payment ,
                   context: context),
               PaymentCard(

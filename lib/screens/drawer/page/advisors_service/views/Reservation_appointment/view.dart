@@ -2,6 +2,7 @@ import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/card_reservation.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/drop_down_spcialist.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tal3thoom/screens/widgets/smallButtonSizer.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
@@ -19,8 +20,8 @@ class ReservationAppointmentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -30,13 +31,13 @@ class ReservationAppointmentScreen extends StatelessWidget {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: height,
-          width: width,
+          height: context.height,
+          width: context.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomTileContainer(
-                  widthh: width * 0.5, title: "حجز المواعيد", context: context),
+                  widthh: context.width * 0.5, title: "حجز المواعيد", context: context),
               const HeadTitles(headTitle: " 1- من فضلك قم بأختيار الأخصائي :"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

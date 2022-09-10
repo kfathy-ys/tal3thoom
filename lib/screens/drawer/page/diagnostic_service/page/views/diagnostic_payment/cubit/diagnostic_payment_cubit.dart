@@ -66,7 +66,7 @@ class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
       print("التاريخ المرضي ");
       Alert.success("تم العملية بنجاح",
           desc: "تم عملية الدفع المسبقة بشكل صحيح");
-      Get.to(() => const DiagnosticHistory());
+      Get.off(() => const DiagnosticHistory());
     } else if (((diagnosticPaymentModel?.data![0]) == 1) &&
         ((diagnosticPaymentModel?.data![1]) == 2)) {
       print("Mohamed 2 ");

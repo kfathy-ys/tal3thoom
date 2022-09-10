@@ -3,6 +3,7 @@ import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../drawer/page/advisors_service/views/advisor_induction/view.dart';
@@ -18,8 +19,8 @@ class MyHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Card(
       //color: Colors.pinkAccent,
       child: Stack(
@@ -31,8 +32,8 @@ class MyHomeScreen extends StatelessWidget {
               right: 80,
               child: SizedBox(
                   //color: Colors.pinkAccent,
-                  height: height * 0.12,
-                  width: width * 0.2,
+                  height: context.height * 0.12,
+                  width: context.width * 0.2,
                   child: InkWell(
                       onTap: () {
                         print("object1");
@@ -45,8 +46,8 @@ class MyHomeScreen extends StatelessWidget {
               right: 200,
               child: SizedBox(
                   //color: Colors.pinkAccent,
-                  height: height * 0.12,
-                  width: width * 0.2,
+                  height: context.height * 0.12,
+                  width: context.width * 0.2,
                   child: InkWell(
                       onTap: () {
                         print("object2");
@@ -59,8 +60,8 @@ class MyHomeScreen extends StatelessWidget {
               right: 100,
               child: SizedBox(
                   // color: Colors.pinkAccent,
-                  height: height * 0.12,
-                  width: width * 0.43,
+                  height: context.height * 0.12,
+                  width: context.width * 0.43,
                   child: InkWell(
                       onTap: () {
                         print("object3");
@@ -73,8 +74,8 @@ class MyHomeScreen extends StatelessWidget {
               right: 100,
               child: SizedBox(
                   //color: Colors.pinkAccent,
-                  height: height * 0.12,
-                  width: width * 0.43,
+                  height: context.height * 0.12,
+                  width: context.width * 0.43,
                   child: InkWell(
                       onTap: () {
                         print("object4");

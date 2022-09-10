@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 
@@ -25,7 +26,7 @@ class _AvailableTimeState extends State<AvailableTime> {
     double height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
-      height: height * 0.069,
+      height: context.height * 0.069,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
@@ -41,7 +42,7 @@ class _AvailableTimeState extends State<AvailableTime> {
               // });
             },
             child: Container(
-              height: height * 0.069,
+              height: context.height * 0.069,
               margin: const EdgeInsets.symmetric(horizontal: 4),
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(

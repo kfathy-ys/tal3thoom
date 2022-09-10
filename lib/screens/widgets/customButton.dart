@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:legacy_buttons/LegacyRaisedButton.dart';

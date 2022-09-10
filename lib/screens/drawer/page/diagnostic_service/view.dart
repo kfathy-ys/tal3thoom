@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widgets/constants.dart';
 import '../../../../../../config/keys.dart';
@@ -37,7 +38,7 @@ class DiagnosticServices extends StatelessWidget {
             title: KeysConfig.diagnosticService , color: kHomeColor),
         children: [
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               onTap: onTapInductions,
@@ -53,7 +54,7 @@ class DiagnosticServices extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               onTap: onTapPayment,
@@ -68,7 +69,7 @@ class DiagnosticServices extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               onTap: onTapHistory,
@@ -83,7 +84,7 @@ class DiagnosticServices extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               onTap: onTapTestOases,
@@ -98,7 +99,7 @@ class DiagnosticServices extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               onTap: onTapSSRS,
@@ -113,7 +114,7 @@ class DiagnosticServices extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               onTap: onTapSSi,
@@ -127,7 +128,7 @@ class DiagnosticServices extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             decoration: const BoxDecoration(
                 color: kRoundBorderColor,
                 borderRadius: BorderRadius.only(

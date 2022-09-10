@@ -5,6 +5,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../widgets/appBar.dart';
@@ -30,8 +31,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -41,15 +42,15 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTileContainer(
-                    widthh: width / 1.8,
+                    widthh: context.width / 1.8,
                     title: "الجلسة العلاجية الأولي",
                     context: context),
                 Align(
@@ -62,8 +63,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                 Row(
                   children: [
                     Container(
-                      width: width*0.1,
-                      height: height*0.35,
+                      width: context.width*0.1,
+                      height: context.height*0.35,
                       color: kPrimaryColor,
                       child: Center(
                         child: customText3(title: "1", color: kHomeColor),
@@ -72,8 +73,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 14),
                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                     // height: height * 0.2,
-                      width: width * 0.8,
+                     // height: context.height * 0.2,
+                      width: context.width * 0.8,
                       decoration:
                           BoxDecoration(border: Border.all(color: kLightText)),
                       child:Column(
@@ -153,8 +154,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                 Row(
                   children: [
                     Container(
-                      width: width*0.1,
-                      height: height*0.39,
+                      width: context.width*0.1,
+                      height: context.height*0.39,
                       color: kPrimaryColor,
                       child: Center(
                         child: customText3(title: "2", color: kHomeColor),
@@ -163,8 +164,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 14),
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      // height: height * 0.2,
-                      width: width * 0.8,
+                      // height: context.height * 0.2,
+                      width: context.width * 0.8,
                       decoration:
                       BoxDecoration(border: Border.all(color: kLightText)),
                       child: Column(

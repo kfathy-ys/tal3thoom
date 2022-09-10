@@ -1,5 +1,6 @@
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:get/get.dart';
 
@@ -19,10 +20,10 @@ class CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    //  // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
-      width: width * 0.42,
+      width: context.width * 0.42,
       decoration: BoxDecoration(
         color: kBackgroundCardColor,
         borderRadius: BorderRadius.circular(4),

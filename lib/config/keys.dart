@@ -380,7 +380,15 @@ class KeysConfig {
   static const firstTest = "الإختبار الأول";
 
   static const inWhichClassStudy = "في أي صف تدْرُسْ؟";
-
+  static const qNames = <String>[
+  // DO OT CHANGE ORDER
+   "معلومات التعليم",
+   'تاريخ الأمراض السابقة',
+   'تاريخ التاتاه',
+   'مناسبة تقلل او تزيد التلعثم',
+   'سلوك التجنب',
+   'تقيم سلوك التلعثم',
+  ];
   static const theFirst = "الأول";
   static const Second = "الثاني";
   static const Third = "الثالث";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'constants.dart';
 
@@ -27,8 +28,8 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return ListView(
        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
       shrinkWrap: true,
@@ -41,7 +42,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
                 style: TextStyle(
                     color: kPrimaryColor, fontSize: 16, fontFamily: 'DinBold')),
             SizedBox(
-              width: width * 0.2,
+              width: context.width * 0.2,
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 Radio<Opinion>(
                   value: Opinion.yes,
@@ -61,7 +62,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               ]),
             ),
             SizedBox(
-              width: width * 0.2,
+              width: context.width * 0.2,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -214,7 +215,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
           ),
         ],
         SizedBox(
-          height: height * 0.02,
+          height: context.height * 0.02,
         ),
       ],
     );

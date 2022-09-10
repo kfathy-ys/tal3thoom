@@ -14,6 +14,7 @@ import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/validation.dart';
 import '../../widgets/alerts.dart';
@@ -71,8 +72,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -101,14 +102,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: height * 0.05,
+                    height: context.height * 0.05,
                   ),
                   const IconBack(),
                   FadeInDownBig(
                     child: Column(
                       children: [
                         SizedBox(
-                            height: height * 0.15,
+                            height: context.height * 0.15,
                             child:
                                 Image.asset("assets/images/logoregister.png")),
                         const TextTitleSubTitle(
@@ -117,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: height * 0.02,
+                    height: context.height * 0.02,
                   ),
                   FadeInLeftBig(
                     child: CustomTextField(
@@ -523,7 +524,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     type: TextInputType.text,
                   ),
                  /* Container(
-                    height: height * 0.13,
+                    height: context.height * 0.13,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
                     child: IntlPhoneField(

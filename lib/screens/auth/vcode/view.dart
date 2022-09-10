@@ -3,8 +3,8 @@ import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../../../config/keys.dart';
-
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
@@ -53,11 +53,11 @@ class _VCodeScreenState extends State<VCodeScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: context.height * 0.05,
               ),
                const IconBack(),
               SizedBox(
-                height: height * 0.3,
+                height: context.height * 0.3,
               ),
               CustomTextField(
                 hint: KeysConfig.EnterVcode ,
@@ -74,7 +74,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
               ),
               _buildResendCounter(),
               SizedBox(
-                height: height * 0.05,
+                height: context.height * 0.05,
               ),
               CustomButton(
                 color: kPrimaryColor,
@@ -85,7 +85,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
                 },
               ),
               SizedBox(
-                height: height * 0.01,
+                height: context.height * 0.01,
               ),
             ],
           ),

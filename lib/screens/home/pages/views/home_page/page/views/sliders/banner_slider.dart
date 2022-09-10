@@ -1,6 +1,7 @@
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class BannerSlider extends StatelessWidget {
@@ -10,8 +11,8 @@ class BannerSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return SizedBox(
 
       child: CarouselSlider.builder(
@@ -23,7 +24,7 @@ class BannerSlider extends StatelessWidget {
               },
               child: Container(
 
-                width: width * 0.42,
+                width: context.width * 0.42,
                 decoration: BoxDecoration(
                     color: kSmallIconColor,
                     borderRadius: BorderRadius.circular(6)),
@@ -42,7 +43,7 @@ class BannerSlider extends StatelessWidget {
               );
         },
         options: CarouselOptions(
-          height: height * 0.14,
+          height: context.height * 0.14,
 
           //aspectRatio: 16 / 2,
           viewportFraction: 0.45,

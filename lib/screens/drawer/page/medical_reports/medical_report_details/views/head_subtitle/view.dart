@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 class HeadSubHead extends StatelessWidget {
@@ -10,8 +11,8 @@ class HeadSubHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Row(
@@ -20,8 +21,8 @@ class HeadSubHead extends StatelessWidget {
         children: [
           SizedBox(
             // color: Colors.amber,
-            width: width * 0.55,
-            height: height * 0.05,
+            width: context.width * 0.55,
+            height: context.height * 0.05,
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,

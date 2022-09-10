@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widgets/constants.dart';
 import '../../../../../../config/keys.dart';
@@ -28,7 +29,7 @@ class AdvisorsService extends StatelessWidget {
             customText2(title: KeysConfig.advisoriesService, color: kHomeColor),
         children: [
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               trailing: const SizedBox.shrink(),
@@ -46,7 +47,7 @@ class AdvisorsService extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * 0.08,
+            height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
               trailing: const SizedBox.shrink(),

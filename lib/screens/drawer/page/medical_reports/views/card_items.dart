@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../widgets/constants.dart';
 import '../../../../widgets/customButton.dart';
@@ -15,13 +16,13 @@ class CardItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16),
       padding: const EdgeInsets.symmetric(horizontal: 14),
-      height: height*0.3,
-      width: width*0.8,
+      height: context.height*0.3,
+      width: context.width*0.8,
       decoration: BoxDecoration(
 
           borderRadius: BorderRadius.circular(8),

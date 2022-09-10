@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:queen/validation.dart';
@@ -78,7 +79,7 @@ class _ProfileState extends State<Profile> {
         return  Card(
           color: kHomeColor,
           child: Container(
-            height: height,
+            height: context.height,
             color: kHomeColor,
             child: Form(
              key: _formKey,
@@ -89,7 +90,7 @@ class _ProfileState extends State<Profile> {
                   children: [
                     CustomTileContainer(widthh: width*0.5, title: "المعلومات الشخصية", context: context),
                     SizedBox(
-                      height: height * 0.02,
+                      height: context.height * 0.02,
                     ),
                     _profilePic(userName: "Rashad Hamza"),
                     CustomTextField(

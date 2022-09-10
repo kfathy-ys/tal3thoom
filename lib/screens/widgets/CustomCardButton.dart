@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:legacy_buttons/LegacyRaisedButton.dart';
@@ -22,8 +23,8 @@ class CustomCardButton extends StatelessWidget {
       this.image});
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    //  // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 14),
       height: MediaQuery.of(context).size.height / 14,
@@ -39,7 +40,7 @@ class CustomCardButton extends StatelessWidget {
                     children: [
                       Image.asset(image!),
                       SizedBox(
-                        width: width * 0.02,
+                        width: context.width * 0.02,
                       ),
                       Text(
                         title!,

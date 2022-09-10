@@ -1,5 +1,6 @@
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/constants.dart';
@@ -16,8 +17,8 @@ class FirstStageTreatmentReservationReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -26,12 +27,12 @@ class FirstStageTreatmentReservationReport extends StatelessWidget {
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),
       body: SizedBox(
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         child: Column(
           children: [
             CustomTileContainer(
-                widthh: width * 0.6,
+                widthh: context.width * 0.6,
                 title: " قائمة جدول الحجوزات",
                 context: context),
             Expanded(
@@ -43,8 +44,8 @@ class FirstStageTreatmentReservationReport extends StatelessWidget {
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 16),
                     padding: const EdgeInsets.symmetric(horizontal: 14),
-                    height: height * 0.45,
-                    width: width * 0.8,
+                    height: context.height * 0.45,
+                    width: context.width * 0.8,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: kTextFieldColor)),

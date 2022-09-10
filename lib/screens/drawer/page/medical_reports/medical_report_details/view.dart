@@ -1,5 +1,6 @@
 import 'package:tal3thoom/config/keys.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/medical_report_details/views/description_results/view.dart';
 
 import '../../../../widgets/appBar.dart';
@@ -16,8 +17,8 @@ class MedicalReportsDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -33,8 +34,8 @@ class MedicalReportsDetails extends StatelessWidget {
             border: Border.all(color: kBlackText),
             borderRadius: BorderRadius.circular(8),
           ),
-          height: height,
-          width: width,
+          height: context.height,
+          width: context.width,
           child: SingleChildScrollView(
             child: Column(
             //physics: const BouncingScrollPhysics(),
@@ -90,7 +91,7 @@ class MedicalReportsDetails extends StatelessWidget {
                     title2: "(SSRS)",
                     subTitle: KeysConfig.kSSRS),
                 SizedBox(
-                  height: height * 0.02,
+                  height: context.height * 0.02,
                 ),
                 const Tables(
                     textColor: kHomeColor,
@@ -129,7 +130,7 @@ class MedicalReportsDetails extends StatelessWidget {
                     title2: "مثال1",
                     title3: "مثال1"),
                 SizedBox(
-                  height: height * 0.05,
+                  height: context.height * 0.05,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -137,7 +138,7 @@ class MedicalReportsDetails extends StatelessWidget {
                       customText7(title: KeysConfig.kScore, color: kBlackText),
                 ),
                 SizedBox(
-                  height: height * 0.02,
+                  height: context.height * 0.02,
                 ),
                 const FourTables(
                   textColor: kHomeColor,
@@ -185,7 +186,7 @@ class MedicalReportsDetails extends StatelessWidget {
                   title5: "Scale",
                 ),
                 SizedBox(
-                  height: height * 0.05,
+                  height: context.height * 0.05,
                 ),
                 const DescriptionResult(
                     title1: "",

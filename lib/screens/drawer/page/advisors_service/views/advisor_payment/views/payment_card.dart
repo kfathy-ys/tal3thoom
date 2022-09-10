@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../../../config/keys.dart';
 import '../../../../../../widgets/constants.dart';
@@ -12,12 +13,12 @@ class PaymentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18),
-      width: width * 0.6,
-      height: height * 0.35,
+      width: context.width * 0.6,
+      height: context.height * 0.35,
       decoration: BoxDecoration(
         color: kHomeColor,
         borderRadius: BorderRadius.circular(25),
@@ -26,7 +27,7 @@ class PaymentCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CustomCurvedContainer(title: description, context: context),
+          CustomCurvedContainer(title: description, ),
           customText5(title: price, color: kBlackText),
           SmallButton(
             onPressed: onTapPay,

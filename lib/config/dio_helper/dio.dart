@@ -23,31 +23,21 @@ abstract class NetWork {
     }
     return _dio;
   }
-  // Response _validate(Response res) {
-  //   if (res.statusCode == 500) {
-  //     throw LServerException.parse(res.data!);
-  //   }
-  //   else if (res.statusCode == 404) {
-  //     throw LNotFoundException.parse(res.data!);
-  //   }
-  //   else if (res.statusCode == 422) {
-  //     throw LValidationException(res.data!);
-  //   }
-  //   else if (res.data == null) {
-  //     throw 'api returend null repsonse';
-  //   }
-  //   else if (res.statusCode == 403) {
-  //     throw res.data['errors']['phone'][0];
-  //   }
-  //   return res;
-  // }
+ static Response _validate(Response res) {
+    if (res.data['status'] == 0 ||
+        res.data['status'] == -1 ||
+        res.statusCode != 200) {
+      throw res.data['message'];
+    }
+    return res;
+  }
 
   static Future<Response> get(
     String url, {
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    return await _dio.get(
+     final res =await _dio.get(
       '/$url',
       queryParameters: queryParams,
       options: Options(headers: {
@@ -57,6 +47,7 @@ abstract class NetWork {
         ...?headers
       }),
     );
+     return _validate(res);
   }
 
   static Future<Response> delete(
@@ -122,12 +113,13 @@ abstract class NetWork {
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    return await _dio.post(
+    final res =await _dio.post(
       '/$url',
       data: body,
       queryParameters: queryParams,
       options: Options(headers: headers),
     );
+    return _validate(res);
   }
 
   static Future<Response> put(

@@ -1,5 +1,6 @@
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../drawer/page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import '../drawer/page/diagnostic_service/page/views/success_page.dart';
@@ -17,8 +18,8 @@ class Payment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -27,17 +28,17 @@ class Payment extends StatelessWidget {
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
-                  widthh: width / 2.5,
+                  widthh: context.width / 2.5,
                   title: KeysConfig.payment,
                   context: context),
-              paymentCard(width, height, context, price: KeysConfig.fifty,
+              paymentCard(context.width, context.height, price: KeysConfig.fifty,
                   onTapPay: () {
                 navigateTo(
                     context,
@@ -49,7 +50,7 @@ class Payment extends StatelessWidget {
 
 
               }, description: KeysConfig.diagnosis),
-              paymentCard(width, height, context, price: KeysConfig.hundred,
+              paymentCard(context.width, context.height, price: KeysConfig.hundred,
                   onTapPay: () {
                 navigateTo(
                     context,
@@ -60,7 +61,7 @@ class Payment extends StatelessWidget {
                     ));
 
               }, description: KeysConfig.twoSession),
-              paymentCard(width, height, context, price: KeysConfig.fifty,
+              paymentCard(context.width, context.height,  price: KeysConfig.fifty,
                   onTapPay: () {
                 navigateTo(
                     context,
@@ -93,7 +94,7 @@ class Payment extends StatelessWidget {
   Widget paymentCard(
     double width,
     double height,
-    BuildContext context, {
+    {
     required String description,
     required VoidCallback onTapPay,
     required String price,
@@ -110,7 +111,7 @@ class Payment extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CustomCurvedContainer(title: description, context: context),
+          CustomCurvedContainer(title: description,),
           customText5(title: price, color: kBlackText),
           SmallButton(
             onPressed: onTapPay,

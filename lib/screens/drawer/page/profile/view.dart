@@ -1,6 +1,7 @@
 // import 'dart:io';
 //
 // import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:image_picker/image_picker.dart';
 //
@@ -86,7 +87,7 @@
 //           return Form(
 //             key: formKey,
 //             child: SizedBox(
-//               height: height,
+//               height: context.height,
 //               child: SingleChildScrollView(
 //                 child: Column(
 //                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,7 +212,7 @@
 //                       },
 //                     ),
 //                     SizedBox(
-//                         height: height * 0.02,
+//                         height: context.height * 0.02,
 //                         child: Image.asset("assets/image/smallarrow.png")),
 //                     state is! UserInfoLoading
 //                         ? Center(
@@ -236,7 +237,7 @@
 //                     DateCreated(typeDate: "hijri" , date: "15-5-1443"),
 //                     DateCreated(typeDate: "century" , date: "15-5-2022"),
 //                     SizedBox(
-//                       height: height * 0.05,
+//                       height: context.height * 0.05,
 //                     ),
 //                   ],
 //                 ),

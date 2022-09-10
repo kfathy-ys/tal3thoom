@@ -2,6 +2,7 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/rese
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../../home/pages/views/reservations_schedule/page/views/avaliable_time.dart';
 import '../../../../../../../widgets/appBar.dart';
@@ -16,8 +17,8 @@ class FirstStageTreatmentReservation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -27,15 +28,15 @@ class FirstStageTreatmentReservation extends StatelessWidget {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTileContainer(
-                    widthh: width / 2, title: "حجز موعد مع المختص", context: context),
+                    widthh: context.width / 2, title: "حجز موعد مع المختص", context: context),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 4),
@@ -46,8 +47,8 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                 Container(
                   //color: kSafeAreaColor,
 
-                  height: height * 0.42,
-                  width: width * 0.8,
+                  height: context.height * 0.42,
+                  width: context.width * 0.8,
                   padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 4),
                   margin: const EdgeInsets.symmetric(
                       horizontal: 28, vertical: 14),
@@ -96,8 +97,8 @@ class FirstStageTreatmentReservation extends StatelessWidget {
 
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
-                  height: height * 0.079,
-                  width: width*0.8,
+                  height: context.height * 0.079,
+                  width: context.width*0.8,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: kBackGroundCard,

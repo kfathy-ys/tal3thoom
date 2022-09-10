@@ -25,7 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-
+  flutter_offline: ^2.1.0
   device_preview:
     git:
       url: https://github.com/monkeydaichan/flutter_device_preview.git

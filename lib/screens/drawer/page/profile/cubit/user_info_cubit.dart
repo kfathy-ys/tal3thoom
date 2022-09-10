@@ -4,6 +4,7 @@
 // import 'package:bloc/bloc.dart';
 // import 'package:dio/dio.dart';
 // import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:maktabat_alharam/screens/drawer/page/profile/cubit/input_data.dart';
 // import 'package:queen/core/helpers/prefs.dart';
 //

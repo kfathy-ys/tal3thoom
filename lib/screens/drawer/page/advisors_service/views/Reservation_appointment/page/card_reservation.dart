@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/mediaButton.dart';
 import 'card_item.dart';
@@ -14,10 +15,10 @@ class ReservationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return CustomContainer(
-      height: height * 0.33,
+      height: context.height * 0.33,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../widgets/constants.dart';
 
@@ -16,12 +17,12 @@ class _DropDownListResultSessionsState extends State<DropDownListResultSessions>
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    //  // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      width: width*0.8,
+      width: context.width*0.8,
       // height: height*0.09,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),

@@ -1,10 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'constants.dart';
 
-class CustomHeightTextField extends StatefulWidget {
+class CustomheightTextField extends StatefulWidget {
   final String? hint;
   final String? label;
   final String? text;
@@ -22,7 +23,7 @@ class CustomHeightTextField extends StatefulWidget {
   final Function? edit;
   final bool? isEdit;
   // ignore: use_key_in_widget_constructors
-  const CustomHeightTextField({
+  const CustomheightTextField({
     this.hint,
     this.onsave,
     this.onTap,
@@ -41,10 +42,10 @@ class CustomHeightTextField extends StatefulWidget {
     this.text,
   });
   @override
-  _CustomHeightTextFieldState createState() => _CustomHeightTextFieldState();
+  _CustomheightTextFieldState createState() => _CustomheightTextFieldState();
 }
 
-class _CustomHeightTextFieldState extends State<CustomHeightTextField> {
+class _CustomheightTextFieldState extends State<CustomheightTextField> {
   bool _isHidden = true;
   void _visibility() {
     setState(() {

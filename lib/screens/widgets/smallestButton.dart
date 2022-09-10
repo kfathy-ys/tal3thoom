@@ -1,6 +1,7 @@
 // // ignore_for_file: file_names
 //
 // import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 //
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
 // import 'package:get/get.dart';
@@ -33,7 +34,7 @@
 //       child: Container(
 //         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
 //         height: MediaQuery.of(context).size.height / 15,
-//         width: width * 0.3,
+//         width: context.width * 0.3,
 //         decoration: BoxDecoration(
 //             color: color == null ? Colors.white : kSafeAreasColor,
 //             borderRadius: BorderRadius.circular(8),
@@ -85,6 +86,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 

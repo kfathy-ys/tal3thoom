@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../widgets/constants.dart';
@@ -18,12 +19,12 @@ class CustomWidgetDepartment extends StatefulWidget {
 class _CustomWidgetDepartmentState extends State<CustomWidgetDepartment> {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: width * 0.9,
-      height: height * 0.2,
+      width: context.width * 0.9,
+      height: context.height * 0.2,
       decoration: BoxDecoration(
           color: kSkyLightColor,
           borderRadius: BorderRadius.circular(8)),
@@ -66,8 +67,8 @@ class _CustomWidgetDepartmentState extends State<CustomWidgetDepartment> {
 
 
                                 Container(
-                                  width: width*0.08,
-                                  height: height*0.05,
+                                  width: context.width*0.08,
+                                  height: context.height*0.05,
                                   decoration: BoxDecoration(color: kTextColor,
 
                                     borderRadius: BorderRadius.circular(50),

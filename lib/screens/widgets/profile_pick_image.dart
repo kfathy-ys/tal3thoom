@@ -1,5 +1,6 @@
 import 'package:tal3thoom/screens/widgets/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'constants.dart';
 

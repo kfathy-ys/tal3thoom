@@ -5,6 +5,7 @@ import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallestButton.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -52,8 +53,8 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
           body: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-              height: height,
-              width: width,
+              height: context.height,
+              width: context.width,
               color: kHomeColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,7 +91,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.selectedGroupIndex != 0
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      width, height, cubit, itemsList: sixQuestionsList),
+                      context.width,height, cubit, itemsList: sixQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
                     child: CustomButton(
@@ -112,7 +113,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.selectedGroupIndex != 1
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      width, height, cubit, itemsList: fifthQuestionsList),
+                      context.width, context.height, cubit, itemsList: fifthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
                     child: CustomButton(
@@ -133,7 +134,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.selectedGroupIndex != 2
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      width, height, cubit, itemsList: forthQuestionsList),
+                      context.width, context.height, cubit, itemsList: forthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
                     child: CustomButton(
@@ -155,7 +156,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.selectedGroupIndex != 3
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      width, height, cubit, itemsList: thirdQuestionsList),
+                      context.width, context.height, cubit, itemsList: thirdQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 3
                       ? Expanded(
                     child: CustomButton(
@@ -184,8 +185,8 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
       FirstStageOasesTestCubit cubit, {required List<CheckBoxItem> itemsList}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: width * 0.9,
-      height: height * 0.2,
+      width: context.width * 0.9,
+      height: context.height * 0.2,
       decoration: BoxDecoration(
           color: kSkyLightColor,
           borderRadius: BorderRadius.circular(8)),
@@ -227,8 +228,8 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
 
 
                                 Container(
-                                  width: width * 0.08,
-                                  height: height * 0.05,
+                                  width: context.width * 0.08,
+                                  height: context.height * 0.05,
                                   decoration: BoxDecoration(color: kTextColor,
 
                                     borderRadius: BorderRadius.circular(50),

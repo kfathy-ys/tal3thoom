@@ -1,6 +1,7 @@
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 
@@ -22,8 +23,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
        
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+     // double height = MediaQuery.of(context).size.height;
+  //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       
       backgroundColor: kHomeColor,
@@ -33,8 +34,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        height: height,
-        width: width,
+        height: context.height,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
@@ -42,7 +43,7 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
               children: [
 
                 CustomTileContainer(
-                    widthh: width / 1.8,
+                    widthh: context.width / 1.8,
                     title: "استبيان ما قبل العلاج",
                     context: context),
                 Padding(
@@ -64,8 +65,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                   children: [
 
                     Container(
-                      width: width*0.1,
-                      height: height*0.14,
+                      width: context.width*0.1,
+                      height: context.height*0.14,
                       decoration: const BoxDecoration(
                           color: kPrimaryColor
                       ),
@@ -75,8 +76,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 4),
                       padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 4),
-                      width: width*0.8,
-                      height: height*0.14,
+                      width: context.width*0.8,
+                      height: context.height*0.14,
                       decoration: const BoxDecoration(
                           color: kBackgroundButton
                       ),
