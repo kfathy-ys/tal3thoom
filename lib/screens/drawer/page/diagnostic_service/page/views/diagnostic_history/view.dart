@@ -30,7 +30,8 @@ class DiagnosticHistory extends StatefulWidget {
 class _DiagnosticHistoryState extends State<DiagnosticHistory> {
 
 
-  Widget buildCategoryItem(int number) {
+
+ Widget buildCategoryItem(int number) {
     print('number is $number');
     final cubit = BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
     final categoryNumber = number + 2;
@@ -43,11 +44,13 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
       child: ExpansionTile(
         collapsedBackgroundColor: kSky2Button,
         iconColor: kPrimaryColor,
-        childrenPadding: const EdgeInsets.symmetric(horizontal: 16),
+       // childrenPadding: const EdgeInsets.symmetric(horizontal: 14),
         title: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             customBoldText(
                 title: KeysConfig.qNames[number], color: kPrimaryColor),
+            customText10( color: kPrimaryColor,title: "(  ${cubit.index } من ${qList.length} ) "),
           ],
         ),
         children: [
@@ -75,7 +78,10 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                           child: Image.asset("assets/images/Earphone.png")),
                       suffix: cubit.shouldShowTextField(currentQuestion)
                           ? SizedBox(
-                              height: 60, width: 150, child: TextFormField())
+                        //controller: cubit.controller,
+                              height: 60, width: 150, child: TextFormField(
+                        onChanged: (str)=> cubit.answersTxt[currentQuestion] = str,
+                      ))
                           : null,
                     ),
 
@@ -86,17 +92,27 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                       if (value != null) {
                         setState(() {
                           cubit.answer[currentQuestion] = value;
+                          // if(  cubit.answer[currentQuestion]!.isOther ){
+                          //   cubit.controller = value as TextEditingController;
+                          // }
 
-                          // cubit.allAnswers.add(value.answerOption!);
                         });
                       }
+                      /// Increment Header Index
+                      if (cubit.index < qList.length ) {
+                        setState(() {
+                          cubit.index++;
+                        });
+                      }
+
                     },
                     // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
+                    //   if (value == null ) {
                     //     return 'من فضلك أجب علي هذا السؤال';
                     //   }
                     //   return 'تمام';
                     // },
+
                     options: currentQuestion.answers
                         .map((lang) => FormBuilderFieldOption(
                               value: lang,
@@ -146,59 +162,61 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionSuccess) {
-                  return SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 4),
-                      child: Column(
-                        // padding: const EdgeInsets.symmetric(horizontal: 16),
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomTile(
-                                  widthh: context.width * 0.5,
-                                  title: KeysConfig.medicalHistory,
-                                  context: context),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: Center(
-                                child: customBoldText(
-                                    title: KeysConfig.firstTest,
-                                    color: kBlackText)),
-                          ),
-                          Image.asset(
-                            "assets/images/255.png",
-                          ),
-                          buildSizedBoxed(context.height ),
-                          ...List.generate(6, buildCategoryItem).toList(),
-                          buildSizedBoxed(context.height ),
-                          MediaButton(
-                            onPressed: () {
-                              //  cubit.postDiagnosticHistoryAnswers();
-                              //print("${cubit.listOfCategoryTwo}");
-                            }
-                            //   navigateTo(
-                            //       context,
-                            //       SuccessView(
-                            //         title1:
-                            //             "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
-                            //         title2: "إنتقال إلي إختبار Oases",
-                            //         onTap: () => navigateTo(
-                            //             context, const DiagnosticOasesTest()
-                            //
-                            //         ),
-                            //       ));
-                            // },
-                            ,
-                            title: KeysConfig.next,
-                          ),
-                          SizedBox(
-                            height: context.height * 0.2,
-                          ),
-                        ],
+                  return Form(
+                    key: cubit.formKey,
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 4),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomTile(
+                                    widthh: context.width * 0.5,
+                                    title: KeysConfig.medicalHistory,
+                                    context: context),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: Center(
+                                  child: customBoldText(
+                                      title: KeysConfig.firstTest,
+                                      color: kBlackText)),
+                            ),
+                            Image.asset(
+                              "assets/images/255.png",
+                            ),
+                            buildSizedBoxed(context.height ),
+                            ...List.generate(6, buildCategoryItem).toList(),
+                            buildSizedBoxed(context.height ),
+                            MediaButton(
+                              onPressed: () {
+                                  cubit.postDiagnosticHistoryAnswers();
+                                //print("${cubit.listOfCategoryTwo}");
+                              }
+                              //   navigateTo(
+                              //       context,
+                              //       SuccessView(
+                              //         title1:
+                              //             "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
+                              //         title2: "إنتقال إلي إختبار Oases",
+                              //         onTap: () => navigateTo(
+                              //             context, const DiagnosticOasesTest()
+                              //
+                              //         ),
+                              //       ));
+                              // },
+                              ,
+                              title: KeysConfig.next,
+                            ),
+                            SizedBox(
+                              height: context.height * 0.2,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
