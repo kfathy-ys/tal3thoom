@@ -12,15 +12,13 @@ import 'views/three_tables/views.dart';
 
 // ignore: must_be_immutable
 class MedicalReportsDetails extends StatelessWidget {
-
   const MedicalReportsDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -38,7 +36,7 @@ class MedicalReportsDetails extends StatelessWidget {
           width: context.width,
           child: SingleChildScrollView(
             child: Column(
-            //physics: const BouncingScrollPhysics(),
+              //physics: const BouncingScrollPhysics(),
               children: [
                 const HeadSubHead(
                     head1: "أسم المريض  ",

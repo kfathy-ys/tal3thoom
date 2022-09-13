@@ -2,19 +2,18 @@ import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class HeaderTitle extends StatelessWidget {
   final IconData icon;
   final String title;
   const HeaderTitle({Key? key, required this.icon, required this.title})
       : super(key: key);
 
-  //"myProfile" 
+  //"myProfile"
   //Icons.person
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

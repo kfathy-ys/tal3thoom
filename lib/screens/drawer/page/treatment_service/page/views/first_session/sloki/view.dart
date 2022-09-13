@@ -11,12 +11,9 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
-import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
-import '../../second_session/second_stage_additional_traning/view.dart';
 import '../evaluation_section/view.dart';
 
 // ignore: must_be_immutable
@@ -28,14 +25,13 @@ class SlokiScreen extends StatefulWidget {
 }
 
 class _SlokiScreenState extends State<SlokiScreen> {
-         final _firstController = TextEditingController();
+  final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(

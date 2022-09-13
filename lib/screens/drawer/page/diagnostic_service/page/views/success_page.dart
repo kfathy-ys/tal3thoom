@@ -16,15 +16,18 @@ class SuccessView extends StatelessWidget {
   final String title2;
   final VoidCallback? onTap;
 
-
-   const SuccessView({Key? key, required this.title1, required this.title2, this.onTap, }) : super(key: key);
+  const SuccessView({
+    Key? key,
+    required this.title1,
+    required this.title2,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -36,7 +39,9 @@ class SuccessView extends StatelessWidget {
           width: context.width,
           color: kHomeColor,
           child: Column(children: [
-            SizedBox(height: context.height*0.3,),
+            SizedBox(
+              height: context.height * 0.3,
+            ),
             customText7(
                 title: title1,
                 //"لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
@@ -50,29 +55,26 @@ class SuccessView extends StatelessWidget {
                 child: Image.asset("assets/images/success.png"),
               ),
             ),
+            CustomButton(
+                color: kPrimaryColor,
+                onPressed: () {
+                  if (onTap != null) {
+                    onTap!();
+                  } else {
+                    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+                    navigateTo(context, const HomeTabScreen());
+                  }
+                }
 
-            CustomButton(color: kPrimaryColor,onPressed:(){
-              if(onTap != null) {
-                onTap!();
-              }
-              else{
-                BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-                navigateTo(context, const HomeTabScreen());
-              }
+                //     (){
+                //
+                //   navigateAndFinish(context, DiagnosticOasesTest());
+                // }
 
-            }
-
-
-            //     (){
-            //
-            //   navigateAndFinish(context, DiagnosticOasesTest());
-            // }
-
-
-
-            ,title: title2
-            //"إنتقال إلي إختبار Oases",
-            ),
+                ,
+                title: title2
+                //"إنتقال إلي إختبار Oases",
+                ),
           ]),
         ),
       ),

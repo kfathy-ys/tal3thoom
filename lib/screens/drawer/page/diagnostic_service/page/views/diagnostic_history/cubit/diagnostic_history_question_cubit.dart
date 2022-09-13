@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 
 import 'package:tal3thoom/serives/diagnostic_history_service/question_serives.dart';
 import '../../../../../../../../serives/diagnostic_history_service/answers_service.dart';
@@ -18,7 +17,7 @@ class DiagnosticHistoryQuestionCubit
     getDiagnosticHistoryQuestion();
   }
 
-   final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   int index = 0;
   final questionList = <Question>[];
 
@@ -56,11 +55,18 @@ class DiagnosticHistoryQuestionCubit
     emit(DiagnosticHistoryQuestionLoading());
 
     try {
-      await AnswersService.postAnswers(answers: answer,answersTxt:answersTxt);
+      final res = await AnswersService.postAnswers(
+          answers: answer, answersTxt: answersTxt);
 
       emit(DiagnosticHistoryQuestionSuccess(
           diagnosticHistoryQuestionModel: questionList));
-      //Alert.success("")
+      if (res!.type == 2) {
+        Alert.error(res.body);
+      } else if (res.type == 1) {
+        Alert.success(res.body);
+      } else {
+        Alert.success("0");
+      }
     } catch (e, st) {
       log(e.toString());
       log(st.toString());

@@ -6,14 +6,13 @@ import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../../config/keys.dart';
-import 'package:get/get.dart';
 
 import '../register/page/back_icon.dart';
 
 class NewPasswordScreen extends StatelessWidget {
   NewPasswordScreen({Key? key}) : super(key: key);
 
-  final  _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final _newPassController = TextEditingController();
   final _confirmPssController = TextEditingController();
@@ -24,7 +23,6 @@ class NewPasswordScreen extends StatelessWidget {
     //double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -33,15 +31,15 @@ class NewPasswordScreen extends StatelessWidget {
               SizedBox(
                 height: context.height * 0.05,
               ),
-            const IconBack(),
+              const IconBack(),
               SizedBox(
                 height: context.height * 0.3,
               ),
               CustomTextField(
-                hint: KeysConfig.newPassword ,
+                hint: KeysConfig.newPassword,
                 icon: Icons.lock_outline,
                 dIcon: Icons.lock_outline,
-                label: KeysConfig.newPassword ,
+                label: KeysConfig.newPassword,
                 controller: _newPassController,
                 validator: (String? value) {
                   if (value!.isEmpty) {
@@ -52,10 +50,10 @@ class NewPasswordScreen extends StatelessWidget {
                 type: TextInputType.phone,
               ),
               CustomTextField(
-                hint: KeysConfig.confirmPass ,
+                hint: KeysConfig.confirmPass,
                 icon: Icons.lock_outline,
                 dIcon: Icons.lock_outline,
-                label:KeysConfig.confirmPass ,
+                label: KeysConfig.confirmPass,
                 controller: _confirmPssController,
                 validator: (String? value) {
                   if (value!.isEmpty) {
@@ -70,7 +68,7 @@ class NewPasswordScreen extends StatelessWidget {
               ),
               CustomButton(
                 color: kPrimaryColor,
-                title: KeysConfig.save ,
+                title: KeysConfig.save,
                 onPressed: () {
                   navigateAndFinish(context, const HomeTabScreen());
                 },

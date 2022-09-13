@@ -12,19 +12,15 @@ import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 import '../../pre-treatment_questionnaire/view.dart';
 
-
 // ignore: must_be_immutable
 class PaymentTreatment extends StatelessWidget {
-     
-
-  PaymentTreatment({Key? key}) : super(key: key);
+  const PaymentTreatment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -39,54 +35,65 @@ class PaymentTreatment extends StatelessWidget {
             children: [
               CustomTileContainer(
                   widthh: context.width / 2.5,
-                  title: KeysConfig.payment ,
+                  title: KeysConfig.payment,
                   context: context),
               PaymentCard(
-                  price: KeysConfig.fifty , onTapPay: () {
-
-                        navigateTo(context, const WebView(
-                      javascriptMode: JavascriptMode.unrestricted,
-
-                      initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
-                    ));
+                  price: KeysConfig.fifty,
+                  onTapPay: () {
+                    navigateTo(
+                        context,
+                        const WebView(
+                          javascriptMode: JavascriptMode.unrestricted,
+                          initialUrl:
+                              "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                        ));
                     print("object1");
-                  }, description: KeysConfig.diagnosis ),
+                  },
+                  description: KeysConfig.diagnosis),
               PaymentCard(
-                  price: KeysConfig.hundred , onTapPay: () {
-                        navigateTo(context, const WebView(
-                      javascriptMode: JavascriptMode.unrestricted,
-
-                      initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
-                    ));
+                  price: KeysConfig.hundred,
+                  onTapPay: () {
+                    navigateTo(
+                        context,
+                        const WebView(
+                          javascriptMode: JavascriptMode.unrestricted,
+                          initialUrl:
+                              "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                        ));
                     print("object2");
-                  }, description: KeysConfig.twoSession ),
+                  },
+                  description: KeysConfig.twoSession),
               PaymentCard(
-                  price: KeysConfig.fifty , onTapPay: () {
-                        navigateTo(context, const WebView(
-                      javascriptMode: JavascriptMode.unrestricted,
-
-                      initialUrl: "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
-                    ));
+                  price: KeysConfig.fifty,
+                  onTapPay: () {
+                    navigateTo(
+                        context,
+                        const WebView(
+                          javascriptMode: JavascriptMode.unrestricted,
+                          initialUrl:
+                              "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                        ));
                     print("object3");
-                  }, description: KeysConfig.DiagnosisTreatment ),
-
-          SmallButton(
-            title: "Skip",
-             color: kPrimaryColor,
-
-            onPressed: (){
-
-            navigateTo(context, SuccessView(title1: "لقد تم عملية الدفع  بنجاح",title2: "الأنتقال إلي الأستبيان ما قبل العلاج",
-              onTap: ()=>navigateTo(context, const PretreatmentQuestionnaire()),));
-          },),
-
-
+                  },
+                  description: KeysConfig.DiagnosisTreatment),
+              SmallButton(
+                title: "Skip",
+                color: kPrimaryColor,
+                onPressed: () {
+                  navigateTo(
+                      context,
+                      SuccessView(
+                        title1: "لقد تم عملية الدفع  بنجاح",
+                        title2: "الأنتقال إلي الأستبيان ما قبل العلاج",
+                        onTap: () => navigateTo(
+                            context, const PretreatmentQuestionnaire()),
+                      ));
+                },
+              ),
             ],
           ),
         ),
       ),
     );
   }
-
-
 }

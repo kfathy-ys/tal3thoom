@@ -8,18 +8,15 @@ import '../../../widgets/constants.dart';
 import '../../view.dart';
 import 'medical_report_details/view.dart';
 
-
 // ignore: must_be_immutable
 class MedicalReports extends StatelessWidget {
-
   const MedicalReports({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -28,8 +25,7 @@ class MedicalReports extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           height: context.height,
-          width: context.width ,
-
+          width: context.width,
           child: Column(
             children: [
               CustomTileContainer(
@@ -40,16 +36,16 @@ class MedicalReports extends StatelessWidget {
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: 8,
-                 physics: const BouncingScrollPhysics(),
-                 itemBuilder: (context ,index){
-                   return CardItems(
-                       onPressed: (){
-                         navigateTo(context, const MedicalReportsDetails());
-                       },
-                       subTitleReportName: "إستشارة طبية",
-                       subTitleSpecialistName: "د.محمد زايد",
-                       subTitleDate:  "2022-10-16");
-                 },
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return CardItems(
+                        onPressed: () {
+                          navigateTo(context, const MedicalReportsDetails());
+                        },
+                        subTitleReportName: "إستشارة طبية",
+                        subTitleSpecialistName: "د.محمد زايد",
+                        subTitleDate: "2022-10-16");
+                  },
                 ),
               )
             ],
@@ -60,6 +56,6 @@ class MedicalReports extends StatelessWidget {
   }
 
   SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
+        height: height * 0.05,
+      );
 }

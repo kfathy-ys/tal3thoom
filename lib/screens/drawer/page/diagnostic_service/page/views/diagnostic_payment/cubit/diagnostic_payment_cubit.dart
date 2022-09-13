@@ -60,8 +60,7 @@ class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
       Alert.error("الرجاء إتمام عملية الدفع",
           desc:
               "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-      Get.to(() => DiagnosticPayment());
-
+      Get.to(() => const DiagnosticPayment());
     } else if ((diagnosticPaymentModel?.data![0]) == 1) {
       print("التاريخ المرضي ");
       Alert.success("تم العملية بنجاح",

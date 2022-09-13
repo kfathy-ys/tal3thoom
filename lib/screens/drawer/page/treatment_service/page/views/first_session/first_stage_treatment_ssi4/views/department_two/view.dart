@@ -15,12 +15,9 @@ import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
-import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../../widgets/smallButtonSizer.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
-
 
 // ignore: must_be_immutable
 class TreatmentSSI4Two extends StatefulWidget {
@@ -31,15 +28,13 @@ class TreatmentSSI4Two extends StatefulWidget {
 }
 
 class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
-       
   final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -48,34 +43,31 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: context.height,
-        width: context.width ,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
                   widthh: context.width * 0.5,
-                  title: KeysConfig.definationDiag ,
+                  title: KeysConfig.definationDiag,
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/Fourth test1.png"),
               ),
-
-
-
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                   ),
                 ),
               ),
-
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
                 child: Image.asset("assets/images/talks.png"),
               ),
               InkWell(
@@ -88,15 +80,14 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                   )),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8),
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                   ),
                 ),
               ),
-
               CardUploadVideo(
                 height: context.height * 0.18,
                 title: "fullMessage",
@@ -111,13 +102,18 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/record.png"),
               ),
-
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSI-4 بنجاح",title2: "إنتقال إلي حجز موعد",
-                    onTap: ()=>navigateTo(context, const ReservationsSchedule()),));
+                  navigateTo(
+                      context,
+                      SuccessView(
+                        title1: "لقد تم إنتهاء إختبار SSI-4 بنجاح",
+                        title2: "إنتقال إلي حجز موعد",
+                        onTap: () =>
+                            navigateTo(context, const ReservationsSchedule()),
+                      ));
                 },
-                title: KeysConfig.next ,
+                title: KeysConfig.next,
               ),
               buildSizedBox(context.height),
             ],
@@ -126,7 +122,6 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
       ),
     );
   }
-
 
   dynamic video;
 
@@ -154,12 +149,6 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
   }
 }
 
-
-
-  SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
-
-
-
-
+SizedBox buildSizedBox(double height) => SizedBox(
+      height: height * 0.05,
+    );

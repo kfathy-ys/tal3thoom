@@ -29,7 +29,6 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../widgets/constants.dart';
 import 'page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import 'page/diagnostic_service/page/views/diagnostic_payment/view.dart';
@@ -48,8 +47,8 @@ class MenuItems extends StatefulWidget {
 class _MenuItemsState extends State<MenuItems> {
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.only(bottom: 50, top: 65),
       child: Drawer(
@@ -74,11 +73,11 @@ class _MenuItemsState extends State<MenuItems> {
           DiagnosticServices(
             onTapInductions: () {
               Navigator.of(context).pop();
-              navigateTo(context, InductionDiagnostic());
+              navigateTo(context, const InductionDiagnostic());
             },
             onTapPayment: () {
               Navigator.of(context).pop();
-              navigateTo(context, DiagnosticPayment());
+              navigateTo(context, const DiagnosticPayment());
             },
             onTapHistory: () {
               Navigator.of(context).pop();
@@ -119,7 +118,7 @@ class _MenuItemsState extends State<MenuItems> {
             },
             onTapPayment: () {
               Navigator.of(context).pop();
-              navigateTo(context, PaymentTreatment());
+              navigateTo(context, const PaymentTreatment());
             },
             PretreatmentQuestionnaire: () {
               Navigator.of(context).pop();
@@ -188,10 +187,10 @@ class _MenuItemsState extends State<MenuItems> {
           ),
           AdvisorsService(onTapInductions: () {
             Navigator.of(context).pop();
-            navigateTo(context, AdviserInduction());
+            navigateTo(context, const AdviserInduction());
           }, onTapAppointmentReservation: () {
             Navigator.of(context).pop();
-            navigateTo(context, ReservationAppointmentScreen());
+            navigateTo(context, const ReservationAppointmentScreen());
           }),
 
           ListTile(
@@ -224,17 +223,15 @@ class _MenuItemsState extends State<MenuItems> {
           ListTile(
             onTap: () {
               Navigator.of(context).pop();
-             // navigateTo(context, const WhoWEAreScreen());
+              // navigateTo(context, const WhoWEAreScreen());
             },
             leading: Image.asset("assets/images/message.png"),
-            title: customText2(title:  KeysConfig.contactsUs, color: kHomeColor),
+            title: customText2(title: KeysConfig.contactsUs, color: kHomeColor),
           ),
-
 
           ListTile(
             onTap: () {
               Navigator.of(context).pop();
-
 
               navigateTo(context, LoginScreen());
               Prefs.clear();
@@ -247,5 +244,3 @@ class _MenuItemsState extends State<MenuItems> {
     );
   }
 }
-
-

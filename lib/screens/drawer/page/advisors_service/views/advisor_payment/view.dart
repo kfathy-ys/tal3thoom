@@ -14,14 +14,13 @@ import '../../../diagnostic_service/page/views/success_page.dart';
 
 // ignore: must_be_immutable
 class PaymentAdvisor extends StatelessWidget {
-  PaymentAdvisor({Key? key}) : super(key: key);
-       
+  const PaymentAdvisor({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(

@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -32,10 +31,9 @@ class SmallButton extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 15,
         width: MediaQuery.of(context).size.width / 3,
         decoration: BoxDecoration(
-            color: color == null ? kButtonGreenDark : kPrimaryColor,
-            borderRadius: BorderRadius.circular(8),
+          color: color == null ? kButtonGreenDark : kPrimaryColor,
+          borderRadius: BorderRadius.circular(8),
           //  border: Border.all(color: kPrimaryColor, width: 1.5),
-
         ),
         child: Center(
           child: isLoading != true

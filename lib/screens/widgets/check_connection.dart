@@ -19,7 +19,6 @@
 //
 //
 // import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 // import 'package:flutter_offline/flutter_offline.dart';
 //
 // Widget isOffline({required Widget child}){

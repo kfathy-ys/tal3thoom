@@ -82,7 +82,7 @@ class RegisterModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data["data"] = this.data?.toJson();
     }
@@ -114,7 +114,7 @@ class Messages extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["code"] = code;
     data["body"] = body;
     data["title"] = title;
@@ -209,7 +209,7 @@ class UserData extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["firstName"] = firstName;
     data["middleName"] = middleName;

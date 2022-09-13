@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class BannerSlider extends StatelessWidget {
   const BannerSlider({
     Key? key,
@@ -11,19 +10,15 @@ class BannerSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return SizedBox(
-
       child: CarouselSlider.builder(
         itemCount: 5,
         itemBuilder: (context, index, pageViewIndex) {
           return InkWell(
-              onTap: () {
-
-              },
+              onTap: () {},
               child: Container(
-
                 width: context.width * 0.42,
                 decoration: BoxDecoration(
                     color: kSmallIconColor,
@@ -37,10 +32,7 @@ class BannerSlider extends StatelessWidget {
                     customSliderText(title: "358,589 ", color: kAccentColor),
                   ],
                 ),
-              )
-
-
-              );
+              ));
         },
         options: CarouselOptions(
           height: context.height * 0.14,

@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:country_picker/country_picker.dart';
-import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tal3thoom/screens/auth/register/page/drop_down_is_readble.dart';
 import 'package:tal3thoom/screens/auth/register/page/drop_down_six.dart';
 import 'package:tal3thoom/screens/auth/register/page/title_subtitle.dart';
@@ -14,7 +12,6 @@ import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/validation.dart';
 import '../../widgets/alerts.dart';
@@ -72,8 +69,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -128,12 +125,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _firstNameController,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
-                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
-
+                        MinLength(3, "يجب ان ييكون 3 أحرف علي الاقل"),
                       ]),
-                        textInputFormatter: [
-                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
-                ],
+                      textInputFormatter: [
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[a-zA-Zء-ي]')),
+                      ],
                       type: TextInputType.name,
                     ),
                   ),
@@ -145,13 +142,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _dadNameController,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
-                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+                        MinLength(3, "يجب ان ييكون 3 أحرف علي الاقل"),
 
                         // IsOptional(),
                         MaxLength(30),
                       ]),
                       textInputFormatter: [
-                        FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[a-zA-Zء-ي]')),
                       ],
                       type: TextInputType.name,
                     ),
@@ -164,13 +162,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _familyNameControlller,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
-                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+                        MinLength(3, "يجب ان ييكون 3 أحرف علي الاقل"),
 
                         // IsOptional(),
                         MaxLength(30),
                       ]),
                       textInputFormatter: [
-                        FilteringTextInputFormatter.allow(RegExp('[a-zA-Zء-ي]')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[a-zA-Zء-ي]')),
                       ],
                       type: TextInputType.name,
                     ),
@@ -386,9 +385,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: "المدينة",
                       controller: _city,
                       validator: qValidator([
-                         IsRequired(KeysConfig.thisFieldRequired),
-                     //   IsOptional(),
-                       // MinLength(3),
+                        IsRequired(KeysConfig.thisFieldRequired),
+                        //   IsOptional(),
+                        // MinLength(3),
                         MaxLength(30),
                       ]),
                       type: TextInputType.streetAddress,
@@ -402,7 +401,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: qValidator([
                       //  IsRequired(KeysConfig.thisFieldRequired),
                       IsOptional(),
-                      MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+                      MinLength(3, "يجب ان ييكون 3 أحرف علي الاقل"),
                       MaxLength(30),
                     ]),
                     type: TextInputType.streetAddress,
@@ -415,7 +414,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: qValidator(
                       [
                         IsRequired(KeysConfig.thisFieldRequired),
-                        MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+                        MinLength(3, "يجب ان ييكون 3 أحرف علي الاقل"),
                         MaxLength(30),
                       ],
                     ),
@@ -423,7 +422,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   CustomTextField(
                     read: true,
-
                     dIcon: Icons.location_city_rounded,
                     label: "الجنسية",
                     hint: "الجنسية",
@@ -479,12 +477,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _entityNumberController,
                     validator: qValidator(
                       [
-                       // MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
+                        // MinLength(3,"يجب ان ييكون 3 أحرف علي الاقل"),
 
                         IsOptional(),
-                      //  IsRequired(KeysConfig.thisFieldRequired),
+                        //  IsRequired(KeysConfig.thisFieldRequired),
                         MaxLength(30),
-
                       ],
                     ),
                     textInputFormatter: [
@@ -523,7 +520,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                     type: TextInputType.text,
                   ),
-                 /* Container(
+                  /* Container(
                     height: context.height * 0.13,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
@@ -566,7 +563,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       CustomTextFieldPhoneCode(
                         read: true,
-
                         dIcon: Icons.key,
                         hint: "مثال : +966",
                         label: "كود الدولة",
@@ -580,7 +576,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           showCountryPicker(
                             context: context,
                             exclude: <String>['ar', 'EG'],
-                            favorite: <String>['SA','EG'],
+                            favorite: <String>['SA', 'EG'],
                             showPhoneCode: true,
                             onSelect: (Country country) {
                               setState(() {
@@ -601,7 +597,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 prefixIcon: const Icon(Icons.search),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                    color: const Color(0xFF8C98A8)
+                                        .withOpacity(0.2),
                                   ),
                                 ),
                               ),
@@ -610,14 +607,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                       CustomTextFieldPhone(
-                        hint: KeysConfig.phoneNumber ,
+                        hint: KeysConfig.phoneNumber,
                         dIcon: Icons.phone,
-                        label: KeysConfig.phoneNumber ,
+                        label: KeysConfig.phoneNumber,
                         controller: _phoneController,
                         validator: qValidator([
-                          IsRequired(KeysConfig.thisFieldRequired ),
-                          MinLength(10,"يجب ان يكون الحد الأدني 10 أرقام "),
-
+                          IsRequired(KeysConfig.thisFieldRequired),
+                          MinLength(10, "يجب ان يكون الحد الأدني 10 أرقام "),
                           MaxLength(30),
                         ]),
                         type: TextInputType.phone,
@@ -625,8 +621,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                         ],
                       ),
-
-
                     ],
                   ),
 

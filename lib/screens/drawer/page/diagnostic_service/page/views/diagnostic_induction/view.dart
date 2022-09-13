@@ -2,10 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:tal3thoom/config/keys.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../widgets/appBar.dart';
@@ -13,20 +11,17 @@ import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../../widgets/video_items.dart';
 import '../../../../../view.dart';
-import '../diagnostic_payment/view.dart';
 import 'cubit/diagnostic_induction_cubit.dart';
 
 // ignore: must_be_immutable
 class InductionDiagnostic extends StatelessWidget {
-       
-  InductionDiagnostic({Key? key}) : super(key: key);
+  const InductionDiagnostic({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -85,11 +80,11 @@ class InductionDiagnostic extends StatelessWidget {
               ),
               MediaButton(
                 onPressed: () {
-
-               //   Get.to(()=>BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment() );
-                  BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment();
-                 // navigateTo(context,  BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment());
-                //Get.to(()=> DiagnosticPayment());
+                  //   Get.to(()=>BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment() );
+                  BlocProvider.of<DiagnosticPaymentCubit>(context)
+                      .checkDiagnosticPayment();
+                  // navigateTo(context,  BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment());
+                  //Get.to(()=> DiagnosticPayment());
                 },
                 title: KeysConfig.next,
               ),

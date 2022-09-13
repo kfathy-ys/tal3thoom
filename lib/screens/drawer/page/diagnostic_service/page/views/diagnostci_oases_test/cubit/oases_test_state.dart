@@ -4,8 +4,9 @@ part of 'oases_test_cubit.dart';
 abstract class OasesTestState {}
 
 class OasesTestInitial extends OasesTestState {}
-class OasesTestLoading extends OasesTestState {}
-class OasesTestSuccess extends OasesTestState {
 
-}
+class OasesTestLoading extends OasesTestState {}
+
+class OasesTestSuccess extends OasesTestState {}
+
 class OasesTestError extends OasesTestState {}

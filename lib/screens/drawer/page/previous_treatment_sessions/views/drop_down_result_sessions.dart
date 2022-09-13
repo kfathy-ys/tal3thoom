@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../widgets/constants.dart';
 
-
 class DropDownListResultSessions extends StatefulWidget {
   const DropDownListResultSessions({Key? key}) : super(key: key);
 
@@ -12,17 +11,18 @@ class DropDownListResultSessions extends StatefulWidget {
       _DropDownListResultSessionsState();
 }
 
-class _DropDownListResultSessionsState extends State<DropDownListResultSessions> {
+class _DropDownListResultSessionsState
+    extends State<DropDownListResultSessions> {
   String? dropdownValue;
 
   @override
   Widget build(BuildContext context) {
     //  // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      width: context.width*0.8,
+      width: context.width * 0.8,
       // height: height*0.09,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -76,7 +76,6 @@ class _DropDownListResultSessionsState extends State<DropDownListResultSessions>
             "الجلسه الثامن عشر",
             "الجلسه التاسع عشر",
             "الجلسه العشرون",
-
           ].map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,

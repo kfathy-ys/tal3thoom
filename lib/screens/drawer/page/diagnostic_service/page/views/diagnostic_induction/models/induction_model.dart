@@ -17,7 +17,7 @@ class InductionDiagnosticModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data["data"] = this.data?.toJson();
     }
@@ -59,7 +59,7 @@ class Data extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["stageId"] = stageId;
     data["stageDiagnosesId"] = stageDiagnosesId;
@@ -72,12 +72,12 @@ class Data extends Equatable {
   @override
   List<Object?> get props {
     return [
-        id,
-        stageId,
-        stageDiagnosesId,
-        instructionHeader,
-        instructionDetails,
-        videoUrl
-      ];
+      id,
+      stageId,
+      stageDiagnosesId,
+      instructionHeader,
+      instructionDetails,
+      videoUrl
+    ];
   }
 }

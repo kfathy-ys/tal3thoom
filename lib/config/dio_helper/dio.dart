@@ -23,7 +23,8 @@ abstract class NetWork {
     }
     return _dio;
   }
- static Response _validate(Response res) {
+
+  static Response _validate(Response res) {
     if (res.data['status'] == 0 ||
         res.data['status'] == -1 ||
         res.statusCode != 200) {
@@ -37,7 +38,7 @@ abstract class NetWork {
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-     final res =await _dio.get(
+    final res = await _dio.get(
       '/$url',
       queryParameters: queryParams,
       options: Options(headers: {
@@ -47,7 +48,7 @@ abstract class NetWork {
         ...?headers
       }),
     );
-     return _validate(res);
+    return _validate(res);
   }
 
   static Future<Response> delete(
@@ -113,7 +114,7 @@ abstract class NetWork {
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    final res =await _dio.post(
+    final res = await _dio.post(
       '/$url',
       data: body,
       queryParameters: queryParams,

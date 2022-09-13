@@ -14,13 +14,13 @@ class Question extends Equatable {
   final String? difficultyLevel;
   final String questionType;
   final String description;
+   bool isAnswred;
   final Object? hint;
   final Object? videoFile;
   final Object? audioFile;
   final Object? mark;
   final Object? tags;
   final Object? published;
-
   final Object? deleted;
   final int examId;
   final int categoryId;
@@ -28,9 +28,9 @@ class Question extends Equatable {
   final Object? exam;
   final Object? category;
   final Object? section;
- final List<Answers>  answers;
+  final List<Answers> answers;
 
-  const Question(
+   Question(
       {required this.id,
       required this.qype,
       required this.bankId,
@@ -48,7 +48,6 @@ class Question extends Equatable {
       required this.mark,
       required this.tags,
       required this.published,
-
       required this.deleted,
       required this.examId,
       required this.categoryId,
@@ -56,11 +55,12 @@ class Question extends Equatable {
       required this.exam,
       required this.category,
       required this.section,
-      required this.answers});
+      required this.answers,
+      this.isAnswred = false});
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
-        id: json["question"]["id"] ,
+        id: json["question"]["id"],
         qype: json["question"]["qype"],
         bankId: json["question"]["bankId"],
         language: json["question"]["language"],
@@ -84,9 +84,11 @@ class Question extends Equatable {
         exam: json["question"]["exam"],
         category: json["question"]["category"],
         section: json["question"]["section"],
-        answers:  json["question"]["answers"] ==null ? []: List.from( json["question"]["answers"])
-            .map((e) => Answers.fromJson(e))
-            .toList());
+        answers: json["question"]["answers"] == null
+            ? []
+            : List.from(json["question"]["answers"])
+                .map((e) => Answers.fromJson(e))
+                .toList());
   }
 
   @override
@@ -127,15 +129,17 @@ class Answers extends Equatable {
   final bool isOther;
   final Object? mark;
   final Object? altAnswers;
+   bool isAnswered;
 
-  const Answers(
+   Answers(
       {required this.id,
       required this.questionId,
       required this.answerOption,
       required this.isTrueAnswer,
       required this.isOther,
       required this.mark,
-      required this.altAnswers});
+      required this.altAnswers,
+       this.isAnswered= false});
 
   factory Answers.fromJson(Map<String, dynamic> json) {
     return Answers(
@@ -145,10 +149,36 @@ class Answers extends Equatable {
         isTrueAnswer: json["isTrueAnswer"],
         isOther: json["isOther"] ?? false,
         mark: json["mark"],
-        altAnswers: json["altAnswers"]);
+        altAnswers: json["altAnswers"],
+        isAnswered: false);
   }
 
   @override
   List<Object?> get props =>
       [id, questionId, answerOption, isTrueAnswer, isOther, mark, altAnswers];
+}
+
+class Message extends Equatable {
+  final String code;
+  final String body;
+  final String title;
+  final int type;
+  const Message({
+    required this.code,
+    required this.body,
+    required this.title,
+    required this.type,
+  });
+
+  factory Message.fromMap(Map<String, dynamic> map) {
+    return Message(
+      code: map['code'] as String,
+      body: map['body'] as String,
+      title: map['title'] as String,
+      type: map['type'].toInt() as int,
+    );
+  }
+
+  @override
+  List<Object> get props => [code, body, title, type];
 }

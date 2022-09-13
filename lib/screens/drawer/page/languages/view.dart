@@ -1,4 +1,3 @@
-
 import 'package:tal3thoom/screens/drawer/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +14,13 @@ import '../../../widgets/mediaButton.dart';
 
 // ignore: must_be_immutable
 class LanguagesScreen extends StatelessWidget {
-  LanguagesScreen({Key? key}) : super(key: key);
-
-     
+  const LanguagesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kAppBarColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -41,7 +37,7 @@ class LanguagesScreen extends StatelessWidget {
                 children: [
                   CustomTile(
                       widthh: context.width * 0.5,
-                      title: KeysConfig.languages ,
+                      title: KeysConfig.languages,
                       context: context),
                   SizedBox(
                     height: context.height * 0.4,
@@ -51,7 +47,7 @@ class LanguagesScreen extends StatelessWidget {
                       //navigateTo(context, Payment());
                       buildLanguageDialog(context);
                     },
-                    title: KeysConfig.changeLang ,
+                    title: KeysConfig.changeLang,
                   ),
                 ],
               ),
@@ -68,7 +64,7 @@ class LanguagesScreen extends StatelessWidget {
         builder: (builder) {
           return CupertinoAlertDialog(
               title: const Text(
-                KeysConfig.choosePreferredLanguage ,
+                KeysConfig.choosePreferredLanguage,
                 style: TextStyle(
                     fontFamily: 'DinBold', fontSize: 16, color: kPrimaryColor),
               ),

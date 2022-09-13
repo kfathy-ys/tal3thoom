@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'constants.dart';
 
@@ -17,7 +16,7 @@ dynamic openImagePicker(
         return CupertinoActionSheet(
           cancelButton: CupertinoButton(
             child: Text(
-              "cancel" ,
+              "cancel",
               style: _textStyle,
             ),
             onPressed: () => Navigator.of(context).pop(),
@@ -34,7 +33,7 @@ dynamic openImagePicker(
                       width: 20,
                     ),
                     Text(
-                      "camera" ,
+                      "camera",
                       style: _textStyle,
                     ),
                   ],
@@ -51,7 +50,7 @@ dynamic openImagePicker(
                       width: 20,
                     ),
                     Text(
-                      "gallery" ,
+                      "gallery",
                       style: _textStyle,
                     ),
                   ],

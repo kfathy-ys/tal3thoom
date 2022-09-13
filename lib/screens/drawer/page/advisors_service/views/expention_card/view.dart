@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../../../../../../../config/keys.dart';
 
 import '../../../../../widgets/constants.dart';
@@ -12,8 +11,10 @@ class AdvisorsService extends StatelessWidget {
 
   final VoidCallback onTapAppointmentReservation;
 
-  const AdvisorsService({super.key, required this.onTapInductions, required this.onTapAppointmentReservation});
-
+  const AdvisorsService(
+      {super.key,
+      required this.onTapInductions,
+      required this.onTapAppointmentReservation});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,7 @@ class AdvisorsService extends StatelessWidget {
         trailing: Image.asset(
           "assets/images/yellow right arrow.png",
         ),
-        title: customText2(
-            title: "خدمة مستشارك في التخاطب", color: kHomeColor),
+        title: customText2(title: "خدمة مستشارك في التخاطب", color: kHomeColor),
         children: [
           Container(
             height: context.height * 0.08,
@@ -41,8 +41,7 @@ class AdvisorsService extends StatelessWidget {
                     width: 10,
                   ),
                   customText4(
-                      title: KeysConfig.IntroductionService ,
-                      color: kBlackText),
+                      title: KeysConfig.IntroductionService, color: kBlackText),
                 ],
               ),
             ),
@@ -60,7 +59,7 @@ class AdvisorsService extends StatelessWidget {
                     width: 10,
                   ),
                   customText4(
-                      title: KeysConfig.BookSpecialist , color: kBlackText),
+                      title: KeysConfig.BookSpecialist, color: kBlackText),
                 ],
               ),
             ),

@@ -6,7 +6,6 @@ import 'package:meta/meta.dart';
 import 'package:tal3thoom/screens/widgets/alerts.dart';
 
 import '../../../../config/dio_helper/dio.dart';
-import '../../../widgets/date_convertors.dart';
 
 part 'register_state.dart';
 
@@ -29,14 +28,12 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String phoneNumber,
-
     required String countryPhoneCode,
     required String birthDate,
     required String nationality,
     required String country,
     required String city,
     required String workPlace,
-
   }) async {
     emit(RegisterLoading());
     try {
@@ -53,7 +50,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           "phoneNumber": phoneNumber,
           "countryPhoneCode": countryPhoneCode,
           "gender": typeSexId,
-          "birthDate":  birthDate,
+          "birthDate": birthDate,
           "nationality": nationality,
           "idCardNumber": "",
           "country": country,

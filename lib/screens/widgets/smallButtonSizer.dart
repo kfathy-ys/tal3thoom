@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -32,31 +31,30 @@ class SmallButtonSizer extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 14,
         width: MediaQuery.of(context).size.width / 3,
         decoration: BoxDecoration(
-            color: color ?? Colors.white,
-            borderRadius: BorderRadius.circular(10),
-           border: Border.all(color: color!, width: 1.5),
-
+          color: color ?? Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: color!, width: 1.5),
         ),
         child: Center(
           child: isLoading != true
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset(image!),
-              // SizedBox(width: width*0.02,),
-              Text(title!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'DinBold',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12)),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(image!),
+                    // SizedBox(width: width*0.02,),
+                    Text(title!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'DinBold',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12)),
+                  ],
+                )
               : SpinKitChasingDots(
-            size: 20,
-            color: loadingColor ?? Colors.white,
-          ),
+                  size: 20,
+                  color: loadingColor ?? Colors.white,
+                ),
         ),
       ),
     );

@@ -95,127 +95,132 @@ Widget customNormalText({required BuildContext context, String? title}) {
   );
 }
 
-
-
-Widget CustomTileContainer({ required double widthh,required String title,required BuildContext context}){
+Widget CustomTileContainer(
+    {required double widthh,
+    required String title,
+    required BuildContext context}) {
   double height = MediaQuery.of(context).size.height;
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 10),
     width: widthh,
-    height:height*0.06 ,
+    height: height * 0.06,
     decoration: BoxDecoration(
       color: kHomeColor,
-        borderRadius: BorderRadius.circular(30),
-    border: Border.all(color: kRoundBorderColor),
+      borderRadius: BorderRadius.circular(30),
+      border: Border.all(color: kRoundBorderColor),
     ),
     child: Center(
       child: customText4(title: title, color: kPrimaryColor),
     ),
   );
 }
-Widget CustomTile({ required double widthh,required String title,required BuildContext context}){
+
+Widget CustomTile(
+    {required double widthh,
+    required String title,
+    required BuildContext context}) {
   double height = MediaQuery.of(context).size.height;
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 10),
     width: widthh,
-    height:height*0.06 ,
+    height: height * 0.06,
     decoration: BoxDecoration(
       color: kHomeColor,
-        borderRadius: BorderRadius.circular(30),
-    border: Border.all(color: kPrimaryColor),
+      borderRadius: BorderRadius.circular(30),
+      border: Border.all(color: kPrimaryColor),
     ),
     child: Center(
       child: customText4(title: title, color: kPrimaryColor),
     ),
   );
 }
-Widget CustomCurvedContainer({required String title}){
+
+Widget CustomCurvedContainer({required String title}) {
   // double height = MediaQuery.of(context).size.height;
   // double width = MediaQuery.of(context).size.width;
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 10),
-    width: Get.width/1.8,
-    height:Get.height*0.075 ,
+    width: Get.width / 1.8,
+    height: Get.height * 0.075,
     decoration: const BoxDecoration(
       color: kPrimaryColor,
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(6),bottomLeft: Radius.circular(6),
-            bottomRight: Radius.circular(20),topLeft: Radius.circular(20)),
-   // border: Border.all(color: kRoundBorderColor),
+      borderRadius: BorderRadius.only(
+          topRight: Radius.circular(6),
+          bottomLeft: Radius.circular(6),
+          bottomRight: Radius.circular(20),
+          topLeft: Radius.circular(20)),
+      // border: Border.all(color: kRoundBorderColor),
     ),
     child: Center(
       child: customText4(title: title, color: kHomeColor),
     ),
   );
 }
+
 Widget customMeduimBoldText(String? title) {
   return Text(title!,
       style: const TextStyle(
           color: kRoundBorderColor, fontSize: 18, fontFamily: 'NeoSansBold'));
 }
-Widget custom12Text({required String title ,required Color color}) {
-  return Text(title,
-      style:  TextStyle(
-          color: color, fontSize: 10, fontFamily: 'DinBold'));
-}
-Widget customBoldText({required String title ,required Color color}) {
-  return Text(title,
-      style:  TextStyle(
-          color: color, fontSize: 18, fontFamily: 'DinBold'));
-}
-Widget customText2({required String title ,required Color color}) {
-  return Text(title,
-      style:  TextStyle(
-          color: color, fontSize: 18, fontFamily: 'DinBold'));
-}
-Widget customText3({required String title ,required Color color}) {
-  return Text(title,
-      style:  TextStyle(
-          color: color, fontSize: 14, fontFamily: 'DinLight'));
-}
-Widget customText4({required String title ,required Color color}) {
-  return Text(title,
-      textAlign: TextAlign.center,
-      style:  TextStyle(
 
-          color: color, fontSize: 16, fontFamily: 'DinMedium'));
-}
-Widget customText10({required String title ,required Color color}) {
+Widget custom12Text({required String title, required Color color}) {
   return Text(title,
-      textAlign: TextAlign.center,
-      style:  TextStyle(
-
-          color: color, fontSize: 14, fontFamily: 'DinMedium'));
+      style: TextStyle(color: color, fontSize: 10, fontFamily: 'DinBold'));
 }
 
-
-Widget customText5({required String title ,required Color color}) {
+Widget customBoldText({required String title, required Color color}) {
   return Text(title,
-      style:  TextStyle(
-          color: color, fontSize: 30, fontFamily: 'DinBold'));
-}
-Widget customText6({required String title ,required Color color}) {
-  return Text(title,
-      style:  TextStyle(
-          color: color, fontSize: 18, fontFamily: 'DinBold'));
-}
-Widget customText7({required String title ,required Color color}) {
-  return Text(title,
-      textAlign: TextAlign.center,
-      style:  TextStyle(
-          color: color, fontSize: 14, fontFamily: 'DinBold'));
-}Widget customText8({required String title ,required Color color}) {
-  return Text(title,
-      textAlign: TextAlign.center,
-      style:  TextStyle(
-          color: color, fontSize: 17, fontFamily: 'DinReguler'));
+      style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
 }
 
-Widget customText9({required String title ,required Color color}) {
+Widget customText2({required String title, required Color color}) {
+  return Text(title,
+      style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
+}
+
+Widget customText3({required String title, required Color color}) {
+  return Text(title,
+      style: TextStyle(color: color, fontSize: 14, fontFamily: 'DinLight'));
+}
+
+Widget customText4({required String title, required Color color}) {
   return Text(title,
       textAlign: TextAlign.center,
-      style:  TextStyle(
-          color: color, fontSize: 15, fontFamily: 'DinReguler'));
+      style: TextStyle(color: color, fontSize: 16, fontFamily: 'DinMedium'));
+}
+
+Widget customText10({required String title, required Color color}) {
+  return Text(title,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: color, fontSize: 14, fontFamily: 'DinMedium'));
+}
+
+Widget customText5({required String title, required Color color}) {
+  return Text(title,
+      style: TextStyle(color: color, fontSize: 30, fontFamily: 'DinBold'));
+}
+
+Widget customText6({required String title, required Color color}) {
+  return Text(title,
+      style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
+}
+
+Widget customText7({required String title, required Color color}) {
+  return Text(title,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: color, fontSize: 14, fontFamily: 'DinBold'));
+}
+
+Widget customText8({required String title, required Color color}) {
+  return Text(title,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: color, fontSize: 17, fontFamily: 'DinReguler'));
+}
+
+Widget customText9({required String title, required Color color}) {
+  return Text(title,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: color, fontSize: 15, fontFamily: 'DinReguler'));
 }
 
 void showAlertDialog(BuildContext context, VoidCallback onTap) {
@@ -231,7 +236,7 @@ void showAlertDialog(BuildContext context, VoidCallback onTap) {
                     onTap();
                     Get.back();
                   },
-                  child: const Text("yes" )),
+                  child: const Text("yes")),
               CupertinoDialogAction(
                   textStyle: const TextStyle(color: Colors.red),
                   isDefaultAction: true,
@@ -241,7 +246,7 @@ void showAlertDialog(BuildContext context, VoidCallback onTap) {
                     //prefs.remove('isLogin');
                     Navigator.pop(context);
                   },
-                  child: const Text("no" )),
+                  child: const Text("no")),
             ],
           ));
 }
@@ -283,8 +288,6 @@ spaceW(double width) {
   return SizedBox(width: width);
 }
 
-
-
 void archiveClientsActions(
   BuildContext context, {
   required double height,
@@ -318,8 +321,7 @@ void archiveClientsActions(
                     height: context.height * 0.01,
                   ),
                   classificationContainer(context.height, context.width,
-                      onTap: onTapToArchive,
-                      classificationName: 'إلي الأرشيف'),
+                      onTap: onTapToArchive, classificationName: 'إلي الأرشيف'),
                   classificationContainer(height, width,
                       onTap: onTapConnectedDone,
                       classificationName: 'تم التواصل'),
@@ -496,7 +498,7 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
             textStyle: const TextStyle(color: Colors.red),
             isDefaultAction: true,
             onPressed: () {
-             // Get.offAll(() => LoginScreen());
+              // Get.offAll(() => LoginScreen());
             },
             child: const Text(
               "تسجيل الدخول",
@@ -543,7 +545,7 @@ Future<bool> CustomDialog(
                   onPressed: () {
                     Navigator.of(context).pop();
                     Prefs.getString("mark");
-                  //  Get.to(() => const BasicInfoScreen());
+                    //  Get.to(() => const BasicInfoScreen());
                   }),
             ],
           ));

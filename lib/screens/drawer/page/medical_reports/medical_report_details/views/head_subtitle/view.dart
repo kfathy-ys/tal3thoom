@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
-class HeadSubHead extends StatelessWidget {
 
+class HeadSubHead extends StatelessWidget {
   final String head1;
   final String head2;
   final String sunHead;
-  const HeadSubHead({Key? key, required this.head1, required this.head2, required this.sunHead}) : super(key: key);
+  const HeadSubHead(
+      {Key? key,
+      required this.head1,
+      required this.head2,
+      required this.sunHead})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Row(
@@ -38,5 +43,3 @@ class HeadSubHead extends StatelessWidget {
     );
   }
 }
-
-

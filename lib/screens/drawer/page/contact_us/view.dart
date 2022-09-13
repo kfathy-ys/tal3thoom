@@ -27,13 +27,11 @@ class ContactUsScreen extends StatelessWidget {
 
   ContactUsScreen({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -57,9 +55,8 @@ class ContactUsScreen extends StatelessWidget {
                 child: SizedBox(
                     height: context.height * 0.15,
                     child: InkWell(
-                        onTap: (){
-                           Launch.url(web);
-
+                        onTap: () {
+                          Launch.url(web);
                         },
                         child: Image.asset("assets/images/logoHeader.png"))),
               ),
@@ -70,8 +67,8 @@ class ContactUsScreen extends StatelessWidget {
               ),
               FadeInLeft(
                 child: InkWell(
-                  onTap: (){
-                  // Launch.url(email);
+                  onTap: () {
+                    // Launch.url(email);
 
                     _launchURL();
                   },
@@ -83,15 +80,15 @@ class ContactUsScreen extends StatelessWidget {
               ),
               FadeInLeft(
                 child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       _launchPhoneURL(phone);
                     },
                     child: Image.asset("assets/images/phone_new.png")),
               ),
               FadeInLeft(
                 child: InkWell(
-                  onTap: (){
-                   // Launch.url(phone);
+                  onTap: () {
+                    // Launch.url(phone);
 
                     _urlWhatApp();
                   },
@@ -100,9 +97,10 @@ class ContactUsScreen extends StatelessWidget {
                     child: Image.asset("assets/images/whatsapp_new.png"),
                   ),
                 ),
-              ),  FadeInRightBig(
+              ),
+              FadeInRightBig(
                 child: InkWell(
-                  onTap: (){
+                  onTap: () {
                     Launch.url(location);
                   },
                   child: Padding(
@@ -122,25 +120,26 @@ class ContactUsScreen extends StatelessWidget {
                       child: Image.asset("assets/images/map.jpeg")),
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
   }
+
   void _launchURL() async {
     final Uri params = Uri(
-     // scheme: 'mailto',
+      // scheme: 'mailto',
       path: email,
     );
-    String  url = params.toString();
+    String url = params.toString();
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      print( 'Could not launch $url');
+      print('Could not launch $url');
     }
   }
+
   _launchPhoneURL(String phoneNumber) async {
     String url = 'tel:' + phoneNumber;
     Launch.url(url);

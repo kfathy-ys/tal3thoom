@@ -7,12 +7,10 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/ques
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-import 'package:tal3thoom/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
-import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
@@ -28,15 +26,13 @@ class SecondTreatmentSSI4 extends StatefulWidget {
 }
 
 class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
-       
   final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -45,7 +41,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: context.height,
-        width: context.width ,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
@@ -53,18 +49,15 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
               CustomTileContainer(
                   title: "إختبار SSI-4",
                   widthh: context.width * 0.5,
-
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/Fourth test1.png"),
               ),
 
-
-
               SizedBox(
-                width: context.width*0.8,
-                height:context. height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -94,8 +87,8 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                     child: Image.asset("assets/images/Earphone.png"),
                   )),
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -118,9 +111,12 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, const SecondTreatmentSSI4Two(),);
+                  navigateTo(
+                    context,
+                    const SecondTreatmentSSI4Two(),
+                  );
                 },
-                title:"متابعة",
+                title: "متابعة",
               ),
               buildSizedBox(context.height),
             ],
@@ -129,6 +125,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
       ),
     );
   }
+
   dynamic video;
 
   File? _file1;
@@ -155,8 +152,6 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
   }
 }
 
-
-  SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
-
+SizedBox buildSizedBox(double height) => SizedBox(
+      height: height * 0.05,
+    );

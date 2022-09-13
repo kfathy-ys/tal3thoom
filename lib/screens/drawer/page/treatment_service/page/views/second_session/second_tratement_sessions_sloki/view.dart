@@ -7,12 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:queen/queen.dart';
 import 'package:video_player/video_player.dart';
 
-
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
-import '../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
@@ -24,18 +21,19 @@ class SecondTreatmentSessionsSlokiScreen extends StatefulWidget {
   const SecondTreatmentSessionsSlokiScreen({Key? key}) : super(key: key);
 
   @override
-  State<SecondTreatmentSessionsSlokiScreen> createState() => _SecondTreatmentSessionsSlokiScreenState();
+  State<SecondTreatmentSessionsSlokiScreen> createState() =>
+      _SecondTreatmentSessionsSlokiScreenState();
 }
 
-class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSessionsSlokiScreen> {
-         final _firstController = TextEditingController();
+class _SecondTreatmentSessionsSlokiScreenState
+    extends State<SecondTreatmentSessionsSlokiScreen> {
+  final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -51,7 +49,7 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTileContainer(
-                    widthh: context.width *0.6,
+                    widthh: context.width * 0.6,
                     title: "الجلسة العلاجية السادسة عشر",
                     context: context),
                 Padding(
@@ -81,18 +79,33 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
                   validator: qValidator([IsRequired("thisFieldRequired")]),
                   context: context,
                 ),
-
-                SizedBox(height: context.height*0.05,),
-                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                const BuildTable(color: kAppBarColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                const BuildTable(color: kHomeColor , title1: "مثال1" , title2: "مثال1" ,title3: "مثال1"),
-                SizedBox(height: context.height*0.05,),
-
+                SizedBox(
+                  height: context.height * 0.05,
+                ),
+                const BuildTable(
+                    color: kHomeColor,
+                    title1: "مثال1",
+                    title2: "مثال1",
+                    title3: "مثال1"),
+                const BuildTable(
+                    color: kAppBarColor,
+                    title1: "مثال1",
+                    title2: "مثال1",
+                    title3: "مثال1"),
+                const BuildTable(
+                    color: kHomeColor,
+                    title1: "مثال1",
+                    title2: "مثال1",
+                    title3: "مثال1"),
+                SizedBox(
+                  height: context.height * 0.05,
+                ),
                 CustomButton(
                   color: kPrimaryColor,
                   title: "متابعة",
                   onPressed: () {
-                    navigateTo(context, const SecondTreatmentSessionEvaluation());
+                    navigateTo(
+                        context, const SecondTreatmentSessionEvaluation());
                   },
                 ),
               ]),
@@ -100,8 +113,6 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
       ),
     );
   }
-
-
 
   dynamic video;
 
@@ -128,4 +139,3 @@ class _SecondTreatmentSessionsSlokiScreenState extends State<SecondTreatmentSess
     }
   }
 }
-

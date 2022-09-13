@@ -18,11 +18,12 @@ class SecondStageSSRSTreatmentScreen extends StatefulWidget {
   const SecondStageSSRSTreatmentScreen({Key? key}) : super(key: key);
 
   @override
-  State<SecondStageSSRSTreatmentScreen> createState() => _SecondStageSSRSTreatmentScreenState();
+  State<SecondStageSSRSTreatmentScreen> createState() =>
+      _SecondStageSSRSTreatmentScreenState();
 }
 
-class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmentScreen> {
-       
+class _SecondStageSSRSTreatmentScreenState
+    extends State<SecondStageSSRSTreatmentScreen> {
   bool isPressed0 = false;
   bool isPressed1 = false;
   bool isPressed2 = false;
@@ -38,10 +39,9 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -57,7 +57,9 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTileContainer(
-                    widthh: context.width / 2, title: "إختبار SSRS", context: context),
+                    widthh: context.width / 2,
+                    title: "إختبار SSRS",
+                    context: context),
                 customText6(
                   title: "الإختبار التالت SSRS (أختبار الرضا الكلامي)",
                   color: kBlackText,
@@ -81,7 +83,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                   color: kPrimaryColor,
                 ),
                 Wrap(spacing: 15, runSpacing: 10, children: [
-                  cardNumber(context.width, context.height, title: "3", onTap: () {
+                  cardNumber(context.width, context.height, title: "3",
+                      onTap: () {
                     setState(() {
                       isPressed3 = !isPressed3;
                       Prefs.setBool("isClicked", true);
@@ -121,7 +124,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                     },
                     color: isPressed2 ? kPrimaryColor : kTextFieldColor,
                   ),
-                  cardNumber(context.width, context.height, title: "1", onTap: () {
+                  cardNumber(context.width, context.height, title: "1",
+                      onTap: () {
                     setState(() {
                       isPressed1 = !isPressed1;
                       Prefs.setBool("isClicked", true);
@@ -138,7 +142,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed1 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "0", onTap: () {
+                  cardNumber(context.width, context.height, title: "0",
+                      onTap: () {
                     setState(() {
                       isPressed0 = !isPressed0;
                       Prefs.setBool("isClicked", true);
@@ -155,7 +160,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed0 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "7", onTap: () {
+                  cardNumber(context.width, context.height, title: "7",
+                      onTap: () {
                     setState(() {
                       isPressed7 = !isPressed7;
                       Prefs.setBool("isClicked", true);
@@ -172,7 +178,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed7 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "6", onTap: () {
+                  cardNumber(context.width, context.height, title: "6",
+                      onTap: () {
                     setState(() {
                       isPressed6 = !isPressed6;
                       Prefs.setBool("isClicked", true);
@@ -189,7 +196,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed6 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "5", onTap: () {
+                  cardNumber(context.width, context.height, title: "5",
+                      onTap: () {
                     setState(() {
                       isPressed5 = !isPressed5;
                       Prefs.setBool("isClicked", true);
@@ -206,7 +214,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed5 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "4", onTap: () {
+                  cardNumber(context.width, context.height, title: "4",
+                      onTap: () {
                     setState(() {
                       isPressed4 = !isPressed4;
                       Prefs.setBool("isClicked", true);
@@ -223,7 +232,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed4 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "11", onTap: () {
+                  cardNumber(context.width, context.height, title: "11",
+                      onTap: () {
                     setState(() {
                       isPressed11 = !isPressed11;
                       Prefs.setBool("isClicked", true);
@@ -240,7 +250,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed4 = false;
                     });
                   }, color: isPressed11 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "10", onTap: () {
+                  cardNumber(context.width, context.height, title: "10",
+                      onTap: () {
                     setState(() {
                       isPressed10 = !isPressed10;
                       Prefs.setBool("isClicked", true);
@@ -257,7 +268,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed10 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "9", onTap: () {
+                  cardNumber(context.width, context.height, title: "9",
+                      onTap: () {
                     setState(() {
                       isPressed9 = !isPressed9;
                       Prefs.setBool("isClicked", true);
@@ -274,7 +286,8 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                       isPressed11 = false;
                     });
                   }, color: isPressed9 ? kPrimaryColor : kTextFieldColor),
-                  cardNumber(context.width, context.height, title: "8", onTap: () {
+                  cardNumber(context.width, context.height, title: "8",
+                      onTap: () {
                     setState(() {
                       isPressed8 = !isPressed8;
                       Prefs.setBool("isClicked", true);
@@ -292,14 +305,21 @@ class _SecondStageSSRSTreatmentScreenState extends State<SecondStageSSRSTreatmen
                     });
                   }, color: isPressed8 ? kPrimaryColor : kTextFieldColor),
                 ]),
-                CustomButton(color: kPrimaryColor,title: "متابعة",onPressed: (){
-
-                  navigateTo(context, SuccessView(title1: "لقد تم إنتهاء إختبار SSRS بنجاح",title2: "إنتقال إلي إختبار SSI-4",
-                    onTap: () {
-
-                      navigateTo(context, const SecondTreatmentSSI4());
-                    },));
-                },),
+                CustomButton(
+                  color: kPrimaryColor,
+                  title: "متابعة",
+                  onPressed: () {
+                    navigateTo(
+                        context,
+                        SuccessView(
+                          title1: "لقد تم إنتهاء إختبار SSRS بنجاح",
+                          title2: "إنتقال إلي إختبار SSI-4",
+                          onTap: () {
+                            navigateTo(context, const SecondTreatmentSSI4());
+                          },
+                        ));
+                  },
+                ),
               ]),
         ),
       ),

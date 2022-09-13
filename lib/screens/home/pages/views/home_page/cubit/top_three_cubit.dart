@@ -9,14 +9,13 @@ import '../models/model.dart';
 part 'top_three_state.dart';
 
 class TopThreeCubit extends Cubit<TopThreeState> {
-  TopThreeCubit() : super(TopThreeInitial()){
+  TopThreeCubit() : super(TopThreeInitial()) {
     getTopThree();
   }
   Future<void> getTopThree() async {
     emit(TopThreeLoading());
     try {
-      final res =
-      await NetWork.get('User/GetTopThreeRequestedRequests');
+      final res = await NetWork.get('User/GetTopThreeRequestedRequests');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -24,8 +23,7 @@ class TopThreeCubit extends Cubit<TopThreeState> {
         throw res.data['message'];
       }
 
-      emit(TopThreeSuccess(topThreeModels:
-      TopThreeModels.fromJson(res.data)));
+      emit(TopThreeSuccess(topThreeModels: TopThreeModels.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

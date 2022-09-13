@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 
 import 'constants.dart';
@@ -39,7 +38,8 @@ class CustomTextField extends StatefulWidget {
     this.eIcon,
     this.edit,
     this.isEdit,
-    this.line,  this.textInputFormatter,
+    this.line,
+    this.textInputFormatter,
   });
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -72,13 +72,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
           keyboardType: widget.type,
           onChanged: (widget.onsave),
-
-
-
           inputFormatters: widget.textInputFormatter,
-
-
-
           style: const TextStyle(fontSize: 14, color: kPrimaryColor),
           decoration: InputDecoration(
             hintText: widget.hint,
@@ -89,7 +83,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             //labelText: widget.label == true ? "+966" : null,
             labelText: widget.label,
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             // icon: widget.isEdit == true
             //     ? const Icon(
             //   Icons.edit,
@@ -106,24 +100,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
             suffixIcon: widget.icon == Icons.lock_outline
                 ? IconButton(
-              onPressed: _visibility,
-              alignment: Alignment.center,
-              icon: _isHidden
-                  ? const Icon(
-                Icons.visibility_off,
-                color: kBlackText,
-              )
-                  : const Icon(
-                Icons.visibility,
-                color: kBlackText,
-              ),
-            )
-                :  widget.isEdit == true
-                ? const Icon(
-              Icons.edit,
-              color: kPrimaryColor,
-            )
-                : null,
+                    onPressed: _visibility,
+                    alignment: Alignment.center,
+                    icon: _isHidden
+                        ? const Icon(
+                            Icons.visibility_off,
+                            color: kBlackText,
+                          )
+                        : const Icon(
+                            Icons.visibility,
+                            color: kBlackText,
+                          ),
+                  )
+                : widget.isEdit == true
+                    ? const Icon(
+                        Icons.edit,
+                        color: kPrimaryColor,
+                      )
+                    : null,
             filled: true,
 
             //prefixText: widget.hint,

@@ -108,11 +108,8 @@ class Data extends Equatable {
       ];
 }*/
 
-
-
-
 // ignore: must_be_immutable
-class LoginModel extends Equatable{
+class LoginModel extends Equatable {
   Data? data;
   List<dynamic>? messages;
   int? status;
@@ -125,33 +122,27 @@ class LoginModel extends Equatable{
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
-
-
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if(this.data != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
       data["data"] = this.data?.toJson();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
     data["dataLength"] = dataLength;
     return data;
-
-
-
   }
 
   @override
-
-  List<Object?> get props => [data, messages, status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
 // ignore: must_be_immutable
-class Data extends Equatable{
+class Data extends Equatable {
   String? userId;
   String? userName;
   String? firstName;
@@ -165,7 +156,19 @@ class Data extends Equatable{
   bool? isSso;
   String? phoneNumber;
 
-  Data({this.userId, this.userName, this.firstName, this.lastName, this.email, this.token, this.roleCode, this.rolesDetails, this.completeData, this.patientId, this.isSso, this.phoneNumber});
+  Data(
+      {this.userId,
+      this.userName,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.token,
+      this.roleCode,
+      this.rolesDetails,
+      this.completeData,
+      this.patientId,
+      this.isSso,
+      this.phoneNumber});
 
   Data.fromJson(Map<String, dynamic> json) {
     userId = json["userId"];
@@ -174,8 +177,13 @@ class Data extends Equatable{
     lastName = json["lastName"];
     email = json["email"];
     token = json["token"];
-    roleCode = json["roleCode"]==null ? null : List<String>.from(json["roleCode"]);
-    rolesDetails = json["rolesDetails"]==null ? null : (json["rolesDetails"] as List).map((e)=>RolesDetails.fromJson(e)).toList();
+    roleCode =
+        json["roleCode"] == null ? null : List<String>.from(json["roleCode"]);
+    rolesDetails = json["rolesDetails"] == null
+        ? null
+        : (json["rolesDetails"] as List)
+            .map((e) => RolesDetails.fromJson(e))
+            .toList();
     completeData = json["completeData"];
     patientId = json["patientId"];
     isSso = json["isSSO"];
@@ -183,17 +191,17 @@ class Data extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["userId"] = userId;
     data["userName"] = userName;
     data["firstName"] = firstName;
     data["lastName"] = lastName;
     data["email"] = email;
     data["token"] = token;
-    if(roleCode != null)
-      data["roleCode"] = roleCode;
-    if(rolesDetails != null)
-      data["rolesDetails"] = rolesDetails?.map((e)=>e.toJson()).toList();
+    if (roleCode != null) data["roleCode"] = roleCode;
+    if (rolesDetails != null) {
+      data["rolesDetails"] = rolesDetails?.map((e) => e.toJson()).toList();
+    }
     data["completeData"] = completeData;
     data["patientId"] = patientId;
     data["isSSO"] = isSso;
@@ -202,26 +210,24 @@ class Data extends Equatable{
   }
 
   @override
-
   List<Object?> get props => [
-    userId,
-    userName,
-    firstName,
-    lastName,
-    email,
-    token,
-    roleCode,
-    rolesDetails,
-    completeData,
-    patientId,
-    patientId,
-    isSso
-
-  ];
+        userId,
+        userName,
+        firstName,
+        lastName,
+        email,
+        token,
+        roleCode,
+        rolesDetails,
+        completeData,
+        patientId,
+        patientId,
+        isSso
+      ];
 }
 
 // ignore: must_be_immutable
-class RolesDetails extends Equatable{
+class RolesDetails extends Equatable {
   String? roleCode;
   String? enRoleName;
   dynamic? arRoleName;
@@ -235,7 +241,7 @@ class RolesDetails extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["roleCode"] = roleCode;
     data["enRoleName"] = enRoleName;
     data["arRoleName"] = arRoleName;
@@ -243,6 +249,5 @@ class RolesDetails extends Equatable{
   }
 
   @override
-
-  List<Object?> get props => [roleCode,enRoleName,arRoleName];
+  List<Object?> get props => [roleCode, enRoleName, arRoleName];
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 //import 'package:shimmer/shimmer.dart';
 
@@ -30,7 +29,6 @@ class Loading extends StatelessWidget {
 //   }
 // }
 
-
 // ignore: use_key_in_widget_constructors
 class LoadingSmall extends StatelessWidget {
   @override
@@ -57,6 +55,7 @@ class LoadingFadingCircle extends StatelessWidget {
     );
   }
 }
+
 class LoadingFadingCubeGrid extends StatelessWidget {
   const LoadingFadingCubeGrid({Key? key}) : super(key: key);
 

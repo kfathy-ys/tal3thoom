@@ -5,19 +5,15 @@ import '../../../../../widgets/constants.dart';
 import '../../../../view.dart';
 import 'views/profile_items.dart';
 
-
 // ignore: must_be_immutable
 class SpecializerProfile extends StatelessWidget {
-     
-
-  SpecializerProfile({Key? key}) : super(key: key);
+  const SpecializerProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -26,70 +22,57 @@ class SpecializerProfile extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           height: context.height,
-          width: context.width ,
-
+          width: context.width,
           child: Column(
-           // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomTileContainer(
-                  widthh:context.width * 0.6,
-                  title:"الملف الشخصي للمختص" ,
+                  widthh: context.width * 0.6,
+                  title: "الملف الشخصي للمختص",
                   context: context),
-
-
               Container(
                 color: kRoundBorderColor,
-                height: context.height*0.12,
-                width: context.width*0.8,
+                height: context.height * 0.12,
+                width: context.width * 0.8,
                 child: Center(
-                  child:
-                  Image.asset("assets/images/avater2.png"),
+                  child: Image.asset("assets/images/avater2.png"),
                 ),
               ),
-
               Container(
-                color: kAppBarColor,
-                height: context.height*0.3,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                width: context.width*0.8,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    ProfileItems(title:  "الأسم : " ,subTitle: "Mohamed Rashad"),
-                    ProfileItems(title:  "البريد الإلكتروني : " ,subTitle: ""),
-                    ProfileItems(title:  "سنوات الخبرة : " ,subTitle: ""),
-                    ProfileItems(title:  "التعليم : " ,subTitle: ""),
-                    ProfileItems(title:  "الوظيفة : " ,subTitle: ""),
-                    ProfileItems(title:  "تاريخ الميلاد : " ,subTitle: ""),
-                  ]
-
-                )
-              ),
+                  color: kAppBarColor,
+                  height: context.height * 0.3,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  width: context.width * 0.8,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        ProfileItems(
+                            title: "الأسم : ", subTitle: "Mohamed Rashad"),
+                        ProfileItems(
+                            title: "البريد الإلكتروني : ", subTitle: ""),
+                        ProfileItems(title: "سنوات الخبرة : ", subTitle: ""),
+                        ProfileItems(title: "التعليم : ", subTitle: ""),
+                        ProfileItems(title: "الوظيفة : ", subTitle: ""),
+                        ProfileItems(title: "تاريخ الميلاد : ", subTitle: ""),
+                      ])),
               Container(
-                color: kAppBarColor,
-                height: context.height*0.4,
-                margin: const EdgeInsets.symmetric(vertical: 8),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                width: context.width*0.8,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children:  const [
-                    ProfileItems(title:  "العنوان : " ,subTitle: ""),
-                    ProfileItems(title:  "جهة العمل : " ,subTitle: ""),
-                    ProfileItems(title:  "السيرة الذاتية : " ,subTitle: ""),
-                    ProfileItems(title:  "الجنسية : " ,subTitle: ""),
-                    ProfileItems(title:  "الجنس : " ,subTitle: ""),
-                    ProfileItems(title:  "رقم الهوية : " ,subTitle: ""),
-                    ProfileItems(title:  "سعر جلسة مستشارك : " ,subTitle: ""),
-                  ]
-
-                )
-              ),
-
-
-
-
-
+                  color: kAppBarColor,
+                  height: context.height * 0.4,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  width: context.width * 0.8,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        ProfileItems(title: "العنوان : ", subTitle: ""),
+                        ProfileItems(title: "جهة العمل : ", subTitle: ""),
+                        ProfileItems(title: "السيرة الذاتية : ", subTitle: ""),
+                        ProfileItems(title: "الجنسية : ", subTitle: ""),
+                        ProfileItems(title: "الجنس : ", subTitle: ""),
+                        ProfileItems(title: "رقم الهوية : ", subTitle: ""),
+                        ProfileItems(
+                            title: "سعر جلسة مستشارك : ", subTitle: ""),
+                      ])),
             ],
           ),
         ),
@@ -97,8 +80,7 @@ class SpecializerProfile extends StatelessWidget {
     );
   }
 
-
   SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
+        height: height * 0.05,
+      );
 }

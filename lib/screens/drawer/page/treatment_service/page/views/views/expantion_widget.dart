@@ -48,8 +48,8 @@ class TreatmentServiceExpansion extends StatelessWidget {
         trailing: Image.asset(
           "assets/images/yellow right arrow.png",
         ),
-        title: customText2(
-            title: KeysConfig.treatmentService , color: kHomeColor),
+        title:
+            customText2(title: KeysConfig.treatmentService, color: kHomeColor),
         children: [
           Container(
             height: context.height * 0.08,
@@ -61,8 +61,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                   Image.asset("assets/images/book.png"),
                   buildSizedBox(),
                   customText4(
-                      title: KeysConfig.IntroductionService ,
-                      color: kBlackText),
+                      title: KeysConfig.IntroductionService, color: kBlackText),
                 ],
               ),
             ),
@@ -76,8 +75,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/wallet.png"),
                   buildSizedBox(),
-                  customText4(
-                      title: KeysConfig.payment , color: kBlackText),
+                  customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
             ),
@@ -92,7 +90,8 @@ class TreatmentServiceExpansion extends StatelessWidget {
                   Image.asset("assets/images/paper.png"),
                   buildSizedBox(),
                   customText4(
-                      title: KeysConfig.PretreatmentQuestionnaire , color: kBlackText),
+                      title: KeysConfig.PretreatmentQuestionnaire,
+                      color: kBlackText),
                 ],
               ),
             ),
@@ -107,7 +106,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/1 . treatment.png"),
                   buildSizedBox(),
-                  customText4(title: KeysConfig.first , color: kBlackText),
+                  customText4(title: KeysConfig.first, color: kBlackText),
                 ],
               ),
               children: [
@@ -121,7 +120,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/Documents.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.therapeuticSessions ,
+                            title: KeysConfig.therapeuticSessions,
                             color: kBlackText),
                       ],
                     ),
@@ -137,8 +136,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/square question.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.testOases ,
-                            color: kBlackText),
+                            title: KeysConfig.testOases, color: kBlackText),
                       ],
                     ),
                   ),
@@ -153,7 +151,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/circular question.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.testSSRS , color: kBlackText),
+                            title: KeysConfig.testSSRS, color: kBlackText),
                       ],
                     ),
                   ),
@@ -167,8 +165,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                       children: [
                         Image.asset("assets/images/paper.png"),
                         buildSizedBox(),
-                        customText4(
-                            title: KeysConfig.test4 , color: kBlackText),
+                        customText4(title: KeysConfig.test4, color: kBlackText),
                       ],
                     ),
                   ),
@@ -183,7 +180,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/addition.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.BookSpecialist ,
+                            title: KeysConfig.BookSpecialist,
                             color: kBlackText),
                       ],
                     ),
@@ -202,7 +199,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/2 . treatment.png"),
                   buildSizedBox(),
-                  customText4(title: KeysConfig.second , color: kBlackText),
+                  customText4(title: KeysConfig.second, color: kBlackText),
                 ],
               ),
               children: [
@@ -216,7 +213,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/Documents.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.therapeuticSessions ,
+                            title: KeysConfig.therapeuticSessions,
                             color: kBlackText),
                       ],
                     ),
@@ -232,8 +229,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/square question.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.testOases ,
-                            color: kBlackText),
+                            title: KeysConfig.testOases, color: kBlackText),
                       ],
                     ),
                   ),
@@ -248,7 +244,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/circular question.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.testSSRS , color: kBlackText),
+                            title: KeysConfig.testSSRS, color: kBlackText),
                       ],
                     ),
                   ),
@@ -262,8 +258,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                       children: [
                         Image.asset("assets/images/paper.png"),
                         buildSizedBox(),
-                        customText4(
-                            title: KeysConfig.test4 , color: kBlackText),
+                        customText4(title: KeysConfig.test4, color: kBlackText),
                       ],
                     ),
                   ),
@@ -278,7 +273,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                         Image.asset("assets/images/addition.png"),
                         buildSizedBox(),
                         customText4(
-                            title: KeysConfig.BookSpecialist ,
+                            title: KeysConfig.BookSpecialist,
                             color: kBlackText),
                       ],
                     ),

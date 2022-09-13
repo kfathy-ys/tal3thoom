@@ -19,8 +19,8 @@ class MyHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Card(
       //color: Colors.pinkAccent,
       child: Stack(
@@ -37,7 +37,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object1");
-                        navigateTo(context, InductionDiagnostic());
+                        navigateTo(context, const InductionDiagnostic());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
@@ -79,7 +79,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object4");
-                        navigateTo(context, AdviserInduction());
+                        navigateTo(context, const AdviserInduction());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),

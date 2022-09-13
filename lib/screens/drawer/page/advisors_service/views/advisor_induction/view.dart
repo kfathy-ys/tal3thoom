@@ -8,24 +8,17 @@ import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
 import '../../../../../widgets/video_items.dart';
 import '../../../../view.dart';
-import 'package:get/get.dart';
 import '../Reservation_appointment/view.dart';
-
-
-
 
 // ignore: must_be_immutable
 class AdviserInduction extends StatelessWidget {
-       
-
-  AdviserInduction({Key? key}) : super(key: key);
+  const AdviserInduction({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -33,23 +26,21 @@ class AdviserInduction extends StatelessWidget {
           press: (context) => Scaffold.of(context).openDrawer()),
       body: SizedBox(
         height: context.height,
-        width: context.width ,
-
+        width: context.width,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTileContainer(
                   widthh: context.width * 0.5,
-                  title: KeysConfig.definationDiag ,
+                  title: KeysConfig.definationDiag,
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/advisorInduction.png"),
               ),
-
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -58,7 +49,7 @@ class AdviserInduction extends StatelessWidget {
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, ReservationAppointmentScreen());
+                  navigateTo(context, const ReservationAppointmentScreen());
                 },
                 title: ("ابدأ"),
               ),
@@ -71,6 +62,6 @@ class AdviserInduction extends StatelessWidget {
   }
 
   SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
+        height: height * 0.05,
+      );
 }

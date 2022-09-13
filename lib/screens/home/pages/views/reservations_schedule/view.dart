@@ -4,22 +4,19 @@ import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/page/vi
 
 import '../../../../widgets/constants.dart';
 
-
 // ignore: must_be_immutable
 class ReservationsSchedule extends StatelessWidget {
-       
   const ReservationsSchedule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
-    return   Card(
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
+    return Card(
       color: kHomeColor,
       child: SizedBox(
         height: context.height,
-        width: context.width ,
-
+        width: context.width,
         child: Column(
           children: [
             CustomTileContainer(
@@ -31,19 +28,16 @@ class ReservationsSchedule extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemCount: 8,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context ,index){
+                itemBuilder: (context, index) {
                   return ReservationCard(
-                      onPressStart: (){},
-                      onPressEnd: (){},
+                      onPressStart: () {},
+                      onPressEnd: () {},
                       subTitleData: "2022-10-25",
                       subTitleDay: "السبت",
                       subTitleDataStart: "2022-10-16",
                       subTitleStartSessionData: "17:30",
                       subTitleTypeAppointment: "جلسة إستشارية",
                       subTitleEvaluation: "⭐⭐⭐");
-
-
-
                 },
               ),
             )
@@ -51,12 +45,5 @@ class ReservationsSchedule extends StatelessWidget {
         ),
       ),
     );
-
-
-
-
-
   }
-
-
 }

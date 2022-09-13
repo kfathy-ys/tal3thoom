@@ -25,14 +25,13 @@ class DiagnosticSSI4 extends StatefulWidget {
 }
 
 class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
-         final _firstController = TextEditingController();
+  final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -49,25 +48,20 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
               CustomTileContainer(
                   title: "أختبار SSI-4 ",
                   widthh: context.width * 0.5,
-
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/Fourth test1.png"),
               ),
-
-
-
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/word.png"),
@@ -81,8 +75,8 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                     child: Image.asset("assets/images/Earphone.png"),
                   )),
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -96,7 +90,8 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                 onPressed1: () {
                   _uploadFile(1);
                 },
-                validator: qValidator([IsRequired(KeysConfig.thisFieldRequired)]),
+                validator:
+                    qValidator([IsRequired(KeysConfig.thisFieldRequired)]),
                 context: context,
               ),
               Padding(
@@ -105,9 +100,12 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
               ),
               MediaButton(
                 onPressed: () {
-                 navigateTo(context, DiagnosticSSI4Two(),);
+                  navigateTo(
+                    context,
+                    DiagnosticSSI4Two(),
+                  );
                 },
-                title:"متابعة",
+                title: "متابعة",
               ),
               buildSizedBox(context.height),
             ],
@@ -143,9 +141,6 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
   }
 }
 
-
 SizedBox buildSizedBox(double height) => SizedBox(
-  height: height * 0.05,
-);
-
-
+      height: height * 0.05,
+    );

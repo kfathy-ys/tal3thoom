@@ -12,13 +12,11 @@ class UpdateProfileInputData {
       phoneNumber;
   var profilePic;
 
-
   /*
   * this.thesisData.append('jsonString', JSON.stringify(this.thesisDepositionRequest));
 */
 
   Map<String, dynamic> toJson() {
-
     var userId = Prefs.getString("userId");
     return {
       "firstName": firstName,

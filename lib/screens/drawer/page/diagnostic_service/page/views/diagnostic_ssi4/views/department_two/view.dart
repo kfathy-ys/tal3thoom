@@ -16,11 +16,6 @@ import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
-import '../../../../../../treatment_service/page/views/first_session/first_stage_additional_traning/view.dart';
-import '../../../../../../treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/view.dart';
-import '../../../../../../treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_one/view.dart';
-import '../../../../../../treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
-import '../../../../../../treatment_service/page/views/second_session/second_tratement_sessions_sloki/view.dart';
 import '../../../resevation_diagnostic/view.dart';
 import '../department_one/views/upload_video.dart';
 
@@ -31,14 +26,13 @@ class DiagnosticSSI4Two extends StatefulWidget {
 }
 
 class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
-         final _firstController = TextEditingController();
+  final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(

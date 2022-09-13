@@ -9,10 +9,8 @@ import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/network_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
 
 import '../auth/login/view.dart';
-import '../widgets/fast_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -57,15 +55,11 @@ class _SplashScreenState extends State<SplashScreen> {
                           MaterialPageRoute(
                               builder: (context) => const HomeTabScreen()),
                           (route) => false)
-
-
                       : Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  LoginScreen()),
+                              builder: (context) => LoginScreen()),
                           (route) => false),
-
-
                   child: Image.asset(
                     'assets/images/arrow splash icon.png',
                     scale: 1.2,

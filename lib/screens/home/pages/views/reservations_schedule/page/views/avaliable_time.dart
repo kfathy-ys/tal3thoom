@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 
-
 class AvailableTime extends StatefulWidget {
   const AvailableTime({Key? key}) : super(key: key);
 
@@ -31,7 +30,7 @@ class _AvailableTimeState extends State<AvailableTime> {
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount:5,
+        itemCount: 5,
         //widget.periods.length,
         itemBuilder: (context, int index) {
           return InkWell(
@@ -49,25 +48,21 @@ class _AvailableTimeState extends State<AvailableTime> {
                   // border: _selectedTimeId == widget.periods[index].id
                   //     ? Border.all(color: kHomeColor)
                   //     : Border.all(color: kButtonGreenDark),
-                  color: _selectedTimeId == 0
-                      ? kButtonGreenDark
-                      : kHomeColor,
+                  color: _selectedTimeId == 0 ? kButtonGreenDark : kHomeColor,
                   borderRadius: BorderRadius.circular(8)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                     "12:30 PM\t\t",
-                   // widget.periods[index].periodFrom ?? '',
+                    "12:30 PM\t\t",
+                    // widget.periods[index].periodFrom ?? '',
                     style: TextStyle(
-                      color: _selectedTimeId == 0
-                          ? kHomeColor
-                          : kButtonGreenDark,
+                      color:
+                          _selectedTimeId == 0 ? kHomeColor : kButtonGreenDark,
                       fontSize: 16,
                       fontFamily: "DinReguler",
                     ),
                   ),
-
                   const Text(
                     ' : ',
                     style: TextStyle(
@@ -78,16 +73,14 @@ class _AvailableTimeState extends State<AvailableTime> {
                   ),
                   Text(
                     "12:45 PM",
-                  //  widget.periods[index].periodTo ?? '',
+                    //  widget.periods[index].periodTo ?? '',
                     style: TextStyle(
-                      color: _selectedTimeId == 0
-                          ? kHomeColor
-                          : kButtonGreenDark,
+                      color:
+                          _selectedTimeId == 0 ? kHomeColor : kButtonGreenDark,
                       fontSize: 16,
                       fontFamily: "DinReguler",
                     ),
                   ),
-
                 ],
               ),
             ),

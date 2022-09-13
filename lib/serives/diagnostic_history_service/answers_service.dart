@@ -4,13 +4,13 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diag
 import '../../config/dio_helper/dio.dart';
 
 class AnswersService {
-  static Future<void> postAnswers({
+  static Future<Message?> postAnswers({
     required Map<Question, Answers> answers,
     required Map<Question, String> answersTxt,
   }) async {
     List<String> buildPatientAnswers(Question q) {
       final answer = answers[q];
-      if (answer == null|| answer.isOther) {
+      if (answer == null || answer.isOther) {
         return [answersTxt[q]!];
       }
       return [answers[q]!.answerOption.toString()];
@@ -18,7 +18,7 @@ class AnswersService {
 
     final userId = Prefs.getString("userId");
 
-    await NetWork.post(
+  final res =   await NetWork.post(
       'CaseHistory/AddCaseHistory2',
       body: <Question>{
         ...answers.keys,
@@ -35,6 +35,12 @@ class AnswersService {
           "patientAnswers": buildPatientAnswers(q)
         };
       }).toList(),
+    
     );
+    if (res.data['status'] == 1 ||
+        res.data['status'] == 200){
+      final _msg = Message.fromMap(res.data['messages'][0]);
+      return _msg;
+    }
   }
 }

@@ -1,8 +1,6 @@
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
-
 
 class DropDownListStatesOrders extends StatefulWidget {
   const DropDownListStatesOrders({Key? key}) : super(key: key);
@@ -18,7 +16,7 @@ class _DropDownListStatesOrdersState extends State<DropDownListStatesOrders> {
   @override
   Widget build(BuildContext context) {
     //   // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       margin: const EdgeInsets.symmetric(vertical: 10),

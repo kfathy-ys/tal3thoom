@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
-class FourTables extends StatelessWidget {
 
+class FourTables extends StatelessWidget {
   final Color textColor;
   final Color color;
   final String title1;
@@ -11,12 +11,21 @@ class FourTables extends StatelessWidget {
   final String title3;
   final String title4;
   final String title5;
-  const FourTables({Key? key, required this.textColor, required this.color, required this.title1, required this.title2, required this.title3, required this.title4, required this.title5}) : super(key: key);
+  const FourTables(
+      {Key? key,
+      required this.textColor,
+      required this.color,
+      required this.title1,
+      required this.title2,
+      required this.title3,
+      required this.title4,
+      required this.title5})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       height: context.height * 0.059,
       width: context.width,

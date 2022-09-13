@@ -3,7 +3,6 @@ import 'package:tal3thoom/screens/widgets/appBar.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
@@ -76,11 +75,8 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       },
     );
   }*/
-     
 
   @override
-
-
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
@@ -91,7 +87,6 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
         builder: (context, state) {
           final cubit = BlocProvider.of<HomeTabeBarCubit>(context);
           return Scaffold(
-            
             backgroundColor: kHomeColor,
             drawer: const MenuItems(),
             appBar: DynamicAppbar(
@@ -99,13 +94,13 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                 press: (context) => Scaffold.of(context).openDrawer()),
             body: cubit.widgetOptions.elementAt(cubit.index),
             bottomNavigationBar: CurvedNavigationBar(
-            //  key: cubit.bottomNavigationKey,
+              //  key: cubit.bottomNavigationKey,
               index: cubit.index,
               height: 50.0,
               items: <Widget>[
-                buildImage(  image: 'assets/images/Profile 1.png'),
-                buildImage( image: 'assets/images/main.png'),
-                buildImage(image:'assets/images/white calendar.png' ),
+                buildImage(image: 'assets/images/Profile 1.png'),
+                buildImage(image: 'assets/images/main.png'),
+                buildImage(image: 'assets/images/white calendar.png'),
               ],
               color: kDarkPrimaryColor,
               buttonBackgroundColor: kButtonGreenDark,
@@ -123,7 +118,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
 
   Image buildImage({required String image}) {
     return Image.asset(
-              image ,
-              );
+      image,
+    );
   }
 }

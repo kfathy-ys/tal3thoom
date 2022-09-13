@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import 'list_model.dart';
 
-
 enum Pages { one, two, three, four, five }
 
 class OurServicesContent {

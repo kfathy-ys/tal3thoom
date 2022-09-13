@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
 import '../../../../config/keys.dart';
 import '../../../widgets/constants.dart';
 
 enum TypeRead { Read, UnRead }
+
 class DropDownRead extends StatefulWidget {
   final String? initial;
   final ValueChanged<String> onChanged;
@@ -13,8 +13,7 @@ class DropDownRead extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<DropDownRead> createState() =>
-      _DropDownReadState();
+  State<DropDownRead> createState() => _DropDownReadState();
 }
 
 class _DropDownReadState extends State<DropDownRead> {
@@ -37,17 +36,17 @@ class _DropDownReadState extends State<DropDownRead> {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
-     // padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+      // padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
       width: MediaQuery.of(context).size.width / 1.2,
-     // height: height*0.079,
-     //  decoration: BoxDecoration(
-     //      borderRadius: BorderRadius.circular(8),
-     //      color: Colors.white,
-     //      border: Border.all(color: kPrimaryColor)),
+      // height: height*0.079,
+      //  decoration: BoxDecoration(
+      //      borderRadius: BorderRadius.circular(8),
+      //      color: Colors.white,
+      //      border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<TypeRead>(
           value: selected,
@@ -63,14 +62,14 @@ class _DropDownReadState extends State<DropDownRead> {
             ),
           ),
           validator: (value) {
-            if (value == null ) {
+            if (value == null) {
               return KeysConfig.thisFieldRequired;
             }
             return null;
           },
           decoration: InputDecoration(
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: kPrimaryColor, width: 1),
@@ -84,7 +83,6 @@ class _DropDownReadState extends State<DropDownRead> {
               borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(8),
             ),
-
           ),
           borderRadius: BorderRadius.circular(10),
           icon: Image.asset("assets/images/down arrow.png"),
@@ -108,8 +106,8 @@ class _DropDownReadState extends State<DropDownRead> {
               widget.onChanged(valueSelected!);
             });
           },
-          items: TypeRead.values
-              .map<DropdownMenuItem<TypeRead>>((TypeRead value) {
+          items:
+              TypeRead.values.map<DropdownMenuItem<TypeRead>>((TypeRead value) {
             return DropdownMenuItem<TypeRead>(
               value: value,
               child: Text(

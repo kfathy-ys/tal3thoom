@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'constants.dart';
 
@@ -54,7 +53,7 @@ class _CustomSmallTextFieldState extends State<CustomSmallTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-     margin: const EdgeInsets.symmetric(vertical: 12),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       // height: MediaQuery.of(context).size.height / 12,
       width: MediaQuery.of(context).size.width / 1.25,
       child: TextFormField(
@@ -68,8 +67,7 @@ class _CustomSmallTextFieldState extends State<CustomSmallTextField> {
         obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
         keyboardType: widget.type,
         onChanged: (widget.onsave),
-       textAlign: TextAlign.start,
-
+        textAlign: TextAlign.start,
         style: const TextStyle(fontSize: 14, color: kPrimaryColor),
         decoration: InputDecoration(
           hintText: widget.hint,
@@ -80,12 +78,11 @@ class _CustomSmallTextFieldState extends State<CustomSmallTextField> {
           ),
           //labelText: widget.label == true ? "+966" : null,
           labelText: widget.label,
-          contentPadding:
-           EdgeInsets.zero,
+          contentPadding: EdgeInsets.zero,
           icon: widget.isEdit == true
               ? const Icon(
-            Icons.edit,
-          )
+                  Icons.edit,
+                )
               : null,
           labelStyle: const TextStyle(
             fontSize: 16,
@@ -96,21 +93,21 @@ class _CustomSmallTextFieldState extends State<CustomSmallTextField> {
               fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
           suffixIcon: widget.icon == Icons.lock_outline
               ? IconButton(
-            onPressed: _visibility,
-            alignment: Alignment.center,
-            icon: _isHidden
-                ? const Icon(
-              Icons.visibility_off,
-              color: kTextColor,
-            )
-                : const Icon(
-              Icons.visibility,
-              color: kPrimaryColor,
-            ),
-          )
+                  onPressed: _visibility,
+                  alignment: Alignment.center,
+                  icon: _isHidden
+                      ? const Icon(
+                          Icons.visibility_off,
+                          color: kTextColor,
+                        )
+                      : const Icon(
+                          Icons.visibility,
+                          color: kPrimaryColor,
+                        ),
+                )
               : null,
           filled: true,
-         // prefixText: widget.hint,
+          // prefixText: widget.hint,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: kPrimaryColor, width: 1),

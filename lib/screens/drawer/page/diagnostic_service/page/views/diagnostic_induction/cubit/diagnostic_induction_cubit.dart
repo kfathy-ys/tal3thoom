@@ -13,7 +13,6 @@ class DiagnosticInductionCubit extends Cubit<DiagnosticInductionState> {
     getDiagnosticInduction();
   }
 
-
   Future<void> getDiagnosticInduction() async {
     emit(DiagnosticInductionLoading());
 
@@ -27,8 +26,8 @@ class DiagnosticInductionCubit extends Cubit<DiagnosticInductionState> {
       }
 
       emit(DiagnosticInductionSuccess(
-          inductionDiagnosticModel: InductionDiagnosticModel.fromJson(
-              res.data)));
+          inductionDiagnosticModel:
+              InductionDiagnosticModel.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

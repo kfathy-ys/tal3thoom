@@ -1,12 +1,10 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:tal3thoom/screens/auth/forget_password/view.dart';
 import 'package:tal3thoom/screens/auth/login/page/recovery_password.dart';
 import 'package:tal3thoom/screens/auth/register/view.dart';
 import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +28,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -50,11 +48,11 @@ class LoginScreen extends StatelessWidget {
             //     ));
 
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) =>   HomeTabScreen(
-                         userId: state.model.data!.userId!,
-                      )),
-                    (Route<dynamic> route) => false);
-
+                MaterialPageRoute(
+                    builder: (context) => HomeTabScreen(
+                          userId: state.model.data!.userId!,
+                        )),
+                (Route<dynamic> route) => false);
           } else if (state is LoginError) {
             // Alert.error(state.msg.toString());
             Alert.error(
@@ -109,7 +107,6 @@ class LoginScreen extends StatelessWidget {
                               const IsEmail("يجب أن يكون بريد الكتروني"),
                               MaxLength(30),
                             ]),
-
                             type: TextInputType.emailAddress,
                           ),
                         ),
@@ -150,7 +147,8 @@ class LoginScreen extends StatelessWidget {
                             : const LoadingFadingCircle(),
                         DoNotHave(
                           text: KeysConfig.signUpNow,
-                          route: () => navigateTo(context, const SignUpScreen()),
+                          route: () =>
+                              navigateTo(context, const SignUpScreen()),
                           have: KeysConfig.donHave,
                         )
                       ],

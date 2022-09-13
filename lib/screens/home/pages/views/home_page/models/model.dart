@@ -1,8 +1,7 @@
-
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class TopThreeModels extends Equatable{
+class TopThreeModels extends Equatable {
   List<TopThreeData>? data;
   List<dynamic>? messages;
   int? status;
@@ -11,7 +10,9 @@ class TopThreeModels extends Equatable{
   TopThreeModels({this.data, this.messages, this.status, this.dataLength});
 
   TopThreeModels.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=>TopThreeData.fromJson(e)).toList();
+    data = json["data"] == null
+        ? null
+        : (json["data"] as List).map((e) => TopThreeData.fromJson(e)).toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -19,10 +20,10 @@ class TopThreeModels extends Equatable{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
-      data["data"] = this.data?.map((e)=>e.toJson()).toList();
+    if (this.data != null) {
+      data["data"] = this.data?.map((e) => e.toJson()).toList();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -31,11 +32,10 @@ class TopThreeModels extends Equatable{
   }
 
   @override
-
-  List<Object?> get props => [data,dataLength,messages,status];
+  List<Object?> get props => [data, dataLength, messages, status];
 }
 
-class TopThreeData extends Equatable{
+class TopThreeData extends Equatable {
   int? code;
   String? requestName;
   int? requestsCount;
@@ -57,12 +57,11 @@ class TopThreeData extends Equatable{
   }
 
   @override
-
   List<Object?> get props {
-   return[
-    code,
-   requestName,
-    requestsCount,
-   ];
- }
+    return [
+      code,
+      requestName,
+      requestsCount,
+    ];
+  }
 }

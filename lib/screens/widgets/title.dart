@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 // ignore: non_constant_identifier_names
 Widget MainTitle(String title) {

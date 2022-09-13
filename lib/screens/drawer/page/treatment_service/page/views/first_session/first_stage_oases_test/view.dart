@@ -17,7 +17,6 @@ import '../../../../../diagnostic_service/page/views/diagnostci_oases_test/views
 import '../first_stage_ssrs_test/view.dart';
 import 'cubit/first_stage_oases_test_cubit.dart';
 
-
 class FirstStageOasesTest extends StatefulWidget {
   const FirstStageOasesTest({Key? key}) : super(key: key);
 
@@ -26,25 +25,15 @@ class FirstStageOasesTest extends StatefulWidget {
 }
 
 class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
-
-       
-
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return BlocConsumer<FirstStageOasesTestCubit, FirstStageOasesTestState>(
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = BlocProvider.of<FirstStageOasesTestCubit>(context);
         return Scaffold(
-          
           backgroundColor: kHomeColor,
           drawer: const MenuItems(),
           appBar: DynamicAppbar(
@@ -85,92 +74,90 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                   cubit.selectedGroupIndex != 0
                       ? const SizedBox.shrink()
                       : DepartmentCounter(
-                      head:
-                      "  معلومات عامة  (  ${cubit.index +
-                          1}  من ${sixQuestionsList.length} ) "),
+                          head:
+                              "  معلومات عامة  (  ${cubit.index + 1}  من ${sixQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 0
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(
-                      context.width,height, cubit, itemsList: sixQuestionsList),
+                      : customDepartmentWidget(context.width, height, cubit,
+                          itemsList: sixQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
-                    child: CustomButton(
-                        onPressed: () => cubit.nextQuestionsOne(),
-                        title: "الانتقال الي القسم التالي",
-                        color: kButtonGreenDark),
-                  )
+                          child: CustomButton(
+                              onPressed: () => cubit.nextQuestionsOne(),
+                              title: "الانتقال الي القسم التالي",
+                              color: kButtonGreenDark),
+                        )
                       : const SizedBox.shrink(),
-
 
                   /// TODO ::: DEPARTMENT 2
 
                   cubit.selectedGroupIndex != 1
                       ? const SizedBox.shrink()
                       : DepartmentCounter(
-                      head:
-                      "  معلومات عامة  (  ${cubit.index +
-                          1}  من ${fifthQuestionsList.length} ) "),
+                          head:
+                              "  معلومات عامة  (  ${cubit.index + 1}  من ${fifthQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 1
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      context.width, context.height, cubit, itemsList: fifthQuestionsList),
+                          context.width, context.height, cubit,
+                          itemsList: fifthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
-                    child: CustomButton(
-                        onPressed: () => cubit.nextQuestionsOne(),
-
-                        title: "الانتقال الي القسم التالي",
-                        color: kButtonGreenDark),
-                  )
+                          child: CustomButton(
+                              onPressed: () => cubit.nextQuestionsOne(),
+                              title: "الانتقال الي القسم التالي",
+                              color: kButtonGreenDark),
+                        )
                       : const SizedBox.shrink(),
 
                   /// TODO ::: DEPARTMENT 3
                   cubit.selectedGroupIndex != 2
                       ? const SizedBox.shrink()
                       : DepartmentCounter(
-                      head:
-                      "  معلومات عامة  (  ${cubit.index +
-                          1}  من ${forthQuestionsList.length} ) "),
+                          head:
+                              "  معلومات عامة  (  ${cubit.index + 1}  من ${forthQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 2
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      context.width, context.height, cubit, itemsList: forthQuestionsList),
+                          context.width, context.height, cubit,
+                          itemsList: forthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
-                    child: CustomButton(
-                        onPressed: () => cubit.nextQuestionsOne(),
-
-                        title: "الانتقال الي القسم التالي",
-                        color: kButtonGreenDark),
-                  )
+                          child: CustomButton(
+                              onPressed: () => cubit.nextQuestionsOne(),
+                              title: "الانتقال الي القسم التالي",
+                              color: kButtonGreenDark),
+                        )
                       : const SizedBox.shrink(),
-
 
                   /// TODO ::: DEPARTMENT 4
                   cubit.selectedGroupIndex != 3
                       ? const SizedBox.shrink()
                       : DepartmentCounter(
-                      head:
-                      "  معلومات عامة  (  ${cubit.index +
-                          1}  من ${thirdQuestionsList.length} ) "),
+                          head:
+                              "  معلومات عامة  (  ${cubit.index + 1}  من ${thirdQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 3
                       ? const SizedBox.shrink()
                       : customDepartmentWidget(
-                      context.width, context.height, cubit, itemsList: thirdQuestionsList),
+                          context.width, context.height, cubit,
+                          itemsList: thirdQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 3
                       ? Expanded(
-                    child: CustomButton(
-                        onPressed: () {
-                          navigateTo(context, SuccessView(
-                            title1: "لقد تم إنتهاء إختبار OASES بنجاح",
-                            title2: "إنتقال إلي إختبار SSRS",
-                            onTap: () =>
-                                navigateTo(context,
-                                    const FirstStageSSRSTreatmentScreen()),));
-                        },
-                        title: " التالي",
-                        color: kButtonGreenDark),
-                  )
+                          child: CustomButton(
+                              onPressed: () {
+                                navigateTo(
+                                    context,
+                                    SuccessView(
+                                      title1:
+                                          "لقد تم إنتهاء إختبار OASES بنجاح",
+                                      title2: "إنتقال إلي إختبار SSRS",
+                                      onTap: () => navigateTo(context,
+                                          const FirstStageSSRSTreatmentScreen()),
+                                    ));
+                              },
+                              title: " التالي",
+                              color: kButtonGreenDark),
+                        )
                       : const SizedBox.shrink(),
                 ],
               ),
@@ -181,15 +168,15 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
     );
   }
 
-  Widget customDepartmentWidget(double width, double height,
-      FirstStageOasesTestCubit cubit, {required List<CheckBoxItem> itemsList}) {
+  Widget customDepartmentWidget(
+      double width, double height, FirstStageOasesTestCubit cubit,
+      {required List<CheckBoxItem> itemsList}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       width: context.width * 0.9,
       height: context.height * 0.2,
       decoration: BoxDecoration(
-          color: kSkyLightColor,
-          borderRadius: BorderRadius.circular(8)),
+          color: kSkyLightColor, borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
           Expanded(
@@ -203,111 +190,97 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                       // _formKey.currentState!.save();
                       // debugPrint(_formKey.currentState!.value.toString());
                     },
-                    autovalidateMode:
-                    AutovalidateMode.disabled,
+                    autovalidateMode: AutovalidateMode.disabled,
                     child: i != cubit.index
                         ? const SizedBox.shrink()
                         : FormBuilderRadioGroup<dynamic>(
-                      wrapAlignment: WrapAlignment.spaceEvenly,
+                            wrapAlignment: WrapAlignment.spaceEvenly,
 
-
-                      decoration: InputDecoration(
-                        labelStyle: const TextStyle(
-                            color: kBlackText,
-                            fontSize: 18,
-                            fontFamily: 'DinBold'),
-                        // labelText: itemsList[
-                        //         cubit.index]
-                        //     .name,
-                        label: Column(
-
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-
-
-                                Container(
-                                  width: context.width * 0.08,
-                                  height: context.height * 0.05,
-                                  decoration: BoxDecoration(color: kTextColor,
-
-                                    borderRadius: BorderRadius.circular(50),
+                            decoration: InputDecoration(
+                              labelStyle: const TextStyle(
+                                  color: kBlackText,
+                                  fontSize: 18,
+                                  fontFamily: 'DinBold'),
+                              // labelText: itemsList[
+                              //         cubit.index]
+                              //     .name,
+                              label: Column(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        width: context.width * 0.08,
+                                        height: context.height * 0.05,
+                                        decoration: BoxDecoration(
+                                          color: kTextColor,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        child: Center(
+                                          child: customText3(
+                                              title: "${cubit.totalCounter}",
+                                              color: kBlackText),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 6,
+                                      ),
+                                      Expanded(
+                                        child: customText2(
+                                            title:
+                                                "${itemsList[cubit.index].name}",
+                                            color: kBlackText),
+                                      )
+                                    ],
                                   ),
-                                  child: Center(
-                                    child: customText3(
-                                        title: "${cubit.totalCounter}",
-                                        color: kBlackText),
+                                  const SizedBox(
+                                    height: 12,
                                   ),
-                                ),
-                                const SizedBox(width: 6,),
-                                Expanded(
-                                  child: customText2(title: "${ itemsList[
-                                  cubit.index].name}"
-                                      , color: kBlackText),
-                                )
-                              ],
+                                ],
+                              ),
                             ),
-                            const SizedBox(height: 12,),
+                            initialValue: "",
+                            name: 'best_language',
+                            onChanged: (value) {
+                              setState(() {
+                                cubit.totalCounter++;
+                                itemsList[cubit.index].selectedValue = value;
+                              });
+                              List<String> selectedValues = [];
+                              for (var element in itemsList) {
+                                selectedValues.add(element.selectedValue!);
+                              }
+                              if (!selectedValues.contains("")) {
+                                cubit.isFinishedAnswered = true;
+                              }
+                              print(value);
 
-                          ],
-                        ),
-                      ),
-                      initialValue: "",
-                      name: 'best_language',
-                      onChanged: (value) {
-                        setState(() {
-                          cubit.totalCounter ++;
-                          itemsList[
-                          cubit.index]
-                              .selectedValue = value;
-                        });
-                        List<String> selectedValues =
-                        [];
-                        for (var element in itemsList) {
-                          selectedValues.add(
-                              element.selectedValue!);
-                        }
-                        if (!selectedValues
-                            .contains("")) {
-                          cubit.isFinishedAnswered =
-                          true;
-                        }
-                        print(value);
-
-                        if (cubit.index <
-                            itemsList.length -
-                                1) {
-                          setState(() {
-                            cubit.index++;
-                          });
-                        }
-                      },
-                      // validator: qValidator([
-                      //   IsRequired(""),
-                      // ]),
-                      options: itemsList[
-                      cubit.index]
-                          .answersList!
-                          .map((lang) =>
-                          FormBuilderFieldOption(
-                            value: lang["value"],
-                            child: customText3(
-                                title:
-                                lang["name"],
-                                color:
-                                kBlackText),
-                          ))
-                          .toList(growable: false),
-                      controlAffinity:
-                      ControlAffinity.trailing,
-                    ),
+                              if (cubit.index < itemsList.length - 1) {
+                                setState(() {
+                                  cubit.index++;
+                                });
+                              }
+                            },
+                            // validator: qValidator([
+                            //   IsRequired(""),
+                            // ]),
+                            options: itemsList[cubit.index]
+                                .answersList!
+                                .map((lang) => FormBuilderFieldOption(
+                                      value: lang["value"],
+                                      child: customText3(
+                                          title: lang["name"],
+                                          color: kBlackText),
+                                    ))
+                                .toList(growable: false),
+                            controlAffinity: ControlAffinity.trailing,
+                          ),
                   );
                 }),
           ),
           Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SmallButtonOases(
                 onPressed: () {
@@ -324,8 +297,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
               ),
               SmallButtonOases(
                   onPressed: () {
-                    if (cubit.index <
-                        itemsList.length - 1) {
+                    if (cubit.index < itemsList.length - 1) {
                       setState(() {
                         cubit.index++;
 
@@ -334,8 +306,7 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
                     }
                   },
                   title: "التالي",
-                  color: cubit.index ==
-                      itemsList.length - 1
+                  color: cubit.index == itemsList.length - 1
                       ? kPrimaryColor.withOpacity(0.1)
                       : kPrimaryColor),
             ],
@@ -344,7 +315,4 @@ class _FirstStageOasesTestState extends State<FirstStageOasesTest> {
       ),
     );
   }
-
-
-
 }

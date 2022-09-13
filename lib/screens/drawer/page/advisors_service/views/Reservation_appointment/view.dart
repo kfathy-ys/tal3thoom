@@ -15,15 +15,13 @@ import 'page/drop_down_duration.dart';
 
 // ignore: must_be_immutable
 class ReservationAppointmentScreen extends StatelessWidget {
-       
-  ReservationAppointmentScreen({Key? key}) : super(key: key);
+  const ReservationAppointmentScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -37,7 +35,9 @@ class ReservationAppointmentScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomTileContainer(
-                  widthh: context.width * 0.5, title: "حجز المواعيد", context: context),
+                  widthh: context.width * 0.5,
+                  title: "حجز المواعيد",
+                  context: context),
               const HeadTitles(headTitle: " 1- من فضلك قم بأختيار الأخصائي :"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,7 +46,7 @@ class ReservationAppointmentScreen extends StatelessWidget {
                   const DropDownSpecialist(),
                   SmallButtonSizer(
                       onPressed: () {
-                        navigateTo(context, SpecializerProfile());
+                        navigateTo(context, const SpecializerProfile());
                       },
                       title: "الملف الشخصي",
                       color: kPrimaryColor,
@@ -69,7 +69,7 @@ class ReservationAppointmentScreen extends StatelessWidget {
                         start: "10:16",
                         end: "10:30",
                         onTap: () {
-                          navigateTo(context, PaymentAdvisor());
+                          navigateTo(context, const PaymentAdvisor());
                         });
                   },
                 ),

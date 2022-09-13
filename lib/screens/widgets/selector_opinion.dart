@@ -28,17 +28,17 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return ListView(
-       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
         Row(
           //mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text("DepositScientificThesis" ,
+            const Text("DepositScientificThesis",
                 style: TextStyle(
                     color: kPrimaryColor, fontSize: 16, fontFamily: 'DinBold')),
             SizedBox(
@@ -50,11 +50,11 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
                   groupValue: _opinion,
                   onChanged: (_) {
                     _opinion = Opinion.yes;
-                     widget.onChange("firstAvailabilitySelected");
+                    widget.onChange("firstAvailabilitySelected");
                     setState(() {});
                   },
                 ),
-                const Text('yes' ,
+                const Text('yes',
                     style: TextStyle(
                         color: kBlackText,
                         fontSize: 14,
@@ -80,7 +80,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
                       });
                     },
                   ),
-                  const Text('no' ,
+                  const Text('no',
                       style: TextStyle(
                           color: kBlackText,
                           fontSize: 14,
@@ -95,18 +95,18 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
         if (_opinion == Opinion.no)
           const ListTile(
             horizontalTitleGap: 1,
-            title: Text('noOpen' ,
+            title: Text('noOpen',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
           ),
 
         if (_opinion == Opinion.yes) ...[
-          const Text("availabilityType" ,
+          const Text("availabilityType",
               style: TextStyle(
                   color: kPrimaryColor, fontSize: 16, fontFamily: 'DinBold')),
           ListTile(
             horizontalTitleGap: 1,
-            title: const Text('oneOk' ,
+            title: const Text('oneOk',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
             leading: Radio<AvailableType>(
@@ -123,7 +123,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
           ),
           ListTile(
             horizontalTitleGap: 1,
-            title: const Text('twoOk' ,
+            title: const Text('twoOk',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
             leading: Radio<AvailableType>(
@@ -140,11 +140,10 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
           ),
         ],
 
-
         if (accept == AvailableType.refuse) ...[
           ListTile(
             horizontalTitleGap: 1,
-            title: const Text('ableAddressPlus' ,
+            title: const Text('ableAddressPlus',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
             leading: Radio<MultiChoose>(
@@ -161,7 +160,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
           ),
           ListTile(
             horizontalTitleGap: 1,
-            title: const Text('ableFour' ,
+            title: const Text('ableFour',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
             leading: Radio<MultiChoose>(
@@ -179,7 +178,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
           ),
           ListTile(
             horizontalTitleGap: 1,
-            title: const Text('ableFive' ,
+            title: const Text('ableFive',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
             leading: Radio<MultiChoose>(
@@ -197,7 +196,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
           ),
           ListTile(
             horizontalTitleGap: 1,
-            title: const Text('ableSix' ,
+            title: const Text('ableSix',
                 style: TextStyle(
                     color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
             leading: Radio<MultiChoose>(

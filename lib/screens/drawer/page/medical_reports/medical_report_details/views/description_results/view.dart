@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
-class DescriptionResult extends StatelessWidget {
 
+class DescriptionResult extends StatelessWidget {
   final String title1;
   final String title2;
   final String subTitle;
-  const DescriptionResult({Key? key, required this.title1, required this.title2, required this.subTitle}) : super(key: key);
+  const DescriptionResult(
+      {Key? key,
+      required this.title1,
+      required this.title2,
+      required this.subTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
@@ -35,6 +40,3 @@ class DescriptionResult extends StatelessWidget {
     );
   }
 }
-
-
-

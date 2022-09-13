@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
 import 'constants.dart';
 
-
-
-
 class VideoItems extends StatefulWidget {
   final VideoPlayerController videoPlayerController;
-   const VideoItems({Key? key, required this.videoPlayerController,}) : super(key: key);
-
-
+  const VideoItems({
+    Key? key,
+    required this.videoPlayerController,
+  }) : super(key: key);
 
   @override
   _VideoItemsState createState() => _VideoItemsState();
@@ -28,10 +25,9 @@ class _VideoItemsState extends State<VideoItems> {
     // Wrapper on top of the videoPlayerController
     _chewieController = ChewieController(
       videoPlayerController: widget.videoPlayerController,
-     aspectRatio: 16/9,
+      aspectRatio: 16 / 9,
 
       showControls: true,
-
 
       // Prepare the video to be played and display the first frame
       autoInitialize: true,
@@ -40,7 +36,7 @@ class _VideoItemsState extends State<VideoItems> {
       // Errors can occur for example when trying to play a video
       // from a non-existent URL
       errorBuilder: (context, errorMessage) {
-        return     Center(
+        return Center(
           child: Text(
             errorMessage,
             style: const TextStyle(color: Colors.white),
@@ -52,17 +48,14 @@ class _VideoItemsState extends State<VideoItems> {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       //padding: EdgeInsets.symmetric(vertical: 4,),
-      decoration:  BoxDecoration(
-        color: kBlackText,
-          border: Border.all(color: kPrimaryColor ,width: 3)
-       // borderRadius: BorderRadius.circular(4)
-      ),
+      decoration: BoxDecoration(
+          color: kBlackText, border: Border.all(color: kPrimaryColor, width: 3)
+          // borderRadius: BorderRadius.circular(4)
+          ),
       child: Chewie(
-
-          controller: _chewieController!,
-
+        controller: _chewieController!,
       ),
     );
   }

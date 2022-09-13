@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
 import 'package:tal3thoom/config/keys.dart';
 import '../../../widgets/constants.dart';
 
 enum TypeSex { Male, Female }
+
 class DropDownSix extends StatefulWidget {
   final String? initial;
   final ValueChanged<String> onChanged;
@@ -13,8 +13,7 @@ class DropDownSix extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<DropDownSix> createState() =>
-      _DropDownSixState();
+  State<DropDownSix> createState() => _DropDownSixState();
 }
 
 class _DropDownSixState extends State<DropDownSix> {
@@ -37,20 +36,20 @@ class _DropDownSixState extends State<DropDownSix> {
 
   @override
   Widget build(BuildContext context) {
-      // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return DropdownButtonHideUnderline(
       child: Container(
         // padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-         margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
-         width: MediaQuery.of(context).size.width / 1.2,
-      //  height: height*0.15,
-       //  decoration: BoxDecoration(
-       //      borderRadius: BorderRadius.circular(8),
-       //      color: Colors.white,
-       //      border: Border.all(color: kPrimaryColor),
-       //
-       //  ),
+        margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
+        width: MediaQuery.of(context).size.width / 1.2,
+        //  height: height*0.15,
+        //  decoration: BoxDecoration(
+        //      borderRadius: BorderRadius.circular(8),
+        //      color: Colors.white,
+        //      border: Border.all(color: kPrimaryColor),
+        //
+        //  ),
         child: DropdownButtonFormField<TypeSex>(
           isExpanded: true,
           value: selected,
@@ -58,7 +57,7 @@ class _DropDownSixState extends State<DropDownSix> {
           // isDense: true,
           // isExpanded: true,
           validator: (value) {
-            if (value == null ) {
+            if (value == null) {
               return KeysConfig.thisFieldRequired;
             }
             return null;
@@ -74,24 +73,23 @@ class _DropDownSixState extends State<DropDownSix> {
             ),
           ),
 
-        decoration: InputDecoration(
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-          fillColor: Colors.white,
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kPrimaryColor, width: 1),
-            borderRadius: BorderRadius.circular(8),
+          decoration: InputDecoration(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+            fillColor: Colors.white,
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: kPrimaryColor, width: 1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            border: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kPrimaryColor, width: 2),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.red),
-            borderRadius: BorderRadius.circular(8),
-          ),
-
-        ),
           borderRadius: BorderRadius.circular(10),
           icon: Image.asset("assets/images/down arrow.png"),
           //  elevation: 16,
@@ -100,7 +98,8 @@ class _DropDownSixState extends State<DropDownSix> {
             fontSize: 16,
             fontFamily: "DinReguler",
           ),
-         /// underline: null,
+
+          /// underline: null,
           onChanged: (TypeSex? newValue) {
             if (newValue == null) return;
 
@@ -114,11 +113,8 @@ class _DropDownSixState extends State<DropDownSix> {
               widget.onChanged(valueSelected!);
             });
           },
-          items: TypeSex.values
-              .map<DropdownMenuItem<TypeSex>>((TypeSex value) {
+          items: TypeSex.values.map<DropdownMenuItem<TypeSex>>((TypeSex value) {
             return DropdownMenuItem<TypeSex>(
-
-
               value: value,
               child: Text(
                 describeEnum(value).tr,

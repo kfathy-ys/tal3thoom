@@ -23,7 +23,7 @@ class SSRSDiagnosticsScreen extends StatefulWidget {
 }
 
 class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
-         bool isPressed0 = false;
+  bool isPressed0 = false;
   bool isPressed1 = false;
   bool isPressed2 = false;
   bool isPressed3 = false;
@@ -38,10 +38,9 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -57,7 +56,9 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTileContainer(
-                    widthh: context.width / 2, title: "إختبار SSRS", context: context),
+                    widthh: context.width / 2,
+                    title: "إختبار SSRS",
+                    context: context),
                 customText6(
                   title: "الإختبار التالت SSRS (أختبار الرضا الكلامي)",
                   color: kBlackText,
@@ -341,6 +342,4 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
       ),
     );
   }
-
-
 }

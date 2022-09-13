@@ -19,8 +19,6 @@ class VCodeScreen extends StatefulWidget {
 }
 
 class _VCodeScreenState extends State<VCodeScreen> {
-     
-
   final formKey = GlobalKey<FormState>();
 
   final _emailController = TextEditingController();
@@ -46,7 +44,6 @@ class _VCodeScreenState extends State<VCodeScreen> {
     // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -55,14 +52,14 @@ class _VCodeScreenState extends State<VCodeScreen> {
               SizedBox(
                 height: context.height * 0.05,
               ),
-               const IconBack(),
+              const IconBack(),
               SizedBox(
                 height: context.height * 0.3,
               ),
               CustomTextField(
-                hint: KeysConfig.EnterVcode ,
+                hint: KeysConfig.EnterVcode,
                 dIcon: Icons.verified_user_outlined,
-                label: KeysConfig.EnterVcode ,
+                label: KeysConfig.EnterVcode,
                 controller: _emailController,
                 validator: (String? value) {
                   if (value!.isEmpty) {
@@ -78,7 +75,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
               ),
               CustomButton(
                 color: kPrimaryColor,
-                title: KeysConfig.confirm ,
+                title: KeysConfig.confirm,
                 onPressed: () {
                   //Get.to(() => NewPasswordScreen());
                   navigateTo(context, NewPasswordScreen());
@@ -102,8 +99,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.red,
-            content: Text(
-                'إذا لم ترسل رمز التحقق ، يرجى المحاولة مرة أخرى!',
+            content: Text('إذا لم ترسل رمز التحقق ، يرجى المحاولة مرة أخرى!',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -128,7 +124,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
             //mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-               KeysConfig.resent ,
+                KeysConfig.resent,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: showResetBottom ? Colors.black : kPrimaryColor,

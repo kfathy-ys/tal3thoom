@@ -11,13 +11,11 @@ import '../../success_page.dart';
 
 // ignore: must_be_immutable
 class DiagnosticReservationReport extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -69,15 +67,16 @@ class DiagnosticReservationReport extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             customText10(title: "العمل", color: kPrimaryColor),
-                            customText10(title: "وزارة الصحة", color: kTextFieldColor)
+                            customText10(
+                                title: "وزارة الصحة", color: kTextFieldColor)
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            customText10(title: "اليوم", color: kPrimaryColor),
                             customText10(
-                                title: "اليوم", color: kPrimaryColor),
-                            customText10(title: "الاتنين", color: kTextFieldColor)
+                                title: "الاتنين", color: kTextFieldColor)
                           ],
                         ),
                         Row(
@@ -85,30 +84,31 @@ class DiagnosticReservationReport extends StatelessWidget {
                           children: [
                             customText10(
                                 title: "التاريخ", color: kPrimaryColor),
-                            customText10(title: "2022-10-29", color: kTextFieldColor)
+                            customText10(
+                                title: "2022-10-29", color: kTextFieldColor)
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            customText10(
-                                title: "الساعة", color: kPrimaryColor),
-                            customText10(
-                                title: "17:59", color: kTextFieldColor)
+                            customText10(title: "الساعة", color: kPrimaryColor),
+                            customText10(title: "17:59", color: kTextFieldColor)
                           ],
                         ),
-
                         MediaButton(
-
                           onPressed: () {
-                            navigateTo(context, SuccessView(title1: "لقد تم حجز موعد مع المختص",title2: "إنتقال إلي جدول الحجوزات",
-                              onTap: ()=>navigateTo(context, const ReservationsSchedule()),));
+                            navigateTo(
+                                context,
+                                SuccessView(
+                                  title1: "لقد تم حجز موعد مع المختص",
+                                  title2: "إنتقال إلي جدول الحجوزات",
+                                  onTap: () => navigateTo(
+                                      context, const ReservationsSchedule()),
+                                ));
                           },
                           color: kButtonGreenDark,
                           title: "تاكيد الحجز",
                         ),
-
-
                       ],
                     ),
                   );

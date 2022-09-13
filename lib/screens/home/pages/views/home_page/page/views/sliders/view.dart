@@ -2,7 +2,6 @@ import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class Sliders extends StatelessWidget {
   final String title;
   final String subTitle;
@@ -12,8 +11,8 @@ class Sliders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       height: context.height * 0.12,
       width: context.width * 0.4,

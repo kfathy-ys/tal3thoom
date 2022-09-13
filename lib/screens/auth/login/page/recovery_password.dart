@@ -1,9 +1,7 @@
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../config/keys.dart';
-
 
 class RecoveryWidget extends StatelessWidget {
   final VoidCallback onTap;
@@ -16,8 +14,8 @@ class RecoveryWidget extends StatelessWidget {
       margin: const EdgeInsetsDirectional.only(start: 170),
       child: GestureDetector(
         onTap: onTap,
-        child:  const Text(
-          KeysConfig.passwordRecovery ,
+        child: const Text(
+          KeysConfig.passwordRecovery,
           style: TextStyle(
               color: kSkyButton, fontSize: 14, fontFamily: 'DinReguler'),
         ),

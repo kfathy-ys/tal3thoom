@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_readable/flutter_readable.dart';
-import 'package:get/get.dart';
 
 import 'constants.dart';
 
@@ -22,13 +21,14 @@ class DynamicAppbar extends StatelessWidget with PreferredSizeWidget {
         children: [
           Image.asset("assets/images/RectangleAppBar.png"),
           ListTile(
-            leading: InkWell(
-                onTap: () => press(context),
-                child: Image.asset("assets/images/side menu.png")),
-            trailing: context.canPop ? InkWell(
-                onTap: () => Navigator.of(context).pop(),
-                child: Image.asset("assets/images/menu arrow.png")) : null
-          )
+              leading: InkWell(
+                  onTap: () => press(context),
+                  child: Image.asset("assets/images/side menu.png")),
+              trailing: context.canPop
+                  ? InkWell(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Image.asset("assets/images/menu arrow.png"))
+                  : null)
         ],
       ),
     );

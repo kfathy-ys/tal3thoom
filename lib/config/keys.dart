@@ -30,9 +30,10 @@ class KeysConfig {
   static const kSummary =
       "A total score of the SSI-4 is calculated based on the subscores. The total score for during this evaluation was indicating the presence of stuttering. The results are summarized on the following table.";
 
-
-  static const kScore  ="The score of SSRS for during this evaluation was indicating the presence of dissatisfaction of his speech.OASES revealed that 's stuttering has a impact on general information, and reaction to stuttering. quality of life and communication in daily situations reaction to stuttering were found to have a on communication. The table below shows the impact ratings for for the four sections of the OASES instrument, as well as the overall test.";
- static const kRecommendations = "exhibits stuttering as evidenced by fluency testing results, observations, and the client information. It is strongly recommended that attend their scheduled speech therapeutic sessions to improve fluency, social, academic and communication skills.\n Sincerely,\n ,\n Speech Pathologist\n Approved By\n Supervisor";
+  static const kScore =
+      "The score of SSRS for during this evaluation was indicating the presence of dissatisfaction of his speech.OASES revealed that 's stuttering has a impact on general information, and reaction to stuttering. quality of life and communication in daily situations reaction to stuttering were found to have a on communication. The table below shows the impact ratings for for the four sections of the OASES instrument, as well as the overall test.";
+  static const kRecommendations =
+      "exhibits stuttering as evidenced by fluency testing results, observations, and the client information. It is strongly recommended that attend their scheduled speech therapeutic sessions to improve fluency, social, academic and communication skills.\n Sincerely,\n ,\n Speech Pathologist\n Approved By\n Supervisor";
   static const aboutLibrary = "عن المكتبة";
   static const generalMare = "الفهرس العام";
   static const newLibrary = "جديد المكتبة";
@@ -93,7 +94,7 @@ class KeysConfig {
   static const lastName = "الاإسم الأخير";
   static const countryResidence = "بلد الإقامة";
   static const createAccount = "إنشاء حساب";
-  static const doHave = "static contsهل لديك حساب؟\t ";
+  static const doHave = "هل لديك حساب؟\t ";
   static const enterFullName = "من فضلك أدخل الاسم كاملاَ";
   static const enterName = "من فضلك أدخل أسمك";
   static const MustBeEmail = "لابد ان يكون بريد الكتروني";
@@ -107,7 +108,7 @@ class KeysConfig {
   static const countryDots = "أسم الدولة :";
   static const AccessNumberDots = "رقم النفاذ : ";
   static const passwordDots = "كلمة المرور : ";
-  static const  notSimilar  = "كلمة المرور غير مطابقه";
+  static const notSimilar = "كلمة المرور غير مطابقه";
   static const fakeName = "محمد رشاد";
   static const saudi = "المملكه العربية السعودية";
   static const dataRegister = "تاريخ تسجيل الجساب";
@@ -381,13 +382,13 @@ class KeysConfig {
 
   static const inWhichClassStudy = "في أي صف تدْرُسْ؟";
   static const qNames = <String>[
-  // DO OT CHANGE ORDER
-   "معلومات التعليم",
-   'تاريخ الأمراض السابقة',
-   'تاريخ التاتاه',
-   'مناسبة تقلل او تزيد التلعثم',
-   'سلوك التجنب',
-   'تقيم سلوك التلعثم',
+    // DO OT CHANGE ORDER
+    "معلومات التعليم",
+    'تاريخ الأمراض السابقة',
+    'تاريخ التاتاه',
+    'مناسبة تقلل او تزيد التلعثم',
+    'سلوك التجنب',
+    'تقيم سلوك التلعثم',
   ];
   static const theFirst = "الأول";
   static const Second = "الثاني";

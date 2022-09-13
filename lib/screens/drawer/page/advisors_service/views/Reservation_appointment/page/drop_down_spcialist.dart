@@ -3,14 +3,11 @@ import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 
-
-
 class DropDownSpecialist extends StatefulWidget {
   const DropDownSpecialist({Key? key}) : super(key: key);
 
   @override
-  State<DropDownSpecialist> createState() =>
-      _DropDownSpecialistState();
+  State<DropDownSpecialist> createState() => _DropDownSpecialistState();
 }
 
 class _DropDownSpecialistState extends State<DropDownSpecialist> {
@@ -18,13 +15,13 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       width: MediaQuery.of(context).size.width / 1.9,
-      height: context.height*0.069,
+      height: context.height * 0.069,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
@@ -61,8 +58,6 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
             "أحمد الكامل ",
             " خالد الرفاعي",
             "محمد رشاد",
-
-
           ].map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,

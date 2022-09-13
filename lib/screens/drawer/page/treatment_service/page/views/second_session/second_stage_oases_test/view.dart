@@ -25,17 +25,15 @@ class SecondStageOasesTest extends StatefulWidget {
 }
 
 class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
-       
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return BlocConsumer<SecondStageOasesTestCubit, SecondStageOasesTestState>(
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = BlocProvider.of<SecondStageOasesTestCubit>(context);
         return Scaffold(
-          
           backgroundColor: kHomeColor,
           drawer: const MenuItems(),
           appBar: DynamicAppbar(
@@ -80,7 +78,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${sixQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 0
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(context.width, context.height, cubit,
+                      : customDepartmentWidget(
+                          context.width, context.height, cubit,
                           itemsList: sixQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 0
                       ? Expanded(
@@ -100,7 +99,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${fifthQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 1
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(context.width, context.height, cubit,
+                      : customDepartmentWidget(
+                          context.width, context.height, cubit,
                           itemsList: fifthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 1
                       ? Expanded(
@@ -119,7 +119,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${forthQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 2
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(context.width, context.height, cubit,
+                      : customDepartmentWidget(
+                          context.width, context.height, cubit,
                           itemsList: forthQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 2
                       ? Expanded(
@@ -138,7 +139,8 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest> {
                               "  معلومات عامة  (  ${cubit.index + 1}  من ${thirdQuestionsList.length} ) "),
                   cubit.selectedGroupIndex != 3
                       ? const SizedBox.shrink()
-                      : customDepartmentWidget(context.width, context.height, cubit,
+                      : customDepartmentWidget(
+                          context.width, context.height, cubit,
                           itemsList: thirdQuestionsList),
                   cubit.isFinishedAnswered && cubit.selectedGroupIndex == 3
                       ? Expanded(

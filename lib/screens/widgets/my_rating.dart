@@ -1,7 +1,6 @@
 // // ignore: import_of_legacy_library_into_null_safe
 // import 'package:smooth_star_rating/smooth_star_rating.dart';
 // import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 //
 // import 'constants.dart';
 //

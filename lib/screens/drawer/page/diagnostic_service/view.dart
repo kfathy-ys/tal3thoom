@@ -34,8 +34,8 @@ class DiagnosticServices extends StatelessWidget {
         trailing: Image.asset(
           "assets/images/yellow right arrow.png",
         ),
-        title: customText2(
-            title: KeysConfig.diagnosticService , color: kHomeColor),
+        title:
+            customText2(title: KeysConfig.diagnosticService, color: kHomeColor),
         children: [
           Container(
             height: context.height * 0.08,
@@ -47,8 +47,7 @@ class DiagnosticServices extends StatelessWidget {
                   Image.asset("assets/images/book.png"),
                   buildSizedBox(),
                   customText4(
-                      title: KeysConfig.IntroductionService ,
-                      color: kBlackText),
+                      title: KeysConfig.IntroductionService, color: kBlackText),
                 ],
               ),
             ),
@@ -62,8 +61,7 @@ class DiagnosticServices extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/wallet.png"),
                   buildSizedBox(),
-                  customText4(
-                      title: KeysConfig.payment , color: kBlackText),
+                  customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
             ),
@@ -78,7 +76,7 @@ class DiagnosticServices extends StatelessWidget {
                   Image.asset("assets/images/Today's calendar.png"),
                   buildSizedBox(),
                   customText4(
-                      title: KeysConfig.medicalHistory , color: kBlackText),
+                      title: KeysConfig.medicalHistory, color: kBlackText),
                 ],
               ),
             ),
@@ -92,8 +90,7 @@ class DiagnosticServices extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/square question.png"),
                   buildSizedBox(),
-                  customText4(
-                      title: KeysConfig.testOases , color: kBlackText),
+                  customText4(title: KeysConfig.testOases, color: kBlackText),
                 ],
               ),
             ),
@@ -107,8 +104,7 @@ class DiagnosticServices extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/circular question.png"),
                   buildSizedBox(),
-                  customText4(
-                      title: KeysConfig.testSSRS , color: kBlackText),
+                  customText4(title: KeysConfig.testSSRS, color: kBlackText),
                 ],
               ),
             ),
@@ -122,7 +118,7 @@ class DiagnosticServices extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/paper.png"),
                   buildSizedBox(),
-                  customText4(title: KeysConfig.test4 , color: kBlackText),
+                  customText4(title: KeysConfig.test4, color: kBlackText),
                 ],
               ),
             ),
@@ -141,7 +137,7 @@ class DiagnosticServices extends StatelessWidget {
                   Image.asset("assets/images/addition.png"),
                   buildSizedBox(),
                   customText4(
-                      title: KeysConfig.BookSpecialist , color: kBlackText),
+                      title: KeysConfig.BookSpecialist, color: kBlackText),
                 ],
               ),
             ),

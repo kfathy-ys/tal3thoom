@@ -11,8 +11,6 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
-import '../../../../../../../../../widgets/customTextFieldToUploadFile.dart';
-import '../../../../../../../../../widgets/smallButtonSizerUploadFile.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
@@ -28,15 +26,13 @@ class TreatmentSSI4 extends StatefulWidget {
 }
 
 class _TreatmentSSI4State extends State<TreatmentSSI4> {
-       
   final _firstController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -45,7 +41,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: context.height,
-        width: context.width ,
+        width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
           child: Column(
@@ -53,18 +49,15 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
               CustomTileContainer(
                   title: KeysConfig.addComment,
                   widthh: context.width * 0.5,
-
                   context: context),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Image.asset("assets/images/Fourth test1.png"),
               ),
 
-
-
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -94,8 +87,8 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                     child: Image.asset("assets/images/Earphone.png"),
                   )),
               SizedBox(
-                width: context.width*0.8,
-                height: context.height*0.25,
+                width: context.width * 0.8,
+                height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -118,9 +111,12 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context, const TreatmentSSI4Two(),);
+                  navigateTo(
+                    context,
+                    const TreatmentSSI4Two(),
+                  );
                 },
-                title:"متابعة",
+                title: "متابعة",
               ),
               buildSizedBox(context.height),
             ],
@@ -129,6 +125,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
       ),
     );
   }
+
   dynamic video;
 
   File? _file1;
@@ -155,8 +152,6 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
   }
 }
 
-
-  SizedBox buildSizedBox(double height) => SizedBox(
-    height: height * 0.05,
-  );
-
+SizedBox buildSizedBox(double height) => SizedBox(
+      height: height * 0.05,
+    );

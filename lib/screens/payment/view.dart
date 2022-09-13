@@ -12,16 +12,13 @@ import '../widgets/fast_widget.dart';
 
 // ignore: must_be_immutable
 class Payment extends StatelessWidget {
-     
-
-  Payment({Key? key}) : super(key: key);
+  const Payment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -38,8 +35,8 @@ class Payment extends StatelessWidget {
                   widthh: context.width / 2.5,
                   title: KeysConfig.payment,
                   context: context),
-              paymentCard(context.width, context.height, price: KeysConfig.fifty,
-                  onTapPay: () {
+              paymentCard(context.width, context.height,
+                  price: KeysConfig.fifty, onTapPay: () {
                 navigateTo(
                     context,
                     const WebView(
@@ -47,11 +44,9 @@ class Payment extends StatelessWidget {
                       initialUrl:
                           "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                     ));
-
-
               }, description: KeysConfig.diagnosis),
-              paymentCard(context.width, context.height, price: KeysConfig.hundred,
-                  onTapPay: () {
+              paymentCard(context.width, context.height,
+                  price: KeysConfig.hundred, onTapPay: () {
                 navigateTo(
                     context,
                     const WebView(
@@ -59,10 +54,9 @@ class Payment extends StatelessWidget {
                       initialUrl:
                           "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                     ));
-
               }, description: KeysConfig.twoSession),
-              paymentCard(context.width, context.height,  price: KeysConfig.fifty,
-                  onTapPay: () {
+              paymentCard(context.width, context.height,
+                  price: KeysConfig.fifty, onTapPay: () {
                 navigateTo(
                     context,
                     const WebView(
@@ -70,7 +64,6 @@ class Payment extends StatelessWidget {
                       initialUrl:
                           "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                     ));
-
               }, description: KeysConfig.DiagnosisTreatment),
               SmallButton(
                 title: "Skip",
@@ -80,7 +73,8 @@ class Payment extends StatelessWidget {
                       SuccessView(
                         title1: "لقد تم عملية الدفع  بنجاح",
                         title2: "المرحلة الأولي من التشخيص",
-                        onTap: () => navigateTo(context, const DiagnosticHistory()),
+                        onTap: () =>
+                            navigateTo(context, const DiagnosticHistory()),
                       ));
                 },
               ),
@@ -93,8 +87,7 @@ class Payment extends StatelessWidget {
 
   Widget paymentCard(
     double width,
-    double height,
-    {
+    double height, {
     required String description,
     required VoidCallback onTapPay,
     required String price,
@@ -111,7 +104,9 @@ class Payment extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CustomCurvedContainer(title: description,),
+          CustomCurvedContainer(
+            title: description,
+          ),
           customText5(title: price, color: kBlackText),
           SmallButton(
             onPressed: onTapPay,

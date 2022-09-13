@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RouterNavigation {
   // Assign this variable to a property named navigatorKey in MaterialApp EX: navigatorKey: RouterNavigation.navigatorKey

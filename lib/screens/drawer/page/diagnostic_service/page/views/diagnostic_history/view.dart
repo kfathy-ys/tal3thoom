@@ -3,20 +3,15 @@ import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../config/keys.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
-import '../../../../../../widgets/network_dialog.dart';
 import '../../../../../view.dart';
-import '../diagnostci_oases_test/view.dart';
 import 'models/diagnostic_history_question_model.dart';
 
 // ignore: must_be_immutable
@@ -28,10 +23,7 @@ class DiagnosticHistory extends StatefulWidget {
 }
 
 class _DiagnosticHistoryState extends State<DiagnosticHistory> {
-
-
-
- Widget buildCategoryItem(int number) {
+  Widget buildCategoryItem(int number) {
     print('number is $number');
     final cubit = BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
     final categoryNumber = number + 2;
@@ -42,15 +34,17 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: ExpansionTile(
-        collapsedBackgroundColor: kSky2Button,
+        collapsedBackgroundColor:  kSky2Button ,
         iconColor: kPrimaryColor,
-       // childrenPadding: const EdgeInsets.symmetric(horizontal: 14),
+        // childrenPadding: const EdgeInsets.symmetric(horizontal: 14),
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             customBoldText(
                 title: KeysConfig.qNames[number], color: kPrimaryColor),
-            customText10( color: kPrimaryColor,title: "(  ${cubit.index } من ${qList.length} ) "),
+            customText9(
+                color: kPrimaryColor,
+                title: " (${cubit.index} من ${qList.length})"),
           ],
         ),
         children: [
@@ -78,40 +72,42 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                           child: Image.asset("assets/images/Earphone.png")),
                       suffix: cubit.shouldShowTextField(currentQuestion)
                           ? SizedBox(
-                        //controller: cubit.controller,
-                              height: 60, width: 150, child: TextFormField(
-                        onChanged: (str)=> cubit.answersTxt[currentQuestion] = str,
-                      ))
+                              height: 60,
+                              width: 150,
+                              child: TextFormField(
+                                onChanged: (str) =>
+                                    cubit.answersTxt[currentQuestion] = str,
+                              ))
                           : null,
                     ),
 
-                    initialValue: null,
+                    initialValue: cubit.answer[currentQuestion],
                     name: 'best_language',
                     onChanged: (value) {
                       log('$value');
                       if (value != null) {
                         setState(() {
                           cubit.answer[currentQuestion] = value;
-                          // if(  cubit.answer[currentQuestion]!.isOther ){
-                          //   cubit.controller = value as TextEditingController;
-                          // }
-
+                        //  Prefs.setMap("patientAnswers",answers  );
                         });
                       }
+
                       /// Increment Header Index
-                      if (cubit.index < qList.length ) {
+                      if (currentQuestion.isAnswred == false) {
                         setState(() {
+                          currentQuestion.isAnswred = true;
                           cubit.index++;
                         });
                       }
-
                     },
-                    // validator: (value) {
-                    //   if (value == null ) {
-                    //     return 'من فضلك أجب علي هذا السؤال';
-                    //   }
-                    //   return 'تمام';
-                    // },
+                    validator: (value) {
+                      if (value == null ){
+                        return 'من فضلك أجب علي المدون أعلاة ';
+                      }
+                      return '';
+                    },
+
+
 
                     options: currentQuestion.answers
                         .map((lang) => FormBuilderFieldOption(
@@ -140,17 +136,15 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
             press: (context) => Scaffold.of(context).openDrawer()),
         body: SingleChildScrollView(
           child: Container(
-            height: context.height ,
+            height: context.height,
             width: context.width,
             color: kHomeColor,
             child: BlocConsumer<DiagnosticHistoryQuestionCubit,
                 DiagnosticHistoryQuestionState>(
               listener: (context, state) {
-                if (state is DiagnosticHistoryQuestionError) {
-                  showNetworkErrorDialog(context, () {
-                    BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
-                  });
-                }
+                // if (state is DiagnosticHistoryQuestionMessage ) {
+                //   Alert.success(state.message[0].body);
+                // }
               },
               builder: (context, state) {
                 final cubit =
@@ -189,12 +183,15 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                             Image.asset(
                               "assets/images/255.png",
                             ),
-                            buildSizedBoxed(context.height ),
+                            buildSizedBoxed(context.height),
                             ...List.generate(6, buildCategoryItem).toList(),
-                            buildSizedBoxed(context.height ),
-                            MediaButton(
+                            buildSizedBoxed(context.height),
+                          state is!  DiagnosticHistoryQuestionLoading ?  MediaButton(
                               onPressed: () {
+                                if (cubit.formKey.currentState!.validate()) {
                                   cubit.postDiagnosticHistoryAnswers();
+                                }
+
                                 //print("${cubit.listOfCategoryTwo}");
                               }
                               //   navigateTo(
@@ -211,7 +208,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                               // },
                               ,
                               title: KeysConfig.next,
-                            ),
+                            ) : const LoadingFadingCircle(),
                             SizedBox(
                               height: context.height * 0.2,
                             ),

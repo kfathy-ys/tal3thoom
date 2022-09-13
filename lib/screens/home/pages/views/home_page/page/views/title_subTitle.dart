@@ -4,7 +4,6 @@ import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class TitleSubTitle extends StatelessWidget {
   final String title;
   final VoidCallback onTap;

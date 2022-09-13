@@ -3,14 +3,11 @@ import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 
-
-
 class DropDownAvailableDates extends StatefulWidget {
   const DropDownAvailableDates({Key? key}) : super(key: key);
 
   @override
-  State<DropDownAvailableDates> createState() =>
-      _DropDownAvailableDatesState();
+  State<DropDownAvailableDates> createState() => _DropDownAvailableDatesState();
 }
 
 class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
@@ -18,13 +15,13 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
 
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-      width: MediaQuery.of(context).size.width /1.2,
-      height: context.height*0.069,
+      width: MediaQuery.of(context).size.width / 1.2,
+      height: context.height * 0.069,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
@@ -66,8 +63,6 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
             "28-10-2022",
             "01-11-2022",
             "19-11-2022",
-
-
           ].map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,

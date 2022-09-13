@@ -24,13 +24,11 @@ class ResultsPreviousTreatmentSessions extends StatefulWidget {
 
 class _ResultsPreviousTreatmentSessionsState
     extends State<ResultsPreviousTreatmentSessions> {
-       
   @override
   Widget build(BuildContext context) {
-     // double height = MediaQuery.of(context).size.height;
-  //  double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -86,7 +84,8 @@ class _ResultsPreviousTreatmentSessionsState
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            buildContainerIndex(context.width, context.height, index: index),
+                            buildContainerIndex(context.width, context.height,
+                                index: index),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               padding: const EdgeInsets.symmetric(
@@ -192,7 +191,8 @@ class _ResultsPreviousTreatmentSessionsState
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            buildContainerIndex(context.width, context.height,index:  index),
+                            buildContainerIndex(context.width, context.height,
+                                index: index),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               padding: const EdgeInsets.symmetric(
@@ -327,21 +327,21 @@ class _ResultsPreviousTreatmentSessionsState
     );
   }
 
-  Widget buildContainerIndex(double width, double height, {required int index}) {
+  Widget buildContainerIndex(double width, double height,
+      {required int index}) {
     return Container(
-                            width: width * 0.1,
-                            height: height * 0.14,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(8),
-                                  topRight: Radius.circular(8),
-                                ),
-                                color: kPrimaryColor),
-                            child: Center(
-                              child: customText3(
-                                  title: "$index", color: kHomeColor),
-                            ),
-                          );
+      width: width * 0.1,
+      height: height * 0.14,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(8),
+            topRight: Radius.circular(8),
+          ),
+          color: kPrimaryColor),
+      child: Center(
+        child: customText3(title: "$index", color: kHomeColor),
+      ),
+    );
   }
 
   Widget buildColumnWithImage(double height, double width,

@@ -1,7 +1,5 @@
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 
 class HeadTopics extends StatelessWidget {
   final String title;

@@ -10,11 +10,10 @@ extension TypeNameHelpers on TypeEntityName {
   bool get shouldPickHall =>
       this == TypeEntityName.researchRetreat || this == TypeEntityName.mix;
 
-
-  int toInt(){
-    switch(this){
+  int toInt() {
+    switch (this) {
       case TypeEntityName.researchRetreat:
-     return 11;
+        return 11;
       case TypeEntityName.scientificMaterial:
         return 12;
       case TypeEntityName.mix:
