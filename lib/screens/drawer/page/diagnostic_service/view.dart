@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/models/diagnostic_payment_model.dart';
 
 import '../../../widgets/constants.dart';
 import '../../../../../../config/keys.dart';
@@ -26,8 +27,12 @@ class DiagnosticServices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     DiagnosticPaymentModel? diagnosticPaymentModel;
+
     double height = MediaQuery.of(context).size.height;
     // double width = MediaQuery.of(context).size.width;
+
+     print( "${diagnosticPaymentModel?.data![0] } eeeeeeeeeeeeeeeeeeeeeeeeeeeeee "  );
     return ExpansionTile(
         backgroundColor: kPrimaryColor,
         leading: Image.asset("assets/images/stethoscope.png"),
@@ -64,6 +69,9 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
+              // trailing: diagnosticPaymentModel?.data![0] == 1 ?
+              // const Icon(Icons.check_box , color: kTextColor,)
+              //     :const Text("eeeee") ,
             ),
           ),
           Container(

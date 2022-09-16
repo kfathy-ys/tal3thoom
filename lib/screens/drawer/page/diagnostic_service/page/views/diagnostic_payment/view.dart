@@ -104,7 +104,7 @@ class DiagnosticPayment extends StatelessWidget {
                             //
                             // );
                           },
-                          title: "Skip"),
+                          title: "متابعة"),
                       SizedBox(
                         height: context.height * 0.1,
                       )

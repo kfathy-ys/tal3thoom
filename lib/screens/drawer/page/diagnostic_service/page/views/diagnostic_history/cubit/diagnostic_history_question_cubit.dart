@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:tal3thoom/serives/diagnostic_history_service/question_serives.dart';
 import '../../../../../../../../serives/diagnostic_history_service/answers_service.dart';
 import '../../../../../../../widgets/alerts.dart';
+import '../../diagnostci_oases_test/view.dart';
+import '../../success_page.dart';
 import '../models/diagnostic_history_question_model.dart';
 
 part 'diagnostic_history_question_state.dart';
@@ -17,6 +19,13 @@ class DiagnosticHistoryQuestionCubit
     getDiagnosticHistoryQuestion();
   }
 
+  final TextEditingController controllerDefault = TextEditingController();
+  // final TextEditingController controller2 = TextEditingController();
+  // final TextEditingController controller3 = TextEditingController();
+  // final TextEditingController controller4 = TextEditingController();
+  // final TextEditingController controller5 = TextEditingController();
+  // final TextEditingController controller6 = TextEditingController();
+  // final TextEditingController controller7 = TextEditingController();
   final formKey = GlobalKey<FormState>();
   int index = 0;
   final questionList = <Question>[];
@@ -64,6 +73,11 @@ class DiagnosticHistoryQuestionCubit
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
+        Get.off(() => SuccessView(
+              title1: "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
+              title2: "إنتقال إلي إختبار Oases",
+              onTap: () => Get.off(() => const DiagnosticOasesTest()),
+            ));
       } else {
         Alert.success("0");
       }

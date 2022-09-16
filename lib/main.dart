@@ -20,6 +20,7 @@ import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cub
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
+import 'screens/splash/view.dart';
 import 'screens/translations/locale key-value.dart';
 import 'screens/widgets/constants.dart';
 import 'dart:async';
