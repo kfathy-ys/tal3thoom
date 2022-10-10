@@ -59,12 +59,12 @@ const kFavouriteColor = Color(0xFFAB0D03);
 const kPrimaryFDarkColor = Color(0xFF0A4E75);
 const kPrimaryBlueColor = Color(0xFF3080D1);
 const khTextColor = Color(0xFF323232);*/
-String parseHtmlString(String htmlString) {
-  final document = parse(htmlString);
-  final String parsedString = parse(document.body!.text).documentElement!.text;
-
-  return parsedString;
-}
+// String parseHtmlString(String htmlString) {
+//   final document = parse(htmlString);
+//   final String parsedString = parse(document.body!.text).documentElement!.text;
+//
+//   return parsedString;
+// }
 
 Widget customDivider(double height) => Container(
       width: double.infinity,
@@ -175,7 +175,8 @@ Widget customBoldText({required String title, required Color color}) {
 
 Widget customText2({required String title, required Color color}) {
   return Text(title,
-      style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
+      style:
+      TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
 }
 
 Widget customText3({required String title, required Color color}) {
@@ -185,7 +186,8 @@ Widget customText3({required String title, required Color color}) {
 
 Widget customText4({required String title, required Color color}) {
   return Text(title,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
+
       style: TextStyle(color: color, fontSize: 16, fontFamily: 'DinMedium'));
 }
 
@@ -502,6 +504,60 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
             },
             child: const Text(
               "تسجيل الدخول",
+              style: TextStyle(
+                fontFamily: 'Contrail',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+      ],
+    ),
+  );
+
+  return shouldPop ?? false;
+}
+Future<bool> onWillPopWebEmpty(BuildContext context) async {
+  final shouldPop = await showDialog(
+    context: context,
+    builder: (context) => CupertinoAlertDialog(
+      title: const Text(
+        'عزيزي العميل الرجاء الإنتظار!',
+        style: TextStyle(
+            fontFamily: 'Contrail',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: kBlackText),
+      ),
+      content: const Text(
+        'هذا الاجتماع مؤجل لحين مراجعة البيانات',
+        style: TextStyle(
+            fontFamily: 'Contrail',
+            fontSize: 12,
+            // fontWeight: FontWeight.bold,
+            color: kBlackText),
+      ),
+      actions: <Widget>[
+        CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "إلغاء",
+              style: TextStyle(
+                fontFamily: 'Contrail',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+        CupertinoDialogAction(
+            textStyle: const TextStyle(color: Colors.red),
+            isDefaultAction: true,
+            onPressed: () {
+              // Get.offAll(() => LoginScreen());
+            },
+            child: const Text(
+              "التالي",
               style: TextStyle(
                 fontFamily: 'Contrail',
                 fontSize: 16,

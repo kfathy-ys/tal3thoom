@@ -19,10 +19,10 @@ class HeadSubHead extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     //  double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
-        //mainAxisSize: MainAxisSize.max,
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
             // color: Colors.amber,

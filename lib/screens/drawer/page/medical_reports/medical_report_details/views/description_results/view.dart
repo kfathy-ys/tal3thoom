@@ -3,15 +3,17 @@ import 'package:get/get.dart';
 
 import '../../../../../../widgets/constants.dart';
 
-class DescriptionResult extends StatelessWidget {
+class OverAll extends StatelessWidget {
   final String title1;
   final String title2;
-  final String subTitle;
-  const DescriptionResult(
+  final String name;
+  final String age;
+  final String mild;
+  const OverAll(
       {Key? key,
       required this.title1,
       required this.title2,
-      required this.subTitle})
+     required this.name, required this.age, required this.mild})
       : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class DescriptionResult extends StatelessWidget {
               ],
             ),
           ),
-          customText7(title: subTitle, color: kBlackText)
+          customText7(title: "A total score of the SSI-4 is calculated based on the subscores. The total score for $name during this evaluation was $age indicating the presence of $mild stuttering. The results are summarized on the following table.", color: kBlackText)
         ],
       ),
     );

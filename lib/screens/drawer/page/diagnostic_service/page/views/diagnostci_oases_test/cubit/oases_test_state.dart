@@ -7,6 +7,20 @@ class OasesTestInitial extends OasesTestState {}
 
 class OasesTestLoading extends OasesTestState {}
 
-class OasesTestSuccess extends OasesTestState {}
+class OasesTestSuccess extends OasesTestState {
+  final List<Question> oasesQuestionModel;
 
-class OasesTestError extends OasesTestState {}
+  OasesTestSuccess({required this.oasesQuestionModel});
+}
+
+class OasesQuestionMessage extends OasesTestState {
+  final List<Message> message;
+
+  OasesQuestionMessage({required this.message});
+}
+
+class OasesTestError extends OasesTestState {
+  final String msg;
+
+  OasesTestError({required this.msg});
+}

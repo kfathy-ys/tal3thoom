@@ -13,7 +13,7 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
-  LoginModel? model;
+ // LoginModel? model;
 
   Future<void> userLogin({
     required String email,

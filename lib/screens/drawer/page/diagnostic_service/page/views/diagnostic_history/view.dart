@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
@@ -26,7 +27,6 @@ class DiagnosticHistory extends StatefulWidget {
 }
 
 class _DiagnosticHistoryState extends State<DiagnosticHistory> {
-
   /// Build 6 Of Categories To Describe The Content
   Widget buildCategoryItem(int number) {
     print('number is $number');
@@ -35,7 +35,8 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
     final qList = cubit.questionList
         .where((e) => e.categoryId == categoryNumber)
         .toList();
- /// Build Main Widget To Expanded The Content
+
+    /// Build Main Widget To Expanded The Content
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: ExpansionTile(
@@ -47,23 +48,12 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
           children: [
             customBoldText(
                 title: KeysConfig.qNames[number], color: kPrimaryColor),
-            customText9(
-              //// TODO::: todo 5 varaibles to store length for every qlist
-              color: kPrimaryColor,
-              title: (qList.length == 2)
-                  ? " (${cubit.index} من ${qList.length})"
-                  : (qList.length == 3)
-                      ? " (${cubit.index} من ${qList.length})"
-                      : (qList.length == 4)
-                          ? " (${cubit.index} من ${qList.length})"
-                          : (qList.length == 5)
-                              ? " (${cubit.index} من ${qList.length})"
-                              : (qList.length == 6)
-                                  ? " (${cubit.index} من ${qList.length})"
-                                  : (qList.length == 7)
-                                      ? " (${cubit.index} من ${qList.length})"
-                                      : "",
-            ),
+            // customText9(
+            //   //// TODO::: todo 5 varaibles to store length for every qlist
+            //   color: kPrimaryColor,
+            //   title:  " (${cubit.index} من ${qList.length})",
+            //
+            // ),
           ],
         ),
         children: [
@@ -73,70 +63,83 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 final currentQuestion = qList[index];
-                return FormBuilder(
-                  onChanged: () {},
-                  autovalidateMode: AutovalidateMode.always,
-                  child: FormBuilderRadioGroup<Answers>(
-                    decoration: InputDecoration(
-                      labelStyle: const TextStyle(
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      currentQuestion.description.toString(),
+                      style: const TextStyle(
                           color: kBlackText,
-                          fontSize: 18,
+                          fontSize: 14,
                           fontFamily: 'DinBold'),
-                      labelText: currentQuestion.description.toString(),
-                      suffixIcon: InkWell(
-                          onTap: () => speech.speak(currentQuestion.description
-                                  .toString() +
-                              "الاجابات المتاحة هي "
-                                  '${currentQuestion.answers.map((lang) => lang.answerOption)}'),
-                          child: Image.asset("assets/images/Earphone.png")),
-                      suffix: cubit.shouldShowTextField(currentQuestion)
-                          ? SizedBox(
-                              height: 60,
-                              width: 150,
-                              child: TextFormField(
-                                 // onSaved:(String? str) =>
-                                 // cubit.answersTxt[currentQuestion] = str! ,
-                                controller:   TextEditingController(text: cubit.answersTxt[currentQuestion] ),
-
-                                onChanged: (str) =>
-                                    cubit.answersTxt[currentQuestion] = str,
-                              ))
-                          : null,
+                      maxLines: 2,
                     ),
-                    initialValue: cubit.answer[currentQuestion],
-                    name: 'best_language',
-                    onChanged: (value) {
-                      log('$value');
-                      if (value != null) {
-                        setState(() {
-                          cubit.answer[currentQuestion] = value;
-                        });
-                      }
+                    FormBuilder(
+                      onChanged: () {},
+                      autoFocusOnValidationFailure: true,
+                      autovalidateMode: AutovalidateMode.always,
+                      child: FormBuilderRadioGroup<Answers>(
+                        decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                              onTap: () => speech.speak(currentQuestion
+                                      .description
+                                      .toString() +
+                                  "الاجابات المتاحة هي "
+                                      '${currentQuestion.answers.map((lang) => lang.answerOption)}'),
+                              child: Image.asset("assets/images/Earphone.png")),
+                          suffix: cubit.shouldShowTextField(currentQuestion)
+                              ? SizedBox(
+                                  height: 60,
+                                  width: 150,
+                                  child: TextFormField(
+                                    // onSaved:(String? str) =>
+                                    // cubit.answersTxt[currentQuestion] = str! ,
+                                    controller: TextEditingController(
+                                        text:
+                                            cubit.answersTxt[currentQuestion]),
 
-                      /// Increment Header Index
-                      if (currentQuestion.isAnswred == false) {
-                        setState(() {
-                          currentQuestion.isAnswred = true;
-                          cubit.index++;
-                        });
-                      }
-                    },
-                    validator: (value) {
-                      if (value == null) {
-                        return 'من فضلك أجب علي المدون أعلاة ';
-                      }
-                      return '';
-                    },
-                    options: currentQuestion.answers
-                        .map((lang) => FormBuilderFieldOption(
-                              value: lang,
-                              child: customText3(
-                                  title: lang.answerOption.toString(),
-                                  color: kBlackText),
-                            ))
-                        .toList(growable: false),
-                    controlAffinity: ControlAffinity.trailing,
-                  ),
+                                    onChanged: (str) =>
+                                        cubit.answersTxt[currentQuestion] = str,
+                                  ))
+                              : null,
+                        ),
+                        initialValue: cubit.answer[currentQuestion],
+                        name: 'best_language',
+                        onChanged: (value) {
+                          log('$value');
+                          if (value != null) {
+                            setState(() {
+                              cubit.answer[currentQuestion] = value;
+                            });
+                          }
+
+                          /// Increment Header Index
+                          if (currentQuestion.isAnswred == false) {
+                            setState(() {
+                              currentQuestion.isAnswred = true;
+                              cubit.index++;
+                            });
+                          }
+                        },
+                        validator: (value) {
+                          if (value == null) {
+                            return 'من فضلك أجب علي المدون أعلاة ';
+                          }
+                          return '';
+                        },
+                        options: currentQuestion.answers
+                            .map((lang) => FormBuilderFieldOption(
+                                  value: lang,
+                                  child: customText3(
+                                      title: lang.answerOption.toString(),
+                                      color: kBlackText),
+                                ))
+                            .toList(growable: false),
+                        controlAffinity: ControlAffinity.trailing,
+                      ),
+                    ),
+                  ],
                 );
               })
         ],
@@ -160,10 +163,13 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
             child: BlocConsumer<DiagnosticHistoryQuestionCubit,
                 DiagnosticHistoryQuestionState>(
               listener: (context, state) {
-
+                if(  state is DiagnosticHistoryQuestionError){
+                  Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+                }
               },
               builder: (context, state) {
-                final cubit = BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
+                final cubit =
+                    BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
                 if (state is DiagnosticHistoryQuestionLoading) {
                   return const Center(
                     child: LoadingFadingCubeGrid(),
@@ -203,25 +209,12 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                             state is! DiagnosticHistoryQuestionLoading
                                 ? MediaButton(
                                     onPressed: () {
-                                      if (cubit.formKey.currentState!.validate()) {
-
-                                        //cubit.answer[currentQuestion].answerOption.isEmpty?
+                                      if (cubit.formKey.currentState!
+                                          .validate()) {
                                         cubit.postDiagnosticHistoryAnswers();
                                       }
-
                                     }
-                                    //   navigateTo(
-                                    //       context,
-                                    //       SuccessView(
-                                    //         title1:
-                                    //             "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
-                                    //         title2: "إنتقال إلي إختبار Oases",
-                                    //         onTap: () => navigateTo(
-                                    //             context, const DiagnosticOasesTest()
-                                    //
-                                    //         ),
-                                    //       ));
-                                    // },
+
                                     ,
                                     title: KeysConfig.next,
                                   )

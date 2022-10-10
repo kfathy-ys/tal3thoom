@@ -40,7 +40,7 @@ dependencies:
   legacy_buttons: ^0.0.1
   laravel_exception: ^0.0.4
   smooth_page_indicator:
-  image_picker: ^0.8.5
+  image_picker: ^0.8.5+3
   hijri_picker: ^3.0.0
   image_cropper: ^1.5.1
   flutter_rating_bar:
@@ -50,6 +50,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.1.59
   flutter_conditional_rendering: ^2.0.0
   carousel_slider: ^4.0.0
+  convex_bottom_bar: ^3.1.0+1
   flutter_svg: ^1.0.0
   drawer_swipe: ^0.0.4
   readable: ^0.0.5
@@ -88,7 +89,7 @@ dependencies:
   intl: ^0.17.0
   timer_count_down: ^2.2.1
   date_time_picker: ^2.1.0
-  file_picker: ^4.3.2
+  file_picker: ^4.4.0
   flutter_tts: ^3.5.0
   flutter_form_builder: ^7.4.0
   open_file: ^3.2.1

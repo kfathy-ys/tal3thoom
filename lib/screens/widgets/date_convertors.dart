@@ -56,6 +56,14 @@ class DateConverter {
         b[8] + b[9] + '-' + b[5] + b[6] + '-' + b[0] + b[1] + b[2] + b[3];
 
     return s;
+  }  static String dateConverterOnlys(String string) {
+    String b = "";
+    b = string.split("T")[0];
+
+    String s =
+        b[0] + b[1] + b[2] + b[3] + '-' + b[5] + b[6] + '-' + b[8] + b[9];
+
+    return s;
   }
 
   static String dateConverterSince(String string) {

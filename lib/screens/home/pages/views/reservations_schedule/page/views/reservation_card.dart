@@ -7,7 +7,7 @@ import '../../../../../../widgets/customButton.dart';
 class ReservationCard extends StatelessWidget {
   final String subTitleData;
   final String subTitleDay;
-  final String subTitleDataStart;
+  final String subTitleFinishSessionDate;
   final String subTitleStartSessionData;
   final String subTitleTypeAppointment;
   final String subTitleEvaluation;
@@ -19,7 +19,7 @@ class ReservationCard extends StatelessWidget {
       required this.onPressEnd,
       required this.subTitleData,
       required this.subTitleDay,
-      required this.subTitleDataStart,
+      required this.subTitleFinishSessionDate,
       required this.subTitleStartSessionData,
       required this.subTitleTypeAppointment,
       required this.subTitleEvaluation})
@@ -41,10 +41,10 @@ class ReservationCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          cardItems(title: "التاريخ", subTitle: subTitleData),
+          cardItems(title: "التاريخ الإصدار", subTitle: subTitleData),
           cardItems(title: "اليوم", subTitle: subTitleDay),
-          cardItems(title: "تاريخ الإصدار", subTitle: subTitleDataStart),
           cardItems(title: "بدء الجلسة", subTitle: subTitleStartSessionData),
+          cardItems(title: "انتهاء الجلسة", subTitle:subTitleFinishSessionDate ),
           cardItems(title: "نوع الموعد", subTitle: subTitleTypeAppointment),
           cardItems(title: "التقيم", subTitle: subTitleEvaluation),
           CustomButton(

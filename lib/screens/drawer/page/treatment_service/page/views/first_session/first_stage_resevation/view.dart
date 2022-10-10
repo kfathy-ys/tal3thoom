@@ -1,4 +1,4 @@
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/page/diagnostic_reservation_reports.dart';
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/page/all_specialists/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
@@ -111,12 +111,13 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                         title: "الاوقات المتاحة", color: kPrimaryColor),
                   ),
                 ),
-                const AvailableTime(),
+                //const AvailableTime(),
                 SmallButton(
                   title: "بحث",
-                  onPressed: () {
-                    navigateTo(context, DiagnosticReservationReport());
-                  },
+                  // onPressed: () {
+                  //   navigateTo(context, DiagnosticAllSpecialists()
+                  //   );
+                 // },
                 ),
               ]),
         ),

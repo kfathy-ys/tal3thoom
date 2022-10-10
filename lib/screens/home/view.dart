@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:tal3thoom/screens/drawer/view.dart';
 import 'package:tal3thoom/screens/widgets/appBar.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
@@ -22,59 +23,24 @@ class HomeTabScreen extends StatefulWidget {
 class _HomeTabScreenState extends State<HomeTabScreen> {
   // final ItemsBar _itemsBar = ItemsBar();
   final token = Prefs.getString('token');
-/*
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<HomeTabeBarCubit, HomeTabeBarState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-       // ProductModel model;
-        var cubit = BlocProvider.of<HomeTabeBarCubit>(context);
-        return SafeArea(
-          child: Scaffold(
 
-            body: cubit.widgetOptions.elementAt(cubit.index),
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: kPrimaryColor,
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeTabScreen()));
-              },
-              child: const Icon(
-                Icons.add_shopping_cart,
-              ),
-            ),
-            floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked,
-            bottomNavigationBar: AnimatedBottomNavigationBar(
-
-             // elevation: 50.0,
-
-              onTap: (index) {
-                cubit.changeIndex(index);
-              },
-              activeIndex: cubit.index,
-
-              icons:  [
-
-                Icons.home,Icons.category,
-
+/* bottomNavigationBar: CurvedNavigationBar(
+              //  key: cubit.bottomNavigationKey,
+              index: cubit.index,
+              height: 50.0,
+              items: <Widget>[
+                buildImage(image: 'assets/images/Profile 1.png'),
+                buildImage(image: 'assets/images/main.png'),
+                buildImage(image: 'assets/images/white calendar.png'),
               ],
-              activeColor: Colors.black,
-              splashColor: Colors.red,
-              inactiveColor: Colors.black,
-              iconSize: 30.0,
-              //backgroundColor: Colors.grey[200],
-              gapLocation: GapLocation.center,
-              notchSmoothness: NotchSmoothness.smoothEdge,
-              leftCornerRadius: 32,
-              rightCornerRadius: 32,
-            ),
-          ),
-        );
-      },
-    );
-  }*/
+              color: kDarkPrimaryColor,
+              buttonBackgroundColor: kButtonGreenDark,
+              backgroundColor: kHomeColor,
+              animationCurve: Curves.easeInOut,
+              animationDuration: const Duration(milliseconds: 600),
+              onTap: cubit.changeIndex,
+              letIndexChange: (index) => true,
+            ),*/
 
   @override
   Widget build(BuildContext context) {
@@ -93,22 +59,44 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                 context: context,
                 press: (context) => Scaffold.of(context).openDrawer()),
             body: cubit.widgetOptions.elementAt(cubit.index),
-            bottomNavigationBar: CurvedNavigationBar(
+            bottomNavigationBar: ConvexAppBar(
+             // cornerRadius: 12,
+              elevation: 20,
+
+               style: TabStyle.reactCircle,
               //  key: cubit.bottomNavigationKey,
-              index: cubit.index,
-              height: 50.0,
-              items: <Widget>[
-                buildImage(image: 'assets/images/Profile 1.png'),
-                buildImage(image: 'assets/images/main.png'),
-                buildImage(image: 'assets/images/white calendar.png'),
+              initialActiveIndex: cubit.index,
+             height: 50.0,
+              items: [
+                // TabItem(icon: Icons.home, title: 'Home',),
+                // TabItem(icon: Icons.map, title: 'Discovery'),
+                // TabItem(icon: Icons.add, title: 'Add'),
+                TabItem(
+                 // title: "ملفي",
+                  icon: buildImage(image: 'assets/images/Profile 1.png'),
+                ),
+                TabItem(
+                   // title: "الرئيسية",
+                    icon: buildImage(image: 'assets/images/main.png')),
+                TabItem(
+              //  title:   "الحجوزات",
+                    icon:
+                        buildImage(image: 'assets/images/white calendar.png')),
+                // buildImage(image: 'assets/images/Profile 1.png'),
+                //  buildImage(image: 'assets/images/main.png'),
+                // buildImage(image: 'assets/images/white calendar.png'),
               ],
-              color: kDarkPrimaryColor,
-              buttonBackgroundColor: kButtonGreenDark,
-              backgroundColor: kHomeColor,
-              animationCurve: Curves.easeInOut,
-              animationDuration: const Duration(milliseconds: 600),
+
+              // color: kDarkPrimaryColor,
+              activeColor: kButtonGreenDark,
+              color: kHomeColor,
+              // buttonBackgroundColor: kButtonGreenDark,
+              // backgroundColor: kHomeColor,
+              backgroundColor: kPrimaryColor,
+              // animationCurve: Curves.easeInOut,
+              // animationDuration: const Duration(milliseconds: 600),
               onTap: cubit.changeIndex,
-              letIndexChange: (index) => true,
+              //  letIndexChange: (index) => true,
             ),
           );
         },

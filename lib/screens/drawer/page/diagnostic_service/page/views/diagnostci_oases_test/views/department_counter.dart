@@ -16,14 +16,14 @@ class DepartmentCounter extends StatelessWidget {
       children: [
         Row(
           children: [
-            customText9(title: "القسم: \t ", color: kPrimaryColor),
-            customText9(title: head, color: kBlackText),
+           // customText9(title: "القسم: \t ", color: kPrimaryColor),
+            Expanded(child: customText9(title: head, color: kBlackText)),
           ],
         ),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           color: kBlackText,
-          width: context.width * 0.6,
+          width: context.width * 0.9,
           height: context.height * 0.002,
         ),
       ],

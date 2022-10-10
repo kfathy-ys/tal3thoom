@@ -69,7 +69,10 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
-              // trailing: diagnosticPaymentModel?.data![0] == 1 ?
+             // trailing:
+
+
+              // diagnosticPaymentModel?.data![0] == 1 ?
               // const Icon(Icons.check_box , color: kTextColor,)
               //     :const Text("eeeee") ,
             ),

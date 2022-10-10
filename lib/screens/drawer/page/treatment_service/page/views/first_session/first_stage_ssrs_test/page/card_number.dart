@@ -6,10 +6,10 @@ import '../../../../../../../../widgets/constants.dart';
 class CardNumber extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
-  final Color color;
+  final bool isSelected;
 
   const CardNumber(
-      {Key? key, required this.onTap, required this.title, required this.color})
+      {Key? key, required this.onTap, required this.title, required this.isSelected})
       : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class CardNumber extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: isSelected ?kDarkPrimaryColor:Colors.grey,
           borderRadius: BorderRadius.circular(8),
         ),
         width: context.width * 0.15,

@@ -14,9 +14,9 @@ class Question extends Equatable {
   final String? difficultyLevel;
   final String questionType;
   final String description;
-   bool isAnswred;
+  bool isAnswred;
   final Object? hint;
-  final Object? videoFile;
+  final dynamic videoFile;
   final Object? audioFile;
   final Object? mark;
   final Object? tags;
@@ -24,13 +24,13 @@ class Question extends Equatable {
   final Object? deleted;
   final int examId;
   final int categoryId;
-  final Object? sectionId;
+  final int sectionId;
   final Object? exam;
-  final Object? category;
-  final Object? section;
+  final CategoryModel? category;
+  final SectionModel? section;
   final List<Answers> answers;
 
-   Question(
+  Question(
       {required this.id,
       required this.qype,
       required this.bankId,
@@ -79,11 +79,15 @@ class Question extends Equatable {
         published: json["question"]["published"],
         deleted: json["question"]["deleted"],
         examId: json["question"]["examId"],
-        categoryId: json["question"]["categoryId"],
-        sectionId: json["question"]["section"],
+        categoryId: json["question"]["categoryId"]== null ? 0 :(json["question"]["categoryId"]),
+        sectionId: json["question"]["sectionId"],
         exam: json["question"]["exam"],
-        category: json["question"]["category"],
-        section: json["question"]["section"],
+        category: json["question"]["category"] == null
+            ? null
+            : CategoryModel.fromMap(json["question"]["category"]),
+        section: json["question"]["section"] == null
+            ? null
+            : SectionModel.fromMap(json["question"]["section"]),
         answers: json["question"]["answers"] == null
             ? []
             : List.from(json["question"]["answers"])
@@ -129,9 +133,9 @@ class Answers extends Equatable {
   final bool isOther;
   final Object? mark;
   final Object? altAnswers;
-   bool isAnswered;
+  bool isAnswered;
 
-   Answers(
+  Answers(
       {required this.id,
       required this.questionId,
       required this.answerOption,
@@ -139,7 +143,7 @@ class Answers extends Equatable {
       required this.isOther,
       required this.mark,
       required this.altAnswers,
-       this.isAnswered= false});
+      this.isAnswered = false});
 
   factory Answers.fromJson(Map<String, dynamic> json) {
     return Answers(
@@ -158,11 +162,118 @@ class Answers extends Equatable {
       [id, questionId, answerOption, isTrueAnswer, isOther, mark, altAnswers];
 }
 
+class SectionModel extends Equatable {
+  final int id;
+  final String sectionName;
+  final String sectionNameEn;
+  final int examId;
+  final num lightStart;
+  final num lightEnd;
+  final num lightToMediumStart;
+  final num lightToMediumEnd;
+  final num mediumStart;
+  final num mediumEnd;
+  final num mediumToExtremeStart;
+  final num mediumToExtremeEnd;
+  final num extremeStart;
+  final num extremeEnd;
+  final Object exam;
+  final Object questions;
+
+  const SectionModel({
+    required this.id,
+    required this.sectionName,
+    required this.sectionNameEn,
+    required this.examId,
+    required this.lightStart,
+    required this.lightEnd,
+    required this.lightToMediumStart,
+    required this.lightToMediumEnd,
+    required this.mediumStart,
+    required this.mediumEnd,
+    required this.mediumToExtremeStart,
+    required this.mediumToExtremeEnd,
+    required this.extremeStart,
+    required this.extremeEnd,
+    required this.exam,
+    required this.questions,
+  });
+
+  factory SectionModel.fromMap(Map<String, dynamic> map) {
+    return SectionModel(
+      id: (map['id'].toInt() ?? 0) as int,
+      sectionName: (map['sectionName'] ?? '') as String,
+      sectionNameEn: (map['sectionNameEn'] ?? '') as String,
+      examId: (map['examId'].toInt() ?? 0) as int,
+      lightStart: (map['lightStart'] ?? 0) ,
+      lightEnd: (map['lightEnd'] ?? 0.0) as double,
+      lightToMediumStart:
+          (map['lightToMediumStart'] ?? 0.0) as double,
+      lightToMediumEnd: (map['lightToMediumEnd'] ?? 0.0) as double,
+      mediumStart: (map['mediumStart'] ?? 0.0) as double,
+      mediumEnd: (map['mediumEnd'] ?? 0.0) as double,
+       mediumToExtremeStart: (map['mediumToExtremeStart'] ?? 0) ,
+      mediumToExtremeEnd:
+          (map['mediumToExtremeEnd'] ?? 0.0) ,
+      extremeStart: (map['extremeStart'] ?? 0.0) ,
+      extremeEnd: (map['extremeEnd'] ?? 0.0) ,
+      exam: map['exam']??"",
+      questions: map['questions']??"",
+    );
+  }
+
+  @override
+  List<Object> get props {
+    return [
+      id,
+      sectionName,
+      sectionNameEn,
+      examId,
+      lightStart,
+      lightEnd,
+      lightToMediumStart,
+      lightToMediumEnd,
+      mediumStart,
+      mediumEnd,
+   mediumToExtremeStart,
+      mediumToExtremeEnd,
+      extremeStart,
+      extremeEnd,
+      exam,
+      questions,
+    ];
+  }
+}
+
+class CategoryModel extends Equatable {
+  final int id;
+  final String category;
+  final Question? questions;
+
+  const CategoryModel({
+    required this.id,
+    required this.category,
+    required this.questions,
+  });
+
+  factory CategoryModel.fromMap(Map<String, dynamic> map) {
+    return CategoryModel(
+      id: (map['id'].toInt() ?? 0) as int,
+      category: (map['category'] ?? '') as String,
+      questions:null,
+    );
+  }
+
+  @override
+  List<Object> get props => [id, category, ];
+}
+
 class Message extends Equatable {
   final String code;
   final String body;
   final String title;
   final int type;
+
   const Message({
     required this.code,
     required this.body,

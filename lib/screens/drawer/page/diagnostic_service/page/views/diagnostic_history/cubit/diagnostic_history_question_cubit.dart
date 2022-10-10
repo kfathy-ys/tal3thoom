@@ -20,12 +20,7 @@ class DiagnosticHistoryQuestionCubit
   }
 
   final TextEditingController controllerDefault = TextEditingController();
-  // final TextEditingController controller2 = TextEditingController();
-  // final TextEditingController controller3 = TextEditingController();
-  // final TextEditingController controller4 = TextEditingController();
-  // final TextEditingController controller5 = TextEditingController();
-  // final TextEditingController controller6 = TextEditingController();
-  // final TextEditingController controller7 = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
   int index = 0;
   final questionList = <Question>[];
@@ -74,12 +69,14 @@ class DiagnosticHistoryQuestionCubit
       } else if (res.type == 1) {
         Alert.success(res.body);
         Get.off(() => SuccessView(
-              title1: "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
+              title1: "لقد تم إنتهاء إختبار SSRS المرضي بنجاح",
               title2: "إنتقال إلي إختبار Oases",
               onTap: () => Get.off(() => const DiagnosticOasesTest()),
             ));
+      } else if (res.type == 3) {
+        Alert.success(res.body);
       } else {
-        Alert.success("0");
+        return Alert.success("ssssssssss");
       }
     } catch (e, st) {
       log(e.toString());

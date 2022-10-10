@@ -32,7 +32,7 @@ class _VideoItemsState extends State<VideoItems> {
       // Prepare the video to be played and display the first frame
       autoInitialize: true,
 
-      looping: true,
+      looping: false,
       // Errors can occur for example when trying to play a video
       // from a non-existent URL
       errorBuilder: (context, errorMessage) {

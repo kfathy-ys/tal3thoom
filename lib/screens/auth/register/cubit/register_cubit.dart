@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/auth/register/model/models.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/screens/widgets/alerts.dart';
@@ -64,24 +65,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         //throw res.data['message'];
         Alert.error("يجب إكمال الحقول المطلوبة");
       }
-      //
-      // RegisterModel registerModel = registerModel.fromJson((res.data));
-      // Prefs.setString("token", res.data["data"]["token"]);
-      // Prefs.setString("userId", res.data["data"]["userId"]);
-      //
-      // Prefs.setString("fullName", registerModel.data!.!);
-      // Prefs.setString("email", registerModel.data!.email!);
-      // Prefs.setString("phoneNumber", registerModel.data!.phoneNumber!);
-      //
-      // Prefs.setString("firstName", registerModel.data!.userName!);
-      // Prefs.setString("lastName", registerModel.data!.email!);
-      //
-      // log("${res.data["data"]["token"]}");
-      // log("${res.data["data"]["userId"]}");
-      //
-      // log("${res.data["data"]["userName"]}");
-      // log("${res.data["data"]["email"]}");
-      // log("${res.data["data"]["phoneNumber"]}");
+
       emit(RegisterSuccess(RegisterModel.fromJson(res.data)));
     } catch (e, st) {
       log(e.toString());

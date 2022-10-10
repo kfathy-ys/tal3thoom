@@ -35,7 +35,7 @@ class CardItems extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildRow(title: "أسم التقارير", subTitle: subTitleReportName),
-          buildRow(title: "أسم المتخصص", subTitle: subTitleReportName),
+          buildRow(title: "أسم المتخصص", subTitle: subTitleSpecialistName),
           buildRow(title: "تاريخ الإصدار", subTitle: subTitleDate),
           CustomButton(
             title: "عرض التقرير",
