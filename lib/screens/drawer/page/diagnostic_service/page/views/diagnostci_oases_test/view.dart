@@ -45,7 +45,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
        // isLoading: isSubmiting,
         title: "التالي",
         color: kButtonGreenDark ,
-      ):SizedBox.shrink(),
+      ):const SizedBox.shrink(),
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(

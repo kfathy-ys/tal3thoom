@@ -35,9 +35,9 @@ class _DropDownGenderState extends State<DropDownGender> {
     }
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
+
     // double height = MediaQuery.of(context).size.height;
     //  double width = MediaQuery.of(context).size.width;
     return DropdownButtonHideUnderline(
@@ -69,8 +69,8 @@ class _DropDownGenderState extends State<DropDownGender> {
 
           isDense: true,
           hint:  Text(
-            Prefs.getString('gender'),
-            style: TextStyle(
+           "الجنس : "+ Prefs.getString('gender'),
+            style: const TextStyle(
               color: kPrimaryColor,
               fontSize: 16,
               fontFamily: "DinReguler",

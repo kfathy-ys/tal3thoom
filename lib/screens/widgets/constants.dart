@@ -5,7 +5,6 @@ import 'package:get/get.dart' hide Trans;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:html/parser.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
 

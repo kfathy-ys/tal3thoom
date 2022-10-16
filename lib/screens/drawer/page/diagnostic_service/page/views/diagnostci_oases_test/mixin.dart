@@ -5,10 +5,8 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diag
 import 'package:get/get.dart';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import '../../../../../../../serives/diagnostic_oases_service/answers_service.dart';
-import '../../../../../../../serives/diagnostic_oases_service/question_serives.dart';
-import '../../../../../../widgets/alerts.dart';
-import '../../../../../../widgets/fast_widget.dart';
+import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/answers_service.dart';
+import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/question_serives.dart';
 import '../diagnostic_ssrs_test/view.dart';
 import '../success_page.dart';
 
@@ -116,7 +114,7 @@ mixin QMixer on State<DiagnosticOasesTest> {
       log('${qList.length} loaded from api');
 
       for (final q in qList) {
-        final section = sections[(q.sectionId as int) - 1];
+        final section = sections[(q.sectionId) - 1];
         questionsBySection[section]!.add(q);
       }
       selectedQuestion = questionsBySection[sections.first]!.first;
@@ -161,23 +159,19 @@ mixin QMixer on State<DiagnosticOasesTest> {
 
   void answerSelectedQ(Answers answer) {
     allAnswers[selectedQuestion!] = answer;
-    if (shouldEnableNextSectionButton) {
-      selectNextQuestion();
-    } else {
-      submit();
-    }
+    // if (shouldEnableNextSectionButton) {
+    //   selectNextQuestion();
+    // } else {
+    //  submit();
+  //  }
   }
-
   bool isSubmiting = false;
-
-  // final answersTxt = <Question, String>{};
-
   Future<void> submit() async {
     try {
       setState(() => isSubmiting = true);
       await DiagnosticOasesAnswers.postDiagnosticOasesAnswers(
         answers: allAnswers,
-        answersTxt: {},
+
       );
       Get.off(() => SuccessView(
             title1: "لقد تم إنتهاء إختبار OASES بنجاح",

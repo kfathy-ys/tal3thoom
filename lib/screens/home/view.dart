@@ -2,7 +2,6 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:tal3thoom/screens/drawer/view.dart';
 import 'package:tal3thoom/screens/widgets/appBar.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,9 +67,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               initialActiveIndex: cubit.index,
              height: 50.0,
               items: [
-                // TabItem(icon: Icons.home, title: 'Home',),
-                // TabItem(icon: Icons.map, title: 'Discovery'),
-                // TabItem(icon: Icons.add, title: 'Add'),
+
                 TabItem(
                  // title: "ملفي",
                   icon: buildImage(image: 'assets/images/Profile 1.png'),

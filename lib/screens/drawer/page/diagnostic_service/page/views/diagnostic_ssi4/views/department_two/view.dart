@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -9,7 +8,6 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/ques
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:queen/validation.dart';
@@ -109,7 +107,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                         SizedBox(
                           height: context.height * 0.75,
                           child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: listOfString.length,
                               itemBuilder: (context, index) {
                                 return CardQuestions(

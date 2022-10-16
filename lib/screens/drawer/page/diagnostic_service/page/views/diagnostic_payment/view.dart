@@ -19,8 +19,6 @@ class DiagnosticPayment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -81,6 +79,7 @@ class DiagnosticPayment extends StatelessWidget {
                             navigateTo(
                                 context,
                                 const WebView(
+
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
                                       "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",

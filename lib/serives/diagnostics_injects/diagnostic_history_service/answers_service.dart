@@ -1,25 +1,26 @@
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
 
-import '../../config/dio_helper/dio.dart';
+import '../../../config/dio_helper/dio.dart';
 
-class DiagnosticOasesAnswers {
-  static Future<Message?> postDiagnosticOasesAnswers({
+
+class AnswersService {
+  static Future<Message?> postAnswers({
     required Map<Question, Answers> answers,
     required Map<Question, String> answersTxt,
   }) async {
-     buildPatientAnswers(Question q) {
+    List<String> buildPatientAnswers(Question q) {
       final answer = answers[q];
       if (answer == null || answer.isOther) {
         return [answersTxt[q]!];
       }
-      return answers[q]!.id.toString();
+      return [answers[q]!.answerOption.toString()];
     }
 
     final userId = Prefs.getString("userId");
 
-    final res = await NetWork.post(
-      'PatientExams/AddPatientOasesExamAllQuestionsAnswers',
+  final res =   await NetWork.post(
+      'CaseHistory/AddCaseHistory2',
       body: <Question>{
         ...answers.keys,
         ...answersTxt.keys,
@@ -32,13 +33,16 @@ class DiagnosticOasesAnswers {
           "examId": q.examId,
           "categoryId": q.categoryId,
           "sectionId": q.sectionId,
-          "answerId": buildPatientAnswers(q)
+         "patientAnswers": buildPatientAnswers(q)
         };
       }).toList(),
+    
     );
-    if (res.data['status'] == 1 || res.data['status'] == 200) {
+    if (res.data['status'] == 1 ||
+        res.data['status'] == 200){
       final _msg = Message.fromMap(res.data['messages'][0]);
       return _msg;
     }
+    return null;
   }
 }

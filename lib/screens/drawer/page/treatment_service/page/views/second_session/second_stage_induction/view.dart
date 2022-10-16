@@ -51,7 +51,7 @@ class TreatmentServiceInduction extends StatelessWidget {
                 ),
                 MediaButton(
                   onPressed: () {
-                    navigateTo(context, const PaymentTreatment());
+                    navigateTo(context, const FirstPaymentTreatment());
                   },
                   title: KeysConfig.next,
                 ),

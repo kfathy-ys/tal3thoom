@@ -2,20 +2,28 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:queen/queen.dart';
+import 'package:get/get.dart' hide Trans, ContextExtensionss;
+
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
+import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
+import '../../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../department_two/view.dart';
+import 'cubit/second_stage_ssi4_one_cubit.dart';
 
 // ignore: must_be_immutable
 class SecondTreatmentSSI4 extends StatefulWidget {
@@ -27,6 +35,12 @@ class SecondTreatmentSSI4 extends StatefulWidget {
 
 class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
   final _firstController = TextEditingController();
+
+  @override
+  void dispose() {
+    _disposeVideoController();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,84 +57,133 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
         height: context.height,
         width: context.width,
         color: kHomeColor,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomTileContainer(
-                  title: "إختبار SSI-4",
-                  widthh: context.width * 0.5,
-                  context: context),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset("assets/images/Fourth test1.png"),
-              ),
+        child: BlocConsumer<SecondStageSsi4OneCubit, SecondStageSsi4OneState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            final cubit = BlocProvider.of<SecondStageSsi4OneCubit>(context);
 
-              SizedBox(
-                width: context.width * 0.8,
-                height: context.height * 0.25,
-                child: VideoItems(
-                  videoPlayerController: VideoPlayerController.network(
-                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                  ),
-                ),
-              ),
-              // CardUploadVideo(
-              //   height: context.height * 0.18,
-              //   title: "fullMessage",
-              //   controller: _firstController,
-              //   onPressed1: () {
-              //     _uploadFile(1);
-              //   },
-              //   validator: qValidator([IsRequired("thisFieldRequired")]),
-              //   context: context,
-              // ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset("assets/images/word.png"),
-              ),
-              InkWell(
-                  onTap: () {
-                    speech.speak(KeysConfig.ssFourWord);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Image.asset("assets/images/Earphone.png"),
-                  )),
-              SizedBox(
-                width: context.width * 0.8,
-                height: context.height * 0.25,
-                child: VideoItems(
-                  videoPlayerController: VideoPlayerController.network(
-                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                  ),
-                ),
-              ),
-              CardUploadVideo(
-                height: context.height * 0.18,
-                title: "fullMessage",
-                controller: _firstController,
-                onPressed1: () {
-                  _uploadFile(1);
-                },
-                validator: qValidator([IsRequired("thisFieldRequired")]),
-                context: context,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset("assets/images/record.png"),
-              ),
-              MediaButton(
-                onPressed: () {
-                  navigateTo(
-                    context,
-                    const SecondTreatmentSSI4Two(),
-                  );
-                },
-                title: "متابعة",
-              ),
-              buildSizedBox(context.height),
-            ],
-          ),
+            if (state is SecondStageSsi4OneLoading) {
+              return const Center(
+                child: LoadingFadingCircle(),
+              );
+            }
+            if (state is SecondStageSsi4OneSuccess) {
+              return ListView.builder(
+                  itemCount: 1,
+                  itemBuilder: (context, index) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CustomTileContainer(
+                              title: "أختبار SSI-4 ",
+                              widthh: context.width * 0.5,
+                              context: context),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child:
+                            Image.asset("assets/images/Fourth test1.png"),
+                          ),
+
+                          SizedBox(
+                            width: context.width * 0.8,
+                            height: context.height * 0.25,
+                            child: VideoItems(
+                              videoPlayerController:
+                              VideoPlayerController.network(
+                                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Image.asset("assets/images/first_class.png"),
+                          ),
+
+                          customText4(
+                              title: parseHtmlString(
+                                  state.ssi4QuestionModel[0].description),
+                              color: kBlackText),
+                          InkWell(
+                              onTap: () {
+                                speech.speak(parseHtmlString(
+                                    state.ssi4QuestionModel[0].description));
+                              },
+                              child: Padding(
+                                padding:
+                                const EdgeInsets.symmetric(vertical: 8.0),
+                                child:
+                                Image.asset("assets/images/Earphone.png"),
+                              )),
+                          SizedBox(
+                            width: context.width * 0.8,
+                            height: context.height * 0.25,
+                            child: _file == null
+                                ? Container(
+                              //padding: EdgeInsets.symmetric(vertical: 4,),
+                              decoration: BoxDecoration(
+                                  color: kBlackText,
+                                  border: Border.all(
+                                      color: kPrimaryColor, width: 3)
+                                // borderRadius: BorderRadius.circular(4)
+                              ),
+                            )
+                                : VideoItems(
+                              videoPlayerController:
+                              VideoPlayerController.file(
+                                  File(_file!.path)),
+                            ),
+                          ),
+                          CardUploadVideo(
+                            height: context.height * 0.18,
+                            title: "fullMessage",
+                            controller: _firstController,
+                            onPressed1: () {
+                              pickVideo();
+                            },
+                            validator: qValidator(
+                                [IsRequired(KeysConfig.thisFieldRequired)]),
+                            context: context,
+                          ),
+                          // selectVideosStaticContainer(context, () {
+                          //   _uploadVideo();
+                          //   // _uploadFile();
+                          // }, _file1 == null ? true : false),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(12.0),
+                          //   child: Image.asset("assets/images/record.png"),
+                          // ),
+
+                          // customText4(title: parseHtmlString(state.ssi4QuestionModel[index].description), color: kBlackText),
+
+                          state is! SecondStageSsi4OneLoading ? MediaButton(
+                            onPressed: () {
+                              _file == null
+                                  ? Alert.error(' الفيديو المسجل مطلوب',
+                                  desc: "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
+                                  :Get.off(() {
+                                cubit.postUploadVideoSSI4SecondFirstStage(id: state.ssi4QuestionModel[0].id, examId: state.ssi4QuestionModel[0].examId, video: _file);
+
+                                return const SecondTreatmentSSI4Two();
+                              });
+
+
+                            },
+
+
+                            title: "متابعة",
+                          ) : const LoadingFadingCircle(),
+                          buildSizedBox(context.height),
+                        ],
+                      ),
+                    );
+                  });
+            }
+            if (state is SecondStageSsi4OneError) {
+              return Text(state.msg);
+            }
+            return const SizedBox();
+          },
         ),
       ),
     );
@@ -128,8 +191,9 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
 
   dynamic video;
 
-  File? _file1;
+  XFile? _file;
 
+/*
   void _uploadFile(int step) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -150,8 +214,123 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
       log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
     }
   }
+*/
+
+  void pickVideo() async {
+    _picker.pickVideo(source: ImageSource.gallery).then((value) {
+      if (value != null) {
+        setState(() {
+          _file = value;
+        });
+        _playVideo(value);
+      }
+    });
+  }
+
+  bool isVideo = false;
+  VideoPlayerController? _controller;
+  VideoPlayerController? _toBeDisposed;
+
+  final ImagePicker _picker = ImagePicker();
+  final TextEditingController maxWidthController = TextEditingController();
+  final TextEditingController maxHeightController = TextEditingController();
+  final TextEditingController qualityController = TextEditingController();
+
+  Future<void> _disposeVideoController() async {
+    if (_toBeDisposed != null) {
+      await _toBeDisposed!.dispose();
+    }
+    _toBeDisposed = _controller;
+    _controller = null;
+  }
+
+  Future<void> _playVideo(XFile? file) async {
+    if (file != null && mounted) {
+      await _disposeVideoController();
+      late VideoPlayerController controller;
+      if (kIsWeb) {
+        controller = VideoPlayerController.network(file.path);
+      } else {
+        controller = VideoPlayerController.file(File(file.path));
+      }
+      _controller = controller;
+      // In web, most browsers won't honor a programmatic call to .play
+      // if the video has a sound track (and is not muted).
+      // Mute the video so it auto-plays in web!
+      // This is not needed if the call to .play is the result of user
+      // interaction (clicking on a "play" button, for example).
+      const double volume = kIsWeb ? 0.0 : 1.0;
+      await controller.setVolume(volume);
+      await controller.initialize();
+      await controller.setLooping(false);
+      await controller.play();
+      setState(() {});
+    }
+  }
+// void _uploadVideo() async {
+//   FilePickerResult? result = await FilePicker.platform.pickFiles(
+//     type: FileType.custom,
+//     allowedExtensions: [
+//       "MP4",
+//       "MOV",
+//       "WMV",
+//       "AVI",
+//       "AVCHD",
+//       "FLV",
+//       "F4V",
+//       "SWF",
+//       "MKV",
+//       "WEBM",
+//       "HTML5"
+//     ],
+//   );
+//
+//   if (result != null) {
+//     File file = File(result.files.single.path!);
+//     print("-=-=-=-=- selected file is ${file.toString()}");
+//     setState(() {
+//       _file1 = file;
+//       //_inputData.video = file;
+//       _firstController.text = file.path;
+//     });
+//   } else {
+//     // User canceled the picker
+//   }
+// }
+//
+//
+// Widget selectVideosStaticContainer(BuildContext context, VoidCallback onTap,
+//     bool isNull) {
+//   return Column(
+//     children: [
+//       Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Align(
+//             alignment: Alignment.centerRight,
+//             child: Text(isNull
+//                 ? "Auctions_YouCanAddVideo"
+//                 : context.locale.languageCode == "en"
+//                 ? "Video uploaded successfully"
+//                 : "تم رفع الفيديو بنجاح")
+//         ),
+//       ),
+//       Padding(
+//         padding: const EdgeInsets.only(bottom: 40),
+//         child: InkWell(
+//           onTap: onTap,
+//           child: const Center(
+//               child: Icon(
+//                 Icons.video_collection_rounded,
+//                 size: 30,
+//               )),
+//         ),
+//       ),
+//     ],
+//   );
+// }
 }
 
-SizedBox buildSizedBox(double height) => SizedBox(
+SizedBox buildSizedBox(double height) =>
+    SizedBox(
       height: height * 0.05,
     );

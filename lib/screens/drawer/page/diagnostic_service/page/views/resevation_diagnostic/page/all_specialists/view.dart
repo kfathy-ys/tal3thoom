@@ -1,21 +1,16 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/date_convertors.dart';
 import '../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../view.dart';
-import '../../../success_page.dart';
-import '../../models/avalible_periods_model.dart';
 import 'cubit/diangosic_specialists_cubit.dart';
-import 'models/all_specialist_model.dart';
 
 class DiagnosticAllSpecialists extends StatefulWidget {
   //AvailablePeriods? availablePeriods;

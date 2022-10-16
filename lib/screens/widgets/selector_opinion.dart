@@ -38,7 +38,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
         Row(
           //mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text("DepositScientificThesis",
+            const Text("depositScientificThesis",
                 style: TextStyle(
                     color: kPrimaryColor, fontSize: 16, fontFamily: 'DinBold')),
             SizedBox(

@@ -9,9 +9,10 @@ class SsrsQuestionModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if(question != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if(question != null) {
       data["question"] = question?.toJson();
+    }
     return data;
   }
 }
@@ -78,7 +79,7 @@ class Question {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["qype"] = qype;
     data["bankId"] = bankId;
@@ -104,10 +105,12 @@ class Question {
     data["sectionId"] = sectionId;
     data["exam"] = exam;
     data["category"] = category;
-    if(section != null)
+    if(section != null) {
       data["section"] = section?.toJson();
-    if(answers != null)
+    }
+    if(answers != null) {
       data["answers"] = answers?.map((e)=>e.toJson()).toList();
+    }
     return data;
   }
 }
@@ -134,7 +137,7 @@ class Answers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["questionId"] = questionId;
     data["answerOption"] = answerOption;
@@ -186,7 +189,7 @@ class Section {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["sectionName"] = sectionName;
     data["sectionNameEn"] = sectionNameEn;

@@ -31,7 +31,7 @@ class LocaleString extends Translations {
           "periods": "From Available Enter Period From : To",
           "welcome": "Welcome ..",
           "signIn": "Sign In",
-          "IdentificationNumber": "ID Number",
+          "identificationNumber": "ID Number",
           "password": "Password",
           "passwordRecovery": "Password Recovery?",
           "login": "Login",
@@ -51,7 +51,7 @@ class LocaleString extends Translations {
           "sendCode": "Send VCode",
           "resend": "Resend",
           // Via Code
-          "EnterVcode": "Enter the sent code",
+          "enterVcode": "Enter the sent code",
           "confirm": "Confirm",
           //New password
           "newPassword": "New password",
@@ -69,7 +69,7 @@ class LocaleString extends Translations {
           "enterFullName": "Please enter your full name",
           "enterName": "Please enter your name",
           "enterEmail": "Please enter your email",
-          "MustBeEmail": "Must be an valid email",
+          "mustBeEmail": "Must be an valid email",
           "enterPass": "Please enter the password",
           "enterConfPassword": "Please enter confirm password",
           "enterCountry": "Please select the country",
@@ -78,7 +78,7 @@ class LocaleString extends Translations {
           "emailDots": "The email   :",
           "phoneDots": "Phone No   :",
           "countryDots": "The county :",
-          "AccessNumberDots": "Access No:",
+          "accessNumberDots": "Access No:",
           "passwordDots": "Password :",
           "fakeName": "Mohamed Rashad",
           "saudi": "Saudi Arabia",
@@ -92,19 +92,19 @@ class LocaleString extends Translations {
           "relation": "Ask Library Relations",
           "specialist": "Ask librarian",
           "libraryExternalServices": "Services outside the Kingdom",
-          "SuggestionBuyBook": "Suggestion to buy a book",
+          "suggestionBuyBook": "Suggestion to buy a book",
           "Inter-LibraryExchangeAndLending":
               "Inter-library exchange and lending",
-          "RequestDepositScientificThesis":
+          "requestdepositScientificThesis":
               "Request to deposit a scientific thesis",
-          "SelectiveBroadcastingInformation":
+          "selectiveBroadcastingInformation":
               "Selective broadcasting of information",
           "manuscriptRequest": "Manuscript request",
-          "RequestVisit": "Request to visit",
-          "RequestReserveArticleOrResearchRetreat":
+          "requestVisit": "Request to visit",
+          "requestreserveArticleOrResearchRetreat":
               "Request to reserve an article or research retreat",
-          "BookGiftRequest": "Book gift request",
-          "RequestGiftBook": "Request to gift a book",
+          "bookGiftRequest": "Book gift request",
+          "requestGiftBook": "Request to gift a book",
           "potPhotographyRequest": "pot photography request",
           "toShowEveryServicesMustLogin":
               "To learn about all services Please login",
@@ -116,7 +116,7 @@ class LocaleString extends Translations {
           "gallery": "Gallery",
           "cancel": "Cancel",
           "changeImage": "Change image",
-          "YouCanFollowUsSocialMedia": "You can follow us on social media",
+          "youCanFollowUsSocialMedia": "You can follow us on social media",
           // language
           "language": "Languages",
           "changeLang": "Change language",
@@ -136,7 +136,7 @@ class LocaleString extends Translations {
 
           // reserve retreat
           "archive": "Archive",
-          "ReserveArticleOrResearchRetreat": "Book a research retreat",
+          "reserveArticleOrResearchRetreat": "Book a research retreat",
           "headReserve":
               "It is a service that enables the beneficiary to reserve a designated place in the library, where all office supplies are placed, in order to prepare the beneficiary to complete his research and study and achieve practical.",
           "followRequest": "Follow request",
@@ -226,7 +226,7 @@ class LocaleString extends Translations {
           "removeFromArchive": "Remove from archive",
           "kArchive": "(Archive)",
           // إيداع رسالة علمية
-          "DepositScientificThesis": "scientific thesis",
+          "depositScientificThesis": "scientific thesis",
           "terms": "(Terms and Conditions)",
           "termsHead":
               "You must first review and agree to the terms of delivery of the thesis",
@@ -348,7 +348,7 @@ class LocaleString extends Translations {
           // login
           "welcome": "مرحبا..",
           "signIn": "تسجيل الدخول",
-          "IdentificationNumber": "رقم الهوية",
+          "identificationNumber": "رقم الهوية",
           "password": "كلمة المرور",
           "passwordRecovery": "إسترجاع كلمة المرور؟",
           "login": "تسجيل الدخول",
@@ -373,7 +373,7 @@ class LocaleString extends Translations {
           "sendCode": "إرسال الرمز",
           "resend": "إعادة إرسال الرمز",
           // Via Code
-          "EnterVcode": "أدخل الرمز المرسل",
+          "enterVcode": "أدخل الرمز المرسل",
           "confirm": "تاكيد",
           //New password
           "newPassword": "كلمة مرور جديدة",
@@ -390,7 +390,7 @@ class LocaleString extends Translations {
           "doHave": "  هل لديك حساب؟\t ",
           "enterFullName": "من فضلك أدخل الاسم كاملاَ",
           "enterName": "من فضلك أدخل أسمك",
-          "MustBeEmail": "لابد ان يكون بريد الكتروني",
+          "mustBeEmail": "لابد ان يكون بريد الكتروني",
 
           "enterEmail": "من فضلك أدخل بريدك الإلكتروني",
           "enterPass": "من فضلك أدخل كلمة المرور",
@@ -402,7 +402,7 @@ class LocaleString extends Translations {
           "emailDots": "البريد الإلكتروني :",
           "phoneDots": "رقم الهاتف   : ",
           "countryDots": "أسم الدولة   : ",
-          "AccessNumberDots": "رقم النفاذ   : ",
+          "accessNumberDots": "رقم النفاذ   : ",
           "passwordDots": "كلمة المرور : ",
           "fakeName": "محمد رشاد",
           "saudi": "المملكه العربية السعودية",
@@ -415,18 +415,18 @@ class LocaleString extends Translations {
           "relation": "أسال علاقات المكتبة",
           "specialist": "أسال أخصائي المكتبة",
           "libraryExternalServices": "خدمات خارجي الممكلة",
-          "SuggestionBuyBook": "اقتراح شراء كتاب",
+          "suggestionBuyBook": "اقتراح شراء كتاب",
           "Inter-LibraryExchangeAndLending": "التبادل والإعارة بين المكتبات",
-          "RequestDepositScientificThesis": "طلب إيداع رسالة علمية",
+          "requestdepositScientificThesis": "طلب إيداع رسالة علمية",
           "depositScientificThesis": "إيداع رسالة علمية",
 
-          "SelectiveBroadcastingInformation": "البث الإنتقالي للمعلومات",
+          "selectiveBroadcastingInformation": "البث الإنتقالي للمعلومات",
           "manuscriptRequest": "طلب مخطوطة",
-          "RequestVisit": "طلب زيارة",
-          "RequestReserveArticleOrResearchRetreat":
+          "requestVisit": "طلب زيارة",
+          "requestreserveArticleOrResearchRetreat":
               "طلب حجز مادة أو خلوة بحثية",
-          "BookGiftRequest": "طلب إهداء كتاب",
-          "RequestGiftBook": "طلب إستهداء كتاب",
+          "bookGiftRequest": "طلب إهداء كتاب",
+          "requestGiftBook": "طلب إستهداء كتاب",
           "potPhotographyRequest": "طلب تصوير وعاء",
           "toShowEveryServicesMustLogin":
               "لتعرف علي جميع الجدمات  يرجي تسجيل الدخول",
@@ -440,7 +440,7 @@ class LocaleString extends Translations {
           "gallery": "الاستوديو",
           "cancel": "الغاء",
           "changeImage": "تغير الصورة",
-          "YouCanFollowUsSocialMedia":
+          "youCanFollowUsSocialMedia":
               "يمكنك متابعتنا علي مواقع التواصل الإجتماعي",
           // language
           "language": "إعدادات اللغة",
@@ -461,7 +461,7 @@ class LocaleString extends Translations {
           "askStaff": "إسال موظفي المكتبة",
 
           // reserve retreat
-          "ReserveArticleOrResearchRetreat": "حجز خلوة بحثية",
+          "reserveArticleOrResearchRetreat": "حجز خلوة بحثية",
           "headReserve":
               "هي خدمة تمكن المستفيد من حجز مكان مخصص بالمكتبة ، حيث يوضع فية جميع المستلزمات المكتبية وذالك تهيئة للمستفيد في إكمال أبحاثة ودراستة ونحقيقة العملي.",
           "followRequest": "متابعة الطلب",
@@ -549,7 +549,7 @@ class LocaleString extends Translations {
           "kArchive": "(الأرشيف)",
           "archive": "الأرشيف",
           // إيداع رسالة علمية
-          "DepositScientificThesis": "إيداع رسالة علمية",
+          "depositScientificThesis": "إيداع رسالة علمية",
           "terms": "(الشروط والأحكام)",
           "youMust": "عليك أن توافق على الشروط والأحكام أولاً قبل المواصلة",
           "termsHead":

@@ -7,7 +7,6 @@ import 'package:queen/core/helpers/prefs.dart';
 import '../../../../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/date_convertors.dart';
-import '../../../models/avalible_periods_model.dart';
 import '../models/all_specialist_model.dart';
 
 part 'diangosic_specialists_state.dart';

@@ -2,11 +2,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
-import '../../../../../../serives/medcial_reports/report_details.dart';
 import '../../models/medcial_report_model.dart';
 
 part 'medical_report_details_state.dart';

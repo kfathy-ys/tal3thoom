@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
    <application
        android:label="كلامي"
+       android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/logo">
         <activity

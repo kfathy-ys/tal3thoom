@@ -1,12 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tal3thoom/screens/auth/register/page/drop_down_six.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/page/all_specialists/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../auth/register/page/custom_calender_widget.dart';
 import '../../../../../../auth/register/page/hint_avaliable_time.dart';
 import '../../../../../../home/pages/views/reservations_schedule/page/views/avaliable_time.dart';
 import '../../../../../../widgets/appBar.dart';
@@ -15,7 +13,6 @@ import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
 import 'cubit/available_dates_cubit.dart';
 import 'models/avalible_periods_model.dart';
-import 'page/all_specialists/cubit/diangosic_specialists_cubit.dart';
 
 // ignore: must_be_immutable
 class ReservationDiagnostic extends StatelessWidget {

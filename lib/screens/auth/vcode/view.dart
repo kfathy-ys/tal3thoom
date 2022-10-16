@@ -57,9 +57,9 @@ class _VCodeScreenState extends State<VCodeScreen> {
                 height: context.height * 0.3,
               ),
               CustomTextField(
-                hint: KeysConfig.EnterVcode,
+                hint: KeysConfig.enterVcode,
                 dIcon: Icons.verified_user_outlined,
-                label: KeysConfig.EnterVcode,
+                label: KeysConfig.enterVcode,
                 controller: _emailController,
                 validator: (String? value) {
                   if (value!.isEmpty) {

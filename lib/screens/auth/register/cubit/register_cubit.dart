@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/auth/register/model/models.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/screens/widgets/alerts.dart';

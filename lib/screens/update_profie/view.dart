@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/services.dart';
-import 'package:queen/core/helpers/prefs.dart';
-import 'package:tal3thoom/screens/update_profie/view.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +14,6 @@ import 'package:tal3thoom/config/keys.dart';
 import '../auth/register/page/drop_down_is_readble.dart';
 import '../auth/register/page/drop_down_six.dart';
 import '../drawer/view.dart';
-import '../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../home/view.dart';
 import '../widgets/alerts.dart';
 import '../widgets/appBar.dart';
@@ -25,14 +22,10 @@ import '../widgets/customTextFeild.dart';
 import '../widgets/custom_textFornField_range.dart';
 import '../widgets/custom_text_field_phone.dart';
 import '../widgets/custom_text_filed_country_code.dart';
-import '../widgets/date_convertors.dart';
 import '../widgets/loading.dart';
 import '../widgets/pick_image.dart';
 import '../widgets/profile_pick_image.dart';
 import 'cubit/update_profile_cubit.dart';
-import 'models/profile_model.dart';
-import 'page/drop_down_gender.dart';
-import 'page/drop_down_read.dart';
 
 class UpdateProfile extends StatefulWidget {
 
@@ -95,9 +88,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       SizedBox(
                         height: context.height * 0.02,
                       ),
-                      _profilePic(userName: Prefs.getString('fullName')),
-
+                      //_profilePic(userName: Prefs.getString('fullName')),
+                      const CircleAvatar(
+                        radius: 40.0,
+                        backgroundImage:
+                        NetworkImage('https://www.vitaalbank.nl/wp-content/uploads/2021/09/man-1.png'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                      SizedBox(
+                        height: context.height * 0.02,
+                      ),
                       CustomTextField(
+                        isEdit: true,
                         dIcon: Icons.person,
                         label: KeysConfig.firstName,
                         hint: KeysConfig.firstName,
@@ -114,6 +116,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       ),
 
                       CustomTextField(
+                        isEdit: true,
                         dIcon: Icons.person,
                         label: KeysConfig.dadName,
                         hint: KeysConfig.dadName,
@@ -133,6 +136,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       ),
 
                       CustomTextField(
+                        isEdit: true,
                         dIcon: Icons.person,
                         label: KeysConfig.familyName,
                         hint: KeysConfig.familyName,
@@ -294,6 +298,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         },
                       ),
                       CustomTextField(
+                        isEdit: true,
                         dIcon: Icons.location_on_rounded,
                         label: "المدينة",
                         hint: "المدينة",

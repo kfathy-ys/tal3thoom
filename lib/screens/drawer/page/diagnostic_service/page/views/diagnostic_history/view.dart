@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -13,9 +12,9 @@ import '../../../../../../../config/keys.dart';
 import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/customButton.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
-import '../diagnostci_oases_test/view.dart';
 import 'models/diagnostic_history_question_model.dart';
 
 // ignore: must_be_immutable
@@ -163,9 +162,9 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
             child: BlocConsumer<DiagnosticHistoryQuestionCubit,
                 DiagnosticHistoryQuestionState>(
               listener: (context, state) {
-                if(  state is DiagnosticHistoryQuestionError){
-                  Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
-                }
+                // if(  state is DiagnosticHistoryQuestionError){
+                //   Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+                // }
               },
               builder: (context, state) {
                 final cubit =
@@ -211,11 +210,15 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                                     onPressed: () {
                                       if (cubit.formKey.currentState!
                                           .validate()) {
-                                        cubit.postDiagnosticHistoryAnswers();
-                                      }
-                                    }
 
-                                    ,
+                                          cubit.postDiagnosticHistoryAnswers();
+
+
+
+                                      }
+                                     // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+                                     // Get.to(()=>const DiagnosticHistory());
+                                    },
                                     title: KeysConfig.next,
                                   )
                                 : const LoadingFadingCircle(),
@@ -229,7 +232,22 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionError) {
-                  return Text(state.msg);
+                  return Column(
+                    children: [
+                      Text(state.msg),
+                      CustomButton(
+                          onPressed:() {
+                            print("kkkkkk");
+                            Get.to(const DiagnosticHistory());
+
+                           // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DiagnosticHistory()));
+                          },
+                          title: "العودة", color: kBlackText),
+
+                    ],
+                  );
+                // return Alert.error(state.msg);
+                 // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
                 }
                 return const SizedBox();
               },

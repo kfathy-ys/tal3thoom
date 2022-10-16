@@ -1,11 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:get/get.dart' hide Trans, ContextExtensionss;
-import 'package:easy_localization/easy_localization.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
@@ -25,7 +21,6 @@ import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
 import '../../cubit/diagnostic_ssi4_first_cubit.dart';
 import '../department_two/view.dart';
-import 'views/custom_video_player.dart';
 
 // ignore: must_be_immutable
 class DiagnosticSSI4 extends StatefulWidget {

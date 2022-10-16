@@ -15,7 +15,7 @@
 //   static const home = 'home';
 //   static const welcome = 'welcome';
 //   static const signIn = 'signIn';
-//   static const IdentificationNumber = 'IdentificationNumber';
+//   static const identificationNumber = 'identificationNumber';
 //   static const password = 'password';
 //   static const passwordRecovery = 'passwordRecovery';
 //   static const login = 'login';
@@ -35,7 +35,7 @@
 //   static const email = 'email';
 //   static const sendCode = 'sendCode';
 //   static const resend = 'resend';
-//   static const EnterVcode = 'EnterVcode';
+//   static const enterVcode = 'enterVcode';
 //   static const confirm = 'confirm';
 //   static const newPassword = 'newPassword';
 //   static const confirmPass = 'confirmPass';
@@ -63,7 +63,7 @@
 //   static const doHave = 'doHave';
 //   static const enterFullName = 'enterFullName';
 //   static const enterName = 'enterName';
-//   static const MustBeEmail = 'MustBeEmail';
+//   static const mustBeEmail = 'mustBeEmail';
 //   static const enterEmail = 'enterEmail';
 //   static const enterPass = 'enterPass';
 //   static const enterConfPassword = 'enterConfPassword';
@@ -72,7 +72,7 @@
 //   static const emailDots = 'emailDots';
 //   static const phoneDots = 'phoneDots';
 //   static const countryDots = 'countryDots';
-//   static const AccessNumberDots = 'AccessNumberDots';
+//   static const accessNumberDots = 'accessNumberDots';
 //   static const passwordDots = 'passwordDots';
 //   static const fakeName = 'fakeName';
 //   static const saudi = 'saudi';
@@ -84,14 +84,14 @@
 //   static const relation = 'relation';
 //   static const specialist = 'specialist';
 //   static const libraryExternalServices = 'libraryExternalServices';
-//   static const SuggestionBuyBook = 'SuggestionBuyBook';
-//   static const RequestDepositScientificThesis = 'RequestDepositScientificThesis';
-//   static const SelectiveBroadcastingInformation = 'SelectiveBroadcastingInformation';
+//   static const suggestionBuyBook = 'suggestionBuyBook';
+//   static const requestdepositScientificThesis = 'requestdepositScientificThesis';
+//   static const selectiveBroadcastingInformation = 'selectiveBroadcastingInformation';
 //   static const manuscriptRequest = 'manuscriptRequest';
-//   static const RequestVisit = 'RequestVisit';
-//   static const RequestReserveArticleOrResearchRetreat = 'RequestReserveArticleOrResearchRetreat';
-//   static const BookGiftRequest = 'BookGiftRequest';
-//   static const RequestGiftBook = 'RequestGiftBook';
+//   static const requestVisit = 'requestVisit';
+//   static const requestreserveArticleOrResearchRetreat = 'requestreserveArticleOrResearchRetreat';
+//   static const bookGiftRequest = 'bookGiftRequest';
+//   static const requestGiftBook = 'requestGiftBook';
 //   static const potPhotographyRequest = 'potPhotographyRequest';
 //   static const toShowEveryServicesMustLogin = 'toShowEveryServicesMustLogin';
 //   static const readAndLearn = 'readAndLearn';
@@ -102,7 +102,7 @@
 //   static const gallery = 'gallery';
 //   static const cancel = 'cancel';
 //   static const changeImage = 'changeImage';
-//   static const YouCanFollowUsSocialMedia = 'YouCanFollowUsSocialMedia';
+//   static const youCanFollowUsSocialMedia = 'youCanFollowUsSocialMedia';
 //   static const language = 'language';
 //   static const changeLang = 'changeLang';
 //   static const choosePreferredLanguage = 'choosePreferredLanguage';
@@ -115,7 +115,7 @@
 //   static const libraryRelationships = 'libraryRelationships';
 //   static const support = 'support';
 //   static const askStaff = 'askStaff';
-//   static const ReserveArticleOrResearchRetreat = 'ReserveArticleOrResearchRetreat';
+//   static const reserveArticleOrResearchRetreat = 'reserveArticleOrResearchRetreat';
 //   static const headReserve = 'headReserve';
 //   static const followRequest = 'followRequest';
 //   static const updateRequest = 'updateRequest';
@@ -194,7 +194,7 @@
 //   static const AvailablePeriods = 'AvailablePeriods';
 //   static const kArchive = 'kArchive';
 //   static const archive = 'archive';
-//   static const DepositScientificThesis = 'DepositScientificThesis';
+//   static const depositScientificThesis = 'depositScientificThesis';
 //   static const terms = 'terms';
 //   static const youMust = 'youMust';
 //   static const termsHead = 'termsHead';

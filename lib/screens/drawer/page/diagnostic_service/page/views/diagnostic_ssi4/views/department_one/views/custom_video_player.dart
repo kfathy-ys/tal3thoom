@@ -44,7 +44,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   Widget build(BuildContext context) {
     return Scaffold(
        // appBar: appBar(context: context, title: "", leading: true),
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Center(
             child: InkWell(
@@ -56,7 +56,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
                 });
               },
               child: _controller == null
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(
@@ -72,7 +72,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
                     _controller!,
                   ),
                 )
-                    : CircularProgressIndicator(),
+                    : const CircularProgressIndicator(),
               ),
             ),
           ),

@@ -3,13 +3,14 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_history_service/answers_service.dart';
+import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_history_service/question_serives.dart';
 
-import 'package:tal3thoom/serives/diagnostic_history_service/question_serives.dart';
-import '../../../../../../../../serives/diagnostic_history_service/answers_service.dart';
 import '../../../../../../../widgets/alerts.dart';
 import '../../diagnostci_oases_test/view.dart';
 import '../../success_page.dart';
 import '../models/diagnostic_history_question_model.dart';
+import '../view.dart';
 
 part 'diagnostic_history_question_state.dart';
 
@@ -57,15 +58,14 @@ class DiagnosticHistoryQuestionCubit
 
   Future<void> postDiagnosticHistoryAnswers() async {
     emit(DiagnosticHistoryQuestionLoading());
-
     try {
       final res = await AnswersService.postAnswers(
           answers: answer, answersTxt: answersTxt);
-
       emit(DiagnosticHistoryQuestionSuccess(
           diagnosticHistoryQuestionModel: questionList));
+
       if (res!.type == 2) {
-        Alert.error(res.body);
+        Alert.error(res.body );
       } else if (res.type == 1) {
         Alert.success(res.body);
         Get.off(() => SuccessView(
@@ -75,13 +75,20 @@ class DiagnosticHistoryQuestionCubit
             ));
       } else if (res.type == 3) {
         Alert.success(res.body);
+      }  else if (res.type == 0) {
+        Alert.success(res.body);
+
+
+        emit(DiagnosticHistoryQuestionError(msg: res.body));
       } else {
         return Alert.success("ssssssssss");
       }
     } catch (e, st) {
-      log(e.toString());
+      log("[]][][][error from cubit is"+e.toString());
       log(st.toString());
+
       emit(DiagnosticHistoryQuestionError(msg: e.toString()));
+
     }
   }
 }

@@ -41,6 +41,7 @@ class _DropDownIsReadState extends State<DropDownIsRead> {
   Widget build(BuildContext context) {
     // double height = MediaQuery.of(context).size.height;
     //  double width = MediaQuery.of(context).size.width;
+
     return Container(
       // padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
@@ -54,7 +55,7 @@ class _DropDownIsReadState extends State<DropDownIsRead> {
           // isDense: true,
           isExpanded: true,
           hint:  Text(
-            Prefs.getString('type'),
+              "النوع : "+ Prefs.getString('type'),
             style: const TextStyle(
               color: kPrimaryColor,
               fontSize: 16,

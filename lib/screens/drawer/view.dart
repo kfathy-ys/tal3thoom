@@ -5,6 +5,7 @@ import 'package:tal3thoom/screens/drawer/page/advisors_service/views/expention_c
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssrs_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/view.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_induction/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
@@ -16,7 +17,6 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_treatment_sessions/view.dart';
 import '../../../../../../config/keys.dart';
-
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';
 import 'page/advisors_service/views/Reservation_appointment/view.dart';
@@ -34,6 +34,8 @@ import 'page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import 'page/diagnostic_service/page/views/diagnostic_payment/view.dart';
 import 'page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
 import 'page/previous_treatment_sessions/view.dart';
+import 'page/treatment_service/page/views/second_session/second_stage_resevation/view.dart';
+import 'page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_one/view.dart';
 import 'page/treatment_service/page/views/views/expantion_widget.dart';
 import 'page/who_we_are/view.dart';
 
@@ -114,11 +116,11 @@ class _MenuItemsState extends State<MenuItems> {
           TreatmentServiceExpansion(
             onTapInductions: () {
               Navigator.of(context).pop();
-              navigateTo(context, const TreatmentServiceInduction());
+              navigateTo(context,  const FirstTreatmentInduction());
             },
             onTapPayment: () {
               Navigator.of(context).pop();
-              navigateTo(context, const PaymentTreatment());
+              navigateTo(context, const FirstPaymentTreatment());
             },
             PretreatmentQuestionnaire: () {
               Navigator.of(context).pop();
@@ -142,7 +144,7 @@ class _MenuItemsState extends State<MenuItems> {
             },
             onTapBookSpecialist: () {
               Navigator.of(context).pop();
-              navigateTo(context, const FirstStageTreatmentReservation());
+              navigateTo(context,  FirstStageTreatmentReservation());
             },
             onTaptherapeuticSessions2: () {
               Navigator.of(context).pop();
@@ -158,11 +160,11 @@ class _MenuItemsState extends State<MenuItems> {
             },
             onTapSSI42: () {
               Navigator.of(context).pop();
-              navigateTo(context, const SecondTreatmentSSI4Two());
+              navigateTo(context, const SecondTreatmentSSI4());
             },
             onTapBookSpecialist2: () {
               Navigator.of(context).pop();
-              navigateTo(context, const FirstStageTreatmentReservation());
+              navigateTo(context,  SecondStageTreatmentReservation());
             },
           ),
 

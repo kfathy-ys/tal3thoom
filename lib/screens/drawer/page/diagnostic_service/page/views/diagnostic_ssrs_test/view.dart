@@ -1,15 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
-import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:queen/core/helpers/prefs.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
-import '../../../../../../widgets/fast_widget.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../../widgets/video_items.dart';
 import '../../../../../view.dart';
@@ -95,7 +92,7 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
                               title: state.ssrsQuestionModel[index].description,
                               color: kPrimaryColor,
                             ),
-                            AlertMessage(),
+                            const AlertMessage(),
                             Wrap(
                                 textDirection: TextDirection.ltr,
                                 spacing: 15,
@@ -103,7 +100,9 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
                                 children: cubit.questionList[0].answers
                                     .map((e) => CardNumber(
                                         onTap: () {
+                                          cubit.answer= {cubit.questionList[0]: e};
                                           selectedNumber = e.id;
+                                          print("الرقم"+selectedNumber.toString());
                                           setState(() {
                                           });
                                         },
@@ -124,14 +123,7 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
                                   );
                                   cubit.postSSRSAnswers();
 
-                                  // Get.off(() {
-                                  //   return SuccessView(
-                                  //       title1:
-                                  //           "لقد تم إنتهاء إختبار SSRS بنجاح",
-                                  //       title2: "إنتقال إلي إختبار SSI-4",
-                                  //       onTap: () =>
-                                  //           Get.off(() => DiagnosticSSI4()));
-                                  // });
+
                                 }
                               },
                             ),

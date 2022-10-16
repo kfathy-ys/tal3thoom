@@ -80,7 +80,7 @@ class Question extends Equatable {
         deleted: json["question"]["deleted"],
         examId: json["question"]["examId"],
         categoryId: json["question"]["categoryId"]== null ? 0 :(json["question"]["categoryId"]),
-        sectionId: json["question"]["sectionId"],
+        sectionId: json["question"]["sectionId"] ?? 0,
         exam: json["question"]["exam"],
         category: json["question"]["category"] == null
             ? null

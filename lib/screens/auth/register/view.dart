@@ -182,7 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _emailController,
                       validator: qValidator([
                         IsRequired(KeysConfig.thisFieldRequired),
-                        const IsEmail(KeysConfig.MustBeEmail),
+                        const IsEmail(KeysConfig.mustBeEmail),
                         MaxLength(30),
                       ]),
                       type: TextInputType.emailAddress,

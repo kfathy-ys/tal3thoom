@@ -159,7 +159,7 @@
 //                       controller: emailController,
 //                       validator: qValidator([
 //                         IsRequired("enterEmail" ),
-//                         IsEmail("MustBeEmail" ),
+//                         IsEmail("mustBeEmail" ),
 //                         MaxLength(30),
 //                       ]),
 //                       type: TextInputType.emailAddress,

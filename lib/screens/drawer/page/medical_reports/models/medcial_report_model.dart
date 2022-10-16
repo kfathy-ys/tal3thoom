@@ -16,7 +16,7 @@ class MedicalReportsModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) data["data"] = this.data;
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
@@ -240,7 +240,7 @@ class VideosFrequencyDetails extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["videoUrl"] = videoUrl;
     data["sectionId"] = sectionId;
     data["sectionName"] = sectionName;
@@ -293,7 +293,7 @@ class OasesResults extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["sectionId"] = sectionId;
     data["sectionName"] = sectionName;
     data["sectionNameEn"] = sectionNameEn;
@@ -400,7 +400,7 @@ class Patient extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["firstName"] = firstName;
     data["middleName"] = middleName;

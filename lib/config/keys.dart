@@ -48,7 +48,7 @@ class KeysConfig {
   static const home = "الرئيسية";
   static const welcome = "مرحبا..";
   static const signIn = "تسجيل الدخول";
-  static const IdentificationNumber = "رقم الهوية";
+  static const identificationNumber = "رقم الهوية";
   static const password = "كلمة المرور";
   static const passwordRecovery = "إسترجاع كلمة المرور؟";
   static const login = "تسجيل الدخول";
@@ -69,7 +69,7 @@ class KeysConfig {
   static const email = "البريد الإلكتروني";
   static const sendCode = "إرسال الرمز";
   static const resend = "إعادة إرسال الرمز";
-  static const EnterVcode = "أدخل الرمز المرسل";
+  static const enterVcode = "أدخل الرمز المرسل";
   static const confirm = "تاكيد";
   static const newPassword = "كلمة مرور جديدة";
   static const confirmPass = "تاكيد كلمة المرور";
@@ -97,7 +97,7 @@ class KeysConfig {
   static const doHave = "هل لديك حساب؟\t ";
   static const enterFullName = "من فضلك أدخل الاسم كاملاَ";
   static const enterName = "من فضلك أدخل أسمك";
-  static const MustBeEmail = "لابد ان يكون بريد الكتروني";
+  static const mustBeEmail = "لابد ان يكون بريد الكتروني";
   static const enterEmail = "من فضلك أدخل بريدك الإلكتروني";
   static const enterPass = "من فضلك أدخل كلمة المرور";
   static const enterConfPassword = "من فضلك أدخل تاكيد كلمة المرور";
@@ -106,7 +106,7 @@ class KeysConfig {
   static const emailDots = "البريد الإلكتروني :";
   static const phoneDots = "رقم الهاتف :";
   static const countryDots = "أسم الدولة :";
-  static const AccessNumberDots = "رقم النفاذ : ";
+  static const accessNumberDots = "رقم النفاذ : ";
   static const passwordDots = "كلمة المرور : ";
   static const notSimilar = "كلمة المرور غير مطابقه";
   static const fakeName = "محمد رشاد";
@@ -119,18 +119,18 @@ class KeysConfig {
   static const relation = "أسال علاقات المكتبة";
   static const specialist = "أسال أخصائي المكتبة";
   static const libraryExternalServices = "خدمات خارجي الممكلة";
-  static const SuggestionBuyBook = "اقتراح شراء كتاب";
-  static const RequestDepositScientificThesis = "طلب إيداع رسالة علمية";
-  static const SelectiveBroadcastingInformation = "البث الإنتقالي للمعلومات";
+  static const suggestionBuyBook = "اقتراح شراء كتاب";
+  static const requestdepositScientificThesis = "طلب إيداع رسالة علمية";
+  static const selectiveBroadcastingInformation = "البث الإنتقالي للمعلومات";
   static const manuscriptRequest = "طلب مخطوطة";
-  static const RequestVisit = "طلب زيارة";
-  static const RequestReserveArticleOrResearchRetreat =
+  static const requestVisit = "طلب زيارة";
+  static const requestreserveArticleOrResearchRetreat =
       "طلب حجز مادة أو خلوة بحثية";
-  static const BookGiftRequest = "طلب إهداء كتاب";
-  static const RequestGiftBook = "طلب إستهداء كتاب";
+  static const bookGiftRequest = "طلب إهداء كتاب";
+  static const requestGiftBook = "طلب إستهداء كتاب";
   static const potPhotographyRequest = "طلب تصوير وعاء";
   static const toShowEveryServicesMustLogin =
-      "لتعرف علي جميع الجدماتstatic contsيرجي تسجيل الدخول";
+      "لتعرف علي جميع الجدمات يرجي تسجيل الدخول";
   static const readAndLearn = "أقرأ .. تعلم ";
   static const response = "الرد علي الطلب";
   static const notResponse = "لم يتم الرد";
@@ -139,7 +139,7 @@ class KeysConfig {
   static const gallery = "الاستوديو";
   static const cancel = "الغاء";
   static const changeImage = "تغير الصورة";
-  static const YouCanFollowUsSocialMedia =
+  static const youCanFollowUsSocialMedia =
       "يمكنك متابعتنا علي مواقع التواصل الإجتماعي";
   static const language = "إعدادات اللغة";
   static const changeLang = "تغير اللغة";
@@ -154,7 +154,7 @@ class KeysConfig {
   static const libraryRelationships = "علاقات المكتبة";
   static const support = "الدعم الفني";
   static const askStaff = "إسال موظفي المكتبة";
-  static const ReserveArticleOrResearchRetreat = "حجز خلوة بحثية";
+  static const reserveArticleOrResearchRetreat = "حجز خلوة بحثية";
   static const headReserve =
       "هي خدمة تمكن المستفيد من حجز مكان مخصص بالمكتبة ، حيث يوضع فية جميع المستلزمات المكتبية وذالك تهيئة للمستفيد في إكمال أبحاثة ودراستة ونحقيقة العملي.";
   static const followRequest = "متابعة الطلب";
@@ -199,7 +199,6 @@ class KeysConfig {
   static const thisFieldRequired = "هذا الحقل مطلوب";
   static const resent = "إعادة الإرسال";
   static const orderName = " إسم الطلب";
-  static const requestVisit = "طلب زيارة";
   static const requestLibrarian = "طلب إسال موظف المكتبة";
   static const requestToBuyBook = "طلب اقتراح شراء كتاب";
   static const done = "تم الموافقة";
@@ -236,7 +235,7 @@ class KeysConfig {
   static const AvailablePeriods = "الفترات المتاحة";
   static const kArchive = "(الأرشيف)";
   static const archive = "الأرشيف";
-  static const DepositScientificThesis = "إيداع رسالة علمية";
+  static const depositScientificThesis = "إيداع رسالة علمية";
   static const terms = "(الشروط والأحكام)";
   static const youMust = "عليك أن توافق على الشروط والأحكام أولاً قبل المواصلة";
   static const termsHead =
