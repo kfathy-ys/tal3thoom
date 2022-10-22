@@ -14,13 +14,17 @@ import '../../../../view.dart';
 class SuccessView extends StatelessWidget {
   final String title1;
   final String title2;
+  final String? title3;
   final VoidCallback? onTap;
+  final VoidCallback? onTap2;
+   bool? goNext ;
 
-  const SuccessView({
+    SuccessView({
     Key? key,
     required this.title1,
     required this.title2,
     this.onTap,
+    this.goNext=false, this.title3, this.onTap2
   }) : super(key: key);
 
   @override
@@ -64,17 +68,20 @@ class SuccessView extends StatelessWidget {
                     BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
                     navigateTo(context, const HomeTabScreen());
                   }
-                }
+                },
+                title: title2),
 
-                //     (){
-                //
-                //   navigateAndFinish(context, DiagnosticOasesTest());
-                // }
-
-                ,
-                title: title2
-                //"إنتقال إلي إختبار Oases",
-                ),
+           goNext == true ?  CustomButton(
+                color: kPrimaryColor,
+                onPressed: () {
+                  if (onTap2 != null) {
+                    onTap2!();
+                  } else {
+                    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+                    navigateTo(context, const HomeTabScreen());
+                  }
+                },
+                title: title3):const SizedBox.shrink(),
           ]),
         ),
       ),

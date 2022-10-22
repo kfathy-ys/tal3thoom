@@ -9,6 +9,7 @@ import 'package:video_player/video_player.dart';
 
 import '../../../widgets/appBar.dart';
 import '../../../widgets/constants.dart';
+import '../../../widgets/mediaButton.dart';
 import '../../../widgets/video_items.dart';
 import '../../view.dart';
 import '../diagnostic_service/page/views/question.dart';
@@ -24,10 +25,13 @@ class ResultsPreviousTreatmentSessions extends StatefulWidget {
 
 class _ResultsPreviousTreatmentSessionsState
     extends State<ResultsPreviousTreatmentSessions> {
+  String? typeSessionId;
+  String onSessionTypeChanged(String value) => typeSessionId = value;
   @override
   Widget build(BuildContext context) {
     // double height = MediaQuery.of(context).size.height;
     //  double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -54,7 +58,7 @@ class _ResultsPreviousTreatmentSessionsState
                     child: customText7(
                         title: "أختر نتيجة الجلسة العلاجية",
                         color: kBlackText)),
-                const Center(child: DropDownListResultSessions()),
+                 Center(child: DropDownListResultSessions(onChanged:  onSessionTypeChanged,)),
                 answerQuestionTitle(
                     title: "القسم الأول : \t", subtitle: "معرفي"),
                 answerQuestionTitle(
@@ -117,30 +121,7 @@ class _ResultsPreviousTreatmentSessionsState
 
                                   onChanged: (value) {
                                     print(value);
-                                    firstQuestionsList[index].selectedValue =
-                                        value;
-                                    if (value == "other") {
-                                      setState(() {
-                                        firstQuestionsList[index]
-                                            .isAvailableTextField = true;
-                                      });
-                                    }
-                                    if (value != "other" &&
-                                        firstQuestionsList[index]
-                                                .isAvailableTextField ==
-                                            true) {
-                                      setState(() {
-                                        firstQuestionsList[index]
-                                            .isAvailableTextField = false;
-                                      });
-                                    }
-                                    if (firstQuestionsList[index]
-                                            .isAvailableTextField ==
-                                        true) {
-                                      firstQuestionsList[index].textFieldValue =
-                                          value;
-                                      print("$value");
-                                    }
+
                                   },
                                   // validator:  (value) => value.isEmpty ? KeysConfig.thisFieldRequired :null,
                                   options: firstQuestionsList[index]
@@ -226,28 +207,7 @@ class _ResultsPreviousTreatmentSessionsState
                                     print(value);
                                     firstQuestionsList[index].selectedValue =
                                         value;
-                                    if (value == "other") {
-                                      setState(() {
-                                        firstQuestionsList[index]
-                                            .isAvailableTextField = true;
-                                      });
-                                    }
-                                    if (value != "other" &&
-                                        firstQuestionsList[index]
-                                                .isAvailableTextField ==
-                                            true) {
-                                      setState(() {
-                                        firstQuestionsList[index]
-                                            .isAvailableTextField = false;
-                                      });
-                                    }
-                                    if (firstQuestionsList[index]
-                                            .isAvailableTextField ==
-                                        true) {
-                                      firstQuestionsList[index].textFieldValue =
-                                          value;
-                                      print("$value");
-                                    }
+
                                   },
                                   // validator:  (value) => value.isEmpty ? KeysConfig.thisFieldRequired :null,
                                   options: firstQuestionsList[index]
@@ -294,30 +254,43 @@ class _ResultsPreviousTreatmentSessionsState
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
+                    child: Column(
                       children: [
-                        buildColumn(context.height, context.width,
-                            curve: false,
-                            head: "التقيمات",
-                            answer: "تقييم المستوى فى الجلسة الحالية"),
-                        buildColumn(context.height, context.width,
-                            curve: false,
-                            head: "تقيم المريض لذاتة",
-                            answer: "2"),
-                        buildColumn(context.height, context.width,
-                            curve: false,
-                            head: "تقيم الأخصائي للمريض",
-                            answer: "2"),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            buildColumn(context.height, context.width,
+                                curve: false,
+                                head: "التقيمات",
+                                answer: "تقييم المستوى فى الجلسة الحالية"),
+                            buildColumn(context.height, context.width,
+                                curve: false,
+                                head: "تقيم المريض لذاتة",
+                                answer: "2"),
+                            buildColumn(context.height, context.width,
+                                curve: false,
+                                head: "تقيم الأخصائي للمريض",
+                                answer: "2"),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+
+                          children: [
+                            buildBoxAnswers(answers: "التقييم المتوقع للجلسة القادمة"),
+                            buildBoxAnswers(answers: "2"),
+                            buildBoxAnswers(answers: "8"),
+                          ],
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SmallButton(
+                MediaButton(
                     onPressed: () {
                       navigateTo(context, const HomeTabScreen());
                     },
-                    title: "Skip"),
+                    title: "متابعة"),
                 SizedBox(
                   height: context.height * 0.1,
                 )
@@ -326,6 +299,24 @@ class _ResultsPreviousTreatmentSessionsState
       ),
     );
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   Widget buildContainerIndex(double width, double height,
       {required int index}) {
@@ -340,6 +331,22 @@ class _ResultsPreviousTreatmentSessionsState
           color: kPrimaryColor),
       child: Center(
         child: customText3(title: "$index", color: kHomeColor),
+      ),
+    );
+  }
+
+  Widget buildBoxAnswers({required String answers}){
+    return Container(
+      height: context.height * 0.1,
+      width: context.width * 0.3,
+      decoration: const BoxDecoration(
+          color: kAppBarColor,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(8),
+            bottomRight: Radius.circular(8),
+          )),
+      child: Center(
+        child: customText3(title: answers, color: kBlackText),
       ),
     );
   }
@@ -424,7 +431,8 @@ class _ResultsPreviousTreatmentSessionsState
           child: Center(
             child: customText3(title: answer, color: kBlackText),
           ),
-        )
+        ),
+
       ],
     );
   }

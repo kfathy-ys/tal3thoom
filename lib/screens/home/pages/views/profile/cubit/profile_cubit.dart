@@ -65,12 +65,19 @@ class ProfileCubit extends Cubit<ProfileState> {
       Prefs.setString("gender", loginModel.data.gender);
       Prefs.setString("idCardNumber", loginModel.data.idCardNumber);
       Prefs.setString("type", loginModel.data.type);
+      Prefs.setString("currentStage", loginModel.data.currentStage.toString());
+      Prefs.setString("currentDiagnoses", loginModel.data.currentDiagnoses.toString());
+      Prefs.setString("currentDiagnosesStatus", loginModel.data.currentDiagnosesStatus.toString());
 
       log("${res.data["data"]["userId"]}");
 
       log("${res.data["data"]["fullName"]}");
       log("${res.data["data"]["email"]}");
       log("${res.data["data"]["phoneNumber"]}");
+
+      log("${res.data["data"]["currentStage"]}");
+      log("${res.data["data"]["currentDiagnoses"]}");
+      log("${res.data["data"]["currentDiagnosesStatus"]}");
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../models/advisor_model.dart';
 
 class DropDownSpecialist extends StatefulWidget {
-  const DropDownSpecialist({Key? key}) : super(key: key);
+  final ValueChanged<AdvisorProfile> onChanged;
+  final AdvisorProfile? initial;
+  const DropDownSpecialist(
+      {Key? key, required this.onChanged, this.initial})
+      : super(key: key);
 
   @override
   State<DropDownSpecialist> createState() => _DropDownSpecialistState();
 }
 
 class _DropDownSpecialistState extends State<DropDownSpecialist> {
-  String? dropdownValue;
+  AdvisorProfile? selected;
+  final libs = <AdvisorProfile>[];
+  @override
+  void initState() {
+    if (widget.initial != null) {
+      selected = widget.initial;
+    }
+    getAllAdvisors();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +42,8 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: dropdownValue,
+        child: DropdownButton<AdvisorProfile>(
+          value: selected,
           // autofocus: true,
           // isDense: true,
           //isExpanded: true,
@@ -49,20 +64,19 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+          onChanged: (AdvisorProfile? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!);
+
+            setState(() {});
           },
-          items: <String>[
-            "أحمد الكامل ",
-            " خالد الرفاعي",
-            "محمد رشاد",
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items: libs.map<DropdownMenuItem<AdvisorProfile>>((AdvisorProfile value) {
+            return DropdownMenuItem<AdvisorProfile>(
               value: value,
               child: Text(
-                value,
+                value.fullName,
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,
@@ -74,5 +88,13 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
         ),
       ),
     );
+  }
+  Future<void> getAllAdvisors() async {
+    libs.clear();
+    final res = await NetWork.get('Specialist/GetSpecialistsThatHaveConsultationDates');
+    (res.data['data'] as List)
+        .map((e) => libs.add(AdvisorProfile.fromMap(e)))
+        .toList();
+    setState(() {});
   }
 }

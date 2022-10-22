@@ -77,8 +77,6 @@ class DiagnosticHistoryQuestionCubit
         Alert.success(res.body);
       }  else if (res.type == 0) {
         Alert.success(res.body);
-
-
         emit(DiagnosticHistoryQuestionError(msg: res.body));
       } else {
         return Alert.success("ssssssssss");

@@ -84,7 +84,7 @@ class PaymentAdvisor extends StatelessWidget {
 
                   navigateTo(
                       context,
-                      const SuccessView(
+                       SuccessView(
                         title1: "لقد تم عملية الدفع  بنجاح",
                         title2: "الإنتقال إلي جدول الحجوزات",
                       ));

@@ -54,7 +54,7 @@ class DiagnosticPayment extends StatelessWidget {
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
+                                      "https://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                                 ));
                             print("object1");
                           },
@@ -67,7 +67,7 @@ class DiagnosticPayment extends StatelessWidget {
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
+                                      "https://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                                 ));
 
                             print("object2");
@@ -82,7 +82,7 @@ class DiagnosticPayment extends StatelessWidget {
 
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
+                                      "https://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                                 ));
                             print("object3");
                           },

@@ -8,6 +8,7 @@ import '../../../../../../../../config/keys.dart';
 
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
+import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../view.dart';
@@ -59,39 +60,39 @@ class FirstPaymentTreatment extends StatelessWidget {
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                  "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                  "https://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                                 ));
                             print("object1");
                           },
-                          description: KeysConfig.diagnosis),
+                          description: "المرحلة العلاجية الأولي"),
                       PaymentCard(
-                          price: KeysConfig.hundred,
+                          price: "50 ريال",
                           onTapPay: () {
                             navigateTo(
                                 context,
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                  "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                  "https://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                                 ));
 
                             print("object2");
                           },
-                          description: KeysConfig.twoSession),
+                          description: "المرحلة العلاجية الثانية"),
                       PaymentCard(
-                          price: KeysConfig.fifty,
+                          price: "100 ريال",
                           onTapPay: () {
                             navigateTo(
                                 context,
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                  "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                  "https://dev-sas.cpt-it.com/Sas/PaymentTreatment",
                                 ));
                             print("object3");
                           },
-                          description: KeysConfig.DiagnosisTreatment),
-                      SmallButton(
+                          description: "المرحلة العلاجية كاملة"),
+                      CustomButton(
                           onPressed: () {
                             cubit.checkFirstPayment();
                             // navigateTo(

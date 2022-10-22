@@ -70,7 +70,7 @@ class Question extends Equatable {
         examMode: json["question"]["examMode"],
         difficultyLevel: json["question"]["difficultyLevel"],
         questionType: json["question"]["questionType"],
-        description: json["question"]["description"],
+        description: json["question"]["description"]??"",
         hint: json["question"]["hint"],
         videoFile: json["question"]["videoFile"],
         audioFile: json["question"]["audioFile"],

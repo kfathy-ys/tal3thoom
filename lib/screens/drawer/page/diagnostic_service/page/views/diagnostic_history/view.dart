@@ -39,6 +39,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: ExpansionTile(
+
         collapsedBackgroundColor: kSky2Button,
         iconColor: kPrimaryColor,
         // childrenPadding: const EdgeInsets.symmetric(horizontal: 14),
@@ -75,32 +76,34 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                       maxLines: 2,
                     ),
                     FormBuilder(
-                      onChanged: () {},
                       autoFocusOnValidationFailure: true,
                       autovalidateMode: AutovalidateMode.always,
                       child: FormBuilderRadioGroup<Answers>(
+
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
-                              onTap: () => speech.speak(currentQuestion
+                              onTap: () =>
+                                  speech.speak(currentQuestion
                                       .description
                                       .toString() +
-                                  "الاجابات المتاحة هي "
-                                      '${currentQuestion.answers.map((lang) => lang.answerOption)}'),
+                                      "الاجابات المتاحة هي "
+                                          '${currentQuestion.answers.map((
+                                          lang) => lang.answerOption)}'),
                               child: Image.asset("assets/images/Earphone.png")),
                           suffix: cubit.shouldShowTextField(currentQuestion)
                               ? SizedBox(
-                                  height: 60,
-                                  width: 150,
-                                  child: TextFormField(
-                                    // onSaved:(String? str) =>
-                                    // cubit.answersTxt[currentQuestion] = str! ,
-                                    controller: TextEditingController(
-                                        text:
-                                            cubit.answersTxt[currentQuestion]),
+                              height: 60,
+                              width: 150,
+                              child: TextFormField(
+                                // onSaved:(String? str) =>
+                                // cubit.answersTxt[currentQuestion] = str! ,
+                                controller: TextEditingController(
+                                    text:
+                                    cubit.answersTxt[currentQuestion]),
 
-                                    onChanged: (str) =>
-                                        cubit.answersTxt[currentQuestion] = str,
-                                  ))
+                                onChanged: (str) =>
+                                cubit.answersTxt[currentQuestion] = str,
+                              ))
                               : null,
                         ),
                         initialValue: cubit.answer[currentQuestion],
@@ -128,12 +131,13 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                           return '';
                         },
                         options: currentQuestion.answers
-                            .map((lang) => FormBuilderFieldOption(
-                                  value: lang,
-                                  child: customText3(
-                                      title: lang.answerOption.toString(),
-                                      color: kBlackText),
-                                ))
+                            .map((lang) =>
+                            FormBuilderFieldOption(
+                              value: lang,
+                              child: customText3(
+                                  title: lang.answerOption.toString(),
+                                  color: kBlackText),
+                            ))
                             .toList(growable: false),
                         controlAffinity: ControlAffinity.trailing,
                       ),
@@ -168,7 +172,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
               },
               builder: (context, state) {
                 final cubit =
-                    BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
+                BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
                 if (state is DiagnosticHistoryQuestionLoading) {
                   return const Center(
                     child: LoadingFadingCubeGrid(),
@@ -207,20 +211,16 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                             buildSizedBoxed(context.height),
                             state is! DiagnosticHistoryQuestionLoading
                                 ? MediaButton(
-                                    onPressed: () {
-                                      if (cubit.formKey.currentState!
-                                          .validate()) {
-
-                                          cubit.postDiagnosticHistoryAnswers();
-
-
-
-                                      }
-                                     // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
-                                     // Get.to(()=>const DiagnosticHistory());
-                                    },
-                                    title: KeysConfig.next,
-                                  )
+                              onPressed: () {
+                                if (cubit.formKey.currentState!
+                                    .validate()) {
+                                  cubit.postDiagnosticHistoryAnswers();
+                                }
+                                // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+                                // Get.to(()=>const DiagnosticHistory());
+                              },
+                              title: KeysConfig.next,
+                            )
                                 : const LoadingFadingCircle(),
                             SizedBox(
                               height: context.height * 0.2,
@@ -236,18 +236,18 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                     children: [
                       Text(state.msg),
                       CustomButton(
-                          onPressed:() {
+                          onPressed: () {
                             print("kkkkkk");
                             Get.to(const DiagnosticHistory());
 
-                           // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DiagnosticHistory()));
+                            // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DiagnosticHistory()));
                           },
                           title: "العودة", color: kBlackText),
 
                     ],
                   );
-                // return Alert.error(state.msg);
-                 // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+                  // return Alert.error(state.msg);
+                  // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
                 }
                 return const SizedBox();
               },
@@ -256,7 +256,8 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
         ));
   }
 
-  SizedBox buildSizedBoxed(double height) => SizedBox(
+  SizedBox buildSizedBoxed(double height) =>
+      SizedBox(
         height: context.height * 0.025,
       );
 }
