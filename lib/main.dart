@@ -26,7 +26,9 @@ import 'screens/drawer/page/advisors_service/cubit/advisor_profile_details/advis
 import 'screens/drawer/page/advisors_service/views/Reservation_appointment/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
+import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
+import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/cubit/diagnostic_ssi4_first_cubit.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_ssrs_test/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/cubit/available_dates_cubit.dart';
@@ -36,6 +38,7 @@ import 'screens/drawer/page/treatment_service/page/views/first_session/evaluatio
 import 'screens/drawer/page/treatment_service/page/views/first_session/evaluation_section/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/cubit/first_payment_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/view.dart';
+import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_additional_traning/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_induction/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/cubit/first_available_dates_cubit.dart';
@@ -52,6 +55,7 @@ import 'screens/drawer/page/treatment_service/page/views/second_session/second_s
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/cubit/second_stage_ssrs_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_one/cubit/second_stage_ssi4_one_cubit.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
+import 'screens/home/pages/views/profile/cubit/profile_cubit.dart';
 import 'screens/home/pages/views/reservations_schedule/cubit/booking_cubit.dart';
 import 'screens/splash/view.dart';
 import 'screens/translations/locale key-value.dart';
@@ -192,6 +196,8 @@ class MyApp extends StatelessWidget {
           create: (context) => BehavioralCubit(),
         ),BlocProvider<EvaluationCubit>(
           create: (context) => EvaluationCubit(),
+        ),BlocProvider<ProfileCubit>(
+          create: (context) => ProfileCubit(),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
@@ -217,7 +223,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:   EvaluationSectionScreen(),
+            home:     const SplashScreen(),
           );
         },
       ),

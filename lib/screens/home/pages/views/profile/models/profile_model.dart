@@ -5,6 +5,7 @@ class ProfileModel extends Equatable {
   final List<dynamic> messages;
   final int status;
   final int dataLength;
+
   const ProfileModel({
     required this.data,
     required this.messages,
@@ -23,8 +24,9 @@ class ProfileModel extends Equatable {
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
-      data: AllProfile.fromMap( map['data'] as Map<String,dynamic> ),
-      messages: List<dynamic>.from((map['messages'] ?? const <dynamic>[]) as List<dynamic>),
+      data: AllProfile.fromMap(map['data'] as Map<String, dynamic>),
+      messages: List<dynamic>.from(
+          (map['messages'] ?? const <dynamic>[]) as List<dynamic>),
       status: (map['status'].toInt() ?? 0) as int,
       dataLength: (map['dataLength'].toInt() ?? 0) as int,
     );
@@ -59,32 +61,34 @@ class AllProfile extends Equatable {
   final Object currentDiagnoses;
   final Object allowBooking;
   final Object currentDiagnosesStatus;
-  const AllProfile({
-    required this.id,
-    required this.firstName,
-    required this.middleName,
-    required this.lastName,
-    required this.fullName,
-    required this.email,
-    required this.phoneNumber,
-    required this.countryPhoneCode,
-    required this.idCardNumber,
-    required this.country,
-    required this.city,
-    required this.neighborhood,
-    required this.workPlace,
-    required this.nationality,
-    required this.gender,
-    required this.birthDate,
-    required this.userId,
-    required this.isActive,
-    required this.randomNumber,
-    required this.type,
-    required this.currentStage,
-    required this.currentDiagnoses,
-    required this.allowBooking,
-    required this.currentDiagnosesStatus,
-  });
+  final String nextSession;
+
+  const AllProfile(
+      {required this.id,
+      required this.firstName,
+      required this.middleName,
+      required this.lastName,
+      required this.fullName,
+      required this.email,
+      required this.phoneNumber,
+      required this.countryPhoneCode,
+      required this.idCardNumber,
+      required this.country,
+      required this.city,
+      required this.neighborhood,
+      required this.workPlace,
+      required this.nationality,
+      required this.gender,
+      required this.birthDate,
+      required this.userId,
+      required this.isActive,
+      required this.randomNumber,
+      required this.type,
+      required this.currentStage,
+      required this.currentDiagnoses,
+      required this.allowBooking,
+      required this.currentDiagnosesStatus,
+      required this.nextSession});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -100,7 +104,6 @@ class AllProfile extends Equatable {
       'country': country,
       'city': city,
       'neighborhood': neighborhood,
-
       'workPlace': workPlace,
       'nationality': nationality,
       'gender': gender,
@@ -113,6 +116,7 @@ class AllProfile extends Equatable {
       'currentDiagnoses': currentDiagnoses,
       'allowBooking': allowBooking,
       'currentDiagnosesStatus': currentDiagnosesStatus,
+      'nextSession': nextSession,
     };
   }
 
@@ -130,7 +134,6 @@ class AllProfile extends Equatable {
       country: (map['country'] ?? '') as String,
       city: (map['city'] ?? '') as String,
       neighborhood: (map['neighborhood'] ?? '') as String,
-
       workPlace: (map['workPlace'] ?? '') as String,
       nationality: (map['nationality'] ?? '') as String,
       gender: (map['gender'] ?? '') as String,
@@ -139,10 +142,11 @@ class AllProfile extends Equatable {
       isActive: (map['isActive'] ?? false) as bool,
       randomNumber: (map['randomNumber'] ?? '') as String,
       type: (map['type'] ?? '') as String,
-      currentStage: map['currentStage']??'' ,
-      currentDiagnoses: map['currentDiagnoses'] ??'',
-      allowBooking: map['allowBooking'] ??'',
-      currentDiagnosesStatus: map['currentDiagnosesStatus'] ??'',
+      currentStage: map['currentStage'] ?? '',
+      currentDiagnoses: map['currentDiagnoses'] ?? '',
+      allowBooking: map['allowBooking'] ?? '',
+      currentDiagnosesStatus: map['currentDiagnosesStatus'] ?? '',
+      nextSession: map['nextSession'] ?? '',
     );
   }
 
@@ -161,7 +165,6 @@ class AllProfile extends Equatable {
       country,
       city,
       neighborhood,
-
       workPlace,
       nationality,
       gender,
@@ -174,9 +177,7 @@ class AllProfile extends Equatable {
       currentDiagnoses,
       allowBooking,
       currentDiagnosesStatus,
+      nextSession
     ];
   }
 }
-
-
-

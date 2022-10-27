@@ -12,6 +12,7 @@ import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
@@ -20,6 +21,7 @@ import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
+import '../evaluation_section/cubit/evaluation_cubit.dart';
 import '../evaluation_section/view.dart';
 import 'cubit/behavioral_cubit.dart';
 
@@ -33,6 +35,7 @@ class SlokiScreen extends StatefulWidget {
 
 class _SlokiScreenState extends State<SlokiScreen> {
   final _firstController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                     children: [
                       CustomTileContainer(
                           widthh: context.width / 1.8,
-                          title: "الجلسة العلاجية" +
+                          title: "الجلسة العلاجية " +
                               state.behavioralSection[0].tags.toString(),
                           context: context),
                       Padding(
@@ -76,69 +79,69 @@ class _SlokiScreenState extends State<SlokiScreen> {
                           "assets/images/sloky.png",
                         ),
                       ),
-                      state.behavioralSection[0].description.isEmpty
-                          ? const SizedBox.shrink()
-                          : Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 4),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 6, vertical: 4),
-                                  width: context.width * 0.8,
-                                  // height: context.height * 0.14,
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
-                                      ),
-                                      color: kBackgroundButton),
-                                  child: FormBuilder(
-                                    autovalidateMode: AutovalidateMode.always,
-                                    child: FormBuilderRadioGroup<dynamic>(
-                                      decoration: InputDecoration(
-                                        labelStyle: const TextStyle(
-                                            color: kBlackText,
-                                            fontSize: 18,
-                                            fontFamily: 'DinBold'),
-                                        labelText: state
-                                            .behavioralSection[0].description,
-                                      ),
-                                      initialValue: cubit
-                                          .answer[state.behavioralSection[0]],
-                                      name: 'best_language',
-                                      onChanged: (value) {
-                                        log('$value');
-                                        if (value != null) {
-                                          setState(() {
-                                            cubit.answer[state
-                                                .behavioralSection[0]] = value;
-                                          });
-                                        }
-                                      },
-                                      validator: (value) {
-                                        if (value == null) {
-                                          return 'من فضلك أجب علي المدون أعلاة ';
-                                        }
-                                        return '';
-                                      },
-                                      options: state
-                                          .behavioralSection[0].answers
-                                          .map((lang) => FormBuilderFieldOption(
-                                                value: lang,
-                                                child: customText3(
-                                                    title: lang.answerOption
-                                                        .toString(),
-                                                    color: kBlackText),
-                                              ))
-                                          .toList(growable: false),
-                                      controlAffinity: ControlAffinity.trailing,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                      // state.behavioralSection[0].description.isEmpty
+                      //     ? const SizedBox.shrink()
+                      //     : Row(
+                      //         mainAxisSize: MainAxisSize.min,
+                      //         children: [
+                      //           Container(
+                      //             margin:
+                      //                 const EdgeInsets.symmetric(vertical: 4),
+                      //             padding: const EdgeInsets.symmetric(
+                      //                 horizontal: 6, vertical: 4),
+                      //             width: context.width * 0.8,
+                      //             // height: context.height * 0.14,
+                      //             decoration: const BoxDecoration(
+                      //                 borderRadius: BorderRadius.only(
+                      //                   bottomLeft: Radius.circular(8),
+                      //                   topLeft: Radius.circular(8),
+                      //                 ),
+                      //                 color: kBackgroundButton),
+                      //             child: FormBuilder(
+                      //               autovalidateMode: AutovalidateMode.always,
+                      //               child: FormBuilderRadioGroup<dynamic>(
+                      //                 decoration: InputDecoration(
+                      //                   labelStyle: const TextStyle(
+                      //                       color: kBlackText,
+                      //                       fontSize: 18,
+                      //                       fontFamily: 'DinBold'),
+                      //                   labelText: state
+                      //                       .behavioralSection[0].description,
+                      //                 ),
+                      //                 initialValue: cubit
+                      //                     .answer[state.behavioralSection[0]],
+                      //                 name: 'best_language',
+                      //                 onChanged: (value) {
+                      //                   log('$value');
+                      //                   if (value != null) {
+                      //                     setState(() {
+                      //                       cubit.answer[state
+                      //                           .behavioralSection[0]] = value;
+                      //                     });
+                      //                   }
+                      //                 },
+                      //                 validator: (value) {
+                      //                   if (value == null) {
+                      //                     return 'من فضلك أجب علي المدون أعلاة ';
+                      //                   }
+                      //                   return '';
+                      //                 },
+                      //                 options: state
+                      //                     .behavioralSection[0].answers
+                      //                     .map((lang) => FormBuilderFieldOption(
+                      //                           value: lang,
+                      //                           child: customText3(
+                      //                               title: lang.answerOption
+                      //                                   .toString(),
+                      //                               color: kBlackText),
+                      //                         ))
+                      //                     .toList(growable: false),
+                      //                 controlAffinity: ControlAffinity.trailing,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
                       state.behavioralSection[0].videoFile == null
                           ? const SizedBox.shrink()
                           : Container(
@@ -148,7 +151,8 @@ class _SlokiScreenState extends State<SlokiScreen> {
                               child: VideoItems(
                                 videoPlayerController:
                                     VideoPlayerController.network(
-                                  state.behavioralSection[0].videoFile,
+                                  "http://dev-sas.cpt-it.com/api/" +
+                                      state.behavioralSection[0].videoFile,
                                 ),
                               ),
                             ),
@@ -211,20 +215,24 @@ class _SlokiScreenState extends State<SlokiScreen> {
                       state is! BehavioralLoading
                           ? MediaButton(
                               onPressed: () {
+                                BlocProvider.of<BehavioralCubit>(context)
+                                    .getBehavioralSection();
+
                                 _file == null
                                     ? Alert.error(' الفيديو المسجل مطلوب',
                                         desc:
                                             "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                    : Get.off(() {
-                                        cubit.postUploadVideo(
-                                            questionId:
-                                                state.behavioralSection[0].id,
-                                            examId: state
-                                                .behavioralSection[0].examId,
-                                            video: _file);
+                                    : "";
+                                cubit.postUploadVideo(
+                                    questionId: state.behavioralSection[0].id,
+                                    examId: state.behavioralSection[0].examId,
+                                    video: _file);
+                                BlocProvider.of<EvaluationCubit>(context).getEvaluationSection();
 
-                                        return EvaluationSectionScreen();
-                                      });
+                                Get.to(() =>  EvaluationSectionScreen());
+
+
+
                               },
                               title: "متابعة",
                             )

@@ -62,7 +62,18 @@ class _DiagnosticAllSpecialistsState extends State<DiagnosticAllSpecialists> {
                   final cubit = BlocProvider.of<DiagnosticSpecialistsCubit>(context);
                   return state is DiagnosticSpecialistsSuccess
                       ? Expanded(
-                          child: ListView.builder(
+                          child:state.allSpecialistModel.data.isEmpty
+                              ? Center(
+                              child: Column(
+                                children: [
+                                  customBoldText(
+                                      title: "لا توجد متخصصين متاحين الاّن",
+                                      color: kBlackText), customBoldText(
+                                      title: "حاول بموعد أخر من المواعيد المتاحة",
+                                      color: kButtonRedDark),
+                                ],
+                              ))
+                              : ListView.builder(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             itemCount: state.allSpecialistModel.data.length,
                             physics: const BouncingScrollPhysics(),
@@ -163,14 +174,11 @@ class _DiagnosticAllSpecialistsState extends State<DiagnosticAllSpecialists> {
                                       onPressed: () {
 
                                         cubit.diagnosticCreateReservation(specialistId: state.allSpecialistModel.data[index].id);
-                                        // navigateTo(
-                                        //     context,
-                                        //     SuccessView(
-                                        //       title1: "لقد تم حجز موعد مع المختص",
-                                        //       title2: "إنتقال إلي جدول الحجوزات",
-                                        //       onTap: () => navigateTo(context,
-                                        //           const ReservationsSchedule()),
-                                        //     ));
+                                       /// TODO:: May be make an error
+                                       //  BlocProvider.of<DiagnosticSpecialistsCubit>(context).getSpecialists(
+                                       //    startTime: widget.startTime.toString(),
+                                       //    date: widget.date.toString(),
+                                       //  );
                                       },
                                       color: kButtonGreenDark,
                                       title: "تاكيد الحجز",

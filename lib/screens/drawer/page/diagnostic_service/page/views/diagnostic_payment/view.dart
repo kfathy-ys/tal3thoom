@@ -7,15 +7,28 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../config/keys.dart';
+import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/customButton.dart';
 import '../../../../../../widgets/fast_widget.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
+import '../../../../treatment_service/page/views/first_session/first_payment_treatment/view.dart';
+import '../../../../treatment_service/page/views/pre-treatment_questionnaire/view.dart';
+import '../diagnostic_history/view.dart';
 
 // ignore: must_be_immutable
-class DiagnosticPayment extends StatelessWidget {
-  const DiagnosticPayment({Key? key}) : super(key: key);
+class DiagnosticPaymentScreen extends StatefulWidget {
+  const DiagnosticPaymentScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DiagnosticPaymentScreen> createState() =>
+      _DiagnosticPaymentScreenState();
+}
+
+class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,63 +60,95 @@ class DiagnosticPayment extends StatelessWidget {
                           title: KeysConfig.payment,
                           context: context),
                       PaymentCard(
-                          price: KeysConfig.fifty,
+                          price: state.firstPaymentModel.data!.diagnosisSubscriptions![0].price!.toString()+" ريال",
+
                           onTapPay: () {
                             navigateTo(
                                 context,
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "https://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
+                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                                 ));
                             print("object1");
                           },
-                          description: KeysConfig.diagnosis),
+                          description: state.firstPaymentModel.data!.diagnosisSubscriptions![0].title!
+
+                      ),
                       PaymentCard(
-                          price: KeysConfig.hundred,
+                          price: state.firstPaymentModel.data!.diagnosisSubscriptions![1].price!.toString()+" ريال",
                           onTapPay: () {
                             navigateTo(
                                 context,
                                 const WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "https://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
+                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                                 ));
 
                             print("object2");
                           },
-                          description: KeysConfig.twoSession),
+                          description: state.firstPaymentModel.data!.diagnosisSubscriptions![1].title!
+
+                      ),
                       PaymentCard(
-                          price: KeysConfig.fifty,
+                          price: state.firstPaymentModel.data!.diagnosisSubscriptions![2].price!.toString()+" ريال",
                           onTapPay: () {
                             navigateTo(
                                 context,
                                 const WebView(
-
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "https://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
+                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis",
                                 ));
                             print("object3");
                           },
-                          description: KeysConfig.DiagnosisTreatment),
-                      SmallButton(
+                          description: state.firstPaymentModel.data!.diagnosisSubscriptions![2].title!
+
+                      ),
+                      state is! DiagnosticPaymentLoading ? CustomButton(
                           onPressed: () {
-                            cubit.checkDiagnosticPayment();
-                            // navigateTo(
-                            //     context,
-                            //     SuccessView(
-                            //       title1: "لقد تم عملية الدفع  بنجاح",
-                            //       title2: "المرحلة الأولي من التشخيص",
-                            //       onTap: () {
-                            //         cubit.checkDiagnosticPayment();
-                            //        // navigateTo(context, const DiagnosticHistory());
-                            //       },
-                            //     ),
-                            //
-                            // );
+                            cubit.getDiagnosticPayment();
+                            if (state.firstPaymentModel.data!.subscriptionStages!.isEmpty) {
+                              //   print(diagnosticPaymentModel?.data![0]);
+                              //  print(diagnosticPaymentModel?.data!.contains(1)==true);
+                              print("اللسته فااااااااااااااضية");
+
+                              Alert.error("الرجاء إتمام عملية الدفع",
+                                  desc:
+                                  "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+                              Get.to(() => const FirstPaymentTreatment());
+                            } else if ((state.firstPaymentModel.data!.subscriptionStages!.contains(2)) == true ||
+                                (state.firstPaymentModel.data!.subscriptionStages!.contains(4)) == true) {
+                              print("دفع الجستان 2 و 4 ");
+                              Alert.success("تم العملية بنجاح",
+                                  desc: "تم عملية الدفع المسبقة بشكل صحيح");
+                              Get.off(() => const PretreatmentQuestionnaire());
+                            } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true) {
+                              print("دف الجلسة التشخصية فقط ");
+                              Alert.success("تم العملية بنجاح",
+                                  desc: "تم عملية الدفع المسبقة بشكل صحيح");
+                              Get.off(() => const DiagnosticHistory());
+                            } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true &&
+                                state.firstPaymentModel.data!.subscriptionStages!.contains(2) == true &&
+                                state.firstPaymentModel.data!.subscriptionStages!.contains(4) == true) {
+                              print("دفع كل الباقات يباشا");
+
+                              Alert.success("تم العملية بنجاح",
+                                  desc: "تم عملية الدفع المسبقة بشكل صحيح");
+                              Get.to(() => const DiagnosticHistory());
+                            } else {
+                              print("خلية يروح يدفع");
+
+                              Alert.error("الرجاء إتمام عملية الدفع",
+                                  desc:
+                                  "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+                            }
+
+
+
                           },
-                          title: "متابعة"),
+                          title: "متابعة"):const LoadingFadingCircleSmall()   ,
                       SizedBox(
                         height: context.height * 0.1,
                       )

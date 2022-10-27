@@ -9,57 +9,58 @@ class EvaluationSectionService {
     final userId = Prefs.getString("userId");
     final currentStage = Prefs.getString("currentStage");
     final currentDiagnoses = Prefs.getString("currentDiagnoses");
+    final nextSession = Prefs.getString("nextSession");
 
-    final String sessionCode;
-     String sessionName ="EX_TRE_S1" ;
+    // final String sessionCode;
+    //  String sessionName ="EX_TRE_S1" ;
 
 
-    if(currentDiagnoses== 12){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S1";
-    }
-    else if (currentDiagnoses== 13){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S2";
-    } else if (currentDiagnoses== 14){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S3";
-    } else if (currentDiagnoses== 15){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S4";
-    } else if (currentDiagnoses== 16){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S5";
-    } else if (currentDiagnoses== 17){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S6";
-    } else if (currentDiagnoses== 18){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S7";
-    } else if (currentDiagnoses== 19){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S8";
-    } else if (currentDiagnoses== 20){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S9";
-    } else if (currentDiagnoses== 21){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S10";
-    }else if (currentDiagnoses== 22){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S11";
-    }else if (currentDiagnoses== 23){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S12";
-    }else if (currentDiagnoses== 24){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S13";
-    }else if (currentDiagnoses== 25){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S14";
-    }else if (currentDiagnoses== 26){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S15";}
+    // if(currentDiagnoses== 12){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S1";
+    // }
+    // else if (currentDiagnoses== 13){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S2";
+    // } else if (currentDiagnoses== 14){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S3";
+    // } else if (currentDiagnoses== 15){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S4";
+    // } else if (currentDiagnoses== 16){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S5";
+    // } else if (currentDiagnoses== 17){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S6";
+    // } else if (currentDiagnoses== 18){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S7";
+    // } else if (currentDiagnoses== 19){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S8";
+    // } else if (currentDiagnoses== 20){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S9";
+    // } else if (currentDiagnoses== 21){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S10";
+    // }else if (currentDiagnoses== 22){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S11";
+    // }else if (currentDiagnoses== 23){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S12";
+    // }else if (currentDiagnoses== 24){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S13";
+    // }else if (currentDiagnoses== 25){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S14";
+    // }else if (currentDiagnoses== 26){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S15";
     // }else if (currentDiagnoses== 27){
     //   sessionCode = currentDiagnoses;
     //   sessionName = "EX_TRE_S16";
@@ -84,10 +85,31 @@ class EvaluationSectionService {
     // }else if (currentDiagnoses== 34){
     //   sessionCode = currentDiagnoses;
     //   sessionName = "EX_TRE_S23";
+    // }else if (currentDiagnoses== 35){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S24";
+    // }else if (currentDiagnoses== 36){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S25";
+    // }else if (currentDiagnoses== 37){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S26";
+    // }else if (currentDiagnoses== 38){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S27";
+    // }else if (currentDiagnoses== 39){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S28";
+    // }else if (currentDiagnoses== 40){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S29";
+    // }else if (currentDiagnoses== 41){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S30";
     // }
 
     final res = await NetWork.get(
-        'PatientExams/GetExamQuestionsAnswersByExamCodeAndSectionName/$userId/$sessionName/$currentStage/ev');
+        'PatientExams/GetExamQuestionsAnswersByExamCodeAndSectionName/$userId/ev');
         return List.from(res.data["data"])
         .map((e) => Question.fromJson(e))
         .toList();

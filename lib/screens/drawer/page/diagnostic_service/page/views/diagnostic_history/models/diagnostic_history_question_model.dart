@@ -65,7 +65,7 @@ class Question extends Equatable {
         bankId: json["question"]["bankId"],
         language: json["question"]["language"],
         time: json["question"]["time"],
-        evalType: json["question"]["evalType"],
+        evalType: json["question"]["evalType"] ??"",
         courseCode: json["question"]["courseCode"],
         examMode: json["question"]["examMode"],
         difficultyLevel: json["question"]["difficultyLevel"],
@@ -285,7 +285,7 @@ class Message extends Equatable {
     return Message(
       code: map['code'] as String,
       body: map['body'] as String,
-      title: map['title'] as String,
+      title:  (map['title'] ?? '') as String,
       type: map['type'].toInt() as int,
     );
   }

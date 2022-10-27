@@ -23,7 +23,9 @@ class AllSpecialistModel extends Equatable {
 
   factory AllSpecialistModel.fromMap(Map<String, dynamic> map) {
     return AllSpecialistModel(
-      data: List<Specialists>.from((map['data'] as List<dynamic>).map<Specialists>((x) => Specialists.fromMap(x as Map<String,dynamic>),),),
+      data: map["data"] == null
+          ? []
+          : List<Specialists>.from((map['data'] as List<dynamic>).map<Specialists>((x) => Specialists.fromMap(x as Map<String,dynamic>),),),
       messages: List<dynamic>.from((map['messages'] ?? const <dynamic>[]) as List<dynamic>),
       status: (map['status'].toInt() ?? 0) as int,
       dataLength: (map['dataLength'].toInt() ?? 0) as int,

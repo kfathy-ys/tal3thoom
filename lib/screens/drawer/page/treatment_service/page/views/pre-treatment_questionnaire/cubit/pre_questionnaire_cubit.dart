@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/serives/first_stage_injects/pre_questionnair/answers_service.dart';
@@ -72,6 +73,8 @@ class PreQuestionnaireCubit extends Cubit<PreQuestionnaireState> {
               title2: "إنتقال إلي الرحلة الأولي من العلاج ",
               onTap: () => Get.off(() => const FirstTreatmentSession()),
             ));
+
+
       } else if (res.type == 3) {
         Alert.success(res.body);
       } else {

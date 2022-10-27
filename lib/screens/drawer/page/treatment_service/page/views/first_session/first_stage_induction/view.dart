@@ -12,6 +12,7 @@ import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../first_session/first_payment_treatment/view.dart';
+import '../first_payment_treatment/cubit/first_payment_cubit.dart';
 import 'cubit/first_statge_induction_cubit.dart';
 
 // ignore: must_be_immutable
@@ -82,7 +83,11 @@ class FirstTreatmentInduction extends StatelessWidget {
                 ),
                 MediaButton(
                   onPressed: () {
-                    navigateTo(context, const FirstPaymentTreatment());
+
+
+                      Get.off(()=>const FirstPaymentTreatment());
+
+                   // navigateTo(context, const FirstPaymentTreatment());
                   },
                   title: KeysConfig.next,
                 ),

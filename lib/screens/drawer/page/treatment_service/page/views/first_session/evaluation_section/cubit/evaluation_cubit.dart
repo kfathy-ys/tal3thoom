@@ -3,24 +3,30 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:meta/meta.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/serives/first_stage_injects/sessions/evaluation_section/answers_service.dart';
 import 'package:tal3thoom/serives/first_stage_injects/sessions/evaluation_section/question_serives.dart';
 
+import '../../../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../widgets/fast_widget.dart';
+import '../../../../../../../../widgets/loading.dart';
 import '../../../../../../diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
 import '../../../../../../diagnostic_service/page/views/success_page.dart';
 import '../../first_stage_additional_traning/view.dart';
+import '../../first_treatment_session/view.dart';
+import '../../next_sessions/view.dart';
 
 part 'evaluation_state.dart';
 
 class EvaluationCubit extends Cubit<EvaluationState> {
-  EvaluationCubit() : super(EvaluationInitial()){
+  EvaluationCubit() : super(EvaluationInitial()) {
     getEvaluationSection();
   }
-
 
   final TextEditingController controllerDefault = TextEditingController();
 
@@ -30,6 +36,9 @@ class EvaluationCubit extends Cubit<EvaluationState> {
 
   final answer = <Question, Answers>{};
   final answersTxt = <Question, String>{};
+  final currentDiagnoses = Prefs.getString("currentDiagnoses");
+  final currentDiagnosesStatus = Prefs.getString("currentDiagnosesStatus");
+  final nextSession = Prefs.getString("nextSession");
 
   bool shouldShowTextField(Question question) {
     if (question.answers.isEmpty) {
@@ -47,7 +56,7 @@ class EvaluationCubit extends Cubit<EvaluationState> {
       questionList.assignAll(await EvaluationSectionService.findMany());
 
       print(questionList);
-      emit(EvaluationSuccess(questionEvaluation:  questionList));
+      emit(EvaluationSuccess(questionEvaluation: questionList));
     } on DioError catch (_) {
       emit(EvaluationError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
@@ -58,26 +67,38 @@ class EvaluationCubit extends Cubit<EvaluationState> {
   }
 
   Future<void> sendEvaluationSectionAnswers() async {
+
     emit(EvaluationLoading());
     try {
       final res =
       await EvaluationSectionAnswersService.postCEvaluationSectionAnswers(
-        answers: answer,);
-      emit(EvaluationSuccess(questionEvaluation:   questionList));
+        answers: answer,
+      );
+      answer.clear();
+
+      emit(EvaluationSuccess(questionEvaluation: questionList));
+       log(currentDiagnoses);
+       log(currentDiagnosesStatus);
 
       if (res!.type == 2) {
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
-        Get.off(() =>  SuccessView(
-          goNext: true,
-          title3: "الانتقال إالي المرحلة التالية",
-          onTap2: () => Get.off(()=>const FirstStageAdditionalTrainingScreen()),
+       Get.off(() =>const NextSession());
+
+
+
+       // );
+
+/*
+        Get.to(() => SuccessView(
           title1:
           "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
           title2: "تدريب وتعليم إضافي",
-          onTap: () => Get.off(()=>const FirstStageAdditionalTrainingScreen()),
+          onTap: () =>
+              Get.offAll(() => const FirstStageAdditionalTrainingScreen()),
         ));
+*/
       } else if (res.type == 3) {
         Alert.success(res.body);
       } else {

@@ -36,9 +36,7 @@ class ReservationDiagnostic extends StatelessWidget {
         color: kHomeColor,
         child: SingleChildScrollView(
           child: BlocConsumer<AvailableDatesCubit, AvailableDatesState>(
-            listener: (context, state) {
-
-            },
+            listener: (context, state) {},
             builder: (context, state) {
               final cubit = BlocProvider.of<AvailableDatesCubit>(context);
               return Column(
@@ -57,54 +55,52 @@ class ReservationDiagnostic extends StatelessWidget {
                     ),
                     customText8(
                         title:
-                        "ملاحظة يرجي الرجوع لجدول الحجوزات لمعرفة حجوزاتك للمقابلات",
+                            "ملاحظة يرجي الرجوع لجدول الحجوزات لمعرفة حجوزاتك للمقابلات",
                         color: kButtonDashBoard),
                     state is! AvailableDatesLoading
                         ? Container(
-                      height: context.height * 0.42,
-                      width: context.width * 0.8,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 28, vertical: 14),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: kSafeAreasColor),
-                          color: kHomeColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(
-                                  0, 3), // changes position of shadow
+                            height: context.height * 0.42,
+                            width: context.width * 0.8,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 28, vertical: 14),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: kSafeAreasColor),
+                                color: kHomeColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(8)),
+                            child: CalendarDatePicker(
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2031),
+                              onDateChanged: (value) {
+                                selectedDate = value;
+                                cubit.getAvailablePeriodsDiagnostic(
+                                    selectedDate: value);
+                                // cubit.visitDateId = cubit.dates[cubit.availableDates.indexOf(value)].id;
+                              },
+                              selectableDayPredicate: (day) {
+                                if (cubit.dates.isNotEmpty) {
+                                  if (cubit.dates.contains(day)) {
+                                    return true;
+                                  } else {
+                                    return false;
+                                  }
+                                } else {
+                                  return true;
+                                }
+                              },
                             ),
-                          ],
-                          borderRadius: BorderRadius.circular(8)),
-                      child: CalendarDatePicker(
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime(2031),
-                        onDateChanged: (value) {
-                          selectedDate = value;
-                          cubit.getAvailablePeriodsDiagnostic(
-                              selectedDate: value);
-                          // cubit.visitDateId = cubit.dates[cubit.availableDates.indexOf(value)].id;
-
-
-                        },
-                        selectableDayPredicate: (day) {
-                          if (cubit.dates.isNotEmpty) {
-                            if (cubit.dates.contains(day)) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          } else {
-                            return true;
-                          }
-                        },
-                      ),
-                    )
+                          )
                         : const LoadingFadingCircleSmall(),
                     // DropDownSix(onChanged: (value) {
                     //   //  cubit.getAvailableDatesDiagnostic();
@@ -116,27 +112,30 @@ class ReservationDiagnostic extends StatelessWidget {
                     const HintAvailableTime(),
                     state is! AvailableDatesLoading
                         ? AvailableTime(
-                      onSelect: (String x) {
-                        selectedPeriodId = x;
-                        print("Khallllllllled" + selectedPeriodId.toString());
-                      },
-                      periods: cubit.periods,
-                    )
+                            onSelect: (String x) {
+                              selectedPeriodId = x;
+                              print("Khallllllllled" +
+                                  selectedPeriodId.toString());
+                            },
+                            periods: cubit.periods,
+                          )
                         : const LoadingFadingCircleSmall(),
                     cubit.periods.isEmpty
                         ? Center(
-                      child: customText3(
-                          title: "لا توجد فترات متاحة الان",
-                          color: kBlackText),
-                    )
+                            child: customText3(
+                                title: "لا توجد فترات متاحة الان",
+                                color: kBlackText),
+                          )
                         : const SizedBox.shrink(),
-
 
                     SmallButton(
                       title: "بحث",
                       onPressed: () {
-                        navigateTo(context, DiagnosticAllSpecialists(startTime: selectedPeriodId!, date:selectedDate!));
-
+                        navigateTo(
+                            context,
+                            DiagnosticAllSpecialists(
+                                startTime: selectedPeriodId!,
+                                date: selectedDate!));
                       },
                     )
 /*
@@ -164,7 +163,6 @@ class ReservationDiagnostic extends StatelessWidget {
                       },
                     )
 */
-
                   ]);
             },
           ),

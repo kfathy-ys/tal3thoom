@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:dio/dio.dart' as _dio;
 
@@ -10,6 +11,7 @@ import 'package:tal3thoom/serives/first_stage_injects/sessions/behavioral_sectio
 
 import '../../../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../../../widgets/alerts.dart';
+import '../../evaluation_section/view.dart';
 
 part 'behavioral_state.dart';
 
@@ -32,6 +34,7 @@ class BehavioralCubit extends Cubit<BehavioralState> {
           .assignAll(await BehavioralSectionService.findMany());
 
       print(questionList);
+      answer.clear();
 
       emit(BehavioralSuccess(behavioralSection: questionList));
     } catch (e, es) {
@@ -46,74 +49,33 @@ class BehavioralCubit extends Cubit<BehavioralState> {
     required int questionId,
     required int examId,
     required dynamic video,
+
   }) async {
-    final currentStage = Prefs.getString("currentStage");
-    final currentDiagnoses = Prefs.getString("currentDiagnoses");
-
-    final String sessionCode;
-    String examCode ="EX_TRE_S1" ;
 
 
-    if(currentDiagnoses== 12){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S1";
-    }
-    else if (currentDiagnoses== 13){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S2";
-    } else if (currentDiagnoses== 14){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S3";
-    } else if (currentDiagnoses== 15){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S4";
-    } else if (currentDiagnoses== 16){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S5";
-    } else if (currentDiagnoses== 17){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S6";
-    } else if (currentDiagnoses== 18){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S7";
-    } else if (currentDiagnoses== 19){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S8";
-    } else if (currentDiagnoses== 20){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S9";
-    } else if (currentDiagnoses== 21){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S10";
-    }else if (currentDiagnoses== 22){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S11";
-    }else if (currentDiagnoses== 23){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S12";
-    }else if (currentDiagnoses== 24){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S13";
-    }else if (currentDiagnoses== 25){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S14";
-    }else if (currentDiagnoses== 26){
-      sessionCode = currentDiagnoses;
-      examCode = "EX_TRE_S15";}
     final formData = _dio.FormData.fromMap({
       "record": _dio.MultipartFile.fromFileSync(video.path,
           filename: video.path),
     });
+   // questionList.clear();
+    emit(BehavioralLoading());
+
+
     try {
       final body = formData;
       final res = await NetWork.post(
-          'PatientExams/AddPatienVideoExamAnswer/$userId/$examId/$examCode/$questionId/2',
+          'PatientExams/AddPatienVideoExamAnswer/$userId/$examId/$questionId/2',
           body: body);
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
       emit(BehavioralSuccess(behavioralSection:  questionList));
       Alert.success('تم رفع الفيديو بنجاح');
+      // Timer(const Duration(seconds: 10), () {
+      //
+      // });
+
+
 
     } catch (e, st) {
       log(e.toString());

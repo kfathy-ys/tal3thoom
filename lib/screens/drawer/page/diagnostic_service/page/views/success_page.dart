@@ -76,10 +76,12 @@ class SuccessView extends StatelessWidget {
                 onPressed: () {
                   if (onTap2 != null) {
                     onTap2!();
-                  } else {
-                    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-                    navigateTo(context, const HomeTabScreen());
                   }
+
+                  // else {
+                  //   BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+                  //   navigateTo(context, const HomeTabScreen());
+                  // }
                 },
                 title: title3):const SizedBox.shrink(),
           ]),

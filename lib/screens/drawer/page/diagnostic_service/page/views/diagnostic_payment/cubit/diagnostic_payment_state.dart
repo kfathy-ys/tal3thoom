@@ -4,15 +4,13 @@ part of 'diagnostic_payment_cubit.dart';
 abstract class DiagnosticPaymentState {}
 
 class DiagnosticPaymentInitial extends DiagnosticPaymentState {}
-
 class DiagnosticPaymentLoading extends DiagnosticPaymentState {}
-
 class DiagnosticPaymentSuccess extends DiagnosticPaymentState {
-  final DiagnosticPaymentModel diagnosticPaymentModel;
+  final PaymentAllTreatmentModel firstPaymentModel;
 
-  DiagnosticPaymentSuccess({required this.diagnosticPaymentModel});
+  DiagnosticPaymentSuccess( {required this.firstPaymentModel});
+
 }
-
 class DiagnosticPaymentError extends DiagnosticPaymentState {
   final String msg;
 

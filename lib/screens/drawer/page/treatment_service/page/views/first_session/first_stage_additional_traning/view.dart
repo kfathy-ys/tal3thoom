@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,9 @@ import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
+import '../first_treatment_session/cubit/cognitive_section_cubit.dart';
+import '../first_treatment_session/view.dart';
+import '../next_sessions/view.dart';
 import '../sloki/views/build_three.dart';
 
 // ignore: must_be_immutable
@@ -68,53 +72,21 @@ class _FirstStageAdditionalTrainingScreenState
                 SizedBox(
                   height: context.height * 0.02,
                 ),
-                const BuildTable(
-                    color: kHomeColor,
-                    title1: "مثال1",
-                    title2: "مثال1",
-                    title3: "مثال1"),
-                const BuildTable(
-                    color: kAppBarColor,
-                    title1: "مثال1",
-                    title2: "مثال1",
-                    title3: "مثال1"),
-                const BuildTable(
-                    color: kHomeColor,
-                    title1: "مثال1",
-                    title2: "مثال1",
-                    title3: "مثال1"),
-                const BuildTable(
-                    color: kAppBarColor,
-                    title1: "مثال1",
-                    title2: "مثال1",
-                    title3: "مثال1"),
-                const BuildTable(
-                    color: kHomeColor,
-                    title1: "مثال1",
-                    title2: "مثال1",
-                    title3: "مثال1"),
-                const BuildTable(
-                    color: kAppBarColor,
-                    title1: "مثال1",
-                    title2: "مثال1",
-                    title3: "مثال1"),
+                SizedBox(
+                  height: context.height * 0.3,
+                  child: Image.asset("assets/images/t1.jpeg"),
+                ), SizedBox(
+                  height: context.height * 0.25,
+                  child: Image.asset("assets/images/t2.jpeg"),
+                ),
+
                 SizedBox(
                   height: context.height * 0.05,
                 ),
                 MediaButton(
                   onPressed: () {
-                    navigateTo(
-                        context,
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: SuccessView(
-                            title1:
-                                "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
-                            title2: "تدريب وتعليم إضافي",
-                            onTap: () => navigateTo(context,
-                                const FirstStageAdditionalTrainingScreen()),
-                          ),
-                        ));
+                 BlocProvider.of<CognitiveSectionCubit>(context).getCognitiveSection();
+
                   },
                   color: kPrimaryColor,
                   title: "خروج",
@@ -125,28 +97,5 @@ class _FirstStageAdditionalTrainingScreenState
     );
   }
 
-  dynamic video;
 
-  File? _file1;
-
-  void _uploadFile(int step) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'pdf', 'doc', 'png'],
-    );
-
-    if (result != null) {
-      File? file = File(result.files.single.path!);
-
-      log("-=-=-=-=- selected file is => ${file.toString()}");
-      setState(() {
-        _file1 = file;
-        //  filesInputData.thesisFile = file;
-
-        _firstController.text = file.path;
-      });
-    } else {
-      log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
-    }
-  }
 }

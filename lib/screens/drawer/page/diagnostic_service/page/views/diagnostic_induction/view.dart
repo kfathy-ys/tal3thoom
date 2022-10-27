@@ -11,6 +11,7 @@ import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../../widgets/video_items.dart';
 import '../../../../../view.dart';
+import '../diagnostic_payment/view.dart';
 import 'cubit/diagnostic_induction_cubit.dart';
 
 // ignore: must_be_immutable
@@ -80,11 +81,9 @@ class InductionDiagnostic extends StatelessWidget {
               ),
               MediaButton(
                 onPressed: () {
-                  //   Get.to(()=>BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment() );
-                  BlocProvider.of<DiagnosticPaymentCubit>(context)
-                      .checkDiagnosticPayment();
-                  // navigateTo(context,  BlocProvider.of<DiagnosticPaymentCubit>(context).checkDiagnosticPayment());
-                  //Get.to(()=> DiagnosticPayment());
+                  // BlocProvider.of<DiagnosticPaymentCubit>(context)
+                  //     .checkDiagnosticPayment();
+                  Get.to(()=> const DiagnosticPaymentScreen());
                 },
                 title: KeysConfig.next,
               ),

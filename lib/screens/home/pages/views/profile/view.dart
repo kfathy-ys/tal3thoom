@@ -50,301 +50,298 @@ class _ProfileState extends State<Profile> {
         child: Form(
           key: formKey,
           child: SingleChildScrollView(
-            child: BlocProvider(
-              create: (context) => ProfileCubit(),
-              child: BlocConsumer<ProfileCubit, ProfileState>(
-                listener: (context, state) {
-                  // if (state is ProfileSuccess) {
-                  //   /// TODO : Cached Token needed
-                  //   //Prefs.setString('token', state.registerModel.);
-                  //   //  Get.offAll(() =>  LoginScreen());
-                  //   Navigator.of(context).pushAndRemoveUntil(
-                  //       MaterialPageRoute(builder: (context) => const Profile()),
-                  //       (Route<dynamic> route) => false);
-                  //   Alert.success('تم التعديل بنجاح');
-                  // } else if (state is ProfileError) {
-                  //   Alert.error(state.msg);
-                  // }
-                },
-                builder: (context, state) {
-                  final cubit = BlocProvider.of<ProfileCubit>(context);
-                  if (state is ProfileLoading) {
-                    return const Center(child: LoadingFadingCircle());
-                  }
-                  if (state is ProfileSuccess) {
-                    return Column(
-                      children: [
-                        CustomTileContainer(
-                            widthh: width * 0.5,
-                            title: "المعلومات الشخصية",
-                            context: context),
-                        SizedBox(
-                          height: context.height * 0.02,
-                        ),
-                        const CircleAvatar(
-                          radius: 40.0,
-                          backgroundImage: NetworkImage(
-                              'https://www.vitaalbank.nl/wp-content/uploads/2021/09/man-1.png'),
-                          backgroundColor: Colors.transparent,
-                        ),
-                        SizedBox(
-                          height: context.height * 0.02,
-                        ),
-                        //_profilePic(userName: Prefs.getString('fullName')),
-                        CustomTextField(
-                          read: true,
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                // if (state is ProfileSuccess) {
+                //   /// TODO : Cached Token needed
+                //   //Prefs.setString('token', state.registerModel.);
+                //   //  Get.offAll(() =>  LoginScreen());
+                //   Navigator.of(context).pushAndRemoveUntil(
+                //       MaterialPageRoute(builder: (context) => const Profile()),
+                //       (Route<dynamic> route) => false);
+                //   Alert.success('تم التعديل بنجاح');
+                // } else if (state is ProfileError) {
+                //   Alert.error(state.msg);
+                // }
+              },
+              builder: (context, state) {
+                final cubit = BlocProvider.of<ProfileCubit>(context);
+                if (state is ProfileLoading) {
+                  return const Center(child: LoadingFadingCircle());
+                }
+                if (state is ProfileSuccess) {
+                  return Column(
+                    children: [
+                      CustomTileContainer(
+                          widthh: width * 0.5,
+                          title: "المعلومات الشخصية",
+                          context: context),
+                      SizedBox(
+                        height: context.height * 0.02,
+                      ),
+                      const CircleAvatar(
+                        radius: 40.0,
+                        backgroundImage: NetworkImage(
+                            'https://www.vitaalbank.nl/wp-content/uploads/2021/09/man-1.png'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                      SizedBox(
+                        height: context.height * 0.02,
+                      ),
+                      //_profilePic(userName: Prefs.getString('fullName')),
+                      CustomTextField(
+                        read: true,
 
-                          dIcon: Icons.person,
-                          label: KeysConfig.userName,
-                          hint: KeysConfig.userName,
-                          controller: cubit.firstNameController
-                            ..text = Prefs.getString('fullName'),
-                          validator: qValidator([
-                            IsRequired(KeysConfig.userName),
-                          ]),
-                          type: TextInputType.name,
-                        ),
+                        dIcon: Icons.person,
+                        label: KeysConfig.userName,
+                        hint: KeysConfig.userName,
+                        controller: cubit.firstNameController
+                          ..text = Prefs.getString('fullName'),
+                        validator: qValidator([
+                          IsRequired(KeysConfig.userName),
+                        ]),
+                        type: TextInputType.name,
+                      ),
 
-                        CustomTextFieldRange(
-                          read: true,
-                          dIcon: Icons.date_range_outlined,
-                          hint: "تاريخ الميلاد",
-                          controller: cubit.dateController
-                            ..text = DateConverter.dateConverterOnlys(
-                                Prefs.getString('birthDate')),
-                          validator: qValidator([
+                      CustomTextFieldRange(
+                        read: true,
+                        dIcon: Icons.date_range_outlined,
+                        hint: "تاريخ الميلاد",
+                        controller: cubit.dateController
+                          ..text = DateConverter.dateConverterOnlys(
+                              Prefs.getString('birthDate')),
+                        validator: qValidator([
+                          IsRequired(KeysConfig.thisFieldRequired),
+                          //  IsOptional(),
+                          MaxLength(30),
+                        ]),
+                        onTap: () async {
+                          await showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1950),
+                            lastDate: DateTime(2030),
+                            initialDate: DateTime(1950),
+                          ).then((value) {
+                            if (value == null) return;
+                            cubit.dateController.text =
+                                value.toString().substring(0, 10);
+
+                            //  provider.onRageChanges(value);
+                          });
+                        },
+                      ),
+                      CustomTextField(
+                        read: true,
+                        hint: KeysConfig.email,
+                        dIcon: Icons.email,
+                        label: KeysConfig.email,
+                        controller: cubit.emailController
+                          ..text = Prefs.getString('email'),
+                        validator: qValidator([
+                          IsRequired("thisFieldRequired"),
+                          //  IsOptional(),
+                          MaxLength(30),
+                        ]),
+                        type: TextInputType.text,
+                      ),
+                      CustomTextField(
+                        read: true,
+                        hint: KeysConfig.phoneNumber,
+                        dIcon: Icons.phone,
+                        label: KeysConfig.phoneNumber,
+                        controller: cubit.phoneController
+                          ..text = Prefs.getString('phoneNumber'),
+                        validator: qValidator([
+                          IsRequired("thisFieldRequired"),
+                          MinLength(6),
+                          MaxLength(30),
+                        ]),
+                        type: TextInputType.phone,
+                      ),
+                      DropDownGender(onChanged: cubit.onSexTypeChanged),
+                      DropDownIsRead(onChanged: cubit.onReadTypeChanged),
+                      CustomTextField(
+                        read: true,
+                        dIcon: Icons.real_estate_agent,
+                        label: "الدولة",
+                        hint: "الدولة",
+                        controller: cubit.countryController
+                          ..text = Prefs.getString('country'),
+                        validator: qValidator(
+                          [
                             IsRequired(KeysConfig.thisFieldRequired),
-                            //  IsOptional(),
                             MaxLength(30),
-                          ]),
-                          onTap: () async {
-                            await showDatePicker(
-                              context: context,
-                              firstDate: DateTime(1950),
-                              lastDate: DateTime(2030),
-                              initialDate: DateTime(1950),
-                            ).then((value) {
-                              if (value == null) return;
-                              cubit.dateController.text =
-                                  value.toString().substring(0, 10);
-
-                              //  provider.onRageChanges(value);
-                            });
-                          },
+                          ],
                         ),
-                        CustomTextField(
-                          read: true,
-                          hint: KeysConfig.email,
-                          dIcon: Icons.email,
-                          label: KeysConfig.email,
-                          controller: cubit.emailController
-                            ..text = Prefs.getString('email'),
-                          validator: qValidator([
-                            IsRequired("thisFieldRequired"),
-                            //  IsOptional(),
-                            MaxLength(30),
-                          ]),
-                          type: TextInputType.text,
-                        ),
-                        CustomTextField(
-                          read: true,
-                          hint: KeysConfig.phoneNumber,
-                          dIcon: Icons.phone,
-                          label: KeysConfig.phoneNumber,
-                          controller: cubit.phoneController
-                            ..text = Prefs.getString('phoneNumber'),
-                          validator: qValidator([
-                            IsRequired("thisFieldRequired"),
-                            MinLength(6),
-                            MaxLength(30),
-                          ]),
-                          type: TextInputType.phone,
-                        ),
-                        DropDownGender(onChanged: cubit.onSexTypeChanged),
-                        DropDownIsRead(onChanged: cubit.onReadTypeChanged),
-                        CustomTextField(
-                          read: true,
-                          dIcon: Icons.real_estate_agent,
-                          label: "الدولة",
-                          hint: "الدولة",
-                          controller: cubit.countryController
-                            ..text = Prefs.getString('country'),
-                          validator: qValidator(
-                            [
-                              IsRequired(KeysConfig.thisFieldRequired),
-                              MaxLength(30),
-                            ],
-                          ),
-                          type: TextInputType.streetAddress,
-                          onTap: () {
-                            showCountryPicker(
-                              context: context,
+                        type: TextInputType.streetAddress,
+                        onTap: () {
+                          showCountryPicker(
+                            context: context,
 
-                              exclude: <String>['ar', 'EG'],
-                              favorite: <String>['SA', 'EG'],
-                              //showPhoneCode: true,
+                            exclude: <String>['ar', 'EG'],
+                            favorite: <String>['SA', 'EG'],
+                            //showPhoneCode: true,
 
-                              onSelect: (Country country) {
-                                setState(() {
-                                  cubit.countryController.text =
-                                      country.nameLocalized!;
+                            onSelect: (Country country) {
+                              setState(() {
+                                cubit.countryController.text =
+                                    country.nameLocalized!;
 
-                                  //.replaceAll(RegExp('[^A-Za-z]'), ' ')
-                                });
+                                //.replaceAll(RegExp('[^A-Za-z]'), ' ')
+                              });
 
-                                print('Select country: ${country.displayName}');
-                              },
-                              countryListTheme: CountryListThemeData(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(40.0),
-                                  topRight: Radius.circular(40.0),
-                                ),
-                                inputDecoration: InputDecoration(
-                                  labelText: 'البحث',
-                                  hintText: 'ابدأ الكتابة للبحث',
-                                  prefixIcon: const Icon(Icons.search),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: const Color(0xFF8C98A8)
-                                          .withOpacity(0.2),
-                                    ),
+                              print('Select country: ${country.displayName}');
+                            },
+                            countryListTheme: CountryListThemeData(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40.0),
+                                topRight: Radius.circular(40.0),
+                              ),
+                              inputDecoration: InputDecoration(
+                                labelText: 'البحث',
+                                hintText: 'ابدأ الكتابة للبحث',
+                                prefixIcon: const Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: const Color(0xFF8C98A8)
+                                        .withOpacity(0.2),
                                   ),
                                 ),
                               ),
-                            );
-                          },
+                            ),
+                          );
+                        },
+                      ),
+                      CustomTextField(
+                        read: true,
+                        dIcon: Icons.location_city_rounded,
+                        label: "الجنسية",
+                        hint: "الجنسية",
+                        controller: cubit.nationality
+                          ..text = Prefs.getString('country'),
+                        validator: qValidator(
+                          [
+                            IsRequired(KeysConfig.thisFieldRequired),
+                            MaxLength(30),
+                          ],
                         ),
-                        CustomTextField(
-                          read: true,
-                          dIcon: Icons.location_city_rounded,
-                          label: "الجنسية",
-                          hint: "الجنسية",
-                          controller: cubit.nationality
-                            ..text = Prefs.getString('country'),
-                          validator: qValidator(
-                            [
-                              IsRequired(KeysConfig.thisFieldRequired),
-                              MaxLength(30),
-                            ],
-                          ),
-                          type: TextInputType.text,
-                          onTap: () {
-                            showCountryPicker(
-                              context: context,
+                        type: TextInputType.text,
+                        onTap: () {
+                          showCountryPicker(
+                            context: context,
 
-                              exclude: <String>['ar', 'EG'],
-                              favorite: <String>['SA', 'EG'],
-                              //showPhoneCode: true,
+                            exclude: <String>['ar', 'EG'],
+                            favorite: <String>['SA', 'EG'],
+                            //showPhoneCode: true,
 
-                              onSelect: (Country country) {
-                                setState(() {
-                                  cubit.nationality.text =
-                                      country.nameLocalized!;
+                            onSelect: (Country country) {
+                              setState(() {
+                                cubit.nationality.text =
+                                    country.nameLocalized!;
 
-                                  //.replaceAll(RegExp('[^A-Za-z]'), ' ')
-                                });
+                                //.replaceAll(RegExp('[^A-Za-z]'), ' ')
+                              });
 
-                                print('Select country: ${country.displayName}');
-                              },
-                              countryListTheme: CountryListThemeData(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(40.0),
-                                  topRight: Radius.circular(40.0),
-                                ),
-                                inputDecoration: InputDecoration(
-                                  labelText: 'البحث',
-                                  hintText: 'ابدأ الكتابة للبحث',
-                                  prefixIcon: const Icon(Icons.search),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: const Color(0xFF8C98A8)
-                                          .withOpacity(0.2),
-                                    ),
+                              print('Select country: ${country.displayName}');
+                            },
+                            countryListTheme: CountryListThemeData(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40.0),
+                                topRight: Radius.circular(40.0),
+                              ),
+                              inputDecoration: InputDecoration(
+                                labelText: 'البحث',
+                                hintText: 'ابدأ الكتابة للبحث',
+                                prefixIcon: const Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: const Color(0xFF8C98A8)
+                                        .withOpacity(0.2),
                                   ),
                                 ),
                               ),
-                            );
-                          },
+                            ),
+                          );
+                        },
+                      ),
+                      // CustomTextField(
+                      //   read: true,
+                      //
+                      //   dIcon: Icons.male_outlined,
+                      //   label: KeysConfig.sex,
+                      //   hint: KeysConfig.sex,
+                      //   controller: cubit.sexController
+                      //     ..text = Prefs.getString('gender'),
+                      //   validator: qValidator(
+                      //     [
+                      //       IsRequired(KeysConfig.sex),
+                      //       MaxLength(30),
+                      //     ],
+                      //   ),
+                      //   type: TextInputType.text,
+                      // ),
+                      // CustomTextField(
+                      //   isEdit: true,
+                      //   dIcon: Icons.real_estate_agent,
+                      //   label: KeysConfig.countryResidence,
+                      //   hint: KeysConfig.countryResidence,
+                      //   controller: _countryController,
+                      //   validator: qValidator(
+                      //     [
+                      //       IsRequired(KeysConfig.countryResidence),
+                      //       MaxLength(30),
+                      //     ],
+                      //   ),
+                      //   type: TextInputType.streetAddress,
+                      // ),
+                      CustomTextField(
+                        read: true,
+                        dIcon: Icons.work_history_outlined,
+                        label: KeysConfig.entityWork,
+                        hint: KeysConfig.entityWork,
+                        controller: cubit.entityWorkController
+                          ..text = Prefs.getString('workPlace'),
+                        validator: qValidator(
+                          [
+                            IsRequired(KeysConfig.entityWork),
+                            MaxLength(30),
+                          ],
                         ),
-                        // CustomTextField(
-                        //   read: true,
-                        //
-                        //   dIcon: Icons.male_outlined,
-                        //   label: KeysConfig.sex,
-                        //   hint: KeysConfig.sex,
-                        //   controller: cubit.sexController
-                        //     ..text = Prefs.getString('gender'),
-                        //   validator: qValidator(
-                        //     [
-                        //       IsRequired(KeysConfig.sex),
-                        //       MaxLength(30),
-                        //     ],
-                        //   ),
-                        //   type: TextInputType.text,
-                        // ),
-                        // CustomTextField(
-                        //   isEdit: true,
-                        //   dIcon: Icons.real_estate_agent,
-                        //   label: KeysConfig.countryResidence,
-                        //   hint: KeysConfig.countryResidence,
-                        //   controller: _countryController,
-                        //   validator: qValidator(
-                        //     [
-                        //       IsRequired(KeysConfig.countryResidence),
-                        //       MaxLength(30),
-                        //     ],
-                        //   ),
-                        //   type: TextInputType.streetAddress,
-                        // ),
-                        CustomTextField(
-                          read: true,
-                          dIcon: Icons.work_history_outlined,
-                          label: KeysConfig.entityWork,
-                          hint: KeysConfig.entityWork,
-                          controller: cubit.entityWorkController
-                            ..text = Prefs.getString('workPlace'),
-                          validator: qValidator(
-                            [
-                              IsRequired(KeysConfig.entityWork),
-                              MaxLength(30),
-                            ],
-                          ),
-                          type: TextInputType.text,
+                        type: TextInputType.text,
+                      ),
+                      CustomTextField(
+                        read: true,
+                        dIcon: Icons.privacy_tip_outlined,
+                        label: KeysConfig.entityNumber,
+                        hint: KeysConfig.entityNumber,
+                        controller: cubit.entityNumberController
+                          ..text = Prefs.getString('idCardNumber'),
+                        validator: qValidator(
+                          [
+                            IsRequired(KeysConfig.entityNumber),
+                            MaxLength(30),
+                          ],
                         ),
-                        CustomTextField(
-                          read: true,
-                          dIcon: Icons.privacy_tip_outlined,
-                          label: KeysConfig.entityNumber,
-                          hint: KeysConfig.entityNumber,
-                          controller: cubit.entityNumberController
-                            ..text = Prefs.getString('idCardNumber'),
-                          validator: qValidator(
-                            [
-                              IsRequired(KeysConfig.entityNumber),
-                              MaxLength(30),
-                            ],
-                          ),
-                          type: TextInputType.number,
-                        ),
-                        state is! RegisterLoading
-                            ? MediaButton(
-                                color: kPrimaryColor,
-                                title: "تعديل",
-                                onPressed: () {
-                                  Get.to(() => UpdateProfile(
-                                        id: state.profileModel.data.id,
-                                      ));
-                                })
-                            : const LoadingFadingCircle(),
-                      ],
-                    );
-                  }
-                  if (state is ProfileError) {
-                    return Text(state.msg);
-                  }
-                  return const SizedBox();
-                },
-              ),
+                        type: TextInputType.number,
+                      ),
+                      state is! RegisterLoading
+                          ? MediaButton(
+                              color: kPrimaryColor,
+                              title: "تعديل",
+                              onPressed: () {
+                                Get.to(() => UpdateProfile(
+                                      id: state.profileModel.data.id,
+                                    ));
+                              })
+                          : const LoadingFadingCircle(),
+                    ],
+                  );
+                }
+                if (state is ProfileError) {
+                  return Text(state.msg);
+                }
+                return const SizedBox();
+              },
             ),
           ),
         ),

@@ -68,6 +68,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       Prefs.setString("currentStage", loginModel.data.currentStage.toString());
       Prefs.setString("currentDiagnoses", loginModel.data.currentDiagnoses.toString());
       Prefs.setString("currentDiagnosesStatus", loginModel.data.currentDiagnosesStatus.toString());
+      Prefs.setString("nextSession", loginModel.data.nextSession.toString());
 
       log("${res.data["data"]["userId"]}");
 
@@ -78,6 +79,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       log("${res.data["data"]["currentStage"]}");
       log("${res.data["data"]["currentDiagnoses"]}");
       log("${res.data["data"]["currentDiagnosesStatus"]}");
+      log("${res.data["data"]["nextSession"]}");
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

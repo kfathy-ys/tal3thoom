@@ -27,7 +27,7 @@ import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_induction/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../widgets/constants.dart';
 import 'page/diagnostic_service/page/views/diagnostic_history/view.dart';
@@ -64,9 +64,12 @@ class _MenuItemsState extends State<MenuItems> {
         child: ListView(physics: const BouncingScrollPhysics(), children: [
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
+              Get.back();
+            //  Navigator.of(context).pop();
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-              navigateTo(context, const HomeTabScreen());
+
+             Get.to(()=>const HomeTabScreen());
+             // navigateTo(context, const );
             },
             leading: Image.asset("assets/images/main.png"),
             title: customText2(title: KeysConfig.home, color: kHomeColor),
@@ -74,40 +77,59 @@ class _MenuItemsState extends State<MenuItems> {
 
           DiagnosticServices(
             onTapInductions: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const InductionDiagnostic());
+              Get.back();
+              Get.to(()=>const InductionDiagnostic());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const InductionDiagnostic());
             },
             onTapPayment: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const DiagnosticPayment());
+              Get.back();
+              Get.to(()=>const DiagnosticPaymentScreen());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const DiagnosticPaymentScreen());
             },
             onTapHistory: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const DiagnosticHistory());
+              Get.back();
+              Get.to(()=>const DiagnosticHistory());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const DiagnosticHistory());
             },
             onTapTestOases: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const DiagnosticOasesTest());
+              Get.back();
+              Get.to(()=>const DiagnosticOasesTest());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const DiagnosticOasesTest());
             },
             onTapSSRS: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const SSRSDiagnosticsScreen());
+              Get.back();
+              Get.to(()=>const SSRSDiagnosticsScreen());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const SSRSDiagnosticsScreen());
             },
             onTapSSi: () {
-              Navigator.of(context).pop();
-              navigateTo(context, DiagnosticSSI4());
+              Get.back();
+              Get.to(()=> DiagnosticSSI4());
+              // Navigator.of(context).pop();
+              // navigateTo(context, DiagnosticSSI4());
             },
             onTapAppointentReservation: () {
-              Navigator.of(context).pop();
-              navigateTo(context, ReservationDiagnostic());
+              Get.back();
+              Get.to(()=> ReservationDiagnostic());
+              // Navigator.of(context).pop();
+              // navigateTo(context, ReservationDiagnostic());
             },
           ),
 
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
+              Get.back();
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-              navigateTo(context, const HomeTabScreen());
+
+              Get.to(()=>const HomeTabScreen());
+              // Navigator.of(context).pop();
+              // BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+              // navigateTo(context, const HomeTabScreen());
             },
             leading: Image.asset("assets/images/calendar.png"),
             title: customText2(title: "جدول الحجوزات", color: kHomeColor),
@@ -115,63 +137,107 @@ class _MenuItemsState extends State<MenuItems> {
 
           TreatmentServiceExpansion(
             onTapInductions: () {
-              Navigator.of(context).pop();
-              navigateTo(context,  const FirstTreatmentInduction());
+              Get.back();
+              Get.to(()=>const FirstTreatmentInduction());
+              // Navigator.of(context).pop();
+              // navigateTo(context,  const FirstTreatmentInduction());
             },
             onTapPayment: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const FirstPaymentTreatment());
+              Get.back();
+              Get.to(()=>const FirstPaymentTreatment());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const FirstPaymentTreatment());
             },
             PretreatmentQuestionnaire: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const PretreatmentQuestionnaire());
+              Get.back();
+              Get.to(()=>const PretreatmentQuestionnaire());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const PretreatmentQuestionnaire());
             },
             onTaptherapeuticSessions: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const FirstTreatmentSession());
+
+              Get.back();
+              Get.to(()=>const FirstTreatmentSession());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const FirstTreatmentSession());
             },
             onTapOases: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const FirstStageOasesTest());
+
+              Get.back();
+              Get.to(()=>const FirstStageOasesTest());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const FirstStageOasesTest());
             },
             onTapSSRS: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const FirstStageSSRSTreatmentScreen());
+              Get.back();
+              Get.to(()=>const FirstStageSSRSTreatmentScreen());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const FirstStageSSRSTreatmentScreen());
             },
             onTapSSI4: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const TreatmentSSI4());
+              Get.back();
+              Get.to(()=>const TreatmentSSI4());
+              //
+              // Navigator.of(context).pop();
+              // navigateTo(context, const TreatmentSSI4());
             },
             onTapBookSpecialist: () {
-              Navigator.of(context).pop();
-              navigateTo(context,  FirstStageTreatmentReservation());
+
+              Get.back();
+              Get.to(()=> FirstStageTreatmentReservation());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context,  FirstStageTreatmentReservation());
             },
             onTaptherapeuticSessions2: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const SecondTreatmentSession());
+              Get.back();
+              Get.to(()=>const SecondTreatmentSession());
+              //
+              // Navigator.of(context).pop();
+              // navigateTo(context, const SecondTreatmentSession());
             },
             onTapOases2: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const SecondStageOasesTest());
+
+              Get.back();
+              Get.to(()=>const SecondStageOasesTest());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const SecondStageOasesTest());
             },
             onTapSSRS2: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const SecondStageSSRSTreatmentScreen());
+              Get.back();
+              Get.to(()=>const SecondStageSSRSTreatmentScreen());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const SecondStageSSRSTreatmentScreen());
             },
             onTapSSI42: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const SecondTreatmentSSI4());
+
+              Get.back();
+              Get.to(()=>const SecondTreatmentSSI4());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const SecondTreatmentSSI4());
             },
             onTapBookSpecialist2: () {
-              Navigator.of(context).pop();
-              navigateTo(context,  SecondStageTreatmentReservation());
+              Get.back();
+              Get.to(()=> SecondStageTreatmentReservation());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context,  SecondStageTreatmentReservation());
             },
           ),
 
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const ResultsPreviousTreatmentSessions());
+              Get.back();
+              Get.to(()=>const ResultsPreviousTreatmentSessions());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const ResultsPreviousTreatmentSessions());
             },
             leading: Image.asset("assets/images/Files.png"),
             title: customText2(
@@ -180,26 +246,43 @@ class _MenuItemsState extends State<MenuItems> {
 
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const MedicalReports());
+              Get.back();
+              Get.to(()=>const MedicalReports());
+
+              // Navigator.of(context).pop();
+              // navigateTo(context, const MedicalReports());
             },
             leading: Image.asset("assets/images/document.png"),
             title: customText2(
                 title: KeysConfig.medicalReports, color: kHomeColor),
           ),
           AdvisorsService(onTapInductions: () {
-            Navigator.of(context).pop();
-            navigateTo(context, const AdviserInduction());
+
+            Get.back();
+            Get.to(()=>const AdviserInduction());
+
+            // Navigator.of(context).pop();
+            // navigateTo(context, const AdviserInduction());
           }, onTapAppointmentReservation: () {
-            Navigator.of(context).pop();
-            navigateTo(context,  ReservationAppointmentScreen());
+
+            Get.back();
+            Get.to(()=> ReservationAppointmentScreen());
+
+            // Navigator.of(context).pop();
+            // navigateTo(context,  ReservationAppointmentScreen());
           }),
 
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
+
+              Get.back();
               BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(0);
-              navigateTo(context, const HomeTabScreen());
+
+              Get.to(()=>const HomeTabScreen());
+
+              // Navigator.of(context).pop();
+              // BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(0);
+              // navigateTo(context, const HomeTabScreen());
             },
             leading: Image.asset("assets/images/personal file.png"),
             title: customText2(title: KeysConfig.profile, color: kHomeColor),
@@ -207,8 +290,11 @@ class _MenuItemsState extends State<MenuItems> {
 
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
-              navigateTo(context, const WhoWEAreScreen());
+
+              Get.back();
+              Get.to(()=>const WhoWEAreScreen());
+              // Navigator.of(context).pop();
+              // navigateTo(context, const WhoWEAreScreen());
             },
             leading: Image.asset("assets/images/Exclamation mark.png"),
             title: customText2(title: KeysConfig.aboutUs, color: kHomeColor),
@@ -224,7 +310,9 @@ class _MenuItemsState extends State<MenuItems> {
           // ),
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
+
+              Get.back();
+             // Navigator.of(context).pop();
               // navigateTo(context, const WhoWEAreScreen());
             },
             leading: Image.asset("assets/images/message.png"),
@@ -233,9 +321,12 @@ class _MenuItemsState extends State<MenuItems> {
 
           ListTile(
             onTap: () {
-              Navigator.of(context).pop();
+              Get.back();
+              Get.to(()=> LoginScreen());
 
-              navigateTo(context, LoginScreen());
+              // Navigator.of(context).pop();
+              //
+              // navigateTo(context, LoginScreen());
               Prefs.clear();
             },
             leading: Image.asset("assets/images/Exit.png"),

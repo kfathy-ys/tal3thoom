@@ -9,57 +9,58 @@ class CognitiveSectionService {
     final userId = Prefs.getString("userId");
     final currentStage = Prefs.getString("currentStage");
     final currentDiagnoses = Prefs.getString("currentDiagnoses");
+    final nextSession = Prefs.getString("nextSession");
 
     final String sessionCode;
      String sessionName ="EX_TRE_S1" ;
 
 
-    if(currentDiagnoses== 12){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S1";
-    }
-    else if (currentDiagnoses== 13){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S2";
-    } else if (currentDiagnoses== 14){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S3";
-    } else if (currentDiagnoses== 15){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S4";
-    } else if (currentDiagnoses== 16){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S5";
-    } else if (currentDiagnoses== 17){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S6";
-    } else if (currentDiagnoses== 18){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S7";
-    } else if (currentDiagnoses== 19){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S8";
-    } else if (currentDiagnoses== 20){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S9";
-    } else if (currentDiagnoses== 21){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S10";
-    }else if (currentDiagnoses== 22){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S11";
-    }else if (currentDiagnoses== 23){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S12";
-    }else if (currentDiagnoses== 24){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S13";
-    }else if (currentDiagnoses== 25){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S14";
-    }else if (currentDiagnoses== 26){
-      sessionCode = currentDiagnoses;
-      sessionName = "EX_TRE_S15";}
+    // if(currentDiagnoses== 12){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S1";
+    // }
+    // else if (currentDiagnoses== 13){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S2";
+    // } else if (currentDiagnoses== 14){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S3";
+    // } else if (currentDiagnoses== 15){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S4";
+    // } else if (currentDiagnoses== 16){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S5";
+    // } else if (currentDiagnoses== 17){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S6";
+    // } else if (currentDiagnoses== 18){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S7";
+    // } else if (currentDiagnoses== 19){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S8";
+    // } else if (currentDiagnoses== 20){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S9";
+    // } else if (currentDiagnoses== 21){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S10";
+    // }else if (currentDiagnoses== 22){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S11";
+    // }else if (currentDiagnoses== 23){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S12";
+    // }else if (currentDiagnoses== 24){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S13";
+    // }else if (currentDiagnoses== 25){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S14";
+    // }else if (currentDiagnoses== 26){
+    //   sessionCode = currentDiagnoses;
+    //   sessionName = "EX_TRE_S15";}
     // }else if (currentDiagnoses== 27){
     //   sessionCode = currentDiagnoses;
     //   sessionName = "EX_TRE_S16";
@@ -87,7 +88,7 @@ class CognitiveSectionService {
     // }
 
     final res = await NetWork.get(
-        'PatientExams/GetExamQuestionsAnswersByExamCodeAndSectionName/$userId/$sessionName/$currentStage/cog');
+        'PatientExams/GetExamQuestionsAnswersByExamCodeAndSectionName/$userId/cog');
         return List.from(res.data["data"])
         .map((e) => Question.fromJson(e))
         .toList();

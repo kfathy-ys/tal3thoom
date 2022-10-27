@@ -138,7 +138,7 @@ Widget CustomCurvedContainer({required String title}) {
   // double height = MediaQuery.of(context).size.height;
   // double width = MediaQuery.of(context).size.width;
   return Container(
-    margin: const EdgeInsets.symmetric(vertical: 10),
+    margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
     width: Get.width / 1.8,
     height: Get.height * 0.075,
     decoration: const BoxDecoration(
@@ -185,7 +185,7 @@ Widget customText3({required String title, required Color color}) {
 
 Widget customText4({required String title, required Color color}) {
   return Text(title,
-      textAlign: TextAlign.start,
+      textAlign: TextAlign.center,
 
       style: TextStyle(color: color, fontSize: 16, fontFamily: 'DinMedium'));
 }

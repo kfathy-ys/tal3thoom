@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+import '../../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/loading.dart';
@@ -27,10 +28,13 @@ class EvaluationSectionScreen extends StatefulWidget {
 }
 
 class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
+  // @override
+  // void initState() {
+  //   BlocProvider.of<ProfileCubit>(context);
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -62,8 +66,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         CustomTileContainer(
-                            widthh: context.width / 1.8,
-                            title: "الجلسة العلاجية" +
+                            widthh: context.width / 1.6,
+                            title: "الجلسة العلاجية " +
                                 state.questionEvaluation[0].tags.toString(),
                             context: context),
                         Align(
@@ -249,20 +253,11 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                         MediaButton(
                           onPressed: () {
                             if (cubit.formKey.currentState!.validate()) {
+                              BlocProvider.of<EvaluationCubit>(context).getEvaluationSection();
+
                               cubit.sendEvaluationSectionAnswers();
                             }
-                            /*  navigateTo(
-                      context,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: SuccessView(
-                          title1:
-                          "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
-                          title2: "تدريب وتعليم إضافي",
-                          onTap: () => navigateTo(context,
-                              const FirstStageAdditionalTrainingScreen()),
-                        ),
-                      ));*/
+
                           },
                           color: kPrimaryColor,
                           title: "متابعة",

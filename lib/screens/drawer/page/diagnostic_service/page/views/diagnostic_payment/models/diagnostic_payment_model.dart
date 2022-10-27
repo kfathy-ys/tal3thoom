@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class DiagnosticPaymentModel extends Equatable {
-  List<int>? data;
+  List<dynamic>? data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
@@ -11,7 +11,7 @@ class DiagnosticPaymentModel extends Equatable {
       {this.data, this.messages, this.status, this.dataLength});
 
   DiagnosticPaymentModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"] == null ? null : List<int>.from(json["data"]);
+    data = json["data"] == null ? null : List<dynamic>.from(json["data"]);
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];

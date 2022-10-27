@@ -3,19 +3,25 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../../../serives/first_stage_injects/sessions/cognitive_section/answers_service.dart';
 import '../../../../../../../../../serives/first_stage_injects/sessions/cognitive_section/question_serives.dart';
+import '../../../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../../../widgets/alerts.dart';
 import '../../../../../../diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
 import '../../sloki/view.dart';
+import '../view.dart';
 
 part 'cognitive_section_state.dart';
 
 class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
-  CognitiveSectionCubit() : super(CognitiveSectionInitial()){
+  CognitiveSectionCubit() : super(CognitiveSectionInitial()) {
+   //BlocProvider.of<ProfileCubit>(context);
+
     getCognitiveSection();
   }
 
@@ -27,6 +33,7 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
 
   final answer = <Question, Answers>{};
   final answersTxt = <Question, String>{};
+  final currentDiagnosesStatus = Prefs.getString("currentDiagnosesStatus");
 
   bool shouldShowTextField(Question question) {
     if (question.answers.isEmpty) {
@@ -37,12 +44,10 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
     }
     return false;
   }
-
   Future<void> getCognitiveSection() async {
     emit(CognitiveSectionLoading());
     try {
       questionList.assignAll(await CognitiveSectionService.findMany());
-
       print(questionList);
       emit(CognitiveSectionSuccess(questionModel: questionList));
     } on DioError catch (_) {
@@ -53,18 +58,18 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
       emit(CognitiveSectionError(msg: e.toString()));
     }
   }
-
   Future<void> sendCognitiveSectionAnswers() async {
+   // questionList.clear();
     emit(CognitiveSectionLoading());
     try {
-      final res =
-      await CognitiveSectionAnswersService.postCognitiveSectionAnswers(
-          answers: answer,);
-      emit(CognitiveSectionSuccess(questionModel:  questionList));
-
+      final res = await CognitiveSectionAnswersService.postCognitiveSectionAnswers(answers: answer,);
+      answer.clear();
+      emit(CognitiveSectionSuccess(questionModel: questionList));
       if (res!.type == 2) {
         Alert.error(res.body);
       } else if (res.type == 1) {
+
+
         Alert.success(res.body);
         Get.off(() => const SlokiScreen());
       } else if (res.type == 3) {
@@ -79,5 +84,4 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
       emit(CognitiveSectionError(msg: e.toString()));
     }
   }
-
 }

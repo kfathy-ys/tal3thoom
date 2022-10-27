@@ -14,7 +14,7 @@ class EvaluationSectionAnswersService {
     final userId = Prefs.getString("userId");
 
     final res = await NetWork.post(
-      'PatientExams/AddPatienTreatmentSessionCognitiveExamAnswersMobile',
+      'PatientExams/AddPatienTreatmentSessionEvaluationExamAnswersMobile',
       body: <Question>{
         ...answers.keys,
       }.toList().map((q) {
@@ -22,6 +22,7 @@ class EvaluationSectionAnswersService {
           "userId": userId,
           "patientCurrentStage": 2,
           "questionId": q.id,
+          "description":q.description,
           "sectionId": q.sectionId,
           "examId": q.examId,
           "answerId": buildPatientAnswers(q)

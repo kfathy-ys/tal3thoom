@@ -6,7 +6,7 @@ abstract class FirstPaymentState {}
 class FirstPaymentInitial extends FirstPaymentState {}
 class FirstPaymentLoading extends FirstPaymentState {}
 class FirstPaymentSuccess extends FirstPaymentState {
-  final DiagnosticPaymentModel firstPaymentModel;
+  final PaymentAllTreatmentModel firstPaymentModel;
 
   FirstPaymentSuccess({required this.firstPaymentModel});
 

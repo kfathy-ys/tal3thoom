@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/models/diagnostic_payment_model.dart';
+import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/models/package_model.dart';
 
 import '../../../widgets/constants.dart';
 import '../../../../../../config/keys.dart';
