@@ -115,8 +115,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                                     desc: listOfString[index]);
                               }),
                         ),
-                        //  CardQuestions(index: "0", desc:  parseHtmlString(state.ssi4QuestionModel[1].description.trArgs(["01"]))),
-                        // customText4(title: allString, color: kBlackText),
+
                         InkWell(
                             onTap: () {
                               speech.speak(parseHtmlString("السؤال الأول" +

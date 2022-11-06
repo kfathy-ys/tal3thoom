@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/views/payment_card.dart';
-import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -14,7 +13,6 @@ import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_history/view.dart';
-import '../../../../../diagnostic_service/page/views/success_page.dart';
 import '../../pre-treatment_questionnaire/view.dart';
 import 'cubit/first_payment_cubit.dart';
 

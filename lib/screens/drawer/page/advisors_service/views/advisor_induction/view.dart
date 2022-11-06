@@ -49,7 +49,7 @@ class AdviserInduction extends StatelessWidget {
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context,  ReservationAppointmentScreen());
+                  navigateTo(context,  const ReservationAppointmentScreen());
                 },
                 title: ("ابدأ"),
               ),

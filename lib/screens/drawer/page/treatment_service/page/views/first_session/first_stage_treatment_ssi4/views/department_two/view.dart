@@ -1,22 +1,18 @@
 import 'dart:io';
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart' hide Trans, ContextExtensionss;
 
 import 'package:image_picker/image_picker.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:queen/validation.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../../../../../config/keys.dart';
-import '../../../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
@@ -223,28 +219,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
 
   XFile? _file;
 
-/*
-  void _uploadFile(int step) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'pdf', 'doc', 'png'],
-    );
 
-    if (result != null) {
-      File? file = File(result.files.single.path!);
-
-      log("-=-=-=-=- selected file is => ${file.toString()}");
-      setState(() {
-        _file1 = file;
-        //  filesInputData.thesisFile = file;
-
-        _firstController.text = file.path;
-      });
-    } else {
-      log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
-    }
-  }
-*/
 
   void pickVideo() async {
     _picker.pickVideo(source: ImageSource.gallery).then((value) {

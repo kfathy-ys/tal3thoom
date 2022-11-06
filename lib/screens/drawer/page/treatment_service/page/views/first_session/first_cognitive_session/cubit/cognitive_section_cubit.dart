@@ -5,22 +5,18 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../../../serives/first_stage_injects/sessions/cognitive_section/answers_service.dart';
 import '../../../../../../../../../serives/first_stage_injects/sessions/cognitive_section/question_serives.dart';
-import '../../../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../../../widgets/alerts.dart';
 import '../../../../../../diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
 import '../../sloki/view.dart';
-import '../view.dart';
 
 part 'cognitive_section_state.dart';
 
 class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
   CognitiveSectionCubit() : super(CognitiveSectionInitial()) {
-   //BlocProvider.of<ProfileCubit>(context);
 
     getCognitiveSection();
   }
@@ -59,7 +55,6 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
     }
   }
   Future<void> sendCognitiveSectionAnswers() async {
-   // questionList.clear();
     emit(CognitiveSectionLoading());
     try {
       final res = await CognitiveSectionAnswersService.postCognitiveSectionAnswers(answers: answer,);

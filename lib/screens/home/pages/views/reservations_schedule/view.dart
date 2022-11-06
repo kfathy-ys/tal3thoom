@@ -62,19 +62,23 @@ class _ReservationsScheduleState extends State<ReservationsSchedule> {
                           itemBuilder: (context, index) {
                             return ReservationCard(
                                 onPressStart: () {
-                                  state.bookingInfo.data[index].sessienUrl
+                                  state.bookingInfo.data[index].zoomInvitationUrl
                                       .isEmpty
                                       ? Alert.success(
-                                    " 'عزيزي العميل الرجاء الإنتظار!'",
+                                    "'عزيزي العميل الرجاء الإنتظار'",
                                     desc: "هذا الاجتماع مؤجل لحين مراجعة البيانات",
                                   )
-                                      : navigateTo(
+                                      :
+
+                                      navigateTo(
                                       context,
                                       WebView(
                                         javascriptMode:
                                         JavascriptMode.unrestricted,
                                         initialUrl: state.bookingInfo
-                                            .data[index].sessienUrl,
+                                            .data[index].zoomInvitationUrl,
+                                        zoomEnabled: true,
+
                                       ));
                                 },
                                 onPressEnd: () {

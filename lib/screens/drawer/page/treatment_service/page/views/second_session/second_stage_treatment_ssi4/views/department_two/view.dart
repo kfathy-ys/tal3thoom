@@ -1,22 +1,18 @@
 import 'dart:io';
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:image_picker/image_picker.dart';
 
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:queen/validation.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../../../../../config/keys.dart';
-import '../../../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
@@ -27,6 +23,7 @@ import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_two/view/questions_card.dart';
 import '../../../second_stage_resevation/view.dart';
 import '../department_one/cubit/second_stage_ssi4_one_cubit.dart';
+import 'cubit/second_stage_ssi4_two_dart_cubit.dart';
 
 // ignore: must_be_immutable
 class SecondTreatmentSSI4Two extends StatefulWidget {
@@ -59,19 +56,19 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
         height: context.height,
         width: context.width,
         color: kHomeColor,
-        child: BlocConsumer<SecondStageSsi4OneCubit,SecondStageSsi4OneState>(
+        child: BlocConsumer<SecondStageSsi4TwoDartCubit, SecondStageSsi4TwoDartState>(
           listener: (context, state) {},
           builder: (context, state) {
-            final cubit = BlocProvider.of<SecondStageSsi4OneCubit>(context);
+            final cubit = BlocProvider.of<SecondStageSsi4TwoDartCubit>(context);
             return ListView.builder(
               itemCount: 1,
               itemBuilder: (context, index) {
-                if (state is SecondStageSsi4OneLoading) {
+                if (state is SecondStageSsi4TwoDartLoading) {
                   return const Center(
                     child: LoadingFadingCircle(),
                   );
                 }
-                if (state is SecondStageSsi4OneSuccess) {
+                if (state is SecondStageSsi4TwoDartSuccess) {
                   List<String> listOfString = [];
                   dynamic allString = cubit.questionList[1].hint;
                   listOfString = [allString];
@@ -177,7 +174,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset("assets/images/record.png"),
                         ),
-                        state is! SecondStageSsi4OneLoading
+                        state is! SecondStageSsi4TwoDartLoading
                             ? MediaButton(
                           onPressed: () {
 
@@ -187,7 +184,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
                                 desc:
                                 "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
                                 : Get.off(() {
-                              cubit.postUploadVideoSSI4SecondFirstStage(
+                              cubit.postUploadVideosSSI4TwoSecondStage(
                                   id: state.ssi4QuestionModel[1].id,
                                   examId: state.ssi4QuestionModel[1].examId,
                                   video: _file);
@@ -207,7 +204,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
                     ),
                   );
                 }
-                if (state is SecondStageSsi4OneError) {
+                if (state is SecondStageSsi4TwoDartError) {
                   return Text(state.msg);
                 }
                 return const SizedBox();
@@ -223,28 +220,7 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
 
   XFile? _file;
 
-/*
-  void _uploadFile(int step) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'pdf', 'doc', 'png'],
-    );
 
-    if (result != null) {
-      File? file = File(result.files.single.path!);
-
-      log("-=-=-=-=- selected file is => ${file.toString()}");
-      setState(() {
-        _file1 = file;
-        //  filesInputData.thesisFile = file;
-
-        _firstController.text = file.path;
-      });
-    } else {
-      log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
-    }
-  }
-*/
 
   void pickVideo() async {
     _picker.pickVideo(source: ImageSource.gallery).then((value) {

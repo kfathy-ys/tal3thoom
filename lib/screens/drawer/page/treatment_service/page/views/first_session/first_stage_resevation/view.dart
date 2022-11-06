@@ -13,6 +13,7 @@ import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/resevation_diagnostic/models/avalible_periods_model.dart';
 import '../../../../../diagnostic_service/page/views/resevation_diagnostic/page/all_specialists/view.dart';
 import 'cubit/first_available_dates_cubit.dart';
+import 'page/all_specialist _first_sessions/view.dart';
 
 // ignore: must_be_immutable
 class FirstStageTreatmentReservation extends StatelessWidget {
@@ -134,7 +135,7 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                       onPressed: () {
                         navigateTo(
                             context,
-                            DiagnosticAllSpecialists(
+                            AllSpecialistsFirstSessions(
                                 startTime: selectedPeriodId!,
                                 date: selectedDate!));
                       },

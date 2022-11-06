@@ -4,11 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
-import 'package:get/get.dart';
-import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../../../../config/dio_helper/dio.dart';
-import '../../../../../../../../../home/pages/views/reservations_schedule/cubit/booking_cubit.dart';
-import '../../../../../../../../../home/pages/views/reservations_schedule/models/booking_model.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/date_convertors.dart';
 import '../models/all_specialist_model.dart';
@@ -16,8 +12,7 @@ import '../models/all_specialist_model.dart';
 part 'diangosic_specialists_state.dart';
 
 class DiagnosticSpecialistsCubit extends Cubit<DiagnosticSpecialistsState> {
-  // BookingCubit bookingCubit;
-  // this.bookingCubit
+
   DiagnosticSpecialistsCubit() : super(DiagnosticSpecialistsInitial());
 
   Future<void> getSpecialists(
@@ -44,17 +39,7 @@ class DiagnosticSpecialistsCubit extends Cubit<DiagnosticSpecialistsState> {
   }
 
 
-  // Future<void> addDiagnosticCreateReservation(BookingInfo order) async {
-  //   await bookingCubit.r(
-  //
-  //
-  //
-  //    );
-  //   await getSpecialists(startTime: startTime, date: date);
-  //   Alert.success('تم الحجز مع المتخصص بنجاح',
-  //       desc:
-  //       "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");    Get.offAll(() => const ReservationsSchedule());
-  // }
+
 
 
 

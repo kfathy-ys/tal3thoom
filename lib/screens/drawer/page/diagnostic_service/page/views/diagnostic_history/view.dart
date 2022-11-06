@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../config/keys.dart';
-import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/customButton.dart';
@@ -232,20 +231,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionError) {
-                  return Column(
-                    children: [
-                      Text(state.msg),
-                      CustomButton(
-                          onPressed: () {
-                            print("kkkkkk");
-                            Get.to(const DiagnosticHistory());
-
-                            // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DiagnosticHistory()));
-                          },
-                          title: "العودة", color: kBlackText),
-
-                    ],
-                  );
+                  return Text(state.msg);
                   // return Alert.error(state.msg);
                   // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
                 }

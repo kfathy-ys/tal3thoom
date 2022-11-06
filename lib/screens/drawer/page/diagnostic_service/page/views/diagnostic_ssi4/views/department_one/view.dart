@@ -24,6 +24,8 @@ import '../department_two/view.dart';
 
 // ignore: must_be_immutable
 class DiagnosticSSI4 extends StatefulWidget {
+  const DiagnosticSSI4({super.key});
+
   @override
   State<DiagnosticSSI4> createState() => _DiagnosticSSI4State();
 }

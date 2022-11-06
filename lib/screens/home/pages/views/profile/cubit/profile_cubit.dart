@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -80,6 +81,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       log("${res.data["data"]["currentDiagnoses"]}");
       log("${res.data["data"]["currentDiagnosesStatus"]}");
       log("${res.data["data"]["nextSession"]}");
+    }on DioError catch (_) {
+      emit(ProfileError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

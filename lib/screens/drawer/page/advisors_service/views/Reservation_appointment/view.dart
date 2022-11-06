@@ -19,7 +19,7 @@ import 'page/drop_down_duration.dart';
 // ignore: must_be_immutable
 class ReservationAppointmentScreen extends StatefulWidget {
 
-   ReservationAppointmentScreen({Key? key}) : super(key: key);
+   const ReservationAppointmentScreen({Key? key}) : super(key: key);
 
   @override
   State<ReservationAppointmentScreen> createState() => _ReservationAppointmentScreenState();

@@ -1,19 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import '../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/customButton.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
-import '../first_session/first_treatment_session/view.dart';
 import 'cubit/pre_questionnaire_cubit.dart';
 
 // ignore: must_be_immutable
@@ -156,7 +152,7 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
               );
             }
             if (state is PreQuestionnaireError) {
-              return PretreatmentQuestionnaire();
+              return const PretreatmentQuestionnaire();
             }
             return const SizedBox();
           },

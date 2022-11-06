@@ -21,7 +21,7 @@ class SsrsQuestionSVideo {
     final userId = Prefs.getString("userId");
 
     final res = await NetWork.get(
-        'PatientExams/GetExamQuestionsAnswersByExameCode/$userId/EX_SSRS/1');
+        'PatientExams/GetExamQuestionsAnswersByExameCode/$userId/EX_SSRS/2');
 
     return List.from(res.data["data"])
         .map((e) => Question.fromJson(e))

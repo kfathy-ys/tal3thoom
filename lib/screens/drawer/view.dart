@@ -10,12 +10,9 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_treatment_session/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_treatment_sessions/view.dart';
 import '../../../../../../config/keys.dart';
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';
@@ -25,8 +22,6 @@ import 'page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/view.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/view.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_induction/view.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../widgets/constants.dart';
@@ -34,6 +29,8 @@ import 'page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import 'page/diagnostic_service/page/views/diagnostic_payment/view.dart';
 import 'page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/view.dart';
 import 'page/previous_treatment_sessions/view.dart';
+import 'page/treatment_service/page/views/first_session/first_cognitive_session/view.dart';
+import 'page/treatment_service/page/views/second_session/second_cognitive_session/view.dart';
 import 'page/treatment_service/page/views/second_session/second_stage_resevation/view.dart';
 import 'page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_one/view.dart';
 import 'page/treatment_service/page/views/views/expantion_widget.dart';
@@ -266,7 +263,7 @@ class _MenuItemsState extends State<MenuItems> {
           }, onTapAppointmentReservation: () {
 
             Get.back();
-            Get.to(()=> ReservationAppointmentScreen());
+            Get.to(()=> const ReservationAppointmentScreen());
 
             // Navigator.of(context).pop();
             // navigateTo(context,  ReservationAppointmentScreen());

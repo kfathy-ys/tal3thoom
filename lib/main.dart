@@ -2,9 +2,6 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:tal3thoom/screens/drawer/page/advisors_service/view.dart';
-import 'package:tal3thoom/screens/drawer/page/advisors_service/views/advisor_induction/view.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/cubit/oases_test_cubit.dart';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -12,48 +9,41 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/view.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/cubit/medical_reports_cubit.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/page/all_specialist%20_first_sessions/cubit/all_specialist__first_sessions_cubit.dart';
+import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/cubit/first_stage_ssi4_one_cubit.dart';
-import 'package:tal3thoom/screens/home/pages/views/profile/view.dart';
-import 'package:tal3thoom/screens/home/view.dart';
+import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/view.dart';
 
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/drawer/page/advisors_service/cubit/advisor_profile/advisor_profile_cubit.dart';
 import 'screens/drawer/page/advisors_service/cubit/advisor_profile_details/advisor_profile_details_cubit.dart';
-import 'screens/drawer/page/advisors_service/views/Reservation_appointment/view.dart';
-import 'screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
-import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
-import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/cubit/diagnostic_ssi4_first_cubit.dart';
-import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_ssrs_test/view.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/cubit/available_dates_cubit.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/page/all_specialists/cubit/diangosic_specialists_cubit.dart';
-import 'screens/drawer/page/previous_treatment_sessions/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/evaluation_section/cubit/evaluation_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/evaluation_section/view.dart';
+import 'screens/drawer/page/treatment_service/page/views/first_session/first_cognitive_session/cubit/cognitive_section_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/cubit/first_payment_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/view.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_additional_traning/view.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_induction/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/cubit/first_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/cubit/first_available_dates_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/cubit/first_stage_ssrs_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/view.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/first_treatment_session/cubit/cognitive_section_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/first_treatment_session/view.dart';
+import 'screens/drawer/page/treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_two/cubit/first_stage_ssi4_two_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/sloki/cubit/behavioral_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/first_session/sloki/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/cubit/pre_questionnaire_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
+import 'screens/drawer/page/treatment_service/page/views/second_session/second_cognitive_session/cubit/second_cognitive_section_cubit.dart';
+import 'screens/drawer/page/treatment_service/page/views/second_session/second_cognitive_session/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_resevation/cubit/secand_available_dates_cubit.dart';
+import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_resevation/page/all_specialist _second_sessions/all_specialist__second_sessions_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/cubit/second_stage_ssrs_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_one/cubit/second_stage_ssi4_one_cubit.dart';
+import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/cubit/second_stage_ssi4_two_dart_cubit.dart';
+import 'screens/drawer/page/treatment_service/page/views/second_session/second_tratement_sessions_sloki/cubit/second_behavioral_cubit.dart';
+import 'screens/drawer/page/treatment_service/page/views/second_session/second_treatment_session_evaluation/cubit/second_evaluation_cubit.dart';
 import 'screens/home/cubit/home_tabebar_cubit.dart';
 import 'screens/home/pages/views/profile/cubit/profile_cubit.dart';
 import 'screens/home/pages/views/reservations_schedule/cubit/booking_cubit.dart';
@@ -185,19 +175,45 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<PreQuestionnaireCubit>(
           create: (context) => PreQuestionnaireCubit(),
-        ), BlocProvider<AdvisorProfileCubit>(
+        ),
+        BlocProvider<AdvisorProfileCubit>(
           create: (context) => AdvisorProfileCubit(),
         ),
         BlocProvider<AdvisorProfileDetailsCubit>(
           create: (context) => AdvisorProfileDetailsCubit(),
-        ), BlocProvider<CognitiveSectionCubit>(
+        ),
+        BlocProvider<CognitiveSectionCubit>(
           create: (context) => CognitiveSectionCubit(),
-        ),BlocProvider<BehavioralCubit>(
+        ),
+        BlocProvider<BehavioralCubit>(
           create: (context) => BehavioralCubit(),
-        ),BlocProvider<EvaluationCubit>(
+        ),
+        BlocProvider<EvaluationCubit>(
           create: (context) => EvaluationCubit(),
-        ),BlocProvider<ProfileCubit>(
+        ),
+        BlocProvider<ProfileCubit>(
           create: (context) => ProfileCubit(),
+        ),
+        BlocProvider<AllSpecialistFirstSessionsCubit>(
+          create: (context) => AllSpecialistFirstSessionsCubit(),
+        ),
+        BlocProvider<SecondCognitiveSectionCubit>(
+          create: (context) => SecondCognitiveSectionCubit(),
+        ),
+        BlocProvider<SecondBehavioralCubit>(
+          create: (context) => SecondBehavioralCubit(),
+        ),
+        BlocProvider<SecondEvaluationCubit>(
+          create: (context) => SecondEvaluationCubit(),
+        ),
+        BlocProvider<FirstStageSsi4TwoCubit>(
+          create: (context) => FirstStageSsi4TwoCubit(),
+        ),
+        BlocProvider<SecondStageSsi4TwoDartCubit>(
+          create: (context) => SecondStageSsi4TwoDartCubit(),
+        ),
+        BlocProvider<AllSpecialistSecondSessionsCubit>(
+          create: (context) => AllSpecialistSecondSessionsCubit(),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
@@ -223,7 +239,7 @@ class MyApp extends StatelessWidget {
                 child: child ?? const SizedBox(),
               );
             },
-            home:     const SplashScreen(),
+            home: const SplashScreen(),
           );
         },
       ),

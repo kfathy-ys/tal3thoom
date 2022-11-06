@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
@@ -29,7 +30,9 @@ class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
 
       emit(DiagnosticPaymentSuccess(
           firstPaymentModel: PaymentAllTreatmentModel.fromJson(res.data)));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(DiagnosticPaymentError(msg:  "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(DiagnosticPaymentError(msg: e.toString()));

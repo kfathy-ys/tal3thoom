@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -32,7 +33,9 @@ class SecondStageSsrsCubit extends Cubit<SecondStageSsrsState> {
       print(questionList);
 
       emit(SecondStageSsrsSuccess(ssrsQuestionModel: questionList));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(SecondStageSsrsError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(SecondStageSsrsError(msg: e.toString()));

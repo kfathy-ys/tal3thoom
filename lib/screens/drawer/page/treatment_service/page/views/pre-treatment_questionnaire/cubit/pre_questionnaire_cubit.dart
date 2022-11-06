@@ -5,14 +5,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:tal3thoom/serives/first_stage_injects/pre_questionnair/answers_service.dart';
 import 'package:tal3thoom/serives/first_stage_injects/pre_questionnair/question_serives.dart';
 
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
-import '../../first_session/first_treatment_session/view.dart';
+import '../../first_session/first_cognitive_session/view.dart';
 
 part 'pre_questionnaire_state.dart';
 

@@ -6,7 +6,6 @@ import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
 import '../../models/advisor_model.dart';
-import '../../models/profile_dtails.dart';
 
 part 'advisor_profile_details_state.dart';
 

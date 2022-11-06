@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/screens/widgets/date_convertors.dart';
 
@@ -45,6 +46,8 @@ class FirstAvailableDatesCubit extends Cubit<FirstAvailableDatesState> {
         availableDatesModel: DiagnosticReservationAvailableDateModel.fromMap(res.data),
         dates: dates,
       ));
+    } on DioError catch (_) {
+      emit(FirstAvailableDatesError(msg:   "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -73,7 +76,9 @@ class FirstAvailableDatesCubit extends Cubit<FirstAvailableDatesState> {
           .toList();
 
       emit(AvailablePeriodSuccess());
-    } catch (e, es) {
+    }  on DioError catch (_) {
+      emit(FirstAvailableDatesError(msg:   "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AvailablePeriodError(msg: e.toString()));

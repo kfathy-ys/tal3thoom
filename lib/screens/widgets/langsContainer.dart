@@ -14,7 +14,6 @@ class LangContainer extends StatelessWidget {
   LangContainer({this.title, this.lang, this.onTap});
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onTap,
       child: Container(

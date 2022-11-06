@@ -12,8 +12,6 @@ import '../../../../../../widgets/video_items.dart';
 import '../../../../../view.dart';
 import '../../../../treatment_service/page/views/first_session/first_stage_ssrs_test/page/card_number.dart';
 import '../diagnostci_oases_test/views/alert_message.dart';
-import '../diagnostic_ssi4/views/department_one/view.dart';
-import '../success_page.dart';
 import 'cubit/diagnostic_ssrs_cubit.dart';
 
 // ignore: must_be_immutable

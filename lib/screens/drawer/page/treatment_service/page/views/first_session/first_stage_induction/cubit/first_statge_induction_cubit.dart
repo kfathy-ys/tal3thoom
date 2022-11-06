@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/models/induction_model.dart';
 
@@ -28,7 +29,9 @@ class FirstStageInductionCubit extends Cubit<FirstStageInductionState> {
       emit(FirstStageInductionSuccess(
           inductionDiagnosticModel:
           InductionDiagnosticModel.fromJson(res.data)));
-    } catch (e, es) {
+    }  on DioError catch (_) {
+      emit(FirstStageInductionError(msg:   "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(FirstStageInductionError(msg: e.toString()));

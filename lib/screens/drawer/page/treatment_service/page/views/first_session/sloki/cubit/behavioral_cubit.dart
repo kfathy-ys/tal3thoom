@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart' as _dio;
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -11,7 +12,6 @@ import 'package:tal3thoom/serives/first_stage_injects/sessions/behavioral_sectio
 
 import '../../../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../../../widgets/alerts.dart';
-import '../../evaluation_section/view.dart';
 
 part 'behavioral_state.dart';
 
@@ -37,7 +37,9 @@ class BehavioralCubit extends Cubit<BehavioralState> {
       answer.clear();
 
       emit(BehavioralSuccess(behavioralSection: questionList));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(BehavioralError(msg:   "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       print("err");
       log(e.toString());
       log(es.toString());

@@ -9,7 +9,7 @@ class SecondStageSSRSAnswers {
     print(answers);
     return {
       "userId": userId,
-      "patientCurrentStage": 1,
+      "patientCurrentStage": 4,
       "questionId": answers.keys.first.id,
       "examId": answers.keys.first.examId,
       "sectionId": answers.keys.first.sectionId,

@@ -1,5 +1,5 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,6 @@ import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../first_session/first_payment_treatment/view.dart';
-import '../first_payment_treatment/cubit/first_payment_cubit.dart';
 import 'cubit/first_statge_induction_cubit.dart';
 
 // ignore: must_be_immutable
@@ -40,9 +39,11 @@ class FirstTreatmentInduction extends StatelessWidget {
                     widthh: context.width * 0.5,
                     title: "رحلة العلاج",
                     context: context),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset("assets/images/treatmentDis.png"),
+                FadeInUpBig(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Image.asset("assets/images/treatmentDis.png"),
+                  ),
                 ),
                 BlocProvider(
                   create: (context) => FirstStageInductionCubit(),

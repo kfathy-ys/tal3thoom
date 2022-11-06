@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../../../../config/dio_helper/dio.dart';
@@ -28,7 +29,9 @@ class DiagnosticInductionCubit extends Cubit<DiagnosticInductionState> {
       emit(DiagnosticInductionSuccess(
           inductionDiagnosticModel:
               InductionDiagnosticModel.fromJson(res.data)));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(DiagnosticInductionError(meg:  "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(DiagnosticInductionError(meg: e.toString()));

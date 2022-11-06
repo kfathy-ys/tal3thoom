@@ -1,7 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:tal3thoom/config/keys.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -38,9 +38,11 @@ class InductionDiagnostic extends StatelessWidget {
                   widthh: context.width * 0.5,
                   title: KeysConfig.definationDiag,
                   context: context),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset("assets/images/dignostics.png"),
+              FadeInUpBig(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset("assets/images/dignostics.png"),
+                ),
               ),
               BlocProvider(
                 create: (context) => DiagnosticInductionCubit(),
@@ -60,9 +62,7 @@ class InductionDiagnostic extends StatelessWidget {
                       return SizedBox(
                         width: context.width * 0.8,
                         height: context.height * 0.25,
-                        //'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
 
-                        // "http://dev-sas.cpt-it.com/api/media/Introduction.mp4"
                         ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
                         child: VideoItems(
                           videoPlayerController: VideoPlayerController.network(

@@ -38,7 +38,6 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
 
   @override
   Widget build(BuildContext context) {
-  // isSubmiting = false ;
    return Scaffold(
       bottomNavigationBar: canSubmit? SmallButtonOases(
         onPressed:submit,

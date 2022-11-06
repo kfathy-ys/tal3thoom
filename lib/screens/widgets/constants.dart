@@ -363,8 +363,7 @@ Future<void> showConfirmationDialog(BuildContext context,
     required String title,
     required Widget done,
     required Widget cancelled}) {
-  double height = MediaQuery.of(context).size.height;
-  double width = MediaQuery.of(context).size.width;
+
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => CupertinoAlertDialog(

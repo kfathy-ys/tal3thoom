@@ -1,9 +1,5 @@
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
@@ -13,11 +9,7 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
-import '../../../../../diagnostic_service/page/views/success_page.dart';
-import '../first_treatment_session/cubit/cognitive_section_cubit.dart';
-import '../first_treatment_session/view.dart';
-import '../next_sessions/view.dart';
-import '../sloki/views/build_three.dart';
+import '../first_cognitive_session/cubit/cognitive_section_cubit.dart';
 
 // ignore: must_be_immutable
 class FirstStageAdditionalTrainingScreen extends StatefulWidget {

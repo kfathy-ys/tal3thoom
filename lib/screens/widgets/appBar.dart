@@ -173,9 +173,10 @@ Widget dynamicAppbar(
 }
 
 class Tal3thomAppbar extends StatelessWidget with PreferredSizeWidget {
+  const Tal3thomAppbar({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
       decoration: BoxDecoration(

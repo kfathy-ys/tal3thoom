@@ -1,22 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_ssrs_test/page/card_number.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
-import 'package:tal3thoom/screens/widgets/smallButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:queen/core/helpers/prefs.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
-import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostci_oases_test/views/alert_message.dart';
-import '../../../../../diagnostic_service/page/views/success_page.dart';
-import '../second_stage_treatment_ssi4/views/department_one/view.dart';
 import 'cubit/second_stage_ssrs_cubit.dart';
 
 // ignore: must_be_immutable

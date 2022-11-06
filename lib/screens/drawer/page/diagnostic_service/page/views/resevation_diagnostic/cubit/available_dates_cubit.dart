@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/config/dio_helper/dio.dart';
 
@@ -46,7 +47,9 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
         availableDatesModel: DiagnosticReservationAvailableDateModel.fromMap(res.data),
         dates: dates,
       ));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(AvailableDatesError(msg:   "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AvailableDatesError(msg: e.toString()));
@@ -74,7 +77,9 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
           .toList();
 
       emit(AvailablePeriodSuccess());
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(AvailablePeriodError(msg:   "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AvailablePeriodError(msg: e.toString()));

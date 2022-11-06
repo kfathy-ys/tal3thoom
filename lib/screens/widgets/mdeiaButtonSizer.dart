@@ -17,7 +17,7 @@ class MediaButtonSizer extends StatelessWidget {
   final loadingColor;
   // ignore: use_key_in_widget_constructors
   final double? width;
-  const MediaButtonSizer({
+  const MediaButtonSizer({super.key,
     required this.onPressed,
     required this.title,
     this.color,

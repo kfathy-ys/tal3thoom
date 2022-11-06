@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
@@ -38,7 +39,9 @@ class BookingCubit extends Cubit<BookingState> {
       }
 
       emit(BookingSuccess(bookingInfo:AllBookingModel.fromMap(res.data)));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(BookingError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(BookingError(msg: e.toString()));

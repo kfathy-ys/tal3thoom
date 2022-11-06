@@ -1,9 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:image_picker/image_picker.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/sloki/views/build_three.dart';
@@ -12,11 +10,9 @@ import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
-import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
@@ -64,6 +60,16 @@ class _SlokiScreenState extends State<SlokiScreen> {
                 );
               }
               if (state is BehavioralSuccess) {
+                List<String> listOfString = [];
+                dynamic allString = cubit.questionList[0].hint;
+                listOfString = [allString];
+                listOfString = allString.split(";;");
+                print(
+                    "***************************************************************");
+
+                print(listOfString);
+                print(
+                    "***************************************************************");
                 return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -79,69 +85,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                           "assets/images/sloky.png",
                         ),
                       ),
-                      // state.behavioralSection[0].description.isEmpty
-                      //     ? const SizedBox.shrink()
-                      //     : Row(
-                      //         mainAxisSize: MainAxisSize.min,
-                      //         children: [
-                      //           Container(
-                      //             margin:
-                      //                 const EdgeInsets.symmetric(vertical: 4),
-                      //             padding: const EdgeInsets.symmetric(
-                      //                 horizontal: 6, vertical: 4),
-                      //             width: context.width * 0.8,
-                      //             // height: context.height * 0.14,
-                      //             decoration: const BoxDecoration(
-                      //                 borderRadius: BorderRadius.only(
-                      //                   bottomLeft: Radius.circular(8),
-                      //                   topLeft: Radius.circular(8),
-                      //                 ),
-                      //                 color: kBackgroundButton),
-                      //             child: FormBuilder(
-                      //               autovalidateMode: AutovalidateMode.always,
-                      //               child: FormBuilderRadioGroup<dynamic>(
-                      //                 decoration: InputDecoration(
-                      //                   labelStyle: const TextStyle(
-                      //                       color: kBlackText,
-                      //                       fontSize: 18,
-                      //                       fontFamily: 'DinBold'),
-                      //                   labelText: state
-                      //                       .behavioralSection[0].description,
-                      //                 ),
-                      //                 initialValue: cubit
-                      //                     .answer[state.behavioralSection[0]],
-                      //                 name: 'best_language',
-                      //                 onChanged: (value) {
-                      //                   log('$value');
-                      //                   if (value != null) {
-                      //                     setState(() {
-                      //                       cubit.answer[state
-                      //                           .behavioralSection[0]] = value;
-                      //                     });
-                      //                   }
-                      //                 },
-                      //                 validator: (value) {
-                      //                   if (value == null) {
-                      //                     return 'من فضلك أجب علي المدون أعلاة ';
-                      //                   }
-                      //                   return '';
-                      //                 },
-                      //                 options: state
-                      //                     .behavioralSection[0].answers
-                      //                     .map((lang) => FormBuilderFieldOption(
-                      //                           value: lang,
-                      //                           child: customText3(
-                      //                               title: lang.answerOption
-                      //                                   .toString(),
-                      //                               color: kBlackText),
-                      //                         ))
-                      //                     .toList(growable: false),
-                      //                 controlAffinity: ControlAffinity.trailing,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
+
                       state.behavioralSection[0].videoFile == null
                           ? const SizedBox.shrink()
                           : Container(
@@ -194,21 +138,31 @@ class _SlokiScreenState extends State<SlokiScreen> {
                       SizedBox(
                         height: context.height * 0.05,
                       ),
-                      const BuildTable(
-                          color: kHomeColor,
-                          title1: "مثال1",
-                          title2: "مثال1",
-                          title3: "مثال1"),
-                      const BuildTable(
-                          color: kAppBarColor,
-                          title1: "مثال1",
-                          title2: "مثال1",
-                          title3: "مثال1"),
-                      const BuildTable(
-                          color: kHomeColor,
-                          title1: "مثال1",
-                          title2: "مثال1",
-                          title3: "مثال1"),
+                      cubit.questionList[0].hint.toString().isEmpty ? const SizedBox.shrink():
+
+
+                      SizedBox(
+                          height: context.height * 0.08,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: listOfString.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                      color: kSkyLightColor,
+
+                                      borderRadius: BorderRadius.circular(8)                                ),
+                                  margin: const EdgeInsets.symmetric(horizontal:4,),
+                                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                                  height: context.height * 0.08,
+
+                                  child: Center(
+                                    child: customText4(title:listOfString[index] , color: kBlackText),
+                                  ),
+
+                                );
+                              }
+                          )),
                       SizedBox(
                         height: context.height * 0.05,
                       ),

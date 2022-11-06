@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -31,7 +32,9 @@ class SecondStageSsi4OneCubit extends Cubit<SecondStageSsi4OneState> {
       print(questionList);
 
       emit(SecondStageSsi4OneSuccess(ssi4QuestionModel: questionList));
-    } catch (e, es) {
+    } on DioError catch (_) {
+      emit(SecondStageSsi4OneError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, es) {
       print("err");
       log(e.toString());
       log(es.toString());

@@ -10,7 +10,6 @@ import '../../../../../../../widgets/alerts.dart';
 import '../../diagnostci_oases_test/view.dart';
 import '../../success_page.dart';
 import '../models/diagnostic_history_question_model.dart';
-import '../view.dart';
 
 part 'diagnostic_history_question_state.dart';
 
@@ -65,7 +64,7 @@ class DiagnosticHistoryQuestionCubit
           diagnosticHistoryQuestionModel: questionList));
 
       if (res!.type == 2) {
-        Alert.error(res.body );
+        Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
         Get.off(() => SuccessView(
@@ -75,18 +74,18 @@ class DiagnosticHistoryQuestionCubit
             ));
       } else if (res.type == 3) {
         Alert.success(res.body);
-      }  else if (res.type == 0) {
+      } else if (res.type == 0) {
         Alert.success(res.body);
         emit(DiagnosticHistoryQuestionError(msg: res.body));
       } else {
         return Alert.success("ssssssssss");
       }
     } catch (e, st) {
-      log("[]][][][error from cubit is"+e.toString());
+      Alert.error(e.toString(), desc: "الرجاء المحاولة مرة أخري وتاكيد اجابات الممكنة المطلوبة وفقا لمعاير التشخيص");
+      log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 
       emit(DiagnosticHistoryQuestionError(msg: e.toString()));
-
     }
   }
 }

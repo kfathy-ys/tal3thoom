@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:dio/dio.dart' as _dio;
@@ -33,6 +34,8 @@ class FirstStageSsi4OneCubit extends Cubit<FirstStageSsi4OneState> {
       print(questionList);
 
       emit(FirstStageSsi4OneSuccess(ssi4QuestionModel: questionList));
+    } on DioError catch (_) {
+      emit(FirstStageSsi4OneError(msg:   "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       print("err");
       log(e.toString());

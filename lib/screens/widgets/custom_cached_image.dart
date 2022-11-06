@@ -11,7 +11,6 @@ customCachedNetworkImage({
   required BoxFit fit,
   required String title,
 }) {
-  double width = MediaQuery.of(context).size.width;
   if (url == null || url.isEmpty) {
     return SizedBox(
       child: Image.asset(
