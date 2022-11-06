@@ -22,6 +22,7 @@ import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
 import '../../../resevation_diagnostic/view.dart';
 import '../../cubit/diagnostic_ssi4_first_cubit.dart';
+import '../department_one/views/alert_vedio_size.dart';
 import '../department_one/views/upload_video.dart';
 
 // ignore: must_be_immutable
@@ -170,6 +171,8 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset("assets/images/record.png"),
                         ),
+                        const AlertVideoMessage(),
+
                         state is! DiagnosticSsi4FirstLoading
                             ? MediaButton(
                                 onPressed: () {

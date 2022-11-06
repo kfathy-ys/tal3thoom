@@ -19,6 +19,7 @@ import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
+import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/alert_vedio_size.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_two/view/questions_card.dart';
 import '../../../second_stage_resevation/view.dart';
@@ -174,6 +175,9 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset("assets/images/record.png"),
                         ),
+
+                        const AlertVideoMessage(),
+
                         state is! SecondStageSsi4TwoDartLoading
                             ? MediaButton(
                           onPressed: () {

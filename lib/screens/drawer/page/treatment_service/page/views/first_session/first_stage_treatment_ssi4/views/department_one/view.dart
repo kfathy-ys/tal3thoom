@@ -17,6 +17,7 @@ import '../../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
+import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/alert_vedio_size.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../department_two/view.dart';
 import 'cubit/first_stage_ssi4_one_cubit.dart';
@@ -141,16 +142,8 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
-                          // selectVideosStaticContainer(context, () {
-                          //   _uploadVideo();
-                          //   // _uploadFile();
-                          // }, _file1 == null ? true : false),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(12.0),
-                          //   child: Image.asset("assets/images/record.png"),
-                          // ),
+                          AlertVideoMessage(),
 
-                          // customText4(title: parseHtmlString(state.ssi4QuestionModel[index].description), color: kBlackText),
 
                           state is! FirstStageSsi4OneLoading ? MediaButton(
                             onPressed: () {

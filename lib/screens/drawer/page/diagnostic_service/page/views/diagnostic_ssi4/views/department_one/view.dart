@@ -21,6 +21,7 @@ import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
 import '../../cubit/diagnostic_ssi4_first_cubit.dart';
 import '../department_two/view.dart';
+import 'views/alert_vedio_size.dart';
 
 // ignore: must_be_immutable
 class DiagnosticSSI4 extends StatefulWidget {
@@ -142,16 +143,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
-                          // selectVideosStaticContainer(context, () {
-                          //   _uploadVideo();
-                          //   // _uploadFile();
-                          // }, _file1 == null ? true : false),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(12.0),
-                          //   child: Image.asset("assets/images/record.png"),
-                          // ),
-
-                          // customText4(title: parseHtmlString(state.ssi4QuestionModel[index].description), color: kBlackText),
+                          const AlertVideoMessage(),
 
                           state is! DiagnosticSsi4FirstLoading ? MediaButton(
                             onPressed: () {
