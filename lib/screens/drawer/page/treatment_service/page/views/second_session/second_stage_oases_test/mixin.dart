@@ -10,6 +10,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/answers_service.dart';
 import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/question_serives.dart';
 import 'package:tal3thoom/serives/first_stage_injects/first_oases_service/answers_service.dart';
+import 'package:tal3thoom/serives/second_stage_inject/second_oases_service/answers_service.dart';
 import 'package:tal3thoom/serives/second_stage_inject/second_oases_service/question_serives.dart';
 
 import '../../../../../../../../serives/first_stage_injects/first_oases_service/question_serives.dart';
@@ -176,7 +177,7 @@ mixin QSecondMixer on State<SecondStageOasesTest> {
   Future<void> submit() async {
     try {
       setState(() => isSubmiting = true);
-      await FirstOasesAnswers.postFirstOasesAnswers(
+      await SecondOasesAnswers.postSecondOasesAnswers(
         answers: allAnswers,
 
       );

@@ -33,9 +33,21 @@ class AllSpecialistSecondSessionsCubit extends Cubit<AllSpecialistSecondSessions
       emit(AllSpecialistSecondSessionsSuccess(
         allSpecialistModel: AllSpecialistModel.fromMap(res.data),
       ));
+
+      if (res.data['status'] == 1) {
+        Alert.success('تم الحجز مع المتخصص بنجاح',
+            desc:
+            "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
+        Get.offAll(() => const ReservationsSchedule());
+      }
+      if (res.data['status'] == 2) {
+        Alert.error('تم الحجز مع المتخصص من قبل بنجاح',
+            desc: "عذراً..لايمكنك الحجز يجيب انهاء الاختبارا");
+      }
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
+      Alert.error(e.toString());
       emit(AllSpecialistSecondSessionsError(msg: e.toString()));
     }
   }

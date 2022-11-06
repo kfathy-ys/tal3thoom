@@ -33,6 +33,7 @@ class AllSpecialistFirstSessionsCubit extends Cubit<AllSpecialistFirstSessionsSt
       emit(FirstSessionsSpecialistsSuccess(
         allSpecialistModel: AllSpecialistModel.fromMap(res.data),
       ));
+
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
