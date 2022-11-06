@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -16,6 +18,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first
 import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/view.dart';
 
 import 'config/bloc_observer.dart';
+import 'config/http_certifications.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/drawer/page/advisors_service/cubit/advisor_profile/advisor_profile_cubit.dart';
@@ -56,6 +59,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+    HttpOverrides.global =  MyHttpOverrides();
     //await EasyLocalization.ensureInitialized();
 
     await App.boot();
