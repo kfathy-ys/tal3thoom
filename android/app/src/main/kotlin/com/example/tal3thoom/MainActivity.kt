@@ -1,4 +1,4 @@
-package com.example.tal3thoom
+package com.cptit.tal3thoom
 
 import io.flutter.embedding.android.FlutterActivity
 

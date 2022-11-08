@@ -61,7 +61,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
               }
               if (state is BehavioralSuccess) {
                 List<String> listOfString = [];
-                dynamic allString = cubit.questionList[0].hint;
+                dynamic allString = state.behavioralSection[0].hint.toString();
                 listOfString = [allString];
                 listOfString = allString.split(";;");
                 print(
@@ -138,12 +138,12 @@ class _SlokiScreenState extends State<SlokiScreen> {
                       SizedBox(
                         height: context.height * 0.05,
                       ),
-                      cubit.questionList[0].hint.toString().isEmpty ? const SizedBox.shrink():
+                      state.behavioralSection[0].hint==null? const SizedBox.shrink():
 
 
                       SizedBox(
                           height: context.height * 0.08,
-                          child: ListView.builder(
+                          child:  ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: listOfString.length,
                               itemBuilder: (context, index) {

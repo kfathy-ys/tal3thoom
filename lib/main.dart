@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
+import 'package:tal3thoom/screens/drawer/cubit/data_access_permission_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/cubit/medical_reports_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/page/all_specialist%20_first_sessions/cubit/all_specialist__first_sessions_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
@@ -218,6 +219,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AllSpecialistSecondSessionsCubit>(
           create: (context) => AllSpecialistSecondSessionsCubit(),
+        ), BlocProvider<DataAccessPermissionCubit>(
+          create: (context) => DataAccessPermissionCubit(),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(

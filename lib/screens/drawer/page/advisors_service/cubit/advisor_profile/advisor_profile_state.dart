@@ -6,7 +6,7 @@ abstract class AdvisorProfileState {}
 class AdvisorProfileInitial extends AdvisorProfileState {}
 class AdvisorProfileLoading extends AdvisorProfileState {}
 class AdvisorProfileSuccess extends AdvisorProfileState {
-  final List<AdvisorProfile > advisorProfile;
+  final List<AllAdvisors > advisorProfile;
 
   AdvisorProfileSuccess({required this.advisorProfile});
 }

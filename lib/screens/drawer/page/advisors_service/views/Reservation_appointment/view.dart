@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/card_item.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/card_reservation.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation_appointment/page/drop_down_spcialist.dart';
@@ -11,10 +12,11 @@ import '../../../../../widgets/fast_widget.dart';
 import '../../../../view.dart';
 import '../../cubit/advisor_profile/advisor_profile_cubit.dart';
 import '../../models/advisor_model.dart';
+import '../../models/profile_dtails.dart';
 import '../advisor_payment/view.dart';
 import '../spcializer_profile/view.dart';
+import 'page/drop_down_all_time.dart';
 import 'page/drop_down_available_date.dart';
-import 'page/drop_down_duration.dart';
 
 // ignore: must_be_immutable
 class ReservationAppointmentScreen extends StatefulWidget {
@@ -26,9 +28,9 @@ class ReservationAppointmentScreen extends StatefulWidget {
 }
 
 class _ReservationAppointmentScreenState extends State<ReservationAppointmentScreen> {
-  AdvisorProfile? profile;
 
-  int? adviserId;
+  String? adviserId;
+  int? adviserIdInt;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,9 @@ class _ReservationAppointmentScreenState extends State<ReservationAppointmentScr
           press: (context) => Scaffold.of(context).openDrawer()),
       body: BlocConsumer<AdvisorProfileCubit, AdvisorProfileState>(
         listener: (context, state) {
+
+
+       
         },
         builder: (context, state) {
           final cubit = BlocProvider.of<AdvisorProfileCubit>(context);
@@ -65,9 +70,13 @@ class _ReservationAppointmentScreenState extends State<ReservationAppointmentScr
                     children: [
 
                       DropDownSpecialist(onChanged: (value) {
-                        //cubit.getAvailableDatesVisit(value.id!);
+                       // cubit.getAvailableDatesVisit(value.id!);
                         cubit.onAdvChange(value);
-                        adviserId =value.id;
+                        adviserId =value.userId;
+                        adviserIdInt =value.id;
+
+                        Prefs.setInt("adviserIdInt",adviserIdInt!);
+
                         setState(() {
 
                         });
@@ -85,23 +94,42 @@ class _ReservationAppointmentScreenState extends State<ReservationAppointmentScr
                     ],
                   ),
                   const HeadTitles(headTitle: "2- أكثر مدة للجلسة :"),
-                  const DropDownDurations(),
+                    DropDownDurations(
+                       userProfileId: Prefs.getInt("adviserIdInt"),
+                        onChanged: (value) {
+                          cubit.onTimeChange(value);
+                          //adviserId =value.userId;
+                          setState(() {
+
+                          });
+                        }
+                    ),
                   const HeadTitles(headTitle: "3- أحتر التاريخ المتاح :"),
                   const DropDownAvailableDates(),
                   Expanded(
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+
+                      padding: const EdgeInsets.symmetric(horizontal: 16 ),
                       itemCount: 8,
-                      physics: const BouncingScrollPhysics(),
+                     // physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return ReservationsCard(
-                            specialistName: "المتخصص",
-                            sessionDate: "10-12-2022",
-                            start: "10:16",
-                            end: "10:30",
-                            onTap: () {
-                              navigateTo(context, const PaymentAdvisor());
-                            });
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 8 ),
+                          padding: const EdgeInsets.symmetric(horizontal: 8 ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+
+                            border: Border.all(color: kPrimaryColor)
+                          ),
+                          child: ReservationsCard(
+                              specialistName: "المتخصص",
+                              sessionDate: "10-12-2022",
+                              start: "10:16",
+                              end: "10:30",
+                              onTap: () {
+                                navigateTo(context, const PaymentAdvisor());
+                              }),
+                        );
                       },
                     ),
                   ),

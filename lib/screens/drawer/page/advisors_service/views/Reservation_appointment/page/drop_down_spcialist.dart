@@ -1,13 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../models/advisor_model.dart';
+import '../../../models/profile_dtails.dart';
 
 class DropDownSpecialist extends StatefulWidget {
-  final ValueChanged<AdvisorProfile> onChanged;
-  final AdvisorProfile? initial;
+  final ValueChanged<AllAdvisors> onChanged;
+  final AllAdvisors? initial;
   const DropDownSpecialist(
       {Key? key, required this.onChanged, this.initial})
       : super(key: key);
@@ -17,8 +21,8 @@ class DropDownSpecialist extends StatefulWidget {
 }
 
 class _DropDownSpecialistState extends State<DropDownSpecialist> {
-  AdvisorProfile? selected;
-  final libs = <AdvisorProfile>[];
+  AllAdvisors? selected;
+  final libs = <AllAdvisors>[];
   @override
   void initState() {
     if (widget.initial != null) {
@@ -30,9 +34,7 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
-    return Container(
+        return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       width: MediaQuery.of(context).size.width / 1.9,
@@ -42,11 +44,9 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<AdvisorProfile>(
+        child: DropdownButton<AllAdvisors>(
           value: selected,
-          // autofocus: true,
-          // isDense: true,
-          //isExpanded: true,
+
           hint: const Text(
             "الأخصائي" ' :',
             style: TextStyle(
@@ -64,7 +64,7 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (AdvisorProfile? newValue) {
+          onChanged: (AllAdvisors? newValue) {
             if (newValue == null) return;
             selected = newValue;
 
@@ -72,11 +72,11 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
 
             setState(() {});
           },
-          items: libs.map<DropdownMenuItem<AdvisorProfile>>((AdvisorProfile value) {
-            return DropdownMenuItem<AdvisorProfile>(
+          items: libs.map<DropdownMenuItem<AllAdvisors>>((AllAdvisors value) {
+            return DropdownMenuItem<AllAdvisors>(
               value: value,
               child: Text(
-                value.fullName,
+                value.fullName! ,
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,
@@ -93,8 +93,16 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
     libs.clear();
     final res = await NetWork.get('Specialist/GetSpecialistsThatHaveConsultationDates');
     (res.data['data'] as List)
-        .map((e) => libs.add(AdvisorProfile.fromMap(e)))
+        .map((e) => libs.add(AllAdvisors.fromJson(e)))
         .toList();
+
     setState(() {});
+
+    // AllAdvisors allAdvisors = AllAdvisors.fromJson((res.data['data']));
+    //
+    //
+    // Prefs.setString("userId", allAdvisors.userId!);
+    // log("${res.data["data"]["userId"]}");
+
   }
 }

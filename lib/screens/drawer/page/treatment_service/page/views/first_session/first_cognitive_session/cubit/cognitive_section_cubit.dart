@@ -63,8 +63,6 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
       if (res!.type == 2) {
         Alert.error(res.body);
       } else if (res.type == 1) {
-
-
         Alert.success(res.body);
         Get.off(() => const SlokiScreen());
       } else if (res.type == 3) {

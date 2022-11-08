@@ -68,7 +68,7 @@ class DiagnosticHistoryQuestionCubit
       } else if (res.type == 1) {
         Alert.success(res.body);
         Get.off(() => SuccessView(
-              title1: "لقد تم إنتهاء إختبار SSRS المرضي بنجاح",
+              title1: "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
               title2: "إنتقال إلي إختبار Oases",
               onTap: () => Get.off(() => const DiagnosticOasesTest()),
             ));

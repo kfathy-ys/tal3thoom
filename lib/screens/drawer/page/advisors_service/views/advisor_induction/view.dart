@@ -43,7 +43,7 @@ class AdviserInduction extends StatelessWidget {
                 height: context.height * 0.25,
                 child: VideoItems(
                   videoPlayerController: VideoPlayerController.network(
-                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    'http://dev-sas.cpt-it.com/api/media/Introduction.mp4',
                   ),
                 ),
               ),

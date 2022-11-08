@@ -67,7 +67,7 @@ class _SecondTreatmentSessionsSlokiScreenState
 
 
                 List<String> listOfString = [];
-                dynamic allString = cubit.questionList[0].hint;
+                dynamic allString = state.behavioralSection[0].hint.toString();
                 listOfString = [allString];
                 listOfString = allString.split(";;");
                 print(
@@ -147,15 +147,13 @@ class _SecondTreatmentSessionsSlokiScreenState
                       ),
 
 
-                    cubit.questionList[0].hint.toString().isEmpty ? const SizedBox.shrink():
+                      state.behavioralSection[0].hint==null ? const SizedBox.shrink():
 
 
                      SizedBox(
                         height: context.height * 0.08,
-                       // width: context.width*0.8,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                            //physics: const NeverScrollableScrollPhysics(),
                             itemCount: listOfString.length,
                             itemBuilder: (context, index) {
                               return Container(

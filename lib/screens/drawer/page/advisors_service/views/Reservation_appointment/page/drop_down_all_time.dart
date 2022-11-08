@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
+import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../models/all_time_model.dart';
 
 class DropDownDurations extends StatefulWidget {
-  const DropDownDurations({Key? key}) : super(key: key);
+
+final dynamic userProfileId;
+  final ValueChanged<dynamic> onChanged;
+  final dynamic initial;
+  const DropDownDurations(
+      {Key? key, required this.onChanged, this.initial, required this.userProfileId})
+      : super(key: key);
 
   @override
   State<DropDownDurations> createState() => _DropDownDurationsState();
 }
 
 class _DropDownDurationsState extends State<DropDownDurations> {
-  String? dropdownValue;
+  dynamic? selected;
+  final List<dynamic> libs = [];
+  @override
+  void initState() {
+    if (widget.initial != null) {
+      selected = widget.initial;
+    }
+    getAllATime();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +45,8 @@ class _DropDownDurationsState extends State<DropDownDurations> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: dropdownValue,
+        child: DropdownButton<dynamic>(
+          value: selected,
           // autofocus: true,
           // isDense: true,
           //isExpanded: true,
@@ -49,21 +67,19 @@ class _DropDownDurationsState extends State<DropDownDurations> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+          onChanged: (dynamic? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!);
+
+            setState(() {});
           },
-          items: <String>[
-            "15 دقيقة",
-            "30 دقيقة",
-            "45 دقيقة",
-            "60 دقيقة",
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items: libs.map<DropdownMenuItem<dynamic>>((dynamic value) {
+            return DropdownMenuItem<dynamic>(
               value: value,
               child: Text(
-                value,
+                "$value دقيقة " ,
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,
@@ -75,5 +91,16 @@ class _DropDownDurationsState extends State<DropDownDurations> {
         ),
       ),
     );
+  }
+  Future<void> getAllATime() async {
+    libs.clear();
+    final res = await NetWork.get('Schedule/GetSpecialistAvailableSessionsDurations/${widget.userProfileId}/Consult');
+
+    print("Timmmmmmmmmmmme"+res.data["data"].runtimeType.toString());
+
+    libs.addAll(res.data['data']);
+
+    print("Timmmmmmmmmmmme"+res.data["data"].toString());
+    setState(() {});
   }
 }

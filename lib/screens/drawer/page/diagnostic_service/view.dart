@@ -7,6 +7,8 @@ import '../../../../../../config/keys.dart';
 
 // ignore: must_be_immutable
 class DiagnosticServices extends StatelessWidget {
+
+
   final VoidCallback onTapInductions;
   final VoidCallback onTapPayment;
   final VoidCallback onTapHistory;
@@ -15,7 +17,14 @@ class DiagnosticServices extends StatelessWidget {
   final VoidCallback onTapSSi;
   final VoidCallback onTapAppointentReservation;
 
-  const DiagnosticServices({
+  final Widget isPayment ;
+  final Widget isCaseHistory ;
+  final Widget isOases ;
+  final Widget isSsrs;
+  final Widget isSsi4;
+  final Widget isDiagnosticReserved;
+
+  const DiagnosticServices({super.key,
     required this.onTapInductions,
     required this.onTapPayment,
     required this.onTapHistory,
@@ -23,6 +32,12 @@ class DiagnosticServices extends StatelessWidget {
     required this.onTapSSRS,
     required this.onTapSSi,
     required this.onTapAppointentReservation,
+      required this.isPayment ,
+      required this.isCaseHistory ,
+      required this.isOases ,
+      required this.isSsrs ,
+      required this.isSsi4 ,
+      required this.isDiagnosticReserved ,
   });
 
   @override
@@ -30,9 +45,7 @@ class DiagnosticServices extends StatelessWidget {
      DiagnosticPaymentModel? diagnosticPaymentModel;
 
     double height = MediaQuery.of(context).size.height;
-    // double width = MediaQuery.of(context).size.width;
 
-     print( "${diagnosticPaymentModel?.data![0] } eeeeeeeeeeeeeeeeeeeeeeeeeeeeee "  );
     return ExpansionTile(
         backgroundColor: kPrimaryColor,
         leading: Image.asset("assets/images/stethoscope.png"),
@@ -69,12 +82,9 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
-             // trailing:
+              trailing: isPayment ,
 
 
-              // diagnosticPaymentModel?.data![0] == 1 ?
-              // const Icon(Icons.check_box , color: kTextColor,)
-              //     :const Text("eeeee") ,
             ),
           ),
           Container(
@@ -90,6 +100,7 @@ class DiagnosticServices extends StatelessWidget {
                       title: KeysConfig.medicalHistory, color: kBlackText),
                 ],
               ),
+              trailing: isCaseHistory,
             ),
           ),
           Container(
@@ -104,6 +115,7 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.testOases, color: kBlackText),
                 ],
               ),
+              trailing: isOases,
             ),
           ),
           Container(
@@ -118,6 +130,7 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.testSSRS, color: kBlackText),
                 ],
               ),
+              trailing: isSsrs,
             ),
           ),
           Container(
@@ -132,6 +145,7 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.test4, color: kBlackText),
                 ],
               ),
+              trailing: isSsi4
             ),
           ),
           Container(
@@ -151,6 +165,8 @@ class DiagnosticServices extends StatelessWidget {
                       title: KeysConfig.BookSpecialist, color: kBlackText),
                 ],
               ),
+
+              trailing: isDiagnosticReserved,
             ),
           ),
         ]);
