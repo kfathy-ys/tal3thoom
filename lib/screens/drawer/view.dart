@@ -94,11 +94,8 @@ class _MenuItemsState extends State<MenuItems> {
                       isPayment: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.payment ==
                               true
-                          ? const Icon(
-                              Icons.check_box,
-                              color: kTextColor,
-                            )
-                          : const Text("eeeee"),
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapPayment: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .payment ==
@@ -112,10 +109,7 @@ class _MenuItemsState extends State<MenuItems> {
                       isCaseHistory: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.caseHistory ==
                               true
-                          ? const Icon(
-                              Icons.check_box,
-                              color: kTextColor,
-                            )
+                          ? doneWidget(context)
                           : const Text("eeeee"),
                       onTapHistory: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
@@ -130,10 +124,7 @@ class _MenuItemsState extends State<MenuItems> {
                       isOases: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.oases ==
                               true
-                          ? const Icon(
-                              Icons.check_box,
-                              color: kTextColor,
-                            )
+                          ? doneWidget(context)
                           : const Text("eeeee"),
                       onTapTestOases: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
@@ -148,10 +139,7 @@ class _MenuItemsState extends State<MenuItems> {
                       isSsrs: state.accessPermissionModel.data?.stagesDiagnosis!
                                   .ssrs ==
                               true
-                          ? const Icon(
-                              Icons.check_box,
-                              color: kTextColor,
-                            )
+                          ? doneWidget(context)
                           : const Text("eeeee"),
                       onTapSSRS: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
@@ -166,10 +154,7 @@ class _MenuItemsState extends State<MenuItems> {
                       isSsi4: state.accessPermissionModel.data?.stagesDiagnosis!
                                   .ssi4 ==
                               true
-                          ? const Icon(
-                              Icons.check_box,
-                              color: kTextColor,
-                            )
+                          ? doneWidget(context)
                           : const Text("eeeee"),
                       onTapSSi: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
@@ -184,11 +169,19 @@ class _MenuItemsState extends State<MenuItems> {
                       isDiagnosticReserved: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.closeBooking ==
                               true
-                          ? const Icon(
-                              Icons.check_box,
-                              color: kTextColor,
+                          ? Container(
+                              height: context.height * 0.02,
+                              width: context.height * 0.02,
+                              decoration: BoxDecoration(
+                                color: kAccentColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child:
+                                    customText3(title: "تم", color: kHomeColor),
+                              ),
                             )
-                          : const Text("eeeee"),
+                          : const Text(""),
                       onTapAppointentReservation: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .closeBooking ==
@@ -217,53 +210,220 @@ class _MenuItemsState extends State<MenuItems> {
                         Get.back();
                         Get.to(() => const FirstTreatmentInduction());
                       },
+                      isPayment: state.accessPermissionModel.data
+                                  ?.stagesTreatment!.payment ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapPayment: () {
-                        Get.back();
-                        Get.to(() => const FirstPaymentTreatment());
+                        if (state.accessPermissionModel.data?.stagesDiagnosis!
+                                .payment ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const FirstPaymentTreatment());
+                        } else {
+                          return;
+                        }
                       },
+                      isQuestionnaire: state.accessPermissionModel.data
+                                  ?.stagesTreatment!.preTreatment ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       PretreatmentQuestionnaire: () {
-                        Get.back();
-                        Get.to(() => const PretreatmentQuestionnaire());
+                        if (state.accessPermissionModel.data?.stagesTreatment!
+                                .preTreatment ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const PretreatmentQuestionnaire());
+                        } else {
+                          return;
+                        }
                       },
+
+
+                      isFirstSessions:  state.accessPermissionModel.data
+                          ?.stagesTreatmentFirst!.sessions ==
+                          true
+                          ? doneWidget(context):const Text(""),
                       onTaptherapeuticSessions: () {
-                        Get.back();
-                        Get.to(() => const FirstTreatmentSession());
+
+                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .sessions ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const FirstTreatmentSession());
+                        } else {
+                          return;
+                        }
+
+
                       },
+
+
+                      isOases:  state.accessPermissionModel.data
+                          ?.stagesTreatmentFirst!.oases ==
+                          true
+                          ? doneWidget(context):const Text(""),
                       onTapOases: () {
-                        Get.back();
-                        Get.to(() => const FirstStageOasesTest());
+
+                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .oases ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const FirstStageOasesTest());
+                        } else {
+                          return;
+                        }
+
+
                       },
+                      isSsrs:  state.accessPermissionModel.data
+                          ?.stagesTreatmentFirst!.ssrs ==
+                          true
+                          ? doneWidget(context):const Text(""),
                       onTapSSRS: () {
-                        Get.back();
-                        Get.to(() => const FirstStageSSRSTreatmentScreen());
+                        if (state.accessPermissionModel.data?.stagesDiagnosis!
+                            .payment ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const FirstStageSSRSTreatmentScreen());
+                        } else {
+                          return;
+                        }
+
+
                       },
+
+
+                      isSsi4:  state.accessPermissionModel.data
+                          ?.stagesTreatmentFirst!.ssi4 ==
+                          true
+                          ? doneWidget(context):const Text(""),
                       onTapSSI4: () {
-                        Get.back();
-                        Get.to(() => const TreatmentSSI4());
+
+                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .ssi4 ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const TreatmentSSI4());
+                        } else {
+                          return;
+                        }
+
+
                       },
+
+                      isReservedFirst:  state.accessPermissionModel.data
+                          ?.stagesTreatmentFirst!.closeBooking ==
+                          true
+                          ? doneWidget(context):const Text(""),
                       onTapBookSpecialist: () {
-                        Get.back();
-                        Get.to(() => FirstStageTreatmentReservation());
+
+                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .closeBooking ==
+                            false) {
+                          Get.back();
+                          Get.to(() => FirstStageTreatmentReservation());
+                        } else {
+                          return;
+                        }
+
+
                       },
+
+
+
+                      isSessionTwo: state.accessPermissionModel.data
+                ?.stagesTreatmentSecond!.sessions ==
+            true
+            ? doneWidget(context):const Text(""),
                       onTaptherapeuticSessions2: () {
-                        Get.back();
-                        Get.to(() => const SecondTreatmentSession());
+
+                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .sessions ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const SecondTreatmentSession());
+                        } else {
+                          return;
+                        }
+
+
                       },
+
+
+                      isOasesTwo: state.accessPermissionModel.data
+                ?.stagesTreatmentSecond!.oases ==
+            true
+            ? doneWidget(context):const Text(""),
                       onTapOases2: () {
-                        Get.back();
-                        Get.to(() => const SecondStageOasesTest());
+
+                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .oases ==
+                            false) {
+
+                          Get.back();
+                          Get.to(() => const SecondStageOasesTest());
+                        } else {
+                          return;
+                        }
+
                       },
+
+                      isSsrsTwo: state.accessPermissionModel.data
+                ?.stagesTreatmentSecond!.ssrs ==
+            true
+            ? doneWidget(context):const Text(""),
+
                       onTapSSRS2: () {
-                        Get.back();
-                        Get.to(() => const SecondStageSSRSTreatmentScreen());
+                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .ssrs ==
+                            false) {
+                          Get.back();
+                          Get.to(() => const SecondStageSSRSTreatmentScreen());
+                        } else {
+                          return;
+                        }
+
+
                       },
+
+
+                      isSsi4Two: state.accessPermissionModel.data
+                ?.stagesTreatmentSecond!.ssi4 ==
+            true
+            ? doneWidget(context):const Text(""),
                       onTapSSI42: () {
-                        Get.back();
-                        Get.to(() => const SecondTreatmentSSI4());
+
+                        if (state.accessPermissionModel.data?.stagesDiagnosis!
+                            .ssi4 ==
+                            false) {
+
+                          Get.back();
+                          Get.to(() => const SecondTreatmentSSI4());
+                        } else {
+                          return;
+                        }
+
                       },
+
+
+                      isReservedTwo: state.accessPermissionModel.data
+                ?.stagesTreatmentSecond!.closeBooking ==
+            true
+            ? doneWidget(context):const Text(""),
                       onTapBookSpecialist2: () {
-                        Get.back();
-                        Get.to(() => SecondStageTreatmentReservation());
+                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .closeBooking ==
+                            false) {
+                          Get.back();
+                          Get.to(() => SecondStageTreatmentReservation());
+                        } else {
+                          return;
+                        }
+
+
                       },
                     ),
                     ListTile(
@@ -341,6 +501,20 @@ class _MenuItemsState extends State<MenuItems> {
             return const SizedBox();
           },
         ),
+      ),
+    );
+  }
+
+  Container doneWidget(BuildContext context) {
+    return Container(
+      height: context.height * 0.04,
+      width: context.height * 0.04,
+      decoration: BoxDecoration(
+        color: kSafeAreaColor,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Center(
+        child: customText4(title: "تم", color: kHomeColor),
       ),
     );
   }
