@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../../../home/cubit/home_tabebar_cubit.dart';
+import '../../../../../../../../../home/view.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/date_convertors.dart';
@@ -175,11 +177,12 @@ class _AllSpecialistsFirstSessionsState extends State<AllSpecialistsFirstSession
                                       onPressed: () {
 
                                         cubit.firstSessionsCreateReservation(specialistId: state.allSpecialistModel.data[index].id);
-                                       /// TODO:: May be make an error
-                                       //  BlocProvider.of<DiagnosticSpecialistsCubit>(context).getSpecialists(
-                                       //    startTime: widget.startTime.toString(),
-                                       //    date: widget.date.toString(),
-                                       //  );
+
+                                        BlocProvider.of<HomeTabeBarCubit>(context)
+                                            .changeIndex(2);
+
+                                        Get.to(() => const HomeTabScreen());
+
                                       },
                                       color: kButtonGreenDark,
                                       title: "تاكيد الحجز",

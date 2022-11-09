@@ -15,3 +15,17 @@ class AdvisorProfileError extends AdvisorProfileState {
 
   AdvisorProfileError({required this.msg});
 }
+
+
+
+class AllAdvisorToReservedLoading extends AdvisorProfileState {}
+class AllAdvisorToReservedSuccess extends AdvisorProfileState {
+  final AllReservationsAdvisorModel allAdvisorToReservedModel;
+
+  AllAdvisorToReservedSuccess({required this.allAdvisorToReservedModel});
+}
+class AllAdvisorToReservedError extends AdvisorProfileState {
+  final String msg;
+
+  AllAdvisorToReservedError({required this.msg});
+}

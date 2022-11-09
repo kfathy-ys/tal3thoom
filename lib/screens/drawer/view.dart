@@ -48,6 +48,9 @@ class MenuItems extends StatefulWidget {
 class _MenuItemsState extends State<MenuItems> {
   @override
   Widget build(BuildContext context) {
+
+
+    BlocProvider.of<DataAccessPermissionCubit>(context).getAccessPermission();
     return Container(
       margin: const EdgeInsets.only(bottom: 50, top: 65),
       child: Drawer(
@@ -68,7 +71,7 @@ class _MenuItemsState extends State<MenuItems> {
 
             if (state is DataAccessPermissionLoading) {
               return const Center(
-                child: LoadingFadingCircle(),
+                child: LoadingFadingCircleWhite(),
               );
             }
             if (state is DataAccessPermissionSuccess) {
@@ -110,11 +113,13 @@ class _MenuItemsState extends State<MenuItems> {
                                   ?.stagesDiagnosis!.caseHistory ==
                               true
                           ? doneWidget(context)
-                          : const Text("eeeee"),
+                          : const Text(""),
                       onTapHistory: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .caseHistory ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesDiagnosis!
+                            .payment ==
+                            true) {
                           Get.back();
                           Get.to(() => const DiagnosticHistory());
                         } else {
@@ -125,11 +130,13 @@ class _MenuItemsState extends State<MenuItems> {
                                   ?.stagesDiagnosis!.oases ==
                               true
                           ? doneWidget(context)
-                          : const Text("eeeee"),
+                          : const Text(""),
                       onTapTestOases: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .oases ==
-                            false) {
+                            false  && state.accessPermissionModel.data?.stagesDiagnosis!
+                            .caseHistory ==
+                            true) {
                           Get.back();
                           Get.to(() => const DiagnosticOasesTest());
                         } else {
@@ -140,11 +147,13 @@ class _MenuItemsState extends State<MenuItems> {
                                   .ssrs ==
                               true
                           ? doneWidget(context)
-                          : const Text("eeeee"),
+                          : const Text(""),
                       onTapSSRS: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .ssrs ==
-                            false) {
+                            false  && state.accessPermissionModel.data?.stagesDiagnosis!
+                            .oases ==
+                            true) {
                           Get.back();
                           Get.to(() => const SSRSDiagnosticsScreen());
                         } else {
@@ -155,11 +164,13 @@ class _MenuItemsState extends State<MenuItems> {
                                   .ssi4 ==
                               true
                           ? doneWidget(context)
-                          : const Text("eeeee"),
+                          : const Text(""),
                       onTapSSi: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .ssi4 ==
-                            false) {
+                            false   && state.accessPermissionModel.data?.stagesDiagnosis!
+                            .ssrs ==
+                            true) {
                           Get.back();
                           Get.to(() => const DiagnosticSSI4());
                         } else {
@@ -169,23 +180,14 @@ class _MenuItemsState extends State<MenuItems> {
                       isDiagnosticReserved: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.closeBooking ==
                               true
-                          ? Container(
-                              height: context.height * 0.02,
-                              width: context.height * 0.02,
-                              decoration: BoxDecoration(
-                                color: kAccentColor,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Center(
-                                child:
-                                    customText3(title: "تم", color: kHomeColor),
-                              ),
-                            )
+                          ? doneWidget(context)
                           : const Text(""),
                       onTapAppointentReservation: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
                                 .closeBooking ==
-                            false) {
+                            false   && state.accessPermissionModel.data?.stagesDiagnosis!
+                            .ssi4 ==
+                            true) {
                           Get.back();
                           Get.to(() => ReservationDiagnostic());
                         } else {
@@ -211,14 +213,14 @@ class _MenuItemsState extends State<MenuItems> {
                         Get.to(() => const FirstTreatmentInduction());
                       },
                       isPayment: state.accessPermissionModel.data
-                                  ?.stagesTreatment!.payment ==
+                                  ?.stagesTreatment!.paymentTreatmentAll ==
                               true
                           ? doneWidget(context)
                           : const Text(""),
                       onTapPayment: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .payment ==
-                            false) {
+                            .closeBooking ==
+                            true   ) {
                           Get.back();
                           Get.to(() => const FirstPaymentTreatment());
                         } else {
@@ -233,7 +235,9 @@ class _MenuItemsState extends State<MenuItems> {
                       PretreatmentQuestionnaire: () {
                         if (state.accessPermissionModel.data?.stagesTreatment!
                                 .preTreatment ==
-                            false) {
+                            false    && state.accessPermissionModel.data?.stagesTreatment!
+                            .paymentTreatmentOne ==
+                            true  ) {
                           Get.back();
                           Get.to(() => const PretreatmentQuestionnaire());
                         } else {
@@ -250,7 +254,8 @@ class _MenuItemsState extends State<MenuItems> {
 
                         if (state.accessPermissionModel.data?.stagesTreatmentFirst!
                             .sessions ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatment!
+                            .preTreatment == true) {
                           Get.back();
                           Get.to(() => const FirstTreatmentSession());
                         } else {
@@ -269,7 +274,8 @@ class _MenuItemsState extends State<MenuItems> {
 
                         if (state.accessPermissionModel.data?.stagesTreatmentFirst!
                             .oases ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .sessions == true) {
                           Get.back();
                           Get.to(() => const FirstStageOasesTest());
                         } else {
@@ -283,9 +289,10 @@ class _MenuItemsState extends State<MenuItems> {
                           true
                           ? doneWidget(context):const Text(""),
                       onTapSSRS: () {
-                        if (state.accessPermissionModel.data?.stagesDiagnosis!
-                            .payment ==
-                            false) {
+                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .ssrs ==
+                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .oases == true) {
                           Get.back();
                           Get.to(() => const FirstStageSSRSTreatmentScreen());
                         } else {
@@ -304,7 +311,8 @@ class _MenuItemsState extends State<MenuItems> {
 
                         if (state.accessPermissionModel.data?.stagesTreatmentFirst!
                             .ssi4 ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .ssrs == true) {
                           Get.back();
                           Get.to(() => const TreatmentSSI4());
                         } else {
@@ -322,7 +330,8 @@ class _MenuItemsState extends State<MenuItems> {
 
                         if (state.accessPermissionModel.data?.stagesTreatmentFirst!
                             .closeBooking ==
-                            false) {
+                            false  && state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .ssi4 == true) {
                           Get.back();
                           Get.to(() => FirstStageTreatmentReservation());
                         } else {
@@ -342,7 +351,8 @@ class _MenuItemsState extends State<MenuItems> {
 
                         if (state.accessPermissionModel.data?.stagesTreatmentSecond!
                             .sessions ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
+                            .closeBooking == true) {
                           Get.back();
                           Get.to(() => const SecondTreatmentSession());
                         } else {
@@ -361,7 +371,8 @@ class _MenuItemsState extends State<MenuItems> {
 
                         if (state.accessPermissionModel.data?.stagesTreatmentSecond!
                             .oases ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .sessions == true) {
 
                           Get.back();
                           Get.to(() => const SecondStageOasesTest());
@@ -379,7 +390,8 @@ class _MenuItemsState extends State<MenuItems> {
                       onTapSSRS2: () {
                         if (state.accessPermissionModel.data?.stagesTreatmentSecond!
                             .ssrs ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .oases == true) {
                           Get.back();
                           Get.to(() => const SecondStageSSRSTreatmentScreen());
                         } else {
@@ -396,9 +408,10 @@ class _MenuItemsState extends State<MenuItems> {
             ? doneWidget(context):const Text(""),
                       onTapSSI42: () {
 
-                        if (state.accessPermissionModel.data?.stagesDiagnosis!
+                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
                             .ssi4 ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .ssrs == true) {
 
                           Get.back();
                           Get.to(() => const SecondTreatmentSSI4());
@@ -416,7 +429,8 @@ class _MenuItemsState extends State<MenuItems> {
                       onTapBookSpecialist2: () {
                         if (state.accessPermissionModel.data?.stagesTreatmentSecond!
                             .closeBooking ==
-                            false) {
+                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
+                            .ssi4 == true) {
                           Get.back();
                           Get.to(() => SecondStageTreatmentReservation());
                         } else {

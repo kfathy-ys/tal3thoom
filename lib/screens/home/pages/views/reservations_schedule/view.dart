@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:queen/core/helpers/url_luncher.dart';
 import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/page/views/reservation_card.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -22,6 +23,8 @@ class ReservationsSchedule extends StatefulWidget {
 class _ReservationsScheduleState extends State<ReservationsSchedule> {
   @override
   Widget build(BuildContext context) {
+
+    BlocProvider.of<BookingCubit>(context).getBookingList();
     return Card(
       color: kHomeColor,
       child: SizedBox(
@@ -68,18 +71,10 @@ class _ReservationsScheduleState extends State<ReservationsSchedule> {
                                     "'عزيزي العميل الرجاء الإنتظار'",
                                     desc: "هذا الاجتماع مؤجل لحين مراجعة البيانات",
                                   )
-                                      :
+                                      : Launch.url(   state.bookingInfo
+                                      .data[index].zoomInvitationUrl);
 
-                                      navigateTo(
-                                      context,
-                                      WebView(
-                                        javascriptMode:
-                                        JavascriptMode.unrestricted,
-                                        initialUrl: state.bookingInfo
-                                            .data[index].zoomInvitationUrl,
-                                        zoomEnabled: true,
 
-                                      ));
                                 },
                                 onPressEnd: () {
                                   cubit.removeFromBooking(

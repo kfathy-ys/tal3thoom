@@ -18,7 +18,7 @@ class DataAccessPermissionModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -59,7 +59,7 @@ class DataAccessPermission extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (stagesDiagnosis != null) {
       data['stagesDiagnosis'] = stagesDiagnosis!.toJson();
     }
@@ -113,7 +113,7 @@ class StagesDiagnosis extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['payment'] = payment;
     data['caseHistory'] = caseHistory;
     data['oases'] = oases;
@@ -129,27 +129,41 @@ class StagesDiagnosis extends Equatable {
       [payment, caseHistory, oases, ssrs, ssi4, booking, closeBooking];
 }
 
-// ignore: must_be_immutable
 class StagesTreatment extends Equatable {
-  bool? payment;
+  bool? paymentTreatmentOne;
+  bool? paymentTreatmentTwo;
+  bool? paymentTreatmentAll;
   bool? preTreatment;
 
-  StagesTreatment({this.payment, this.preTreatment});
+  StagesTreatment(
+      {this.paymentTreatmentOne,
+      this.paymentTreatmentTwo,
+      this.paymentTreatmentAll,
+      this.preTreatment});
 
   StagesTreatment.fromJson(Map<String, dynamic> json) {
-    payment = json['payment'];
+    paymentTreatmentOne = json['paymentTreatmentOne'];
+    paymentTreatmentTwo = json['paymentTreatmentTwo'];
+    paymentTreatmentAll = json['paymentTreatmentAll'];
     preTreatment = json['preTreatment'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['payment'] = payment;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['paymentTreatmentOne'] = paymentTreatmentOne;
+    data['paymentTreatmentTwo'] = paymentTreatmentTwo;
+    data['paymentTreatmentAll'] = paymentTreatmentAll;
     data['preTreatment'] = preTreatment;
     return data;
   }
 
   @override
-  List<Object?> get props => [payment, preTreatment];
+  List<Object?> get props => [
+        paymentTreatmentOne,
+        paymentTreatmentTwo,
+        paymentTreatmentAll,
+        preTreatment
+      ];
 }
 
 class StagesTreatmentFirst extends Equatable {
@@ -178,7 +192,7 @@ class StagesTreatmentFirst extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['sessions'] = sessions;
     data['oases'] = oases;
     data['ssrs'] = ssrs;

@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import 'package:tal3thoom/screens/widgets/smallButtonSizer.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
+import '../../../../../widgets/date_convertors.dart';
 import '../../../../../widgets/fast_widget.dart';
+import '../../../../../widgets/loading.dart';
 import '../../../../view.dart';
 import '../../cubit/advisor_profile/advisor_profile_cubit.dart';
 import '../../models/advisor_model.dart';
@@ -20,22 +22,23 @@ import 'page/drop_down_available_date.dart';
 
 // ignore: must_be_immutable
 class ReservationAppointmentScreen extends StatefulWidget {
-
-   const ReservationAppointmentScreen({Key? key}) : super(key: key);
+  const ReservationAppointmentScreen({Key? key}) : super(key: key);
 
   @override
-  State<ReservationAppointmentScreen> createState() => _ReservationAppointmentScreenState();
+  State<ReservationAppointmentScreen> createState() =>
+      _ReservationAppointmentScreenState();
 }
 
-class _ReservationAppointmentScreenState extends State<ReservationAppointmentScreen> {
-
+class _ReservationAppointmentScreenState
+    extends State<ReservationAppointmentScreen> {
   String? adviserId;
+  String? showSelectedDate;
+  String? newDateToSend;
   int? adviserIdInt;
+  int? selectedDate;
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -43,20 +46,15 @@ class _ReservationAppointmentScreenState extends State<ReservationAppointmentScr
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),
       body: BlocConsumer<AdvisorProfileCubit, AdvisorProfileState>(
-        listener: (context, state) {
-
-
-       
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           final cubit = BlocProvider.of<AdvisorProfileCubit>(context);
-
           return SingleChildScrollView(
             child: SizedBox(
               height: context.height,
               width: context.width,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+               // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomTileContainer(
                       widthh: context.width * 0.5,
@@ -68,70 +66,138 @@ class _ReservationAppointmentScreenState extends State<ReservationAppointmentScr
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
                       DropDownSpecialist(onChanged: (value) {
-                       // cubit.getAvailableDatesVisit(value.id!);
                         cubit.onAdvChange(value);
-                        adviserId =value.userId;
-                        adviserIdInt =value.id;
+                        adviserId = value.userId;
+                        adviserIdInt = value.id;
 
-                        Prefs.setInt("adviserIdInt",adviserIdInt!);
+                        Prefs.setInt("adviserIdInt", adviserIdInt!);
 
-                        setState(() {
-
-                        });
+                        setState(() {});
                       }),
-                      adviserId == null ? SizedBox(
-                        height: MediaQuery.of(context).size.height / 14,
-                        width: MediaQuery.of(context).size.width / 3,
-                      ): SmallButtonSizer(
-                          onPressed: () {
-                            navigateTo(context,  SpecializerProfile(advisorId:adviserId!));
-                          },
-                          title: "الملف الشخصي",
-                          color: kPrimaryColor,
-                          image: "assets/images/eye1.png"),
+                      adviserId == null
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.height / 14,
+                              width: MediaQuery.of(context).size.width / 3,
+                            )
+                          : SmallButtonSizer(
+                              onPressed: () {
+                                navigateTo(context,
+                                    SpecializerProfile(advisorId: adviserId!));
+                              },
+                              title: "الملف الشخصي",
+                              color: kPrimaryColor,
+                              image: "assets/images/eye1.png"),
                     ],
                   ),
                   const HeadTitles(headTitle: "2- أكثر مدة للجلسة :"),
-                    DropDownDurations(
-                       userProfileId: Prefs.getInt("adviserIdInt"),
-                        onChanged: (value) {
-                          cubit.onTimeChange(value);
-                          //adviserId =value.userId;
-                          setState(() {
+                  DropDownDurations(
+                      userProfileId: Prefs.getInt("adviserIdInt"),
+                      onChanged: (value) {
+                        cubit.onTimeChange(value);
+                        selectedDate = value;
 
-                          });
-                        }
-                    ),
+                        setState(() {
+                          print(selectedDate);
+                        });
+                      }),
                   const HeadTitles(headTitle: "3- أحتر التاريخ المتاح :"),
-                  const DropDownAvailableDates(),
-                  Expanded(
-                    child: ListView.builder(
+                  if (selectedDate != null)
+                    DropDownAvailableDates(
+                        userProfileId: Prefs.getInt("adviserIdInt"),
+                        time: selectedDate,
+                        onChanged: (value) {
+                          cubit.onDatesChange(value);
+                          showSelectedDate = value;
+                          newDateToSend = DateConverter.dateConverterOnlys(
+                              showSelectedDate.toString());
 
-                      padding: const EdgeInsets.symmetric(horizontal: 16 ),
-                      itemCount: 8,
-                     // physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(vertical: 8 ),
-                          padding: const EdgeInsets.symmetric(horizontal: 8 ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
 
-                            border: Border.all(color: kPrimaryColor)
+
+                          BlocProvider.of<AdvisorProfileCubit>(context)
+                              .getAllAdvisors(
+                              userProfileId: Prefs.getInt("adviserIdInt"),
+                              time: selectedDate!,
+                              data: newDateToSend);
+                          print(newDateToSend);
+                          setState(() {});
+                        }),
+                  if (selectedDate != null && newDateToSend!=null)
+
+                    BlocConsumer<AdvisorProfileCubit, AdvisorProfileState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+
+
+                      if (state is AllAdvisorToReservedLoading) {
+                        return const LoadingFadingCircle();
+                      }
+                      if (state is AllAdvisorToReservedSuccess) {
+                        return Expanded(
+                          child: RefreshIndicator(
+                            onRefresh: () async {
+                             // cubitAllAdvisors;
+                          return Future<void>.delayed(
+                              const Duration(seconds: 3));
+                            },
+                            backgroundColor: kPrimaryColor,
+                            color: Colors.white,
+                            child: state.allAdvisorToReservedModel.data!.isEmpty
+                            ? Center(
+                                child: customBoldText(
+                                    title: "يجب الوقت والتاريخ المتاح !",
+                                    color: kBlackText))
+                            : ListView.builder(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16 ),
+                                itemCount: state
+                                    .allAdvisorToReservedModel.data!.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+
+                                    height: context.height*0.25,
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 8),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8 , vertical: 8),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(8),
+                                        border:
+                                            Border.all(color: kPrimaryColor)),
+                                    child: ReservationsCard(
+                                        specialistName: state
+                                            .allAdvisorToReservedModel
+                                            .data![index]
+                                            .createdBy!,
+                                        sessionDate:
+                                            DateConverter.dateConverterOnlys(
+                                                state
+                                                    .allAdvisorToReservedModel
+                                                    .data![index]
+                                                    .availableDateTime!),
+                                        start: state.allAdvisorToReservedModel
+                                            .data![index].startTime!,
+                                        end: state.allAdvisorToReservedModel
+                                            .data![index].endTime!,
+                                        onTap: () {
+                                          navigateTo(context,
+                                              const PaymentAdvisor());
+                                        }),
+                                  );
+                                },
+                              ),
                           ),
-                          child: ReservationsCard(
-                              specialistName: "المتخصص",
-                              sessionDate: "10-12-2022",
-                              start: "10:16",
-                              end: "10:30",
-                              onTap: () {
-                                navigateTo(context, const PaymentAdvisor());
-                              }),
                         );
-                      },
-                    ),
+                      }
+                      if (state is AllAdvisorToReservedError) {
+                        return Text(state.msg);
+                      }
+
+                      return const SizedBox();
+                    },
                   ),
                 ],
               ),

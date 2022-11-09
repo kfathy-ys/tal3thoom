@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../../../../home/cubit/home_tabebar_cubit.dart';
+import '../../../../../../../../../../home/view.dart';
 import '../../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../../widgets/date_convertors.dart';
@@ -171,6 +173,11 @@ class _AllSpecialistsSecondSessionsState extends State<AllSpecialistsSecondSessi
                                 onPressed: () {
 
                                   cubit.secondStagesSessionsCreateReservation(specialistId: state.allSpecialistModel.data[index].id);
+
+                                  BlocProvider.of<HomeTabeBarCubit>(context)
+                                      .changeIndex(2);
+
+                                  Get.to(() => const HomeTabScreen());
 
                                 },
                                 color: kButtonGreenDark,

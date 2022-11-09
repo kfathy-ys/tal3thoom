@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/date_convertors.dart';
 
 class DropDownAvailableDates extends StatefulWidget {
-  const DropDownAvailableDates({Key? key}) : super(key: key);
+
+  final dynamic userProfileId;
+  final dynamic time;
+  final ValueChanged<dynamic> onChanged;
+  final dynamic initial;
+  const DropDownAvailableDates(
+      {Key? key, required this.onChanged, this.initial, required this.userProfileId, this.time})
+      : super(key: key);
+
 
   @override
   State<DropDownAvailableDates> createState() => _DropDownAvailableDatesState();
 }
 
 class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
-  String? dropdownValue;
+  dynamic selected;
+  final List<dynamic> libs = [];
+  @override
+  void initState() {
+    if (widget.initial != null) {
+      selected = widget.initial;
+    }
+    getAllDates();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -27,8 +45,8 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: dropdownValue,
+        child: DropdownButton<dynamic>(
+          value: selected,
           // autofocus: true,
           // isDense: true,
           //isExpanded: true,
@@ -49,25 +67,19 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+          onChanged: (dynamic? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!);
+
+            setState(() {});
           },
-          items: <String>[
-            "10-10-2022",
-            "11-10-2022",
-            "13-10-2022",
-            "16-10-2022",
-            "27-10-2022",
-            "28-10-2022",
-            "01-11-2022",
-            "19-11-2022",
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items: libs.map<DropdownMenuItem<dynamic>>((dynamic value) {
+            return DropdownMenuItem<dynamic>(
               value: value,
               child: Text(
-                value,
+                "${DateConverter.dateConverterOnlys(value) }",
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,
@@ -79,5 +91,17 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
         ),
       ),
     );
+  }
+
+  Future<void> getAllDates() async {
+    libs.clear();
+    final res = await NetWork.get('Schedule/GetSpecialistAvailableSessionDurationDates/${widget.userProfileId}/${widget.time}/Consult');
+
+    print("Timmmmmmmmmmmme"+res.data["data"].runtimeType.toString());
+
+    libs.addAll(res.data['data']);
+
+    print("Timmmmmmmmmmmme"+res.data["data"].toString());
+    setState(() {});
   }
 }
