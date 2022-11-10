@@ -21,6 +21,7 @@ import '../../widgets/custom_text_filed_country_code.dart';
 import '../../widgets/donotHave.dart';
 import '../../widgets/loading.dart';
 import '../login/view.dart';
+import '../policy_privacy/view.dart';
 import 'cubit/register_cubit.dart';
 import 'page/back_icon.dart';
 import '../../../../../../config/keys.dart';
@@ -655,7 +656,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                     ),
                     trailing: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+
+
+                        Get.to(()=>const PolicyAndPrivacy());
+                      },
                       child: const Text(KeysConfig.conditions,
                           style: TextStyle(
                               fontSize: 10,

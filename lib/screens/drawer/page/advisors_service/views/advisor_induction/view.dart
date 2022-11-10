@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,9 +35,11 @@ class AdviserInduction extends StatelessWidget {
                   widthh: context.width * 0.5,
                   title: KeysConfig.definationDiag,
                   context: context),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset("assets/images/advisorInduction.png"),
+              FadeInUpBig(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset("assets/images/advisorInduction.png"),
+                ),
               ),
               SizedBox(
                 width: context.width * 0.8,

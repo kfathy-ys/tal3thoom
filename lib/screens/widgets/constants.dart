@@ -193,6 +193,8 @@ Widget customText4({required String title, required Color color}) {
 Widget customText10({required String title, required Color color}) {
   return Text(title,
       textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      softWrap: true,
       style: TextStyle(color: color, fontSize: 14, fontFamily: 'DinMedium'));
 }
 

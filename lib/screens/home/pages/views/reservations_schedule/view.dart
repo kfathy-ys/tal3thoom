@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -63,86 +64,88 @@ class _ReservationsScheduleState extends State<ReservationsSchedule> {
                           itemCount: state.bookingInfo.dataLength,
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return ReservationCard(
-                                onPressStart: () {
-                                  state.bookingInfo.data[index].zoomInvitationUrl
-                                      .isEmpty
-                                      ? Alert.success(
-                                    "'عزيزي العميل الرجاء الإنتظار'",
-                                    desc: "هذا الاجتماع مؤجل لحين مراجعة البيانات",
-                                  )
-                                      : Launch.url(   state.bookingInfo
-                                      .data[index].zoomInvitationUrl);
+                            return FadeInUpBig(
+                              child: ReservationCard(
+                                  onPressStart: () {
+                                    state.bookingInfo.data[index].zoomInvitationUrl
+                                        .isEmpty
+                                        ? Alert.success(
+                                      "'عزيزي العميل الرجاء الإنتظار'",
+                                      desc: "هذا الاجتماع مؤجل لحين مراجعة البيانات",
+                                    )
+                                        : Launch.url(   state.bookingInfo
+                                        .data[index].zoomInvitationUrl);
 
 
-                                },
-                                onPressEnd: () {
-                                  cubit.removeFromBooking(
-                                    startTime: state
-                                        .bookingInfo.data[index].startTime,
-                                    endTime:
-                                    state.bookingInfo.data[index].endTime,
-                                    day: state.bookingInfo.data[index].day,
-                                    availableDateTime: state.bookingInfo
-                                        .data[index].availableDateTime,
-                                    idScheduleDetails: state.bookingInfo
-                                        .data[index].idScheduleDetails,
-                                    sessienUrl: state
-                                        .bookingInfo.data[index].sessienUrl,
-                                    specialistRate: state.bookingInfo
-                                        .data[index].specialistRate,
-                                    zoomInvitationUrl: state.bookingInfo
-                                        .data[index].zoomInvitationUrl,
-                                    scheduledFor: state
-                                        .bookingInfo.data[index].scheduledFor,
-                                  );
-                                  // Alert.error("عملية ناجحة",desc: "تم إالغاء الحجز بنجاح",);
+                                  },
+                                  onPressEnd: () {
+                                    cubit.removeFromBooking(
+                                      startTime: state
+                                          .bookingInfo.data[index].startTime,
+                                      endTime:
+                                      state.bookingInfo.data[index].endTime,
+                                      day: state.bookingInfo.data[index].day,
+                                      availableDateTime: state.bookingInfo
+                                          .data[index].availableDateTime,
+                                      idScheduleDetails: state.bookingInfo
+                                          .data[index].idScheduleDetails,
+                                      sessienUrl: state
+                                          .bookingInfo.data[index].sessienUrl,
+                                      specialistRate: state.bookingInfo
+                                          .data[index].specialistRate,
+                                      zoomInvitationUrl: state.bookingInfo
+                                          .data[index].zoomInvitationUrl,
+                                      scheduledFor: state
+                                          .bookingInfo.data[index].scheduledFor,
+                                    );
+                                    // Alert.error("عملية ناجحة",desc: "تم إالغاء الحجز بنجاح",);
 
-                                },
-                                subTitleData: DateConverter.dateConverterMonth(
-                                    state
-                                        .bookingInfo
-                                        .data[index]
-                                        .availableDateTime),
-                                subTitleDay: state.bookingInfo.data[index].day
-                                    .toString(),
-                                subTitleStartSessionData: state
-                                    .bookingInfo.data[index].startTime
-                                    .toString(),
-                                subTitleFinishSessionDate: state
-                                    .bookingInfo.data[index].endTime
-                                    .toString(),
-                                subTitleTypeAppointment: state.bookingInfo
-                                    .data[index].scheduledFor
-                                    .toString() ==
-                                    "Consult"
-                                    ? "جلسة إستشارية"
-                                    : state.bookingInfo.data[index].scheduledFor
-                                    .toString() ==
-                                    "Diagnosis"
-                                    ? "جلسة تشخيصية"
-                                    : state.bookingInfo.data[index].scheduledFor
-                                    .toString() ==
-                                    "Treatment"
-                                    ? "جلسة علاجية"
-                                    : state.bookingInfo.data[index].scheduledFor
-                                    .toString() ==
-                                    "DiagnosisAndTreatment"
-                                    ? "جلسة تشخيصية/ علاجية"
-                                    : "",
-                                subTitleEvaluation: state.bookingInfo
-                                    .data[index].specialistRate == 1
-                                    ? "⭐"
-                                    : state.bookingInfo.data[index]
-                                    .specialistRate == 2
-                                    ? "⭐⭐"
-                                    : state.bookingInfo.data[index]
-                                    .specialistRate == 3
-                                    ? "⭐⭐⭐"
-                                    : state.bookingInfo.data[index]
-                                    .specialistRate == 4
-                                    ? "⭐⭐⭐⭐"
-                                    : "");
+                                  },
+                                  subTitleData: DateConverter.dateConverterMonth(
+                                      state
+                                          .bookingInfo
+                                          .data[index]
+                                          .availableDateTime),
+                                  subTitleDay: state.bookingInfo.data[index].day
+                                      .toString(),
+                                  subTitleStartSessionData: state
+                                      .bookingInfo.data[index].startTime
+                                      .toString(),
+                                  subTitleFinishSessionDate: state
+                                      .bookingInfo.data[index].endTime
+                                      .toString(),
+                                  subTitleTypeAppointment: state.bookingInfo
+                                      .data[index].scheduledFor
+                                      .toString() ==
+                                      "Consult"
+                                      ? "جلسة إستشارية"
+                                      : state.bookingInfo.data[index].scheduledFor
+                                      .toString() ==
+                                      "Diagnosis"
+                                      ? "جلسة تشخيصية"
+                                      : state.bookingInfo.data[index].scheduledFor
+                                      .toString() ==
+                                      "Treatment"
+                                      ? "جلسة علاجية"
+                                      : state.bookingInfo.data[index].scheduledFor
+                                      .toString() ==
+                                      "DiagnosisAndTreatment"
+                                      ? "جلسة تشخيصية/ علاجية"
+                                      : "",
+                                  subTitleEvaluation: state.bookingInfo
+                                      .data[index].specialistRate == 1
+                                      ? "⭐"
+                                      : state.bookingInfo.data[index]
+                                      .specialistRate == 2
+                                      ? "⭐⭐"
+                                      : state.bookingInfo.data[index]
+                                      .specialistRate == 3
+                                      ? "⭐⭐⭐"
+                                      : state.bookingInfo.data[index]
+                                      .specialistRate == 4
+                                      ? "⭐⭐⭐⭐"
+                                      : ""),
+                            );
                           },
                         ),
                       ));

@@ -16,6 +16,7 @@ import '../../../../../../../widgets/loading.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_history/view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_payment/views/alert_message.dart';
+import '../../../../../diagnostic_service/page/views/diagnostic_payment/views/alert_to_pay.dart';
 import '../../pre-treatment_questionnaire/view.dart';
 import 'cubit/first_payment_cubit.dart';
 
@@ -101,6 +102,7 @@ class FirstPaymentTreatment extends StatelessWidget {
                           description: state.firstPaymentModel.data!.treatmentSubscriptions![2].title!),
 
 
+                      const AlertMessageToPay(),
 
 
                       state is! FirstPaymentLoading ? CustomButton(
@@ -146,7 +148,7 @@ class FirstPaymentTreatment extends StatelessWidget {
                               Get.offAll(()=> const HomeTabScreen());
 
                           },
-                          title: "متابعة"):const LoadingFadingCircleSmall()   ,
+                          title: "متابعة العملية"):const LoadingFadingCircleSmall()   ,
                       SizedBox(
                         height: context.height * 0.1,
                       )

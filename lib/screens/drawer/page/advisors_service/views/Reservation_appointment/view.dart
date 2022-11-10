@@ -54,7 +54,7 @@ class _ReservationAppointmentScreenState
               height: context.height,
               width: context.width,
               child: Column(
-               // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomTileContainer(
                       widthh: context.width * 0.5,
@@ -70,8 +70,6 @@ class _ReservationAppointmentScreenState
                         cubit.onAdvChange(value);
                         adviserId = value.userId;
                         adviserIdInt = value.id;
-
-                        Prefs.setInt("adviserIdInt", adviserIdInt!);
 
                         setState(() {});
                       }),
@@ -90,21 +88,30 @@ class _ReservationAppointmentScreenState
                               image: "assets/images/eye1.png"),
                     ],
                   ),
-                  const HeadTitles(headTitle: "2- أكثر مدة للجلسة :"),
-                  DropDownDurations(
-                      userProfileId: Prefs.getInt("adviserIdInt"),
-                      onChanged: (value) {
-                        cubit.onTimeChange(value);
-                        selectedDate = value;
-
-                        setState(() {
-                          print(selectedDate);
-                        });
-                      }),
-                  const HeadTitles(headTitle: "3- أحتر التاريخ المتاح :"),
+                  if (adviserIdInt != null)
+                    const HeadTitles(headTitle: "2- أكثر مدة للجلسة :"),
+                  if (adviserIdInt != null)
+                    DropDownDurations(
+                        userProfileId: adviserIdInt,
+                        onChanged: (value) {
+                          cubit.onTimeChange(value);
+                          selectedDate = value;
+                          BlocProvider.of<AdvisorProfileCubit>(context)
+                              .getAllAdvisors(
+                                  userProfileId: adviserIdInt!,
+                                  time: selectedDate!,
+                                  data: newDateToSend);
+                          setState(() {
+                            print(selectedDate);
+                          });
+                        }),
+                  if (selectedDate != null)
+                    const HeadTitles(headTitle: "3- أحتر التاريخ المتاح :"),
                   if (selectedDate != null)
                     DropDownAvailableDates(
-                        userProfileId: Prefs.getInt("adviserIdInt"),
+                        userProfileId: adviserIdInt,
+
+                        //Prefs.getInt("adviserIdInt"),
                         time: selectedDate,
                         onChanged: (value) {
                           cubit.onDatesChange(value);
@@ -112,93 +119,98 @@ class _ReservationAppointmentScreenState
                           newDateToSend = DateConverter.dateConverterOnlys(
                               showSelectedDate.toString());
 
-
-
                           BlocProvider.of<AdvisorProfileCubit>(context)
                               .getAllAdvisors(
-                              userProfileId: Prefs.getInt("adviserIdInt"),
-                              time: selectedDate!,
-                              data: newDateToSend);
+                                  userProfileId: adviserIdInt!,
+                                  time: selectedDate!,
+                                  data: newDateToSend);
                           print(newDateToSend);
                           setState(() {});
                         }),
-                  if (selectedDate != null && newDateToSend!=null)
-
+                  if (selectedDate != null && newDateToSend != null)
                     BlocConsumer<AdvisorProfileCubit, AdvisorProfileState>(
-                    listener: (context, state) {
-                      // TODO: implement listener
-                    },
-                    builder: (context, state) {
+                      listener: (context, state) {
+                      },
+                      builder: (context, state) {
+                        if (state is AllAdvisorToReservedLoading) {
+                          return const LoadingFadingCircle();
+                        }
+                        if (state is AllAdvisorToReservedSuccess) {
+                          return Expanded(
+                            child: RefreshIndicator(
+                              onRefresh: () async {
 
+                                BlocProvider.of<AdvisorProfileCubit>(context)
+                                    .getAllAdvisors(
+                                    userProfileId: adviserIdInt!,
+                                    time: selectedDate!,
+                                    data: newDateToSend);
+                                return Future<void>.delayed(
+                                    const Duration(seconds: 3));
+                              },
+                              backgroundColor: kPrimaryColor,
+                              color: Colors.white,
+                              child: state
+                                      .allAdvisorToReservedModel.data!.isEmpty
+                                  ? Center(
+                                      child: customBoldText(
+                                          title:
+                                              " لا يوجد مستشارين متاحين الاّن",
+                                          color: kBlackText))
+                                  : ListView.builder(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16),
+                                      itemCount: state.allAdvisorToReservedModel
+                                          .data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          height: context.height * 0.25,
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 8),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 8),
+                                          decoration: BoxDecoration(
+                                              color: kSkyLightColor
+                                                  .withOpacity(0.2),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              border: Border.all(
+                                                  color: kPrimaryColor)),
+                                          child: ReservationsCard(
+                                              specialistName: state
+                                                  .allAdvisorToReservedModel
+                                                  .data![index]
+                                                  .createdBy!,
+                                              sessionDate: DateConverter
+                                                  .dateConverterOnlys(state
+                                                      .allAdvisorToReservedModel
+                                                      .data![index]
+                                                      .availableDateTime!),
+                                              start: state
+                                                  .allAdvisorToReservedModel
+                                                  .data![index]
+                                                  .startTime!,
+                                              end: state
+                                                  .allAdvisorToReservedModel
+                                                  .data![index]
+                                                  .endTime!,
+                                              onTap: () {
+                                                navigateTo(context,
+                                                    const PaymentAdvisor());
+                                              }),
+                                        );
+                                      },
+                                    ),
+                            ),
+                          );
+                        }
+                        if (state is AllAdvisorToReservedError) {
+                          return Text(state.msg);
+                        }
 
-                      if (state is AllAdvisorToReservedLoading) {
-                        return const LoadingFadingCircle();
-                      }
-                      if (state is AllAdvisorToReservedSuccess) {
-                        return Expanded(
-                          child: RefreshIndicator(
-                            onRefresh: () async {
-                             // cubitAllAdvisors;
-                          return Future<void>.delayed(
-                              const Duration(seconds: 3));
-                            },
-                            backgroundColor: kPrimaryColor,
-                            color: Colors.white,
-                            child: state.allAdvisorToReservedModel.data!.isEmpty
-                            ? Center(
-                                child: customBoldText(
-                                    title: "يجب الوقت والتاريخ المتاح !",
-                                    color: kBlackText))
-                            : ListView.builder(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16 ),
-                                itemCount: state
-                                    .allAdvisorToReservedModel.data!.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-
-                                    height: context.height*0.25,
-                                    margin: const EdgeInsets.symmetric(
-                                        vertical: 8),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8 , vertical: 8),
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(8),
-                                        border:
-                                            Border.all(color: kPrimaryColor)),
-                                    child: ReservationsCard(
-                                        specialistName: state
-                                            .allAdvisorToReservedModel
-                                            .data![index]
-                                            .createdBy!,
-                                        sessionDate:
-                                            DateConverter.dateConverterOnlys(
-                                                state
-                                                    .allAdvisorToReservedModel
-                                                    .data![index]
-                                                    .availableDateTime!),
-                                        start: state.allAdvisorToReservedModel
-                                            .data![index].startTime!,
-                                        end: state.allAdvisorToReservedModel
-                                            .data![index].endTime!,
-                                        onTap: () {
-                                          navigateTo(context,
-                                              const PaymentAdvisor());
-                                        }),
-                                  );
-                                },
-                              ),
-                          ),
-                        );
-                      }
-                      if (state is AllAdvisorToReservedError) {
-                        return Text(state.msg);
-                      }
-
-                      return const SizedBox();
-                    },
-                  ),
+                        return const SizedBox();
+                      },
+                    ),
                 ],
               ),
             ),

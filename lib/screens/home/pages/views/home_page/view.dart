@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
@@ -26,7 +27,7 @@ class MyHomeScreen extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset("assets/images/main_page.png", fit: BoxFit.fill),
+          FadeInUpBig(child: Image.asset("assets/images/main_page.png", fit: BoxFit.fill)),
           Positioned(
               top: 300,
               right: 80,
