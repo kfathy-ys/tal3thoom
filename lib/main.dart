@@ -89,10 +89,7 @@ void main() async {
       QueenBuilder(
         enableDevtools: false,
         builder: (context) {
-          return DevicePreview(
-            enabled: true,
-            builder: (context) => const MyApp(),
-          );
+          return const MyApp();
         },
       ),
     );

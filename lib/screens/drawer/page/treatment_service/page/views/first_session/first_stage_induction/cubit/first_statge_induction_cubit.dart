@@ -12,6 +12,7 @@ part 'first_statge_induction_state.dart';
 class FirstStageInductionCubit extends Cubit<FirstStageInductionState> {
   FirstStageInductionCubit() : super(FirstStageInductionInitial()){
     getFirstInduction();
+
   }
 
   Future<void> getFirstInduction() async {

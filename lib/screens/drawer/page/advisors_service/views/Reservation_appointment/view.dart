@@ -6,6 +6,7 @@ import 'package:tal3thoom/screens/drawer/page/advisors_service/views/Reservation
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tal3thoom/screens/widgets/smallButtonSizer.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/date_convertors.dart';
@@ -36,6 +37,7 @@ class _ReservationAppointmentScreenState
   String? newDateToSend;
   int? adviserIdInt;
   int? selectedDate;
+  var userId = Prefs.getString("userId");
 
   @override
   Widget build(BuildContext context) {
@@ -129,8 +131,7 @@ class _ReservationAppointmentScreenState
                         }),
                   if (selectedDate != null && newDateToSend != null)
                     BlocConsumer<AdvisorProfileCubit, AdvisorProfileState>(
-                      listener: (context, state) {
-                      },
+                      listener: (context, state) {},
                       builder: (context, state) {
                         if (state is AllAdvisorToReservedLoading) {
                           return const LoadingFadingCircle();
@@ -139,12 +140,11 @@ class _ReservationAppointmentScreenState
                           return Expanded(
                             child: RefreshIndicator(
                               onRefresh: () async {
-
                                 BlocProvider.of<AdvisorProfileCubit>(context)
                                     .getAllAdvisors(
-                                    userProfileId: adviserIdInt!,
-                                    time: selectedDate!,
-                                    data: newDateToSend);
+                                        userProfileId: adviserIdInt!,
+                                        time: selectedDate!,
+                                        data: newDateToSend);
                                 return Future<void>.delayed(
                                     const Duration(seconds: 3));
                               },
@@ -195,8 +195,15 @@ class _ReservationAppointmentScreenState
                                                   .data![index]
                                                   .endTime!,
                                               onTap: () {
-                                                navigateTo(context,
-                                                    const PaymentAdvisor());
+                                                navigateTo(
+                                                    context,
+                                                    WebView(
+                                                      javascriptMode:
+                                                          JavascriptMode
+                                                              .unrestricted,
+                                                      initialUrl:
+                                                          "http://dev-sas.cpt-it.com/Sas/PaymentConsultant/$userId/${state.allAdvisorToReservedModel.data![index].id!}",
+                                                    ));
                                               }),
                                         );
                                       },

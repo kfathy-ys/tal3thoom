@@ -10,8 +10,16 @@ import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../../widgets/video_items.dart';
+import '../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../view.dart';
+import '../../../../treatment_service/page/views/first_session/first_stage_induction/view.dart';
+import '../diagnostci_oases_test/view.dart';
+import '../diagnostic_history/view.dart';
+import '../diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
 import '../diagnostic_payment/view.dart';
+import '../diagnostic_ssi4/views/department_one/view.dart';
+import '../diagnostic_ssrs_test/view.dart';
+import '../resevation_diagnostic/view.dart';
 import 'cubit/diagnostic_induction_cubit.dart';
 
 // ignore: must_be_immutable
@@ -20,8 +28,8 @@ class InductionDiagnostic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+
+
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -79,13 +87,62 @@ class InductionDiagnostic extends StatelessWidget {
                   },
                 ),
               ),
-              MediaButton(
-                onPressed: () {
-                  // BlocProvider.of<DiagnosticPaymentCubit>(context)
-                  //     .checkDiagnosticPayment();
-                  Get.to(()=> const DiagnosticPaymentScreen());
+              BlocConsumer<DataAccessPermissionCubit,
+                  DataAccessPermissionState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  if (state is DataAccessPermissionLoading) {
+                    return const LoadingFadingCircle();
+                  }
+                  if (state is DataAccessPermissionSuccess) {
+                    return MediaButton(
+                      onPressed: () {
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                .payment ==
+                            false) {
+                          Get.offAll(() => const DiagnosticPaymentScreen());
+                        } else {
+                          if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                  .caseHistory ==
+                              false) {
+                            Get.offAll(() => const DiagnosticHistory());
+                          }
+                          if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                  .oases ==
+                              false) {
+                            Get.offAll(() => const DiagnosticOasesTest());
+                          }
+                          if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                  .ssrs ==
+                              false) {
+                            Get.offAll(() => const SSRSDiagnosticsScreen());
+                          }
+                          if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                  .ssi4 ==
+                              false) {
+                            Get.offAll(() => const DiagnosticSSI4());
+                          }
+                          if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                  .booking ==
+                              false) {
+                            Get.offAll(() => ReservationDiagnostic());
+                          }
+                          if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                  .closeBooking ==
+                              true) {
+                            Get.offAll(() => const FirstTreatmentInduction());
+                          }
+                        }
+                      },
+                      title: KeysConfig.next,
+                    );
+                  }
+                  if (state is DataAccessPermissionError) {
+                    return Text(state.msg);
+                  }
+
+                  return const SizedBox();
                 },
-                title: KeysConfig.next,
               ),
               SizedBox(
                 height: context.height * 0.2,

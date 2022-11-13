@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../drawer/page/advisors_service/views/advisor_induction/view.dart';
+import '../../../../drawer/page/treatment_service/page/views/first_session/first_stage_induction/view.dart';
 import '../../../../drawer/page/treatment_service/page/views/second_session/second_stage_induction/view.dart';
 
 // ignore: must_be_immutable
@@ -29,7 +30,7 @@ class MyHomeScreen extends StatelessWidget {
         children: [
           FadeInUpBig(child: Image.asset("assets/images/main_page.png", fit: BoxFit.fill)),
           Positioned(
-              top: 300,
+              top: 190,
               right: 80,
               child: SizedBox(
                   //color: Colors.pinkAccent,
@@ -38,12 +39,13 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object1");
-                        navigateTo(context, const InductionDiagnostic());
+
+                        Get.to(()=> const InductionDiagnostic());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: 300,
+              top: 190,
               right: 200,
               child: SizedBox(
                   //color: Colors.pinkAccent,
@@ -52,12 +54,12 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object2");
-                        navigateTo(context, const TreatmentServiceInduction());
+                        Get.to(()=> const FirstTreatmentInduction());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: 400,
+              top: 280,
               right: 100,
               child: SizedBox(
                   // color: Colors.pinkAccent,
@@ -66,12 +68,12 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object3");
-                        navigateTo(context, const MedicalReports());
+                        Get.to(()=>const MedicalReports());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: 500,
+              top: 370,
               right: 100,
               child: SizedBox(
                   //color: Colors.pinkAccent,
@@ -80,7 +82,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object4");
-                        navigateTo(context, const AdviserInduction());
+                        Get.to(()=> const AdviserInduction());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),

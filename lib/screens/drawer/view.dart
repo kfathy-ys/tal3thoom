@@ -48,8 +48,6 @@ class MenuItems extends StatefulWidget {
 class _MenuItemsState extends State<MenuItems> {
   @override
   Widget build(BuildContext context) {
-
-
     BlocProvider.of<DataAccessPermissionCubit>(context).getAccessPermission();
     return Container(
       margin: const EdgeInsets.only(bottom: 50, top: 65),
@@ -116,10 +114,11 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       onTapHistory: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .caseHistory ==
-                            false && state.accessPermissionModel.data?.stagesDiagnosis!
-                            .payment ==
-                            true) {
+                                    .caseHistory ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesDiagnosis!
+                                    .payment ==
+                                true) {
                           Get.back();
                           Get.to(() => const DiagnosticHistory());
                         } else {
@@ -133,10 +132,11 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       onTapTestOases: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .oases ==
-                            false  && state.accessPermissionModel.data?.stagesDiagnosis!
-                            .caseHistory ==
-                            true) {
+                                    .oases ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesDiagnosis!
+                                    .caseHistory ==
+                                true) {
                           Get.back();
                           Get.to(() => const DiagnosticOasesTest());
                         } else {
@@ -150,10 +150,11 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       onTapSSRS: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .ssrs ==
-                            false  && state.accessPermissionModel.data?.stagesDiagnosis!
-                            .oases ==
-                            true) {
+                                    .ssrs ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesDiagnosis!
+                                    .oases ==
+                                true) {
                           Get.back();
                           Get.to(() => const SSRSDiagnosticsScreen());
                         } else {
@@ -167,10 +168,11 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       onTapSSi: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .ssi4 ==
-                            false   && state.accessPermissionModel.data?.stagesDiagnosis!
-                            .ssrs ==
-                            true) {
+                                    .ssi4 ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesDiagnosis!
+                                    .ssrs ==
+                                true) {
                           Get.back();
                           Get.to(() => const DiagnosticSSI4());
                         } else {
@@ -184,10 +186,11 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       onTapAppointentReservation: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .closeBooking ==
-                            false   && state.accessPermissionModel.data?.stagesDiagnosis!
-                            .ssi4 ==
-                            true) {
+                                    .closeBooking ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesDiagnosis!
+                                    .ssi4 ==
+                                true) {
                           Get.back();
                           Get.to(() => ReservationDiagnostic());
                         } else {
@@ -219,10 +222,10 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       onTapPayment: () {
                         if (state.accessPermissionModel.data?.stagesDiagnosis!
-                            .closeBooking ==
-                            true   ) {
+                                .closeBooking ==
+                            true) {
                           Get.back();
-                          Get.to(() => const FirstPaymentTreatment());
+                          Get.to(() => FirstPaymentTreatment());
                         } else {
                           return;
                         }
@@ -234,210 +237,199 @@ class _MenuItemsState extends State<MenuItems> {
                           : const Text(""),
                       PretreatmentQuestionnaire: () {
                         if (state.accessPermissionModel.data?.stagesTreatment!
-                                .preTreatment ==
-                            false    && state.accessPermissionModel.data?.stagesTreatment!
-                            .paymentTreatmentOne ==
-                            true  ) {
+                                    .preTreatment ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesTreatment!
+                                    .paymentTreatmentOne ==
+                                true) {
                           Get.back();
                           Get.to(() => const PretreatmentQuestionnaire());
                         } else {
                           return;
                         }
                       },
-
-
-                      isFirstSessions:  state.accessPermissionModel.data
-                          ?.stagesTreatmentFirst!.sessions ==
-                          true
-                          ? doneWidget(context):const Text(""),
+                      isFirstSessions: state.accessPermissionModel.data
+                                  ?.stagesTreatmentFirst!.sessions ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTaptherapeuticSessions: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .sessions ==
-                            false && state.accessPermissionModel.data?.stagesTreatment!
-                            .preTreatment == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.sessions ==
+                                false &&
+                            state.accessPermissionModel.data?.stagesTreatment!
+                                    .preTreatment ==
+                                true) {
                           Get.back();
                           Get.to(() => const FirstTreatmentSession());
                         } else {
                           return;
                         }
-
-
                       },
-
-
-                      isOases:  state.accessPermissionModel.data
-                          ?.stagesTreatmentFirst!.oases ==
-                          true
-                          ? doneWidget(context):const Text(""),
+                      isOases: state.accessPermissionModel.data
+                                  ?.stagesTreatmentFirst!.oases ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapOases: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .oases ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .sessions == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.oases ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.sessions ==
+                                true) {
                           Get.back();
                           Get.to(() => const FirstStageOasesTest());
                         } else {
                           return;
                         }
-
-
                       },
-                      isSsrs:  state.accessPermissionModel.data
-                          ?.stagesTreatmentFirst!.ssrs ==
-                          true
-                          ? doneWidget(context):const Text(""),
+                      isSsrs: state.accessPermissionModel.data
+                                  ?.stagesTreatmentFirst!.ssrs ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapSSRS: () {
-                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .ssrs ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .oases == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.ssrs ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.oases ==
+                                true) {
                           Get.back();
                           Get.to(() => const FirstStageSSRSTreatmentScreen());
                         } else {
                           return;
                         }
-
-
                       },
-
-
-                      isSsi4:  state.accessPermissionModel.data
-                          ?.stagesTreatmentFirst!.ssi4 ==
-                          true
-                          ? doneWidget(context):const Text(""),
+                      isSsi4: state.accessPermissionModel.data
+                                  ?.stagesTreatmentFirst!.ssi4 ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapSSI4: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .ssi4 ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .ssrs == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.ssi4 ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.ssrs ==
+                                true) {
                           Get.back();
                           Get.to(() => const TreatmentSSI4());
                         } else {
                           return;
                         }
-
-
                       },
-
-                      isReservedFirst:  state.accessPermissionModel.data
-                          ?.stagesTreatmentFirst!.closeBooking ==
-                          true
-                          ? doneWidget(context):const Text(""),
+                      isReservedFirst: state.accessPermissionModel.data
+                                  ?.stagesTreatmentFirst!.closeBooking ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapBookSpecialist: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .closeBooking ==
-                            false  && state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .ssi4 == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.closeBooking ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.ssi4 ==
+                                true) {
                           Get.back();
                           Get.to(() => FirstStageTreatmentReservation());
                         } else {
                           return;
                         }
-
-
                       },
-
-
-
                       isSessionTwo: state.accessPermissionModel.data
-                ?.stagesTreatmentSecond!.sessions ==
-            true
-            ? doneWidget(context):const Text(""),
+                                  ?.stagesTreatmentSecond!.sessions ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTaptherapeuticSessions2: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .sessions ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentFirst!
-                            .closeBooking == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.sessions ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentFirst!.closeBooking ==
+                                true &&
+                            state.accessPermissionModel.data?.stagesTreatment!
+                                    .paymentTreatmentAll ==
+                                true) {
                           Get.back();
                           Get.to(() => const SecondTreatmentSession());
                         } else {
                           return;
                         }
-
-
                       },
-
-
                       isOasesTwo: state.accessPermissionModel.data
-                ?.stagesTreatmentSecond!.oases ==
-            true
-            ? doneWidget(context):const Text(""),
+                                  ?.stagesTreatmentSecond!.oases ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapOases2: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .oases ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .sessions == true) {
-
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.oases ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.sessions ==
+                                true) {
                           Get.back();
                           Get.to(() => const SecondStageOasesTest());
                         } else {
                           return;
                         }
-
                       },
-
                       isSsrsTwo: state.accessPermissionModel.data
-                ?.stagesTreatmentSecond!.ssrs ==
-            true
-            ? doneWidget(context):const Text(""),
-
+                                  ?.stagesTreatmentSecond!.ssrs ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapSSRS2: () {
-                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .ssrs ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .oases == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.ssrs ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.oases ==
+                                true) {
                           Get.back();
                           Get.to(() => const SecondStageSSRSTreatmentScreen());
                         } else {
                           return;
                         }
-
-
                       },
-
-
                       isSsi4Two: state.accessPermissionModel.data
-                ?.stagesTreatmentSecond!.ssi4 ==
-            true
-            ? doneWidget(context):const Text(""),
+                                  ?.stagesTreatmentSecond!.ssi4 ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapSSI42: () {
-
-                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .ssi4 ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .ssrs == true) {
-
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.ssi4 ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.ssrs ==
+                                true) {
                           Get.back();
                           Get.to(() => const SecondTreatmentSSI4());
                         } else {
                           return;
                         }
-
                       },
-
-
                       isReservedTwo: state.accessPermissionModel.data
-                ?.stagesTreatmentSecond!.closeBooking ==
-            true
-            ? doneWidget(context):const Text(""),
+                                  ?.stagesTreatmentSecond!.closeBooking ==
+                              true
+                          ? doneWidget(context)
+                          : const Text(""),
                       onTapBookSpecialist2: () {
-                        if (state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .closeBooking ==
-                            false && state.accessPermissionModel.data?.stagesTreatmentSecond!
-                            .ssi4 == true) {
+                        if (state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.closeBooking ==
+                                false &&
+                            state.accessPermissionModel.data
+                                    ?.stagesTreatmentSecond!.ssi4 ==
+                                true) {
                           Get.back();
                           Get.to(() => SecondStageTreatmentReservation());
                         } else {
                           return;
                         }
-
-
                       },
                     ),
                     ListTile(

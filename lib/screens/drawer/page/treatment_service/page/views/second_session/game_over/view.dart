@@ -4,6 +4,8 @@ import 'package:queen/core/helpers/prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../home/cubit/home_tabebar_cubit.dart';
+import '../../../../../../../home/view.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
@@ -15,17 +17,16 @@ import '../second_stage_additional_traning/view.dart';
 
 // ignore: must_be_immutable
 
-class NextTwoSession extends StatefulWidget {
-  const NextTwoSession({Key? key}) : super(key: key);
+class GameOver extends StatefulWidget {
+  const GameOver({Key? key}) : super(key: key);
 
   @override
-  State<NextTwoSession> createState() => _NextTwoSessionState();
+  State<GameOver> createState() => _GameOverState();
 }
 
-class _NextTwoSessionState extends State<NextTwoSession> {
+class _GameOverState extends State<GameOver> {
   @override
   Widget build(BuildContext context) {
-    final currentStage = Prefs.getString("currentStage");
 
     return Scaffold(
       backgroundColor: kHomeColor,
@@ -45,7 +46,7 @@ class _NextTwoSessionState extends State<NextTwoSession> {
             ),
             customText4(
                 title:
-                "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
+                "لقد اتممت الجلسلات العلاجية بنجاح \n Game IS Over  ",
                 color: kBlackText),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -56,19 +57,14 @@ class _NextTwoSessionState extends State<NextTwoSession> {
                 child: Image.asset("assets/images/success.png"),
               ),
             ),
-            CustomButton(
-              title: "تتدريب وتعليم اضافي",
-              onPressed: () =>
-                  Get.off(() => const SecondStageAdditionalTrainingScreen()),
-            ),
-            CustomButton(
-              title: "الإنتقال إلي المرحلة التالية",
-              onPressed: () {
-                BlocProvider.of<SecondCognitiveSectionCubit>(context).getSecondCognitiveSection();
-                Get.off(()=> const SecondTreatmentSession());
-                // ;
-              },
-            ),
+
+            CustomButton(color: kPrimaryColor,title: "العودة",onPressed: (){
+
+              BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
+              Get.offAll(()=> const HomeTabScreen());
+
+            },)
+
           ],
         ),
       ),

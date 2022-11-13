@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/views/payment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,17 +14,30 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
+import '../../../../../../../widgets/mediaButton.dart';
+import '../../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_history/view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_payment/views/alert_message.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_payment/views/alert_to_pay.dart';
 import '../../pre-treatment_questionnaire/view.dart';
+import '../../second_session/game_over/view.dart';
+import '../../second_session/second_cognitive_session/view.dart';
+import '../../second_session/second_stage_oases_test/view.dart';
+import '../../second_session/second_stage_resevation/view.dart';
+import '../../second_session/second_stage_ssrs_test/view.dart';
+import '../../second_session/second_stage_treatment_ssi4/views/department_one/view.dart';
+import '../first_cognitive_session/view.dart';
+import '../first_stage_oases_test/view.dart';
+import '../first_stage_resevation/view.dart';
+import '../first_stage_ssrs_test/view.dart';
+import '../first_stage_treatment_ssi4/views/department_one/view.dart';
 import 'cubit/first_payment_cubit.dart';
 
 // ignore: must_be_immutable
 class FirstPaymentTreatment extends StatelessWidget {
-  const FirstPaymentTreatment({Key? key}) : super(key: key);
-
+   FirstPaymentTreatment({Key? key}) : super(key: key);
+  var userId = Prefs.getString("userId");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,102 +69,189 @@ class FirstPaymentTreatment extends StatelessWidget {
                           widthh: context.width / 2.5,
                           title: KeysConfig.payment,
                           context: context),
-
-
                       const AlertMessageToWait(),
                       PaymentCard(
-                          price: state.firstPaymentModel.data!.treatmentSubscriptions![0].price!.toString()+"ريال ",
+                          price: state.firstPaymentModel.data!
+                                  .treatmentSubscriptions![0].price!
+                                  .toString() +
+                              "ريال ",
                           onTapPay: () {
                             navigateTo(
                                 context,
-                                const WebView(
+                                 WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
                                 ));
                             print("object1");
                           },
-                          description: state.firstPaymentModel.data!.treatmentSubscriptions![0].title!
-
-                      ),
+                          description: state.firstPaymentModel.data!
+                              .treatmentSubscriptions![0].title!),
                       PaymentCard(
-                          price: state.firstPaymentModel.data!.treatmentSubscriptions![1].price!.toString()+"ريال ",
+                          price: state.firstPaymentModel.data!
+                                  .treatmentSubscriptions![1].price!
+                                  .toString() +
+                              "ريال ",
                           onTapPay: () {
                             navigateTo(
                                 context,
-                                const WebView(
+                                 WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
                                 ));
 
                             print("object2");
                           },
-                          description: state.firstPaymentModel.data!.treatmentSubscriptions![1].title!),
+                          description: state.firstPaymentModel.data!
+                              .treatmentSubscriptions![1].title!),
                       PaymentCard(
-                          price: state.firstPaymentModel.data!.treatmentSubscriptions![2].price!.toString()+" ريال",
+                          price: state.firstPaymentModel.data!
+                                  .treatmentSubscriptions![2].price!
+                                  .toString() +
+                              " ريال",
                           onTapPay: () {
                             navigateTo(
                                 context,
-                                const WebView(
+                                 WebView(
                                   javascriptMode: JavascriptMode.unrestricted,
                                   initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
                                 ));
                             print("object3");
                           },
-                          description: state.firstPaymentModel.data!.treatmentSubscriptions![2].title!),
-
-
+                          description: state.firstPaymentModel.data!
+                              .treatmentSubscriptions![2].title!),
                       const AlertMessageToPay(),
+                      state is! FirstPaymentLoading
+                          ? BlocConsumer<DataAccessPermissionCubit,
+                              DataAccessPermissionState>(
+                              listener: (context, state) {
+                                // TODO: implement listener
+                              },
+                              builder: (context, state) {
+                                if (state is DataAccessPermissionLoading) {
+                                  return const LoadingFadingCircle();
+                                }
+                                if (state is DataAccessPermissionSuccess) {
+                                  return MediaButton(
+                                    onPressed: () {
+                                      if (state.accessPermissionModel.data!.stagesTreatment!
+                                          .paymentTreatmentOne ==
+                                          false) {
 
 
-                      state is! FirstPaymentLoading ? CustomButton(
-                          onPressed: () {
-                              cubit.getFirstPayment();
-                            // if (state.firstPaymentModel.data!.subscriptionStages!.isEmpty) {
-                            //   //   print(diagnosticPaymentModel?.data![0]);
-                            //   //  print(diagnosticPaymentModel?.data!.contains(1)==true);
-                            //     print("اللسته فااااااااااااااضية");
-                            //
-                            //   Alert.error("الرجاء إتمام عملية الدفع",
-                            //       desc:
-                            //       "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-                            //   Get.to(() => const FirstPaymentTreatment());
-                            // } else if ((state.firstPaymentModel.data!.subscriptionStages!.contains(2)) == true ||
-                            //     (state.firstPaymentModel.data!.subscriptionStages!.contains(4)) == true) {
-                            //   print("دفع الجستان 2 و 4 ");
-                            //   Alert.success("تم العملية بنجاح",
-                            //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
-                            //   Get.off(() => const PretreatmentQuestionnaire());
-                            // } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true) {
-                            //   print("دف الجلسة التشخصية فقط ");
-                            //   Alert.success("تم العملية بنجاح",
-                            //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
-                            //   Get.off(() => const DiagnosticHistory());
-                            // } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true &&
-                            //     state.firstPaymentModel.data!.subscriptionStages!.contains(2) == true &&
-                            //     state.firstPaymentModel.data!.subscriptionStages!.contains(4) == true) {
-                            //   print("دفع كل الباقات يباشا");
-                            //
-                            //   Alert.success("تم العملية بنجاح",
-                            //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
-                            //   Get.to(() => const DiagnosticHistory());
-                            // } else {
-                            //    print("خلية يروح يدفع");
-                            //
-                            //   Alert.error("الرجاء إتمام عملية الدفع",
-                            //       desc:
-                            //       "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-                            // }
 
-                              BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-                              Get.offAll(()=> const HomeTabScreen());
+                                        Alert.error("الرجاء إتمام عملية الدفع",
+                                            desc:
+                                            "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
 
-                          },
-                          title: "متابعة العملية"):const LoadingFadingCircleSmall()   ,
+
+
+
+                                      } else {
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatment!.preTreatment ==
+                                            false) {
+                                          Get.offAll(
+                                                  () => const PretreatmentQuestionnaire());
+                                        }
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatmentFirst!.sessions ==
+                                            false) {
+                                          Get.offAll(() => const FirstTreatmentSession());
+                                        }
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatmentFirst!.oases ==
+                                            false) {
+                                          Get.offAll(() => const FirstStageOasesTest());
+                                        }
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatmentFirst!.ssrs ==
+                                            false) {
+                                          Get.offAll(
+                                                  () => const FirstStageSSRSTreatmentScreen());
+                                        }
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatmentFirst!.ssi4 ==
+                                            false) {
+                                          Get.offAll(() => const TreatmentSSI4());
+                                        }
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatmentFirst!.booking ==
+                                            false) {
+                                          Get.offAll(
+                                                  () => FirstStageTreatmentReservation());
+                                        }
+                                      }
+
+                                      if (state.accessPermissionModel.data!
+                                          .stagesTreatmentFirst!.closeBooking ==
+                                          true) {
+
+                                        if (state.accessPermissionModel.data!
+                                            .stagesTreatment!.paymentTreatmentTwo ==
+                                            false) {
+
+
+
+
+                                          Alert.error("الرجاء إتمام عملية الدفع",
+                                              desc:
+                                              "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+
+
+                                        } else {
+                                          if (state.accessPermissionModel.data!
+                                              .stagesTreatmentSecond!.sessions ==
+                                              false) {
+                                            Get.offAll(
+                                                    () => const SecondTreatmentSession());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                              .stagesTreatmentSecond!.oases ==
+                                              false) {
+                                            Get.offAll(() => const SecondStageOasesTest());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                              .stagesTreatmentSecond!.ssrs ==
+                                              false) {
+                                            Get.offAll(() =>
+                                            const SecondStageSSRSTreatmentScreen());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                              .stagesTreatmentSecond!.ssi4 ==
+                                              false) {
+                                            Get.offAll(() => const SecondTreatmentSSI4());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                              .stagesTreatmentSecond!.booking ==
+                                              false) {
+                                            Get.offAll(
+                                                    () => SecondStageTreatmentReservation());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                              .stagesTreatmentSecond!.closeBooking ==
+                                              true) {
+                                            ///TODO:: Game Over Page
+                                            Get.offAll(
+                                                    () => const GameOver());
+                                          }
+                                        }
+                                      }
+                                    },
+                                    title: KeysConfig.next,
+                                  );                                }
+                                if (state is DataAccessPermissionError) {
+                                  return Text(state.msg);
+                                }
+
+                                return const SizedBox();
+                              },
+                            )
+                          : const LoadingFadingCircleSmall(),
                       SizedBox(
-                        height: context.height * 0.1,
+                        height: context.height * 0.2,
                       )
                     ],
                   ),

@@ -28,7 +28,6 @@ class _NextSessionState extends State<NextSession> {
 
     return Scaffold(
       backgroundColor: kHomeColor,
-      drawer: const MenuItems(),
       appBar: DynamicAppbar(
           context: context,
           press: (context) => Scaffold.of(context).openDrawer()),

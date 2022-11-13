@@ -81,14 +81,14 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                                 ],
                                 borderRadius: BorderRadius.circular(8)),
                             child: CalendarDatePicker(
-                              initialDate: DateTime.now(),
                               firstDate: DateTime.now(),
+                              initialDate: DateTime.now(),
+
                               lastDate: DateTime(2031),
                               onDateChanged: (value) {
                                 selectedDate = value;
                                 cubit.getAvailablePeriodsFirstStage(
                                     selectedDate: value);
-                                // cubit.visitDateId = cubit.dates[cubit.availableDates.indexOf(value)].id;
                               },
                               selectableDayPredicate: (day) {
                                 if (cubit.dates.isNotEmpty) {
