@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/previous_treatment_sessions/views/drop_down_result_sessions.dart';
 import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
@@ -8,10 +9,12 @@ import 'package:video_player/video_player.dart';
 
 import '../../../widgets/appBar.dart';
 import '../../../widgets/constants.dart';
+import '../../../widgets/loading.dart';
 import '../../../widgets/mediaButton.dart';
 import '../../../widgets/video_items.dart';
 import '../../view.dart';
 import '../diagnostic_service/page/views/question.dart';
+import 'cubit/previous_sessions_cubit.dart';
 
 // ignore: must_be_immutable
 class ResultsPreviousTreatmentSessions extends StatefulWidget {
@@ -24,12 +27,11 @@ class ResultsPreviousTreatmentSessions extends StatefulWidget {
 
 class _ResultsPreviousTreatmentSessionsState
     extends State<ResultsPreviousTreatmentSessions> {
-  String? typeSessionId;
-  String onSessionTypeChanged(String value) => typeSessionId = value;
+  String? sessionNumber;
+
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+    final cubit = BlocProvider.of<PreviousSessionsCubit>(context);
 
     return Scaffold(
       backgroundColor: kHomeColor,
@@ -43,10 +45,12 @@ class _ResultsPreviousTreatmentSessionsState
         width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
-          child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+          child: BlocConsumer<PreviousSessionsCubit, PreviousSessionsState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              final cubit = BlocProvider.of<PreviousSessionsCubit>(context);
+
+              return Column(children: [
                 Center(
                   child: CustomTileContainer(
                       widthh: context.width / 1.5,
@@ -57,265 +61,387 @@ class _ResultsPreviousTreatmentSessionsState
                     child: customText7(
                         title: "أختر نتيجة الجلسة العلاجية",
                         color: kBlackText)),
-                 Center(child: DropDownListResultSessions(onChanged:  onSessionTypeChanged,)),
-                answerQuestionTitle(
+                Center(child: DropDownListResultSessions(onChanged: (value) {
+                  cubit.onSessionTypeChanged(value);
+
+                  sessionNumber = value;
+
+                  cubit.getPreviousAnswers(sessionNumber: sessionNumber!);
+                })),
+                if (sessionNumber != null) answerQuestionTitle(
                     title: "القسم الأول : \t", subtitle: "معرفي"),
-                answerQuestionTitle(
+                if (sessionNumber != null)  answerQuestionTitle(
                     title: "الإجابات الصحيحة مظللة بالون :\t",
                     subtitle: "الأزرق"),
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    width: context.width * 0.8,
-                    height: context.height * 0.25,
-                    child: VideoItems(
-                      videoPlayerController: VideoPlayerController.network(
-                        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: context.height * 0.4,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: firstQuestionsList.length,
-                    itemBuilder: (context, index) {
-                      return Center(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            buildContainerIndex(context.width, context.height,
-                                index: index),
-                            Container(
-                              margin: const EdgeInsets.symmetric(vertical: 4),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 6, vertical: 4),
-                              width: context.width * 0.8,
-                              height: context.height * 0.14,
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8),
-                                    topLeft: Radius.circular(8),
-                                  ),
-                                  color: kBackgroundButton),
-                              child: FormBuilder(
-                                onChanged: () {
-                                  // _formKey.currentState!.save();
-                                  // debugPrint(_formKey.currentState!.value.toString());
-                                },
-                                autovalidateMode: AutovalidateMode.always,
-                                child: FormBuilderRadioGroup<dynamic>(
-                                  decoration: InputDecoration(
-                                    labelStyle: const TextStyle(
-                                        color: kBlackText,
-                                        fontSize: 18,
-                                        fontFamily: 'DinBold'),
-                                    labelText: firstQuestionsList[index].name,
-                                  ),
-                                  initialValue: null,
-                                  name: 'best_language',
 
-                                  onChanged: (value) {
-                                    print(value);
+                if (sessionNumber != null) BlocConsumer<PreviousSessionsCubit, PreviousSessionsState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is PreviousSessionsLoading) {
+                      return const Center(
+                        child: LoadingFadingCircle(),
+                      );
+                    }
+                    if (state is PreviousSessionsSuccess) {
+                      return Form(
+                        key: cubit.formKey,
+                        child: SizedBox(
+                          height: context.height * 0.4,
+                          child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: state.previousAnswersModel.data!
+                                .cognitiveResult!.length,
+                            itemBuilder: (context, index) {
 
-                                  },
-                                  // validator:  (value) => value.isEmpty ? KeysConfig.thisFieldRequired :null,
-                                  options: firstQuestionsList[index]
-                                      .answersList!
-                                      .map((lang) => FormBuilderFieldOption(
-                                            value: lang["value"],
-                                            child: customText3(
-                                                title: lang["name"],
-                                                color: kBlackText),
-                                          ))
-                                      .toList(growable: false),
-                                  controlAffinity: ControlAffinity.trailing,
+                              print("meddddddddd ${state.previousAnswersModel.data!.cognitiveResult![index].patientAnswers?.first.toString()}");
+                              return Center(
+                                child: Column(
+                                  children: [
+                                    state
+                                                .previousAnswersModel
+                                                .data!
+                                                .cognitiveResult![index]
+                                                .question!
+                                                .description ==
+                                            null
+                                        ? const SizedBox.shrink()
+                                        : Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 4),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 6,
+                                                        vertical: 4),
+                                                width: context.width * 0.8,
+                                                // height: context.height * 0.14,
+                                                decoration: const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(8),
+                                                      topLeft:
+                                                          Radius.circular(8),
+                                                    ),
+                                                    color: kBackgroundButton),
+                                                child: FormBuilder(
+                                                  autovalidateMode:
+                                                      AutovalidateMode.always,
+                                                  child: FormBuilderRadioGroup<
+                                                      dynamic>(
+                                                    decoration: InputDecoration(
+
+
+                                                      labelStyle: const TextStyle(color: kBlackText, fontSize: 18, fontFamily: 'DinBold'),
+                                                      labelText: "${index + 1} " +
+                                                          state.previousAnswersModel.data!.cognitiveResult![index].question!.description!,
+
+
+                                                    ),
+
+                                                    initialValue: state.previousAnswersModel.data!.cognitiveResult![index].patientAnswers?.first.toString(),
+                                                    name: 'best_language',
+                                                    options: state.previousAnswersModel.data!.cognitiveResult![index].question!
+                                                        .answers!
+                                                        .map((lang) =>
+                                                            FormBuilderFieldOption(
+                                                              value: lang.answerOption,
+                                                              child: customText3(title: lang.answerOption.toString(),
+                                                                  color: kBlackText),
+                                                            ))
+                                                        .toList(
+                                                            growable: false),
+                                                    controlAffinity:
+                                                        ControlAffinity
+                                                            .trailing,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                    state
+                                                .previousAnswersModel
+                                                .data!
+                                                .cognitiveResult![index]
+                                                .question!
+                                                .videoFile ==
+                                            null
+                                        ? const SizedBox.shrink()
+                                        : Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 8),
+                                            width: context.width * 0.8,
+                                            height: context.height * 0.25,
+                                            child: VideoItems(
+                                              videoPlayerController:
+                                                  VideoPlayerController.network(
+                                                "http://dev-sas.cpt-it.com/api/" +
+                                                    state
+                                                        .previousAnswersModel
+                                                        .data!
+                                                        .cognitiveResult![index]
+                                                        .question!
+                                                        .videoFile!
+                                                        .toString(),
+                                              ),
+                                            ),
+                                          ),
+                                  ],
                                 ),
-                              ),
-                            ),
-                          ],
+                              );
+                            },
+                          ),
                         ),
                       );
-                    },
-                  ),
+                    }
+                    if (state is PreviousSessionsError) {
+                      return Text(state.msg);
+                    }
+                    return const SizedBox();
+                  },
                 ),
-                answerQuestionTitle(
+                if (sessionNumber != null)   answerQuestionTitle(
                     title: "القسم الثاني : \t", subtitle: "سلوكي"),
-                answerQuestionTitle(
+                if (sessionNumber != null)  answerQuestionTitle(
                     title: "الإجابات الصحيحة مظللة بالون :\t",
                     subtitle: "الأزرق"),
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    width: context.width * 0.8,
-                    height: context.height * 0.25,
-                    child: VideoItems(
-                      videoPlayerController: VideoPlayerController.network(
-                        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: context.height * 0.4,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: firstQuestionsList.length,
-                    itemBuilder: (context, index) {
-                      return Center(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            buildContainerIndex(context.width, context.height,
-                                index: index),
-                            Container(
-                              margin: const EdgeInsets.symmetric(vertical: 4),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 6, vertical: 4),
-                              width: context.width * 0.8,
-                              height: context.height * 0.14,
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8),
-                                    topLeft: Radius.circular(8),
-                                  ),
-                                  color: kBackgroundButton),
-                              child: FormBuilder(
-                                onChanged: () {
-                                  // _formKey.currentState!.save();
-                                  // debugPrint(_formKey.currentState!.value.toString());
-                                },
-                                autovalidateMode: AutovalidateMode.always,
-                                child: FormBuilderRadioGroup<dynamic>(
-                                  decoration: InputDecoration(
-                                    labelStyle: const TextStyle(
-                                        color: kBlackText,
-                                        fontSize: 18,
-                                        fontFamily: 'DinBold'),
-                                    labelText: firstQuestionsList[index].name,
-                                  ),
-                                  initialValue: null,
-                                  name: 'best_language',
+                if (sessionNumber != null)  BlocConsumer<PreviousSessionsCubit, PreviousSessionsState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
 
-                                  onChanged: (value) {
-                                    print(value);
-                                    firstQuestionsList[index].selectedValue =
-                                        value;
 
-                                  },
-                                  // validator:  (value) => value.isEmpty ? KeysConfig.thisFieldRequired :null,
-                                  options: firstQuestionsList[index]
-                                      .answersList!
-                                      .map((lang) => FormBuilderFieldOption(
-                                            value: lang["value"],
-                                            child: customText3(
-                                                title: lang["name"],
-                                                color: kBlackText),
-                                          ))
-                                      .toList(growable: false),
-                                  controlAffinity: ControlAffinity.trailing,
+
+                    if (state is PreviousSessionsLoading) {
+                      return const Center(
+                        child: LoadingFadingCircle(),
+                      );
+                    }
+                    if (state is PreviousSessionsSuccess) {
+
+
+
+                      return SizedBox(
+                        height: context.height * 0.4,
+                        child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: state.previousAnswersModel.data!
+                              .behavioralResult!.length,
+                          itemBuilder: (context, index) {
+                            List<String> listOfString = [];
+                            dynamic allString = state.previousAnswersModel.data!
+                                .behavioralResult![index].question!.hint.toString();
+                            listOfString = [allString];
+                            listOfString = allString.split(";;");
+                            print(
+                                "***************************************************************");
+
+                            print(listOfString);
+
+
+                            print("meddddddddd ${state.previousAnswersModel.data!.behavioralResult![index].patientAnswers?.first.toString()}");
+                            return Column(
+                              children: [
+                                Center(
+                                  child:     state.previousAnswersModel.data!.behavioralResult![index].question!.videoFile == null
+                                      ? const SizedBox.shrink()
+                                      : Container(
+                                    margin: const EdgeInsets.symmetric(vertical: 8),
+                                    width: context.width * 0.8,
+                                    height: context.height * 0.25,
+                                    child: VideoItems(
+                                      videoPlayerController:
+                                      VideoPlayerController.network(
+                                        "http://dev-sas.cpt-it.com/api/" +
+                                            state.previousAnswersModel.data!.behavioralResult![index].question!.videoFile.toString(),
+                                      ),
+                                    ),
+                                  ),
+
+
+
                                 ),
-                              ),
-                            ),
-                          ],
+
+                                state.previousAnswersModel.data!.behavioralResult![index].question!.hint==null ? const SizedBox.shrink():
+
+
+                                SizedBox(
+                                    height: context.height * 0.08,
+                                    child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: listOfString.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            decoration: BoxDecoration(
+                                                color: kSkyLightColor,
+
+                                                borderRadius: BorderRadius.circular(8)                                ),
+                                            margin: const EdgeInsets.symmetric(horizontal:4,),
+                                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                                            height: context.height * 0.08,
+
+                                            child: Center(
+                                              child: customText4(title:listOfString[index] , color: kBlackText),
+                                            ),
+
+                                          );
+                                        }
+                                    )),
+                              ],
+                            );
+                          },
                         ),
                       );
-                    },
-                  ),
+                    }
+                    if (state is PreviousSessionsError) {
+                      return Text(state.msg);
+                    }
+                    return const SizedBox();
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        buildColumn(context.height, context.width,
-                            curve: false,
-                            head: "عدد أسئلة القسم المعرفى",
-                            answer: "1"),
-                        buildColumn(context.height, context.width,
-                            curve: false,
-                            head: "الإجابات الصحيحة",
-                            answer: "2"),
-                        buildColumnWithImage(context.height, context.width,
-                            head: "عرض الفيديو الخاص بالمريض (القسم السلوكى )",
-                            curve: false,
-                            onTap: () {}),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            buildColumn(context.height, context.width,
-                                curve: false,
-                                head: "التقيمات",
-                                answer: "تقييم المستوى فى الجلسة الحالية"),
-                            buildColumn(context.height, context.width,
-                                curve: false,
-                                head: "تقيم المريض لذاتة",
-                                answer: "2"),
-                            buildColumn(context.height, context.width,
-                                curve: false,
-                                head: "تقيم الأخصائي للمريض",
-                                answer: "2"),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
 
-                          children: [
-                            buildBoxAnswers(answers: "التقييم المتوقع للجلسة القادمة"),
-                            buildBoxAnswers(answers: "2"),
-                            buildBoxAnswers(answers: "8"),
-                          ],
+
+
+
+                if (sessionNumber != null)  BlocConsumer<PreviousSessionsCubit, PreviousSessionsState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is PreviousSessionsLoading) {
+                      return const Center(
+                        child: LoadingFadingCircle(),
+                      );
+                    }
+                    if (state is PreviousSessionsSuccess) {
+                      return  Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Center(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              buildColumn(context.height, context.width,
+                                  curve: false,
+                                  head: "عدد أسئلة القسم المعرفى",
+                                  answer: state.previousAnswersModel.data!.conclution!.totalCognitiveQuestions!.toString()),
+                              buildColumn(context.height, context.width,
+                                  curve: false,
+                                  head: "الإجابات الصحيحة",
+                                  answer:  state.previousAnswersModel.data!.conclution!.correctCognitiveAnswers.toString()),
+                              buildColumnWithImage(context.height, context.width,
+                                  head: "عرض الفيديو الخاص بالمريض (القسم السلوكى )",
+                                  curve: false,
+                                  onTap: () {
+
+                                    showAlertDialogVideo(context, Container(
+                                      margin: const EdgeInsets.symmetric(vertical: 8),
+                                      width: context.width * 0.8,
+                                      height: context.height * 0.25,
+                                      child: Card(
+                                        child: VideoItems(
+                                          videoPlayerController:
+                                          VideoPlayerController.network(
+                                            "http://dev-sas.cpt-it.com/api/" +
+                                                state.previousAnswersModel.data!.conclution!.answerdVideo!.toString(),
+                                          ),
+                                        ),
+                                      ),
+                                    ));
+
+
+                                  }),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
+                      );
+                    }
+                    if (state is PreviousSessionsError) {
+                      return Text(state.msg);
+                    }
+                    return const SizedBox();
+                  },
                 ),
-                MediaButton(
-                    onPressed: () {
-                      navigateTo(context, const HomeTabScreen());
-                    },
-                    title: "متابعة"),
+                if (sessionNumber != null)  BlocConsumer<PreviousSessionsCubit, PreviousSessionsState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is PreviousSessionsLoading) {
+                      return const Center(
+                        child: LoadingFadingCircle(),
+                      );
+                    }
+                    if (state is PreviousSessionsSuccess) {
+                      return  Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  buildColumn(context.height, context.width,
+                                      curve: false,
+                                      head: "التقيمات",
+                                      answer: "تقييم المستوى فى الجلسة الحالية",
+
+
+                                  ),
+
+                                  buildColumn(context.height, context.width,
+                                      curve: false,
+                                      head: "تقيم المريض لذاتة",
+                                      answer: "${state.previousAnswersModel.data!.currentEvalution!.patientRank!.toInt()}",
+
+
+                                  ),
+                                  buildColumn(context.height, context.width,
+                                      curve: false,
+                                      head: "تقيم الأخصائي للمريض",
+                                      answer: "${state.previousAnswersModel.data!.currentEvalution!.specialistRank!.toInt()}",
+
+
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+
+                                children: [
+                                  buildBoxAnswers(
+                                      answers: "التقييم المتوقع للجلسة القادمة"),
+                                  buildBoxAnswers(answers: "${state.previousAnswersModel.data!.nextEvalution!.patientRank!.toInt()}"),
+                                  buildBoxAnswers(answers: "${state.previousAnswersModel.data!.nextEvalution!.specialistRank!.toInt()}"),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ) ;
+                    }
+                    if (state is PreviousSessionsError) {
+                      return Text(state.msg);
+                    }
+                    return const SizedBox();
+                  },
+                ),
+
+
+
+
+
                 SizedBox(
                   height: context.height * 0.1,
                 )
-              ]),
+              ]);
+            },
+          ),
         ),
       ),
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   Widget buildContainerIndex(double width, double height,
       {required int index}) {
@@ -334,7 +460,7 @@ class _ResultsPreviousTreatmentSessionsState
     );
   }
 
-  Widget buildBoxAnswers({required String answers}){
+  Widget buildBoxAnswers({required String answers}) {
     return Container(
       height: context.height * 0.1,
       width: context.width * 0.3,
@@ -365,7 +491,7 @@ class _ResultsPreviousTreatmentSessionsState
             // borderRadius: BorderRadius.only(topLeft: Radius.circular(8),bottomLeft:  Radius.circular(8),)
           ),
           child: Center(
-            child: customText10(title: head, color: kHomeColor),
+            child: custom12Text(title: head, color: kHomeColor),
           ),
         ),
         Container(
@@ -399,7 +525,7 @@ class _ResultsPreviousTreatmentSessionsState
   }
 
   Widget buildColumn(double height, double width,
-      {required bool curve, required String head, required String answer}) {
+      {required bool curve, required String head, required String answer, String? answer2}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -415,7 +541,7 @@ class _ResultsPreviousTreatmentSessionsState
                     )
                   : null),
           child: Center(
-            child: customText10(title: head, color: kHomeColor),
+            child: custom12Text(title: head, color: kHomeColor),
           ),
         ),
         Container(
@@ -431,11 +557,58 @@ class _ResultsPreviousTreatmentSessionsState
             child: customText3(title: answer, color: kBlackText),
           ),
         ),
-
       ],
     );
   }
-
+  Widget buildColumnWithAnswer(double height, double width,
+      {required bool curve, required String head, required String answer, required String answer2}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: context.height * 0.1,
+          width: context.width * 0.3,
+          decoration: BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: curve
+                  ? const BorderRadius.only(
+                topRight: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              )
+                  : null),
+          child: Center(
+            child: custom12Text(title: head, color: kHomeColor),
+          ),
+        ),
+        Container(
+          height: context.height * 0.1,
+          width: context.width * 0.3,
+          decoration: const BoxDecoration(
+              color: kAppBarColor,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              )),
+          child: Center(
+            child: customText3(title: answer, color: kBlackText),
+          ),
+        ),
+        Container(
+          height: context.height * 0.1,
+          width: context.width * 0.3,
+          decoration: const BoxDecoration(
+              color: kAppBarColor,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              )),
+          child: Center(
+            child: customText3(title: answer2, color: kBlackText),
+          ),
+        ),
+      ],
+    );
+  }
   Widget answerQuestionTitle(
       {required String title, required String subtitle}) {
     return Container(

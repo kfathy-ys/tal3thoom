@@ -24,6 +24,9 @@ class PolicyAndPrivacy extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: context.height * 0.04,
+            ),
             FadeInUpBig(child: Image.asset("assets/images/personal information.png")),
 
 

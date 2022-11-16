@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
+import 'package:tal3thoom/screens/widgets/video_items.dart';
 
 const kPrimaryColor = Color(0xFF2471D4);
 
@@ -251,6 +252,20 @@ void showAlertDialog(BuildContext context, VoidCallback onTap) {
                   },
                   child: const Text("no")),
             ],
+          ));
+}
+void showAlertDialogVideo(BuildContext context, Widget video) {
+  showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+
+            content:Container(
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              width: context.width * 0.8,
+              height: context.height * 0.25,
+              child: video
+            )
+
           ));
 }
 

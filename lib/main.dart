@@ -29,6 +29,7 @@ import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_payment/cub
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/cubit/diagnostic_ssi4_first_cubit.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/cubit/available_dates_cubit.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/resevation_diagnostic/page/all_specialists/cubit/diangosic_specialists_cubit.dart';
+import 'screens/drawer/page/previous_treatment_sessions/cubit/previous_sessions_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/evaluation_section/cubit/evaluation_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_cognitive_session/cubit/cognitive_section_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/first_session/first_payment_treatment/cubit/first_payment_cubit.dart';
@@ -216,8 +217,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AllSpecialistSecondSessionsCubit>(
           create: (context) => AllSpecialistSecondSessionsCubit(),
-        ), BlocProvider<DataAccessPermissionCubit>(
+        ),
+
+        BlocProvider<DataAccessPermissionCubit>(
           create: (context) => DataAccessPermissionCubit(),
+        ),  BlocProvider<PreviousSessionsCubit>(
+          create: (context) => PreviousSessionsCubit(),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
