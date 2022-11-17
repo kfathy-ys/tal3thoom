@@ -28,8 +28,6 @@ class InductionDiagnostic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -101,37 +99,54 @@ class InductionDiagnostic extends StatelessWidget {
                                 .payment ==
                             false) {
                           Get.offAll(() => const DiagnosticPaymentScreen());
-                        } else {
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .caseHistory ==
-                              false) {
-                            Get.offAll(() => const DiagnosticHistory());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .oases ==
-                              false) {
-                            Get.offAll(() => const DiagnosticOasesTest());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .ssrs ==
-                              false) {
-                            Get.offAll(() => const SSRSDiagnosticsScreen());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .ssi4 ==
-                              false) {
-                            Get.offAll(() => const DiagnosticSSI4());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .booking ==
-                              false) {
-                            Get.offAll(() => ReservationDiagnostic());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .closeBooking ==
-                              true) {
-                            Get.offAll(() => const FirstTreatmentInduction());
-                          }
+                        }
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .payment ==
+                                true &&
+                            state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .caseHistory ==
+                                false) {
+                          Get.offAll(() => const DiagnosticHistory());
+                        }
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .caseHistory ==
+                                true &&
+                            state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .oases ==
+                                false) {
+                          Get.offAll(() => const DiagnosticOasesTest());
+                        }
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .oases ==
+                                true &&
+                            state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .ssrs ==
+                                false) {
+                          Get.offAll(() => const SSRSDiagnosticsScreen());
+                        }
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .ssrs ==
+                                true &&
+                            state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .ssi4 ==
+                                false) {
+                          Get.offAll(() => const DiagnosticSSI4());
+                        }
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .ssi4 ==
+                                true &&
+                            state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .booking ==
+                                false) {
+                          Get.offAll(() => ReservationDiagnostic());
+                        }
+                        if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .booking ==
+                                true &&
+                            state.accessPermissionModel.data!.stagesDiagnosis!
+                                    .closeBooking ==
+                                true) {
+                          Get.offAll(() => const FirstTreatmentInduction());
                         }
                       },
                       title: KeysConfig.next,

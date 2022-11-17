@@ -46,7 +46,7 @@ class _GameOverState extends State<GameOver> {
             ),
             customText4(
                 title:
-                "لقد اتممت الجلسلات العلاجية بنجاح \n Game IS Over  ",
+                "لقد اتممت الجلسلات العلاجية بنجاح \n Game Over  ",
                 color: kBlackText),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),

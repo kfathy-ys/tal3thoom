@@ -30,11 +30,11 @@ class MyHomeScreen extends StatelessWidget {
         children: [
           FadeInUpBig(child: Image.asset("assets/images/main_page.png", fit: BoxFit.fill)),
           Positioned(
-              top: 190,
-              right: 80,
+              top: context.height*0.3,
+              right: context.width*0.2,
               child: SizedBox(
                   //color: Colors.pinkAccent,
-                  height: context.height * 0.12,
+                  height: context.height * 0.11,
                   width: context.width * 0.2,
                   child: InkWell(
                       onTap: () {
@@ -45,11 +45,11 @@ class MyHomeScreen extends StatelessWidget {
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: 190,
-              right: 200,
+              top: context.height*0.3,
+              left: context.width*0.2,
               child: SizedBox(
                   //color: Colors.pinkAccent,
-                  height: context.height * 0.12,
+                  height: context.height * 0.11,
                   width: context.width * 0.2,
                   child: InkWell(
                       onTap: () {
@@ -59,11 +59,11 @@ class MyHomeScreen extends StatelessWidget {
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: 280,
-              right: 100,
+              top: context.height*0.46,
+              right: context.width*0.25,
               child: SizedBox(
                   // color: Colors.pinkAccent,
-                  height: context.height * 0.12,
+                  height: context.height * 0.08,
                   width: context.width * 0.43,
                   child: InkWell(
                       onTap: () {
@@ -73,11 +73,11 @@ class MyHomeScreen extends StatelessWidget {
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: 370,
-              right: 100,
+              top: context.height*0.6,
+              right: context.width*0.25,
               child: SizedBox(
                   //color: Colors.pinkAccent,
-                  height: context.height * 0.12,
+                  height: context.height * 0.08,
                   width: context.width * 0.43,
                   child: InkWell(
                       onTap: () {

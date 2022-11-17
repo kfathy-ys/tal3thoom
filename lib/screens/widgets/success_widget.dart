@@ -28,19 +28,17 @@ class SuccessViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+
     return Container(
       height: context.height,
       width: context.width,
       color: kHomeColor,
       child: Column(children: [
         SizedBox(
-          height: context.height * 0.3,
+          height: context.height * 0.1,
         ),
         customText7(
             title: title1,
-            //"لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
             color: kBlackText),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 10),

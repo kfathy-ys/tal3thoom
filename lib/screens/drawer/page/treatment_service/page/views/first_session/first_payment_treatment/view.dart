@@ -36,8 +36,9 @@ import 'cubit/first_payment_cubit.dart';
 
 // ignore: must_be_immutable
 class FirstPaymentTreatment extends StatelessWidget {
-   FirstPaymentTreatment({Key? key}) : super(key: key);
+  FirstPaymentTreatment({Key? key}) : super(key: key);
   var userId = Prefs.getString("userId");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,197 +64,308 @@ class FirstPaymentTreatment extends StatelessWidget {
                 width: context.width,
                 color: kHomeColor,
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      CustomTileContainer(
-                          widthh: context.width / 2.5,
-                          title: KeysConfig.payment,
-                          context: context),
-                      const AlertMessageToWait(),
-                      PaymentCard(
-                          price: state.firstPaymentModel.data!
-                                  .treatmentSubscriptions![0].price!
-                                  .toString() +
-                              "ريال ",
-                          onTapPay: () {
-                            navigateTo(
-                                context,
-                                 WebView(
-                                  javascriptMode: JavascriptMode.unrestricted,
-                                  initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
-                                ));
-                            print("object1");
-                          },
-                          description: state.firstPaymentModel.data!
-                              .treatmentSubscriptions![0].title!),
-                      PaymentCard(
-                          price: state.firstPaymentModel.data!
-                                  .treatmentSubscriptions![1].price!
-                                  .toString() +
-                              "ريال ",
-                          onTapPay: () {
-                            navigateTo(
-                                context,
-                                 WebView(
-                                  javascriptMode: JavascriptMode.unrestricted,
-                                  initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
-                                ));
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      cubit.getFirstPayment();
+                      BlocProvider.of<DataAccessPermissionCubit>(
+                          context).getAccessPermission();
+                      return Future<void>.delayed(
+                          const Duration(seconds: 3));
+                    },
+                    backgroundColor: kPrimaryColor,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        CustomTileContainer(
+                            widthh: context.width / 2.5,
+                            title: KeysConfig.payment,
+                            context: context),
+                        const AlertMessageToWait(),
+                        PaymentCard(
+                            price: state.firstPaymentModel.data!
+                                    .treatmentSubscriptions![0].price!
+                                    .toString() +
+                                "ريال ",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                        "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
+                                  ));
+                              print("object1");
+                            },
+                            description: state.firstPaymentModel.data!
+                                .treatmentSubscriptions![0].title!),
+                        PaymentCard(
+                            price: state.firstPaymentModel.data!
+                                    .treatmentSubscriptions![1].price!
+                                    .toString() +
+                                "ريال ",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                        "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
+                                  ));
 
-                            print("object2");
-                          },
-                          description: state.firstPaymentModel.data!
-                              .treatmentSubscriptions![1].title!),
-                      PaymentCard(
-                          price: state.firstPaymentModel.data!
-                                  .treatmentSubscriptions![2].price!
-                                  .toString() +
-                              " ريال",
-                          onTapPay: () {
-                            navigateTo(
-                                context,
-                                 WebView(
-                                  javascriptMode: JavascriptMode.unrestricted,
-                                  initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
-                                ));
-                            print("object3");
-                          },
-                          description: state.firstPaymentModel.data!
-                              .treatmentSubscriptions![2].title!),
-                      const AlertMessageToPay(),
-                      state is! FirstPaymentLoading
-                          ? BlocConsumer<DataAccessPermissionCubit,
-                              DataAccessPermissionState>(
-                              listener: (context, state) {
-                                // TODO: implement listener
-                              },
-                              builder: (context, state) {
-                                if (state is DataAccessPermissionLoading) {
-                                  return const LoadingFadingCircle();
-                                }
-                                if (state is DataAccessPermissionSuccess) {
-                                  return MediaButton(
-                                    onPressed: () {
-                                      if (state.accessPermissionModel.data!.stagesTreatment!
-                                          .paymentTreatmentOne ==
-                                          false) {
-
-
-
-                                        Alert.error("الرجاء إتمام عملية الدفع",
-                                            desc:
-                                            "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-
-
-
-
-                                      } else {
-                                        if (state.accessPermissionModel.data!
-                                            .stagesTreatment!.preTreatment ==
+                              print("object2");
+                            },
+                            description: state.firstPaymentModel.data!
+                                .treatmentSubscriptions![1].title!),
+                        PaymentCard(
+                            price: state.firstPaymentModel.data!
+                                    .treatmentSubscriptions![2].price!
+                                    .toString() +
+                                " ريال",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                        "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
+                                  ));
+                              print("object3");
+                            },
+                            description: state.firstPaymentModel.data!
+                                .treatmentSubscriptions![2].title!),
+                        const AlertMessageToPay(),
+                        state is! FirstPaymentLoading
+                            ? BlocConsumer<DataAccessPermissionCubit,
+                                DataAccessPermissionState>(
+                                listener: (context, state) {
+                                  // TODO: implement listener
+                                },
+                                builder: (context, state) {
+                                  if (state is DataAccessPermissionLoading) {
+                                    return const LoadingFadingCircle();
+                                  }
+                                  if (state is DataAccessPermissionSuccess) {
+                                    return MediaButton(
+                                      onPressed: () {
+                                        if (state
+                                                .accessPermissionModel
+                                                .data!
+                                                .stagesTreatment!
+                                                .paymentTreatmentOne ==
                                             false) {
+                                          Alert.error("الرجاء إتمام عملية الدفع",
+                                              desc:
+                                                  "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+                                        }
+
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatment!
+                                                    .paymentTreatmentOne ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatment!
+                                                    .preTreatment ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              const PretreatmentQuestionnaire());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatment!
+                                                    .preTreatment ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .sessions ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              const FirstTreatmentSession());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .sessions ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .oases ==
+                                                false) {
                                           Get.offAll(
-                                                  () => const PretreatmentQuestionnaire());
+                                              () => const FirstStageOasesTest());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .oases ==
+                                                true &&
+                                            state.accessPermissionModel.data!
+                                                    .stagesTreatmentFirst!.ssrs ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              const FirstStageSSRSTreatmentScreen());
                                         }
                                         if (state.accessPermissionModel.data!
-                                            .stagesTreatmentFirst!.sessions ==
-                                            false) {
-                                          Get.offAll(() => const FirstTreatmentSession());
-                                        }
-                                        if (state.accessPermissionModel.data!
-                                            .stagesTreatmentFirst!.oases ==
-                                            false) {
-                                          Get.offAll(() => const FirstStageOasesTest());
-                                        }
-                                        if (state.accessPermissionModel.data!
-                                            .stagesTreatmentFirst!.ssrs ==
-                                            false) {
-                                          Get.offAll(
-                                                  () => const FirstStageSSRSTreatmentScreen());
-                                        }
-                                        if (state.accessPermissionModel.data!
-                                            .stagesTreatmentFirst!.ssi4 ==
-                                            false) {
+                                                    .stagesTreatmentFirst!.ssrs ==
+                                                true &&
+                                            state.accessPermissionModel.data!
+                                                    .stagesTreatmentFirst!.ssi4 ==
+                                                false) {
                                           Get.offAll(() => const TreatmentSSI4());
                                         }
                                         if (state.accessPermissionModel.data!
-                                            .stagesTreatmentFirst!.booking ==
-                                            false) {
+                                                    .stagesTreatmentFirst!.ssi4 ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .booking ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              FirstStageTreatmentReservation());
+                                        }
+
+                                        ///////////////////////////////////////
+
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .closeBooking ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatment!
+                                                    .paymentTreatmentTwo ==
+                                                false) {
                                           Get.offAll(
-                                                  () => FirstStageTreatmentReservation());
+                                              () => FirstPaymentTreatment());
                                         }
-                                      }
 
-                                      if (state.accessPermissionModel.data!
-                                          .stagesTreatmentFirst!.closeBooking ==
-                                          true) {
-
-                                        if (state.accessPermissionModel.data!
-                                            .stagesTreatment!.paymentTreatmentTwo ==
-                                            false) {
-
-
-
-
-                                          Alert.error("الرجاء إتمام عملية الدفع",
-                                              desc:
-                                              "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-
-
-                                        } else {
-                                          if (state.accessPermissionModel.data!
-                                              .stagesTreatmentSecond!.sessions ==
-                                              false) {
-                                            Get.offAll(
-                                                    () => const SecondTreatmentSession());
-                                          }
-                                          if (state.accessPermissionModel.data!
-                                              .stagesTreatmentSecond!.oases ==
-                                              false) {
-                                            Get.offAll(() => const SecondStageOasesTest());
-                                          }
-                                          if (state.accessPermissionModel.data!
-                                              .stagesTreatmentSecond!.ssrs ==
-                                              false) {
-                                            Get.offAll(() =>
-                                            const SecondStageSSRSTreatmentScreen());
-                                          }
-                                          if (state.accessPermissionModel.data!
-                                              .stagesTreatmentSecond!.ssi4 ==
-                                              false) {
-                                            Get.offAll(() => const SecondTreatmentSSI4());
-                                          }
-                                          if (state.accessPermissionModel.data!
-                                              .stagesTreatmentSecond!.booking ==
-                                              false) {
-                                            Get.offAll(
-                                                    () => SecondStageTreatmentReservation());
-                                          }
-                                          if (state.accessPermissionModel.data!
-                                              .stagesTreatmentSecond!.closeBooking ==
-                                              true) {
-                                            ///TODO:: Game Over Page
-                                            Get.offAll(
-                                                    () => const GameOver());
-                                          }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatment!
+                                                    .paymentTreatmentTwo ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .closeBooking ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .sessions ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              const SecondTreatmentSession());
                                         }
-                                      }
-                                    },
-                                    title: KeysConfig.next,
-                                  );                                }
-                                if (state is DataAccessPermissionError) {
-                                  return Text(state.msg);
-                                }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .sessions ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .oases ==
+                                                false) {
+                                          Get.offAll(
+                                              () => const SecondStageOasesTest());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .oases ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .ssrs ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              const SecondStageSSRSTreatmentScreen());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .ssrs ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .ssi4 ==
+                                                false) {
+                                          Get.offAll(
+                                              () => const SecondTreatmentSSI4());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .ssi4 ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .booking ==
+                                                false) {
+                                          Get.offAll(() =>
+                                              SecondStageTreatmentReservation());
+                                        }
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .booking ==
+                                                true &&
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentSecond!
+                                                    .closeBooking ==
+                                                true) {
+                                          Get.offAll(() => const GameOver());
+                                        }
+                                      },
+                                      title: KeysConfig.next,
+                                    );
+                                  }
+                                  if (state is DataAccessPermissionError) {
+                                    return Text(state.msg);
+                                  }
 
-                                return const SizedBox();
-                              },
-                            )
-                          : const LoadingFadingCircleSmall(),
-                      SizedBox(
-                        height: context.height * 0.2,
-                      )
-                    ],
+                                  return const SizedBox();
+                                },
+                              )
+                            : const LoadingFadingCircleSmall(),
+                        SizedBox(
+                          height: context.height * 0.2,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

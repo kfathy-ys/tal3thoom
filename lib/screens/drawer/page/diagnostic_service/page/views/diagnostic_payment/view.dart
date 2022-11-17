@@ -42,9 +42,7 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    BlocProvider.of<DataAccessPermissionCubit>(
-        context).getAccessPermission();
+    BlocProvider.of<DataAccessPermissionCubit>(context).getAccessPermission();
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -65,159 +63,219 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                 height: context.height,
                 width: context.width,
                 color: kHomeColor,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      CustomTileContainer(
-                          widthh: context.width / 2.5,
-                          title: KeysConfig.payment,
-                          context: context),
-                      const AlertMessageToWait(),
-                      PaymentCard(
-                          price: state.firstPaymentModel.data!
-                                  .diagnosisSubscriptions![0].price!
-                                  .toString() +
-                              " ريال",
-                          onTapPay: () {
-                            navigateTo(
-                                context,
-                                 WebView(
-                                  javascriptMode: JavascriptMode.unrestricted,
-                                  initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
-                                ));
-                            print("object1");
-                          },
-                          description: state.firstPaymentModel.data!
-                              .diagnosisSubscriptions![0].title!),
-                      PaymentCard(
-                          price: state.firstPaymentModel.data!
-                                  .diagnosisSubscriptions![1].price!
-                                  .toString() +
-                              " ريال",
-                          onTapPay: () {
-                            navigateTo(
-                                context,
-                                 WebView(
-                                  javascriptMode: JavascriptMode.unrestricted,
-                                  initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
-                                ));
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                  cubit.getDiagnosticPayment();
+                  BlocProvider.of<DataAccessPermissionCubit>(
+                      context).getAccessPermission();
+                    return Future<void>.delayed(
+                        const Duration(seconds: 3));
+                  },
+                  backgroundColor: kPrimaryColor,
+                  color: Colors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        CustomTileContainer(
+                            widthh: context.width / 2.5,
+                            title: KeysConfig.payment,
+                            context: context),
+                        const AlertMessageToWait(),
+                        PaymentCard(
+                            price: state.firstPaymentModel.data!
+                                    .diagnosisSubscriptions![0].price!
+                                    .toString() +
+                                " ريال",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                        "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
+                                  ));
+                              print("object1");
+                            },
+                            description: state.firstPaymentModel.data!
+                                .diagnosisSubscriptions![0].title!),
+                        PaymentCard(
+                            price: state.firstPaymentModel.data!
+                                    .diagnosisSubscriptions![1].price!
+                                    .toString() +
+                                " ريال",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                        "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
+                                  ));
 
-                            print("object2");
-                          },
-                          description: state.firstPaymentModel.data!
-                              .diagnosisSubscriptions![1].title!),
-                      PaymentCard(
-                          price: state.firstPaymentModel.data!
-                                  .diagnosisSubscriptions![2].price!
-                                  .toString() +
-                              " ريال",
-                          onTapPay: () {
-                            navigateTo(
-                                context,
-                                 WebView(
-                                  javascriptMode: JavascriptMode.unrestricted,
-                                  initialUrl:
-                                      "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
-                                ));
-                            print("object3");
-                          },
-                          description: state.firstPaymentModel.data!
-                              .diagnosisSubscriptions![2].title!),
-                      const AlertMessageToPay(),
-                      state is! DiagnosticPaymentLoading
-                          ? BlocConsumer<DataAccessPermissionCubit,
-                              DataAccessPermissionState>(
-                              listener: (context, state) {
-                                // TODO: implement listener
-                              },
-                              builder: (context, state) {
-                                final checkPay =
-                                    BlocProvider.of<DataAccessPermissionCubit>(
-                                        context);
+                              print("object2");
+                            },
+                            description: state.firstPaymentModel.data!
+                                .diagnosisSubscriptions![1].title!),
+                        PaymentCard(
+                            price: state.firstPaymentModel.data!
+                                    .diagnosisSubscriptions![2].price!
+                                    .toString() +
+                                " ريال",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                        "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
+                                  ));
+                              print("object3");
+                            },
+                            description: state.firstPaymentModel.data!
+                                .diagnosisSubscriptions![2].title!),
+                        const AlertMessageToPay(),
+                        state is! DiagnosticPaymentLoading
+                            ? BlocConsumer<DataAccessPermissionCubit,
+                                DataAccessPermissionState>(
+                                listener: (context, state) {
+                                  // TODO: implement listener
+                                },
+                                builder: (context, state) {
+                                  final checkPay =
+                                      BlocProvider.of<DataAccessPermissionCubit>(
+                                          context);
 
-                                if (state is DataAccessPermissionLoading) {
-                                  return const LoadingFadingCircle();
-                                }
-                                if (state is DataAccessPermissionSuccess) {
-                                  return CustomButton(
-                                      onPressed: () {
-                                        cubit.getDiagnosticPayment();
-                                        // if (state.firstPaymentModel.data!.subscriptionStages!.isEmpty) {
-                                        //   //   print(diagnosticPaymentModel?.data![0]);
-                                        //   //  print(diagnosticPaymentModel?.data!.contains(1)==true);
-                                        //   print("اللسته فااااااااااااااضية");
-                                        //
-                                        //   Alert.error("الرجاء إتمام عملية الدفع",
-                                        //       desc:
-                                        //       "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-                                        //   Get.to(() => const FirstPaymentTreatment());
-                                        // } else if ((state.firstPaymentModel.data!.subscriptionStages!.contains(2)) == true ||
-                                        //     (state.firstPaymentModel.data!.subscriptionStages!.contains(4)) == true) {
-                                        //   print("دفع الجستان 2 و 4 ");
-                                        //   Alert.success("تم العملية بنجاح",
-                                        //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
-                                        //   Get.off(() => const PretreatmentQuestionnaire());
-                                        // } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true) {
-                                        //   print("دف الجلسة التشخصية فقط ");
-                                        //   Alert.success("تم العملية بنجاح",
-                                        //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
-                                        //   Get.off(() => const DiagnosticHistory());
-                                        // } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true &&
-                                        //     state.firstPaymentModel.data!.subscriptionStages!.contains(2) == true &&
-                                        //     state.firstPaymentModel.data!.subscriptionStages!.contains(4) == true) {
-                                        //   print("دفع كل الباقات يباشا");
-                                        //
-                                        //   Alert.success("تم العملية بنجاح",
-                                        //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
-                                        //   Get.to(() => const DiagnosticHistory());
-                                        // } else {
-                                        //   print("خلية يروح يدفع");
-                                        //
-                                        //   Alert.error("الرجاء إتمام عملية الدفع",
-                                        //       desc:
-                                        //       "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-                                        // }
+                                  if (state is DataAccessPermissionLoading) {
+                                    return const LoadingFadingCircle();
+                                  }
+                                  if (state is DataAccessPermissionSuccess) {
+                                    return CustomButton(
+                                        onPressed: () {
+                                          cubit.getDiagnosticPayment();
+                                          // if (state.firstPaymentModel.data!.subscriptionStages!.isEmpty) {
+                                          //   //   print(diagnosticPaymentModel?.data![0]);
+                                          //   //  print(diagnosticPaymentModel?.data!.contains(1)==true);
+                                          //   print("اللسته فااااااااااااااضية");
+                                          //
+                                          //   Alert.error("الرجاء إتمام عملية الدفع",
+                                          //       desc:
+                                          //       "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+                                          //   Get.to(() => const FirstPaymentTreatment());
+                                          // } else if ((state.firstPaymentModel.data!.subscriptionStages!.contains(2)) == true ||
+                                          //     (state.firstPaymentModel.data!.subscriptionStages!.contains(4)) == true) {
+                                          //   print("دفع الجستان 2 و 4 ");
+                                          //   Alert.success("تم العملية بنجاح",
+                                          //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
+                                          //   Get.off(() => const PretreatmentQuestionnaire());
+                                          // } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true) {
+                                          //   print("دف الجلسة التشخصية فقط ");
+                                          //   Alert.success("تم العملية بنجاح",
+                                          //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
+                                          //   Get.off(() => const DiagnosticHistory());
+                                          // } else if (state.firstPaymentModel.data!.subscriptionStages!.contains(1) == true &&
+                                          //     state.firstPaymentModel.data!.subscriptionStages!.contains(2) == true &&
+                                          //     state.firstPaymentModel.data!.subscriptionStages!.contains(4) == true) {
+                                          //   print("دفع كل الباقات يباشا");
+                                          //
+                                          //   Alert.success("تم العملية بنجاح",
+                                          //       desc: "تم عملية الدفع المسبقة بشكل صحيح");
+                                          //   Get.to(() => const DiagnosticHistory());
+                                          // } else {
+                                          //   print("خلية يروح يدفع");
+                                          //
+                                          //   Alert.error("الرجاء إتمام عملية الدفع",
+                                          //       desc:
+                                          //       "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+                                          // }
 
-                                        if(state.accessPermissionModel.data!.stagesDiagnosis!.payment == false){
-                                          Alert.error("الرجاء إتمام عملية الدفع",
-                                              desc:
-                                              "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-
-                                        }else{
-                                          if(state.accessPermissionModel.data!.stagesDiagnosis!.caseHistory == false){
-                                            Get.offAll(() => const DiagnosticHistory());
-                                          }if(state.accessPermissionModel.data!.stagesDiagnosis!.oases == false){
-                                            Get.offAll(() => const DiagnosticOasesTest());
-                                          }if(state.accessPermissionModel.data!.stagesDiagnosis!.ssrs == false){
-                                            Get.offAll(() => const SSRSDiagnosticsScreen());
-                                          }if(state.accessPermissionModel.data!.stagesDiagnosis!.ssi4 == false){
-                                            Get.offAll(() => const DiagnosticSSI4());
-                                          }if(state.accessPermissionModel.data!.stagesDiagnosis!.booking == false){
-                                            Get.offAll(() =>  ReservationDiagnostic());
-                                          }if(state.accessPermissionModel.data!.stagesDiagnosis!.closeBooking == true){
-                                            Get.offAll(() =>  const FirstTreatmentInduction());
+                                          if (state.accessPermissionModel.data!
+                                                  .stagesDiagnosis!.payment ==
+                                              false) {
+                                            Alert.error(
+                                                "الرجاء إتمام عملية الدفع",
+                                                desc:
+                                                    "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
                                           }
-                                        }
 
+                                          if (state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.payment ==
+                                                  true &&
+                                              state
+                                                      .accessPermissionModel
+                                                      .data!
+                                                      .stagesDiagnosis!
+                                                      .caseHistory ==
+                                                  false) {
+                                            Get.offAll(
+                                                () => const DiagnosticHistory());
+                                          }
+                                          if (state
+                                                      .accessPermissionModel
+                                                      .data!
+                                                      .stagesDiagnosis!
+                                                      .caseHistory ==
+                                                  true &&
+                                              state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.oases ==
+                                                  false) {
+                                            Get.offAll(() =>
+                                                const DiagnosticOasesTest());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.oases ==
+                                                  true &&
+                                              state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.ssrs ==
+                                                  false) {
+                                            Get.offAll(() =>
+                                                const SSRSDiagnosticsScreen());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.ssrs ==
+                                                  true &&
+                                              state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.ssi4 ==
+                                                  false) {
+                                            Get.offAll(
+                                                () => const DiagnosticSSI4());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.ssi4 ==
+                                                  true &&
+                                              state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.booking ==
+                                                  false) {
+                                            Get.offAll(
+                                                () => ReservationDiagnostic());
+                                          }
+                                          if (state.accessPermissionModel.data!
+                                                      .stagesDiagnosis!.booking ==
+                                                  true &&
+                                              state
+                                                      .accessPermissionModel
+                                                      .data!
+                                                      .stagesDiagnosis!
+                                                      .closeBooking ==
+                                                  true) {
+                                            Get.offAll(() =>
+                                                const FirstTreatmentInduction());
+                                          }
+                                        },
+                                        title: "متابعة العملية");
+                                  }
+                                  if (state is DataAccessPermissionError) {
+                                    return Text(state.msg);
+                                  }
 
-
-                                      },
-                                      title: "متابعة العملية");
-                                }
-                                if (state is DataAccessPermissionError) {
-                                  return Text(state.msg);
-                                }
-
-                                return const SizedBox();
-                              },
-                            )
-                          : const LoadingFadingCircleSmall(),
-                      SizedBox(
-                        height: context.height * 0.1,
-                      )
-                    ],
+                                  return const SizedBox();
+                                },
+                              )
+                            : const LoadingFadingCircleSmall(),
+                        SizedBox(
+                          height: context.height * 0.1,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
