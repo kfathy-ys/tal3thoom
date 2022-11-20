@@ -42,6 +42,8 @@ class LoginCubit extends Cubit<LoginState> {
       Prefs.setString("firstName", loginModel.data!.userName!);
       Prefs.setString("lastName", loginModel.data!.email!);
 
+
+
       log("${res.data["data"]["token"]}");
       log("${res.data["data"]["userId"]}");
 

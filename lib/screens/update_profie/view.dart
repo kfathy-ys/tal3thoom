@@ -14,6 +14,8 @@ import 'package:tal3thoom/config/keys.dart';
 import '../auth/register/page/drop_down_is_readble.dart';
 import '../auth/register/page/drop_down_six.dart';
 import '../drawer/view.dart';
+import '../home/cubit/home_tabebar_cubit.dart';
+import '../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../home/view.dart';
 import '../widgets/alerts.dart';
 import '../widgets/appBar.dart';
@@ -66,12 +68,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
               child: BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
                 listener: (context, state) {
                  if (state is UpdateProfileSuccess) {
-                  // TODO : Cached Token needed
-                   // Prefs.setString('token', state.registerModel.);
-                     //Get.offAll(() =>  LoginScreen());
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) =>  const HomeTabScreen()),
-                        (Route<dynamic> route) => false);
+                   BlocProvider.of<ProfileCubit>(context).getProfile();
+                    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
+                    Get.offAll(()=> const HomeTabScreen());
                     Alert.success('تم التعديل بنجاح');
                   } else if (state is UpdateProfileError) {
                     Alert.error(state.msg);
@@ -435,8 +434,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                               );
                             }
+
+
                           })
                           : const LoadingFadingCircle(),
+
+
+                      SizedBox(
+                        height: context.height * 0.06,
+                      ),
                     ],
                   );
 

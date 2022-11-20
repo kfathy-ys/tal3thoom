@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../../../../../home/cubit/home_tabebar_cubit.dart';
+import '../../../../../../../home/view.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
@@ -30,10 +32,7 @@ class _FirstStageAdditionalTrainingScreenState
     //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      drawer: const MenuItems(),
-      appBar: DynamicAppbar(
-          context: context,
-          press: (context) => Scaffold.of(context).openDrawer()),
+
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: context.height,
@@ -77,7 +76,9 @@ class _FirstStageAdditionalTrainingScreenState
                 ),
                 MediaButton(
                   onPressed: () {
-                 BlocProvider.of<CognitiveSectionCubit>(context).getCognitiveSection();
+                    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
+                    Get.offAll(()=> const HomeTabScreen());
+
 
                   },
                   color: kPrimaryColor,

@@ -33,10 +33,7 @@ class _SecondStageAdditionalTrainingScreenState
     //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-      drawer: const MenuItems(),
-      appBar: DynamicAppbar(
-          context: context,
-          press: (context) => Scaffold.of(context).openDrawer()),
+
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: context.height,

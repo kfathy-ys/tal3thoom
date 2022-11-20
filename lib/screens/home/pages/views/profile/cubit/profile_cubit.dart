@@ -2,9 +2,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
+import 'package:get/get.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
+import '../../../../../auth/login/view.dart';
 import '../../../../../widgets/alerts.dart';
 import '../models/profile_model.dart';
 
@@ -19,6 +21,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final phoneController = TextEditingController();
 
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final dadNameController = TextEditingController();
   final familyNameControlller = TextEditingController();
   final countryPhoneCode = TextEditingController();
@@ -95,6 +98,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   String onSexTypeChanged(String value) => typeSexId = value;
   String? typeReadId;
   String onReadTypeChanged(String value) => typeReadId = value;
+
+
+
   Future<void> updateProfile({
     required int id,
     required String firstName,
@@ -147,4 +153,9 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileError(msg: e.toString()));
     }
   }
+
+
+
+
+
 }

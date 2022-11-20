@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:queen/validation.dart';
 import 'package:tal3thoom/config/keys.dart';
+import '../../../../auth/delete_account/view.dart';
 import '../../../../auth/register/cubit/register_cubit.dart';
 import '../../../../update_profie/view.dart';
 import '../../../../widgets/constants.dart';
@@ -53,6 +54,9 @@ class _ProfileState extends State<Profile> {
           child: SingleChildScrollView(
             child: BlocConsumer<ProfileCubit, ProfileState>(
               listener: (context, state) {
+
+
+
 
               },
               builder: (context, state) {
@@ -256,36 +260,7 @@ class _ProfileState extends State<Profile> {
                             );
                           },
                         ),
-                        // CustomTextField(
-                        //   read: true,
-                        //
-                        //   dIcon: Icons.male_outlined,
-                        //   label: KeysConfig.sex,
-                        //   hint: KeysConfig.sex,
-                        //   controller: cubit.sexController
-                        //     ..text = Prefs.getString('gender'),
-                        //   validator: qValidator(
-                        //     [
-                        //       IsRequired(KeysConfig.sex),
-                        //       MaxLength(30),
-                        //     ],
-                        //   ),
-                        //   type: TextInputType.text,
-                        // ),
-                        // CustomTextField(
-                        //   isEdit: true,
-                        //   dIcon: Icons.real_estate_agent,
-                        //   label: KeysConfig.countryResidence,
-                        //   hint: KeysConfig.countryResidence,
-                        //   controller: _countryController,
-                        //   validator: qValidator(
-                        //     [
-                        //       IsRequired(KeysConfig.countryResidence),
-                        //       MaxLength(30),
-                        //     ],
-                        //   ),
-                        //   type: TextInputType.streetAddress,
-                        // ),
+
                         CustomTextField(
                           read: true,
                           dIcon: Icons.work_history_outlined,
@@ -326,12 +301,24 @@ class _ProfileState extends State<Profile> {
                                       ));
                                 })
                             : const LoadingFadingCircle(),
+
+
+                        GestureDetector(
+
+                            onTap: ()=>Get.to(()=>const DeleteAccount()),
+                            child: customText4(title: "هل تريد حذف الحساب ؟ ", color: kPrimaryColor)),
+                        SizedBox(
+                          height: context.height * 0.02,
+                        ),
+
+
+
                       ],
                     ),
                   );
                 }
                 if (state is ProfileError) {
-                  return Text(state.msg);
+                  return Text(state.msg!);
                 }
                 return const SizedBox();
               },

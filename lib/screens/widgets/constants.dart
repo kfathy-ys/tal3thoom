@@ -1,13 +1,18 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:io';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
+import 'package:tal3thoom/screens/auth/login/view.dart';
 import 'package:tal3thoom/screens/widgets/video_items.dart';
+
+import '../home/cubit/home_tabebar_cubit.dart';
+import '../home/view.dart';
 
 const kPrimaryColor = Color(0xFF2471D4);
 
@@ -251,6 +256,31 @@ void showAlertDialog(BuildContext context, VoidCallback onTap) {
                     Navigator.pop(context);
                   },
                   child: const Text("no")),
+            ],
+          ));
+}
+void showAlertDialogDeleteAccount(BuildContext context, VoidCallback onTap) {
+  showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+            title: const Text("حذف الحساب"),
+            content: const Text("هل تريد حذف الحساب نهائيا ؟"),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                  isDefaultAction: true,
+                  onPressed: () {
+                    onTap();
+
+                  },
+                  child: const Text("أوافق")),
+              CupertinoDialogAction(
+                  textStyle: const TextStyle(color: Colors.red),
+                  isDefaultAction: true,
+                  onPressed: () async {
+                    BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
+                    Get.offAll(()=>const HomeTabScreen());
+                  },
+                  child: const Text("لا")),
             ],
           ));
 }
