@@ -1,32 +1,43 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../../../../config/keys.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
+import 'package:get/get.dart' hide Trans hide ContextExtensionss;
 
+import '../../widgets/alerts.dart';
+import '../forget_password/cubit/forget_password_cubit.dart';
 import '../new_password/view.dart';
 import '../register/page/back_icon.dart';
+import 'cubit/vcode_cubit.dart';
 
 class VCodeScreen extends StatefulWidget {
-  const VCodeScreen({Key? key}) : super(key: key);
+  final String vCode;
+  final String email;
+
+  const VCodeScreen({Key? key, required this.vCode, required this.email})
+      : super(key: key);
 
   @override
   State<VCodeScreen> createState() => _VCodeScreenState();
 }
 
 class _VCodeScreenState extends State<VCodeScreen> {
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
-  final _emailController = TextEditingController();
+  final _pinController = TextEditingController();
   final CountdownController _countdownController =
       CountdownController(autoStart: true);
 
   void _handleConfirmCode() {
-    final text = _emailController.text;
+    final text = _pinController.text;
     if (text.isNotEmpty) {
       // ConfirmCodeCubit.of(context).checkCode(_pinFieldController.text);
     }
@@ -40,13 +51,11 @@ class _VCodeScreenState extends State<VCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
       body: SingleChildScrollView(
         child: Form(
-          key: formKey,
+          key: _formKey,
           child: Column(
             children: [
               SizedBox(
@@ -56,18 +65,22 @@ class _VCodeScreenState extends State<VCodeScreen> {
               SizedBox(
                 height: context.height * 0.3,
               ),
-              CustomTextField(
-                hint: KeysConfig.enterVcode,
-                dIcon: Icons.verified_user_outlined,
-                label: KeysConfig.enterVcode,
-                controller: _emailController,
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return "من فضلك أدخل الكود المرسل";
-                  }
-                  return null;
-                },
-                type: TextInputType.emailAddress,
+              FadeInRightBig(
+                child: CustomTextField(
+                  hint: KeysConfig.enterVcode,
+                  dIcon: Icons.verified_user_outlined,
+                  label: KeysConfig.enterVcode,
+                  controller: _pinController,
+                  validator: qValidator([
+                    IsRequired("الكود المرسل مطلوب "),
+                    MinLength(6, KeysConfig.minPassword),
+                    MaxLength(30),
+                  ]),
+                  textInputFormatter: [
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                  ],
+                  type: TextInputType.number,
+                ),
               ),
               _buildResendCounter(),
               SizedBox(
@@ -77,8 +90,19 @@ class _VCodeScreenState extends State<VCodeScreen> {
                 color: kPrimaryColor,
                 title: KeysConfig.confirm,
                 onPressed: () {
-                  //Get.to(() => NewPasswordScreen());
-                  navigateTo(context, NewPasswordScreen());
+                  if (_formKey.currentState!.validate()) {
+                    if (widget.vCode == _pinController.text) {
+                      Alert.success("تم تفعيل الحساب بنجاح ",
+                          desc: "الرجاء تاكيد كلمة المرور ");
+
+                      Get.to(() => NewPasswordScreen(vCode: widget.vCode,email: widget.email,));
+                    } else {
+                      Alert.error(
+                        "عزيزي العميل",
+                        desc: "الرجاء التاكد من الكود المرسل",
+                      );
+                    }
+                  }
                 },
               ),
               SizedBox(

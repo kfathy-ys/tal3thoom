@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/views/department_two/view/questions_card.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/success_page.dart';
@@ -160,8 +161,19 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           height: context.height * 0.18,
                           title: "fullMessage",
                           controller: _firstController,
-                          onPressed1: () {
-                            pickVideo();
+                          onPressed1: () async {
+                            if (await Permission.storage
+                                .request()
+                                .isGranted) {
+                              pickVideo();
+                            } else {
+
+                              Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
+
+
+                            }
+
+
                           },
                           validator:
                               qValidator([IsRequired("thisFieldRequired")]),

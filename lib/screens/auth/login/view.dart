@@ -42,11 +42,6 @@ class LoginScreen extends StatelessWidget {
               desc: "تم تسجيل الدخول بنجاح",
             );
 
-            // navigateAndFinish(
-            //     context,
-            //     HomeTabScreen(
-            //       userId: state.model.data!.userId!,
-            //     ));
 
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
@@ -128,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         RecoveryWidget(
                           onTap: () {
-                            // Get.to(()=> ForgetPassword());
+                             Get.to(()=> ForgetPassword());
                           },
                         ),
                         state is! LoginLoading

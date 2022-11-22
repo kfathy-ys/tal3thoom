@@ -3,6 +3,7 @@ import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
@@ -80,15 +81,14 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                            Image.asset("assets/images/Fourth test1.png"),
+                                Image.asset("assets/images/Fourth test1.png"),
                           ),
-
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
                             child: VideoItems(
                               videoPlayerController:
-                              VideoPlayerController.network(
+                                  VideoPlayerController.network(
                                 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                               ),
                             ),
@@ -97,7 +97,6 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                             padding: const EdgeInsets.all(12.0),
                             child: Image.asset("assets/images/first_class.png"),
                           ),
-
                           customText4(
                               title: parseHtmlString(
                                   state.ssi4QuestionModel[0].description),
@@ -109,59 +108,74 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                               },
                               child: Padding(
                                 padding:
-                                const EdgeInsets.symmetric(vertical: 8.0),
+                                    const EdgeInsets.symmetric(vertical: 8.0),
                                 child:
-                                Image.asset("assets/images/Earphone.png"),
+                                    Image.asset("assets/images/Earphone.png"),
                               )),
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
                             child: _file == null
                                 ? Container(
-                              //padding: EdgeInsets.symmetric(vertical: 4,),
-                              decoration: BoxDecoration(
-                                  color: kBlackText,
-                                  border: Border.all(
-                                      color: kPrimaryColor, width: 3)
-                                // borderRadius: BorderRadius.circular(4)
-                              ),
-                            )
+                                    //padding: EdgeInsets.symmetric(vertical: 4,),
+                                    decoration: BoxDecoration(
+                                        color: kBlackText,
+                                        border: Border.all(
+                                            color: kPrimaryColor, width: 3)
+                                        // borderRadius: BorderRadius.circular(4)
+                                        ),
+                                  )
                                 : VideoItems(
-                              videoPlayerController:
-                              VideoPlayerController.file(
-                                  File(_file!.path)),
-                            ),
+                                    videoPlayerController:
+                                        VideoPlayerController.file(
+                                            File(_file!.path)),
+                                  ),
                           ),
                           CardUploadVideo(
                             height: context.height * 0.18,
                             title: "fullMessage",
                             controller: _firstController,
-                            onPressed1: () {
-                              pickVideo();
+                            onPressed1: () async {
+                              if (await Permission.storage
+                                  .request()
+                                  .isGranted) {
+                                pickVideo();
+                              } else {
+
+                                Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
+
+
+                              }
+
+
                             },
                             validator: qValidator(
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
                           const AlertVideoMessage(),
+                          state is! DiagnosticSsi4FirstLoading
+                              ? MediaButton(
+                                  onPressed: () {
+                                    _file == null
+                                        ? Alert.error(' الفيديو المسجل مطلوب',
+                                            desc:
+                                                "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
+                                        : Get.off(() {
+                                            cubit.postUploadVideoSSI4(
+                                                id: state
+                                                    .ssi4QuestionModel[0].id,
+                                                examId: state
+                                                    .ssi4QuestionModel[0]
+                                                    .examId,
+                                                video: _file);
 
-                          state is! DiagnosticSsi4FirstLoading ? MediaButton(
-                            onPressed: () {
-                              _file == null
-                                  ? Alert.error(' الفيديو المسجل مطلوب',
-                                  desc: "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                  :Get.off(() {
-                                   cubit.postUploadVideoSSI4(id: state.ssi4QuestionModel[0].id, examId: state.ssi4QuestionModel[0].examId, video: _file);
-
-                                    return DiagnosticSSI4Two();
-                                  });
-
-
-                              },
-
-
-                            title: "متابعة",
-                          ) : const LoadingFadingCircle(),
+                                            return DiagnosticSSI4Two();
+                                          });
+                                  },
+                                  title: "متابعة",
+                                )
+                              : const LoadingFadingCircle(),
                           buildSizedBox(context.height),
                         ],
                       ),
@@ -319,7 +333,6 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
 // }
 }
 
-SizedBox buildSizedBox(double height) =>
-    SizedBox(
+SizedBox buildSizedBox(double height) => SizedBox(
       height: height * 0.05,
     );

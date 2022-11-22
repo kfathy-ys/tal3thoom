@@ -3,6 +3,7 @@ import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
@@ -135,8 +136,19 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                             height: context.height * 0.18,
                             title: "fullMessage",
                             controller: _firstController,
-                            onPressed1: () {
-                              pickVideo();
+                            onPressed1: () async {
+                              if (await Permission.storage
+                                  .request()
+                                  .isGranted) {
+                                pickVideo();
+                              } else {
+
+                                Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
+
+
+                              }
+
+
                             },
                             validator: qValidator(
                                 [IsRequired(KeysConfig.thisFieldRequired)]),

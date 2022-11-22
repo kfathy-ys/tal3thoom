@@ -23,6 +23,7 @@ import 'config/http_certifications.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/auth/delete_account/cubit/delete_account_cubit.dart';
+import 'screens/auth/forget_password/cubit/forget_password_cubit.dart';
 import 'screens/drawer/page/advisors_service/cubit/advisor_profile/advisor_profile_cubit.dart';
 import 'screens/drawer/page/advisors_service/cubit/advisor_profile_details/advisor_profile_details_cubit.dart';
 import 'screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
@@ -226,6 +227,8 @@ class MyApp extends StatelessWidget {
           create: (context) => PreviousSessionsCubit(),
         ), BlocProvider<DeleteAccountCubit>(
           create: (context) => DeleteAccountCubit(),
+        ),BlocProvider<ForgetPasswordCubit>(
+          create: (context) => ForgetPasswordCubit(),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
