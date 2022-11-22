@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/auth/login/view.dart';
@@ -62,67 +63,69 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
             return SingleChildScrollView(
               child: Form(
                 key: _formKey,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: context.height * 0.05,
-                    ),
-                    const IconBack(),
-                    SizedBox(
-                      height: context.height * 0.3,
-                    ),
-                    CustomTextField(
-                      hint: KeysConfig.password,
-                      icon: Icons.lock_outline,
-                      dIcon: Icons.lock_outline,
-                      label: KeysConfig.password,
-                      controller: _newPassController,
-                      validator: qValidator([
-                        IsRequired(KeysConfig.enterPass),
-                        MinLength(6,
-                            "يجب أن تحتوي كلمة المرور على 6 حروف على الأقل منها حروف كبيرة وحروف صغيرة وأرقام وعلامات خاصة"),
-                        MaxLength(30),
-                      ]),
-                      type: TextInputType.text,
-                    ),
-                    CustomTextField(
-                      hint: KeysConfig.confirmPass,
-                      icon: Icons.lock_outline,
-                      dIcon: Icons.lock_outline,
-                      label: KeysConfig.confirmPass,
-                      controller: _confirmPssController,
-                      validator: (val) {
-                        if (val!.isEmpty) {
-                          return KeysConfig.thisFieldRequired;
-                        }
-                        if (val != _newPassController.text) {
-                          return KeysConfig.notSimilar;
-                        }
-                        return null;
-                      },
-                      type: TextInputType.text,
-                    ),
-                    SizedBox(
-                      height: context.height * 0.05,
-                    ),
-                    state is! NewPasswordLoading
-                        ? CustomButton(
-                            color: kPrimaryColor,
-                            title: KeysConfig.save,
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                cubit.createNewPassword(
-                                    email: widget.email,
-                                    code: widget.vCode,
-                                    password: _newPassController.text);
-                              }
-                            },
-                          )
-                        : const LoadingFadingCircle(),
-                    SizedBox(
-                      height: context.height * 0.01,
-                    ),
-                  ],
+                child: FadeInLeftBig(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: context.height * 0.05,
+                      ),
+                      const IconBack(),
+                      SizedBox(
+                        height: context.height * 0.3,
+                      ),
+                      CustomTextField(
+                        hint: KeysConfig.password,
+                        icon: Icons.lock_outline,
+                        dIcon: Icons.lock_outline,
+                        label: KeysConfig.password,
+                        controller: _newPassController,
+                        validator: qValidator([
+                          IsRequired(KeysConfig.enterPass),
+                          MinLength(6,
+                              "يجب أن تحتوي كلمة المرور على 6 حروف على الأقل منها حروف كبيرة وحروف صغيرة وأرقام وعلامات خاصة"),
+                          MaxLength(30),
+                        ]),
+                        type: TextInputType.text,
+                      ),
+                      CustomTextField(
+                        hint: KeysConfig.confirmPass,
+                        icon: Icons.lock_outline,
+                        dIcon: Icons.lock_outline,
+                        label: KeysConfig.confirmPass,
+                        controller: _confirmPssController,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return KeysConfig.thisFieldRequired;
+                          }
+                          if (val != _newPassController.text) {
+                            return KeysConfig.notSimilar;
+                          }
+                          return null;
+                        },
+                        type: TextInputType.text,
+                      ),
+                      SizedBox(
+                        height: context.height * 0.05,
+                      ),
+                      state is! NewPasswordLoading
+                          ? CustomButton(
+                              color: kPrimaryColor,
+                              title: KeysConfig.save,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  cubit.createNewPassword(
+                                      email: widget.email,
+                                      code: widget.vCode,
+                                      password: _newPassController.text);
+                                }
+                              },
+                            )
+                          : const LoadingFadingCircle(),
+                      SizedBox(
+                        height: context.height * 0.01,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );

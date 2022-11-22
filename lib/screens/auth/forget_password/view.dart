@@ -52,17 +52,17 @@ class ForgetPassword extends StatelessWidget {
           return SingleChildScrollView(
             child: Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: context.height * 0.05,
-                  ),
-                  const IconBack(),
-                  SizedBox(
-                    height: context.height * 0.2,
-                  ),
-                  FadeInLeftBig(
-                    child: CustomTextField(
+              child: FadeInLeftBig(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: context.height * 0.05,
+                    ),
+                    const IconBack(),
+                    SizedBox(
+                      height: context.height * 0.2,
+                    ),
+                    CustomTextField(
                       dIcon: Icons.email,
                       label: "البريد الإلكتروني",
                       hint: "البريد الإلكتروني",
@@ -74,28 +74,28 @@ class ForgetPassword extends StatelessWidget {
                       ]),
                       type: TextInputType.emailAddress,
                     ),
-                  ),
-                  SizedBox(
-                    height: context.height * 0.05,
-                  ),
-               state is! ForgetPasswordLoading ?   CustomButton(
-                    color: kPrimaryColor,
-                    title: KeysConfig.sendCode,
-                    onPressed: () {
+                    SizedBox(
+                      height: context.height * 0.05,
+                    ),
+                 state is! ForgetPasswordLoading ?   CustomButton(
+                      color: kPrimaryColor,
+                      title: KeysConfig.sendCode,
+                      onPressed: () {
 
-                      if (_formKey.currentState!.validate()) {
-                        cubit.forgetPassword(
-                            email: cubit.emailController.text,
-                        );
+                        if (_formKey.currentState!.validate()) {
+                          cubit.forgetPassword(
+                              email: cubit.emailController.text,
+                          );
 
-                      }
-                    },
-                  ):const LoadingFadingCircle(),
-                  SizedBox(
-                    height: context.height * 0.01,
-                  ),
+                        }
+                      },
+                    ):const LoadingFadingCircle(),
+                    SizedBox(
+                      height: context.height * 0.01,
+                    ),
 
-                ],
+                  ],
+                ),
               ),
             ),
           );

@@ -56,17 +56,17 @@ class _VCodeScreenState extends State<VCodeScreen> {
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(
-                height: context.height * 0.05,
-              ),
-              const IconBack(),
-              SizedBox(
-                height: context.height * 0.3,
-              ),
-              FadeInRightBig(
-                child: CustomTextField(
+          child: FadeInRightBig(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: context.height * 0.05,
+                ),
+                const IconBack(),
+                SizedBox(
+                  height: context.height * 0.3,
+                ),
+                CustomTextField(
                   hint: KeysConfig.enterVcode,
                   dIcon: Icons.verified_user_outlined,
                   label: KeysConfig.enterVcode,
@@ -81,34 +81,34 @@ class _VCodeScreenState extends State<VCodeScreen> {
                   ],
                   type: TextInputType.number,
                 ),
-              ),
-              _buildResendCounter(),
-              SizedBox(
-                height: context.height * 0.05,
-              ),
-              CustomButton(
-                color: kPrimaryColor,
-                title: KeysConfig.confirm,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    if (widget.vCode == _pinController.text) {
-                      Alert.success("تم تفعيل الحساب بنجاح ",
-                          desc: "الرجاء تاكيد كلمة المرور ");
+                _buildResendCounter(),
+                SizedBox(
+                  height: context.height * 0.05,
+                ),
+                CustomButton(
+                  color: kPrimaryColor,
+                  title: KeysConfig.confirm,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      if (widget.vCode == _pinController.text) {
+                        Alert.success("تم تفعيل الحساب بنجاح ",
+                            desc: "الرجاء تاكيد كلمة المرور ");
 
-                      Get.to(() => NewPasswordScreen(vCode: widget.vCode,email: widget.email,));
-                    } else {
-                      Alert.error(
-                        "عزيزي العميل",
-                        desc: "الرجاء التاكد من الكود المرسل",
-                      );
+                        Get.to(() => NewPasswordScreen(vCode: widget.vCode,email: widget.email,));
+                      } else {
+                        Alert.error(
+                          "عزيزي العميل",
+                          desc: "الرجاء التاكد من الكود المرسل",
+                        );
+                      }
                     }
-                  }
-                },
-              ),
-              SizedBox(
-                height: context.height * 0.01,
-              ),
-            ],
+                  },
+                ),
+                SizedBox(
+                  height: context.height * 0.01,
+                ),
+              ],
+            ),
           ),
         ),
       ),
