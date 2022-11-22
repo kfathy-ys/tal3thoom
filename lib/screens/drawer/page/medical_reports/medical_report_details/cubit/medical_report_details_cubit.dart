@@ -16,16 +16,20 @@ class MedicalReportDetailsCubit extends Cubit<MedicalReportDetailsState> {
   }
 
 
-  var allReports = <AllReports>[];
+  //var allReports = <AllReports>[];
 
   Future<void> getReportsDetails({required int id}) async {
     emit(MedicalReportDetailsLoading());
     try {
       // allReports=  await AllReportsDetailsService.findMany(reportId: id);
       final res = await NetWork.get(
-          'Report/GetDiagnosisReportByReportId/$id');
-      emit(MedicalReportDetailsSuccess(allReports: AllReports.fromJson(res.data!)));
-      print(allReports.toString() + "khaleddddddddddd" );
+          'Report/GetDiagnosisReportByReportIdMobile/$id');
+
+      print("before");
+          emit(MedicalReportDetailsSuccess(allReports: MedicalReportsModel.fromJson(res.data)));
+
+     var x= MedicalReportsModel.fromJson(res.data);
+     print(x.data!.reportName.toString() + "khaleddddddddddd" );
 
     } on DioError catch (_) {
       emit(MedicalReportDetailsError(msg: "لا يوجد اتصال بالانترنت "));

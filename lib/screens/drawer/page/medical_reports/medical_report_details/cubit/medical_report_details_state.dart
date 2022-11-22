@@ -6,7 +6,7 @@ abstract class MedicalReportDetailsState {}
 class MedicalReportDetailsInitial extends MedicalReportDetailsState {}
 class MedicalReportDetailsLoading extends MedicalReportDetailsState {}
 class MedicalReportDetailsSuccess extends MedicalReportDetailsState {
-  final AllReports allReports;
+  final MedicalReportsModel allReports;
 
   MedicalReportDetailsSuccess({required this.allReports});
 }

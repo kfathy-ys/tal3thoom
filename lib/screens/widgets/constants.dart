@@ -170,6 +170,7 @@ Widget customMeduimBoldText(String? title) {
 
 Widget custom12Text({required String title, required Color color}) {
   return Text(title,
+      textDirection: TextDirection.ltr,
       style: TextStyle(color: color, fontSize: 10, fontFamily: 'DinBold'));
 }
 
