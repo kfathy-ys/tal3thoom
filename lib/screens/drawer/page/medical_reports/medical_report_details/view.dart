@@ -341,7 +341,11 @@ class MedicalReportsDetails extends StatelessWidget {
                               her: pContent.hisOrHer ?? "",
                               mild: pContent.exhibits ?? "",
                               doctorDep: pContent.specialistName!.toString(),
-                              doctorName: pContent.supervisorName!.toString(),
+                              doctorName: ": "+ state.allReports.data!.supervisorName! ,
+                            ),
+
+                            SizedBox(
+                              height: context.height * 0.1,
                             ),
                           ],
                         );
