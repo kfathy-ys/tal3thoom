@@ -94,14 +94,17 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                               height: 60,
                               width: 150,
                               child: TextFormField(
-                                // onSaved:(String? str) =>
-                                // cubit.answersTxt[currentQuestion] = str! ,
+
                                 controller: TextEditingController(
                                     text:
                                     cubit.answersTxt[currentQuestion]),
 
+
                                 onChanged: (str) =>
                                 cubit.answersTxt[currentQuestion] = str,
+                                keyboardType: currentQuestion
+                                    .description
+                                    .toString().contains("10")?TextInputType.number :TextInputType.text
                               ))
                               : null,
                         ),
