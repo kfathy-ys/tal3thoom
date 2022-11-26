@@ -37,7 +37,7 @@ class AlertMessageToWait extends StatelessWidget {
                   "عزيزي العميل!",textStyle: buildTextStyle(),
                 ),
                 TyperAnimatedText(
-                  "يرجاء الإنتظار لحين بدء المتصفح",textStyle:buildAccentTextStyle(),
+                  "برجاء الإنتظار لحين بدء المتصفح",textStyle:buildAccentTextStyle(),
                 ),
                 TyperAnimatedText( "بشكل أمان طبقا لسياسات التطبيق",textStyle:buildAccentTextStyle()),
                 TyperAnimatedText("المدة المحددة بحد أقصي ",textStyle: buildAccentTextStyle()),
@@ -45,9 +45,9 @@ class AlertMessageToWait extends StatelessWidget {
                 TyperAnimatedText( "دقيقتان فقط",textStyle: const TextStyle(
                     color: kButtonRedDark, fontSize: 20, fontFamily: 'DinBold')),
                 TyperAnimatedText( "بعد اتمام العملية الدفع",textStyle:buildAccentTextStyle()),
-                TyperAnimatedText( "من الموقع والرجع الي التطبيق",textStyle:buildTextStyle()),
+                TyperAnimatedText( "من الموقع والرجوع إلي التطبيق",textStyle:buildTextStyle()),
 
-                TyperAnimatedText( "برجاء سحب الشاشه الي اعلي ",textStyle: const TextStyle(
+                TyperAnimatedText( "برجاء سحب الشاشه الي أسفل ",textStyle: const TextStyle(
                     color: kButtonRedDark, fontSize: 20, fontFamily: 'DinBold')),
 
                 TyperAnimatedText( "لتحديث بياتاتك داخل التطبيق",textStyle:buildTextStyle()),

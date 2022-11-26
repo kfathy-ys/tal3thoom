@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../config/dio_helper/dio.dart';
+import '../../../widgets/alerts.dart';
 import '../model/models.dart';
 
 part 'login_state.dart';
@@ -50,7 +51,7 @@ class LoginCubit extends Cubit<LoginState> {
       log("${res.data["data"]["userName"]}");
       log("${res.data["data"]["email"]}");
       log("${res.data["data"]["phoneNumber"]}");
-
+     // print(res.data["messages"][0]["title"].toString());
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
     } catch (e, st) {
       final res = await NetWork.post(
@@ -62,7 +63,9 @@ class LoginCubit extends Cubit<LoginState> {
       );
       log(e.toString());
       log(st.toString());
-      emit(LoginError(res.data["messages"][0]["body"].toString()));
+
+      // Alert.error(res.data["messages"][0]["title"].toString());
+      emit(LoginError(res.data["messages"][0]["title"].toString()));
     }
   }
 }

@@ -70,8 +70,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+    const String sCharacters = "يجب أن تحتوي على 6 أحرف على الأقل منها حروف كبيرة و صغيرة وأرقام وعلامات خاصة";
+
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -205,6 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context: context,
                           firstDate: DateTime(1950),
                           lastDate: DateTime(2030),
+
                           initialDate: DateTime(1950),
                         ).then((value) {
                           if (value == null) return;
@@ -496,13 +497,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     dIcon: Icons.lock_outline,
                     label: KeysConfig.password,
                     controller: _passController,
-                    validator: qValidator([
+                    validator:
+
+                    qValidator([
                       IsRequired(KeysConfig.enterPass),
+                     // ContainsAny([r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'],sCharacters),
+                      RegExpRule(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),sCharacters),
                       MinLength(6,
-                          "يجب أن تحتوي كلمة المرور على 6 حروف على الأقل منها حروف كبيرة وحروف صغيرة وأرقام وعلامات خاصة"),
+                          sCharacters),
                       MaxLength(30),
                     ]),
-                    type: TextInputType.text,
+                    // type: TextInputType.text,
+
+                    // textInputFormatter: [
+                    //   FilteringTextInputFormatter.allow(
+                    //       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')),
+                   // ],
                   ),
                   CustomTextField(
                     hint: KeysConfig.confirmPass,
@@ -721,5 +731,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         );
       }),
     );
+  }
+
+  bool isPasswordValid(String password) {
+    if (password.length < 6) return false;
+    if (!password.contains(RegExp(r"[a-z]"))) return false;
+    if (!password.contains(RegExp(r"[A-Z]"))) return false;
+    if (!password.contains(RegExp(r"[0-9]"))) return false;
+    if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) return false;
+    return true;
   }
 }

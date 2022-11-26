@@ -67,6 +67,9 @@ class DiagnosticSsi4FirstCubit extends Cubit<DiagnosticSsi4FirstState> {
       Alert.success('تم رفع الفيديو بنجاح');
 
     } catch (e, st) {
+
+
+      Alert.success(e.toString());
       log(e.toString());
       log(st.toString());
       emit(DiagnosticSsi4FirstError(msg: e.toString()));
