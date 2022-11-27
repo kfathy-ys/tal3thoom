@@ -30,7 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
-        throw res.data['message'];
+        throw res.data['messages'][0]['title'].toString();
       }
       LoginModel loginModel = LoginModel.fromJson((res.data));
       Prefs.setString("token", res.data["data"]["token"]);
@@ -54,18 +54,20 @@ class LoginCubit extends Cubit<LoginState> {
      // print(res.data["messages"][0]["title"].toString());
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
     } catch (e, st) {
-      final res = await NetWork.post(
-        'Auth/login',
-        body: {
-          "userName": email,
-          "password": password,
-        },
-      );
+      Alert.error(e.toString());
+
+      // final res = await NetWork.post(
+      //   'Auth/login',
+      //   body: {
+      //     "userName": email,
+      //     "password": password,
+      //   },
+      // );
       log(e.toString());
       log(st.toString());
-
-      // Alert.error(res.data["messages"][0]["title"].toString());
-      emit(LoginError(res.data["messages"][0]["title"].toString()));
+      //   res.data.toString();
+      //  Alert.error(res.data['messages'][0]['title'].toString());
+      emit(LoginError(e.toString()));
     }
   }
 }

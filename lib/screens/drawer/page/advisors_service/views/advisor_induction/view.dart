@@ -33,7 +33,7 @@ class AdviserInduction extends StatelessWidget {
             children: [
               CustomTileContainer(
                   widthh: context.width * 0.5,
-                  title: KeysConfig.definationDiag,
+                  title: "التعريف بخدمة مستشارك",
                   context: context),
               FadeInUpBig(
                 child: Padding(

@@ -61,7 +61,7 @@ class DiagnosticSsi4FirstCubit extends Cubit<DiagnosticSsi4FirstState> {
           'PatientExams/AddPatientSSI4ExamAnswers/$userId/$examId/$id/1',
           body: body);
       if (res.data['status'] == 0 || res.data['status'] == -1) {
-        throw res.data['message'];
+        throw res.data['messages'][0]['title'].toString();
       }
       emit(DiagnosticSsi4FirstSuccess(ssi4QuestionModel: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
@@ -69,7 +69,7 @@ class DiagnosticSsi4FirstCubit extends Cubit<DiagnosticSsi4FirstState> {
     } catch (e, st) {
 
 
-      Alert.success(e.toString());
+      Alert.error(e.toString());
       log(e.toString());
       log(st.toString());
       emit(DiagnosticSsi4FirstError(msg: e.toString()));

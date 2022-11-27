@@ -9,11 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../config/keys.dart';
+import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/customButton.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
+import '../diagnostic_induction/view.dart';
 import 'models/diagnostic_history_question_model.dart';
 
 // ignore: must_be_immutable
@@ -154,6 +156,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<DiagnosticHistoryQuestionCubit>(context).getDiagnosticHistoryQuestion();
     return Scaffold(
         backgroundColor: kHomeColor,
         drawer: const MenuItems(),
@@ -234,9 +237,17 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionError) {
-                  return Text(state.msg);
-                  // return Alert.error(state.msg);
-                  // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+
+
+                  return Center(child: Column(
+                    children: [
+
+                      SizedBox(height: context.height*0.3),
+                      customText2(title: state.msg + "\n" + "الرجاءالرجوع إلي القائمة السابقه\n  والإجابة علي كافة الأسئلة", color: kBlackText),
+                       MediaButton(onPressed:()=>Get.off(()=>const InductionDiagnostic()) ,title: 'إلي القائمة السابقه ',)
+
+                    ],
+                  ));
                 }
                 return const SizedBox();
               },
