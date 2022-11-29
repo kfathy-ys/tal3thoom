@@ -1,3 +1,4 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:tal3thoom/screens/drawer/view.dart';
 import 'package:tal3thoom/screens/widgets/appBar.dart';
@@ -58,8 +59,34 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                 context: context,
                 press: (context) => Scaffold.of(context).openDrawer()),
             body: cubit.widgetOptions.elementAt(cubit.index),
-            bottomNavigationBar: ConvexAppBar(
+
+
+            //
+            // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            // floatingActionButton: FloatingActionButton(
+            //   backgroundColor: kButtonGreenDark,
+            //   child:
+            //       buildImage(image: 'assets/images/main.png'),
+            //
+            //   onPressed: ()=>cubit.changeIndex(cubit.index =1),
+            // ),
+            // bottomNavigationBar:
+            //
+            // AnimatedBottomNavigationBar(
+            //   backgroundColor: kPrimaryColor,
+            //   activeColor: kHomeColor,
+            //   icons: iconList,
+            //   activeIndex: cubit.index,
+            //   gapLocation: GapLocation.center,
+            //   notchSmoothness: NotchSmoothness.softEdge,
+            //   onTap: cubit.changeIndex,
+            //   //other params
+            // ),
+
+
+            bottomNavigationBar:  ConvexAppBar(
              // cornerRadius: 12,
+
               elevation: 20,
 
                style: TabStyle.reactCircle,
@@ -100,7 +127,11 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       ),
     );
   }
+  final iconList = <IconData>[
+    Icons.brightness_5,
+    Icons.brightness_4,
 
+  ];
   Image buildImage({required String image}) {
     return Image.asset(
       image,

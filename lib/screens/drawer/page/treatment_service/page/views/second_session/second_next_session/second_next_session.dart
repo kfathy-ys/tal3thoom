@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
-import '../../../../../../view.dart';
 import '../../first_session/first_stage_additional_traning/view.dart';
 import '../second_cognitive_session/cubit/second_cognitive_section_cubit.dart';
 import '../second_cognitive_session/view.dart';

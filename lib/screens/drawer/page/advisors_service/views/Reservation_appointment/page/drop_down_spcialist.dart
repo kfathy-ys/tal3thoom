@@ -1,13 +1,10 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../models/advisor_model.dart';
-import '../../../models/profile_dtails.dart';
 
 class DropDownSpecialist extends StatefulWidget {
   final ValueChanged<AllAdvisors> onChanged;

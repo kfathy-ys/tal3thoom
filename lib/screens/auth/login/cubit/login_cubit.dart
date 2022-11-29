@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -30,6 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
+        print(res.data['messages'][0]['title']);
         throw res.data['messages'][0]['title'].toString();
       }
       LoginModel loginModel = LoginModel.fromJson((res.data));
@@ -51,22 +53,13 @@ class LoginCubit extends Cubit<LoginState> {
       log("${res.data["data"]["userName"]}");
       log("${res.data["data"]["email"]}");
       log("${res.data["data"]["phoneNumber"]}");
-     // print(res.data["messages"][0]["title"].toString());
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
+    }  on DioError catch (_) {
+      emit(LoginError( "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       Alert.error(e.toString());
-
-      // final res = await NetWork.post(
-      //   'Auth/login',
-      //   body: {
-      //     "userName": email,
-      //     "password": password,
-      //   },
-      // );
-      log(e.toString());
-      log(st.toString());
-      //   res.data.toString();
-      //  Alert.error(res.data['messages'][0]['title'].toString());
+       log(e.toString());
+       log(st.toString());
       emit(LoginError(e.toString()));
     }
   }

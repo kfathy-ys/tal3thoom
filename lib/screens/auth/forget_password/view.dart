@@ -5,7 +5,6 @@ import 'package:tal3thoom/screens/auth/register/page/back_icon.dart';
 import 'package:tal3thoom/screens/auth/vcode/view.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide ContextExtensionss;
 import '../../../../../../config/keys.dart';

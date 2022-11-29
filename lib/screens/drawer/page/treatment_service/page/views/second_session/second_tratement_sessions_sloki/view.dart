@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -18,7 +17,6 @@ import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
-import '../../first_session/sloki/views/build_three.dart';
 import '../second_treatment_session_evaluation/cubit/second_evaluation_cubit.dart';
 import '../second_treatment_session_evaluation/view.dart';
 import 'cubit/second_behavioral_cubit.dart';
@@ -126,7 +124,7 @@ class _SecondTreatmentSessionsSlokiScreenState
                               : VideoItems(
                             videoPlayerController:
                             VideoPlayerController.file(
-                              File(_file!.path ?? ""),
+                              File(_file!.path ),
                             ),
                           ),
                         ),

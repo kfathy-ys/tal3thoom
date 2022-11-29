@@ -6,18 +6,14 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../../../../config/keys.dart';
 
-import '../../../../../../../home/cubit/home_tabebar_cubit.dart';
-import '../../../../../../../home/view.dart';
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
-import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../../view.dart';
-import '../../../../../diagnostic_service/page/views/diagnostic_history/view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_payment/views/alert_message.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_payment/views/alert_to_pay.dart';
 import '../../pre-treatment_questionnaire/view.dart';

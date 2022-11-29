@@ -3,14 +3,10 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
 import '../../models/advisor_model.dart';
-import '../../models/all_dates_model.dart';
 import '../../models/all_reservation_advisors_model.dart';
-import '../../models/all_time_model.dart';
-import '../../models/profile_dtails.dart';
 
 part 'advisor_profile_state.dart';
 
@@ -47,12 +43,12 @@ class AdvisorProfileCubit extends Cubit<AdvisorProfileState> {
         throw res.data['message'];
       }
 
-      print("before "+ "${AllReservationsAdvisorModel.fromJson(res.data)}");
+      print("before ""${AllReservationsAdvisorModel.fromJson(res.data)}");
 
 
       emit(AllAdvisorToReservedSuccess(allAdvisorToReservedModel: AllReservationsAdvisorModel.fromJson(res.data) ));
 
-      print("after "+ "${AllReservationsAdvisorModel.fromJson(res.data)}");
+      print("after ""${AllReservationsAdvisorModel.fromJson(res.data)}");
 
     } catch (e, es) {
       log(e.toString());

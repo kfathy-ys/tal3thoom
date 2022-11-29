@@ -9,10 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../config/keys.dart';
-import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
-import '../../../../../../widgets/customButton.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
 import '../diagnostic_induction/view.dart';

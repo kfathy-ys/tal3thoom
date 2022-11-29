@@ -79,7 +79,7 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
             return DropdownMenuItem<dynamic>(
               value: value,
               child: Text(
-                "${DateConverter.dateConverterOnlys(value) }",
+                DateConverter.dateConverterOnlys(value),
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,

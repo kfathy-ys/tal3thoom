@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:get/get.dart' as g;
 
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
@@ -14,9 +15,7 @@ import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/cubit/data_access_permission_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/cubit/medical_reports_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/page/all_specialist%20_first_sessions/cubit/all_specialist__first_sessions_cubit.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_resevation/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_treatment_ssi4/views/department_one/cubit/first_stage_ssi4_one_cubit.dart';
-import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/view.dart';
 
 import 'config/bloc_observer.dart';
 import 'config/http_certifications.dart';
@@ -42,7 +41,6 @@ import 'screens/drawer/page/treatment_service/page/views/first_session/first_sta
 import 'screens/drawer/page/treatment_service/page/views/first_session/sloki/cubit/behavioral_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/cubit/pre_questionnaire_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_cognitive_session/cubit/second_cognitive_section_cubit.dart';
-import 'screens/drawer/page/treatment_service/page/views/second_session/second_cognitive_session/view.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/cubit/second_stage_oases_test_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_resevation/cubit/secand_available_dates_cubit.dart';
 import 'screens/drawer/page/treatment_service/page/views/second_session/second_stage_resevation/page/all_specialist _second_sessions/all_specialist__second_sessions_cubit.dart';
@@ -92,7 +90,9 @@ void main() async {
       QueenBuilder(
         enableDevtools: false,
         builder: (context) {
-          return const MyApp();
+          return DevicePreview(
+              enabled: false,
+              builder: (context) => const MyApp());
         },
       ),
     );
@@ -238,6 +238,9 @@ class MyApp extends StatelessWidget {
             translations: LocaleString(),
             locale: const Locale('ar', 'EG'),
             debugShowCheckedModeBanner: false,
+
+            popGesture: true,
+            defaultTransition: g.Transition.zoom,
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),

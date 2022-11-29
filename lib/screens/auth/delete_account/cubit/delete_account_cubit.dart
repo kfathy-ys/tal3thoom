@@ -3,13 +3,10 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../config/dio_helper/dio.dart';
 import '../../../widgets/alerts.dart';
-import '../../login/view.dart';
 import '../model/delet_account_model.dart';
 
 part 'delete_account_state.dart';
@@ -63,5 +60,6 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
       log(st.toString());
       emit(DeleteAccountError(msg: e.toString()));
     }
+    return null;
   }
 }

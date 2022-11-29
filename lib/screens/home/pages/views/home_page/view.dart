@@ -2,14 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'package:tal3thoom/screens/drawer/page/medical_reports/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../drawer/page/advisors_service/views/advisor_induction/view.dart';
 import '../../../../drawer/page/treatment_service/page/views/first_session/first_stage_induction/view.dart';
-import '../../../../drawer/page/treatment_service/page/views/second_session/second_stage_induction/view.dart';
 
 // ignore: must_be_immutable
 class MyHomeScreen extends StatelessWidget {
@@ -21,8 +19,7 @@ class MyHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+
     return Card(
       //color: Colors.pinkAccent,
       child: Stack(

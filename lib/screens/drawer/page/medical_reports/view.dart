@@ -41,7 +41,7 @@ class MedicalReports extends StatelessWidget {
                 builder: (context, state) {
                   final cubit = BlocProvider.of<MedicalReportsCubit>(context);
                   if (state is MedicalsLoading) {
-                    return const LoadingFadingCubeGrid();
+                    return const LoadingFadingCircle();
                   }
                   if (state is MedicalsSuccess) {
                     return Expanded(

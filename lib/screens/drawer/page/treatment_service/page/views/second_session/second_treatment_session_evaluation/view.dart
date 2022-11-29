@@ -1,10 +1,7 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/evaluation_section/page/rich_text.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,9 +11,6 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../view.dart';
-import '../../../../../diagnostic_service/page/views/question.dart';
-import '../../../../../diagnostic_service/page/views/success_page.dart';
-import '../second_stage_additional_traning/view.dart';
 import 'cubit/second_evaluation_cubit.dart';
 
 // ignore: must_be_immutable

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
-import '../../../models/all_time_model.dart';
 
 class DropDownDurations extends StatefulWidget {
 

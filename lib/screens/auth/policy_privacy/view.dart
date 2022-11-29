@@ -1,14 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
-import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../config/keys.dart';
 
-import '../register/page/back_icon.dart';
 
 class PolicyAndPrivacy extends StatelessWidget {
   const PolicyAndPrivacy({Key? key}) : super(key: key);

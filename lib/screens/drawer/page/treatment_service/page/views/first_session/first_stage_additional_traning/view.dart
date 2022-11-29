@@ -6,12 +6,9 @@ import 'package:video_player/video_player.dart';
 
 import '../../../../../../../home/cubit/home_tabebar_cubit.dart';
 import '../../../../../../../home/view.dart';
-import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/video_items.dart';
-import '../../../../../../view.dart';
-import '../first_cognitive_session/cubit/cognitive_section_cubit.dart';
 
 // ignore: must_be_immutable
 class FirstStageAdditionalTrainingScreen extends StatefulWidget {

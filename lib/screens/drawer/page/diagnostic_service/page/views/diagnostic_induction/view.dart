@@ -15,7 +15,6 @@ import '../../../../../view.dart';
 import '../../../../treatment_service/page/views/first_session/first_stage_induction/view.dart';
 import '../diagnostci_oases_test/view.dart';
 import '../diagnostic_history/view.dart';
-import '../diagnostic_payment/cubit/diagnostic_payment_cubit.dart';
 import '../diagnostic_payment/view.dart';
 import '../diagnostic_ssi4/views/department_one/view.dart';
 import '../diagnostic_ssrs_test/view.dart';

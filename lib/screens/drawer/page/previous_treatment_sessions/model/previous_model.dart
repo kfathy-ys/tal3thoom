@@ -22,7 +22,7 @@ class PreviousAnswersModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -71,7 +71,7 @@ class AllSections extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (cognitiveResult != null) {
       data['cognitiveResult'] =
           cognitiveResult!.map((v) => v.toJson()).toList();
@@ -115,7 +115,7 @@ class BehavioralResult extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (question != null) {
       data['question'] = question!.toJson();
     }
@@ -141,7 +141,7 @@ class CognitiveResult extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (question != null) {
       data['question'] = question!.toJson();
     }
@@ -248,7 +248,7 @@ class Question extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['qype'] = qype;
     data['bankId'] = bankId;
@@ -371,7 +371,7 @@ class Section extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['sectionName'] = sectionName;
     data['sectionNameEn'] = sectionNameEn;
@@ -441,7 +441,7 @@ class Answers extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['questionId'] = questionId;
     data['answerOption'] = answerOption;
@@ -474,7 +474,7 @@ class Conclution extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['totalCognitiveQuestions'] = totalCognitiveQuestions;
     data['correctCognitiveAnswers'] = correctCognitiveAnswers;
     data['answerdVideo'] = answerdVideo;
@@ -500,7 +500,7 @@ class CurrentEvalution extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['patientRank'] = patientRank;
     data['specialistRank'] = specialistRank;
@@ -526,7 +526,7 @@ class Messages extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['code'] = code;
     data['body'] = body;
     data['title'] = title;

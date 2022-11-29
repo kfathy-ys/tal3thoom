@@ -1,11 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../config/keys.dart';
 import 'package:timer_count_down/timer_controller.dart';
@@ -13,10 +11,8 @@ import 'package:timer_count_down/timer_count_down.dart';
 import 'package:get/get.dart' hide Trans hide ContextExtensionss;
 
 import '../../widgets/alerts.dart';
-import '../forget_password/cubit/forget_password_cubit.dart';
 import '../new_password/view.dart';
 import '../register/page/back_icon.dart';
-import 'cubit/vcode_cubit.dart';
 
 class VCodeScreen extends StatefulWidget {
   final String vCode;

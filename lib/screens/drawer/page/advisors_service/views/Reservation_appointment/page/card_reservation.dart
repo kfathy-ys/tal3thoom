@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/mediaButton.dart';
 import 'card_item.dart';
-import 'custom_container.dart';
 
 class ReservationsCard extends StatelessWidget {
   final String specialistName;

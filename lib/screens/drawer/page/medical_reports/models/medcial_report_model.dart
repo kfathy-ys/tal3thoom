@@ -18,7 +18,7 @@ class MedicalReportsModel extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -164,7 +164,7 @@ class AllReports extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['reportName'] = reportName;
     data['patientId'] = patientId;
@@ -353,7 +353,7 @@ class Patient extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['firstName'] = firstName;
     data['middleName'] = middleName;
@@ -453,7 +453,7 @@ class OasesResults extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (section1 != null) {
       data['section1'] = section1!.toJson();
     }
@@ -512,7 +512,7 @@ class Section1 extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['sectionId'] = sectionId;
     data['sectionName'] = sectionName;
     data['sectionNameEn'] = sectionNameEn;
@@ -565,7 +565,7 @@ class Section3 extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['sectionId'] = sectionId;
     data['sectionName'] = sectionName;
     data['sectionNameEn'] = sectionNameEn;
@@ -617,7 +617,7 @@ class Section5 extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['sectionId'] = sectionId;
     data['sectionName'] = sectionName;
     data['sectionNameEn'] = sectionNameEn;
@@ -657,7 +657,7 @@ class VideosFrequencyDetails extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (speakingSample != null) {
       data['speakingSample'] = speakingSample!.toJson();
     }
@@ -705,7 +705,7 @@ class SpeakingSample extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['videoUrl'] = videoUrl;
     data['sectionId'] = sectionId;
     data['sectionName'] = sectionName;

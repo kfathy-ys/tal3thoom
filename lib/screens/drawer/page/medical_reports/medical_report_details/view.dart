@@ -17,9 +17,7 @@ import 'views/description_results/no_head.dart';
 import 'views/description_results/recommendation.dart';
 import 'views/description_results/ssrc.dart';
 import 'views/description_results/testing.dart';
-import 'views/four_tables/view.dart';
 import 'views/head_subtitle/view.dart';
-import 'views/three_tables/views.dart';
 
 // ignore: must_be_immutable
 class MedicalReportsDetails extends StatelessWidget {
@@ -76,7 +74,7 @@ class MedicalReportsDetails extends StatelessWidget {
                       var videoFrequency =
                           cubit.allReportsDetails.videosFrequencyDetails;
                       if (state is MedicalReportDetailsLoading) {
-                        return const Center(child: LoadingFadingCubeGrid());
+                        return const Center(child: LoadingFadingCircle());
                       }
                       if (state is MedicalReportDetailsSuccess) {
                         return Column(
@@ -203,7 +201,7 @@ class MedicalReportsDetails extends StatelessWidget {
                                         .data!
                                         .videosFrequencyDetails!
                                         .speakingSample!
-                                        .sttCount!.toInt()}"+"/"+state
+                                        .sttCount!.toInt()}""/"+state
                                         .allReports
                                         .data!
                                         .videosFrequencyDetails!
@@ -214,7 +212,7 @@ class MedicalReportsDetails extends StatelessWidget {
                                         .data!
                                         .videosFrequencyDetails!
                                         .readingSample!
-                                        .sttCount!.toInt()}"+"/"+state
+                                        .sttCount!.toInt()}""/"+state
                                         .allReports
                                         .data!
                                         .videosFrequencyDetails!
@@ -433,7 +431,7 @@ class MedicalReportsDetails extends StatelessWidget {
           width: width,
           color: kHomeColor,
           child: Center(
-            child: custom12Text(title: title7!, color: kBlackText),
+            child: custom12Text(title: title7, color: kBlackText),
           ),
         ),
         Container(
@@ -441,7 +439,7 @@ class MedicalReportsDetails extends StatelessWidget {
           width: width,
           color: kBackGroundCard,
           child: Center(
-            child: custom12Text(title: title8!, color: kBlackText),
+            child: custom12Text(title: title8, color: kBlackText),
           ),
         ),
       ],

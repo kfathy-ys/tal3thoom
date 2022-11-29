@@ -318,7 +318,7 @@ class _ProfileState extends State<Profile> {
                   );
                 }
                 if (state is ProfileError) {
-                  return Text(state.msg!);
+                  return Text(state.msg);
                 }
                 return const SizedBox();
               },

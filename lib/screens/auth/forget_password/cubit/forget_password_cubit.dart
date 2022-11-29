@@ -1,9 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../config/dio_helper/dio.dart';
 import '../../../widgets/alerts.dart';
@@ -32,7 +31,9 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
       emit(ForgetPasswordSuccess(
           forgetPasswordModel: ForgetPasswordModel.fromJson((res.data))));
-    } catch (e, st) {
+    } on DioError catch (_) {
+      emit(ForgetPasswordError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, st) {
 
 
 

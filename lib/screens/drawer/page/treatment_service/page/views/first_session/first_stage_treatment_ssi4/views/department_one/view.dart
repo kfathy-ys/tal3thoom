@@ -154,7 +154,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
-                          AlertVideoMessage(),
+                          const AlertVideoMessage(),
 
 
                           state is! FirstStageSsi4OneLoading ? MediaButton(

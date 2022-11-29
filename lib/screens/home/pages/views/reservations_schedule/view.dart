@@ -4,12 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:queen/core/helpers/url_luncher.dart';
 import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/page/views/reservation_card.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../widgets/alerts.dart';
 import '../../../../widgets/constants.dart';
 import '../../../../widgets/date_convertors.dart';
-import '../../../../widgets/fast_widget.dart';
 import '../../../../widgets/loading.dart';
 import 'cubit/booking_cubit.dart';
 

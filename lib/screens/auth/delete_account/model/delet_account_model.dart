@@ -15,7 +15,7 @@ class AllMessages extends Equatable{
     if (json['messages'] != null) {
       messages = <Messages>[];
       json['messages'].forEach((v) {
-        messages!.add(new Messages.fromJson(v));
+        messages!.add(Messages.fromJson(v));
       });
     }
     status = json['status'];
@@ -23,7 +23,7 @@ class AllMessages extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['data'] = this.data;
     if (messages != null) {
       data['messages'] = messages!.map((v) => v.toJson()).toList();
@@ -53,7 +53,7 @@ class Messages extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['code'] = code;
     data['body'] = body;
     data['title'] = title;

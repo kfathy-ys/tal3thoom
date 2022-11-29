@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/previous_treatment_sessions/views/drop_down_result_sessions.dart';
-import 'package:tal3thoom/screens/home/view.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -10,10 +8,8 @@ import 'package:video_player/video_player.dart';
 import '../../../widgets/appBar.dart';
 import '../../../widgets/constants.dart';
 import '../../../widgets/loading.dart';
-import '../../../widgets/mediaButton.dart';
 import '../../../widgets/video_items.dart';
 import '../../view.dart';
-import '../diagnostic_service/page/views/question.dart';
 import 'cubit/previous_sessions_cubit.dart';
 
 // ignore: must_be_immutable

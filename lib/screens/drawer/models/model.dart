@@ -18,7 +18,7 @@ class DataAccessPermissionModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -59,7 +59,7 @@ class DataAccessPermission extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (stagesDiagnosis != null) {
       data['stagesDiagnosis'] = stagesDiagnosis!.toJson();
     }
@@ -113,7 +113,7 @@ class StagesDiagnosis extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['payment'] = payment;
     data['caseHistory'] = caseHistory;
     data['oases'] = oases;
@@ -149,7 +149,7 @@ class StagesTreatment extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['paymentTreatmentOne'] = paymentTreatmentOne;
     data['paymentTreatmentTwo'] = paymentTreatmentTwo;
     data['paymentTreatmentAll'] = paymentTreatmentAll;
@@ -192,7 +192,7 @@ class StagesTreatmentFirst extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['sessions'] = sessions;
     data['oases'] = oases;
     data['ssrs'] = ssrs;

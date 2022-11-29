@@ -3,12 +3,9 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
-import '../../models/advisor_model.dart';
 import '../../models/profile_dtails.dart';
-import '../advisor_profile/advisor_profile_cubit.dart';
 
 part 'advisor_profile_details_state.dart';
 

@@ -57,7 +57,7 @@ class DiagnosticSsrsCubit extends Cubit<DiagnosticSsrsState> {
             "لقد تم إنتهاء إختبار SSRS بنجاح",
             title2: "إنتقال إلي إختبار SSI-4",
             onTap: () =>
-                Get.off(() => DiagnosticSSI4()));
+                Get.off(() => const DiagnosticSSI4()));
       });
     } catch (e, st) {
       log(e.toString());

@@ -3,7 +3,6 @@ import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-import '../../../../../../config/keys.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';

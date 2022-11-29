@@ -9,8 +9,6 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../config/keys.dart';
-import '../../../../../../home/cubit/home_tabebar_cubit.dart';
-import '../../../../../../home/view.dart';
 import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
@@ -19,9 +17,7 @@ import '../../../../../../widgets/fast_widget.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../view.dart';
-import '../../../../treatment_service/page/views/first_session/first_payment_treatment/view.dart';
 import '../../../../treatment_service/page/views/first_session/first_stage_induction/view.dart';
-import '../../../../treatment_service/page/views/pre-treatment_questionnaire/view.dart';
 import '../diagnostci_oases_test/view.dart';
 import '../diagnostic_history/view.dart';
 import '../diagnostic_ssi4/views/department_one/view.dart';

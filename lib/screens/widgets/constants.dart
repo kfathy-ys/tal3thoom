@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
-import 'package:tal3thoom/screens/auth/login/view.dart';
-import 'package:tal3thoom/screens/widgets/video_items.dart';
 
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';

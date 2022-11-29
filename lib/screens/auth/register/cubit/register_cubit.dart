@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:tal3thoom/screens/auth/register/model/models.dart';
 import 'package:meta/meta.dart';
 import 'package:tal3thoom/screens/widgets/alerts.dart';
@@ -66,7 +67,9 @@ class RegisterCubit extends Cubit<RegisterState> {
       }
 
       emit(RegisterSuccess(RegisterModel.fromJson(res.data)));
-    } catch (e, st) {
+    }  on DioError catch (_) {
+      emit(RegisterError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(RegisterError(msg: e.toString()));

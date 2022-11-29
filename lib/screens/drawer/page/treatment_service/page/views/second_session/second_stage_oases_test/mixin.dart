@@ -1,19 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tal3thoom/models/section.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
 import 'package:get/get.dart';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/first_stage_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/view.dart';
-import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/answers_service.dart';
-import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/question_serives.dart';
-import 'package:tal3thoom/serives/first_stage_injects/first_oases_service/answers_service.dart';
 import 'package:tal3thoom/serives/second_stage_inject/second_oases_service/answers_service.dart';
 import 'package:tal3thoom/serives/second_stage_inject/second_oases_service/question_serives.dart';
 
-import '../../../../../../../../serives/first_stage_injects/first_oases_service/question_serives.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 import '../second_stage_ssrs_test/view.dart';
 

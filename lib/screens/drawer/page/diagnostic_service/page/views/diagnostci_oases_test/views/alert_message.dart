@@ -37,9 +37,9 @@ class AlertMessage extends StatelessWidget {
                   "عزيزي العميل!",textStyle: buildTextStyle(),
                 ),
                 TyperAnimatedText(
-                  "برجاء التقيم المبدائي للمرحلة",textStyle:buildAccentTextStyle(),
+                  "برجاء التقيم مبدأي للمرحلة",textStyle:buildAccentTextStyle(),
                 ),
-                TyperAnimatedText( "التقيم يعطي انطباع مبدائي للمتخصص",textStyle:buildAccentTextStyle()),
+                TyperAnimatedText( "التقيم يعطي انطباع مبدأي للمتخصص",textStyle:buildAccentTextStyle()),
                 TyperAnimatedText("التقيم سيبدأ من 0 إلي 11",textStyle: buildAccentTextStyle()),
                 TyperAnimatedText( "حيث أن 0 يعني عم رضاك عن الأسئلة",textStyle: buildTextStyle()),
                 TyperAnimatedText( "حيث أن 11 يعني الرضا التام",textStyle: buildTextStyle()),

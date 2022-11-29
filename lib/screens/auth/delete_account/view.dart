@@ -1,18 +1,13 @@
-import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
-import 'package:country_picker/country_picker.dart';
-import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:queen/validation.dart';
 import 'package:tal3thoom/config/keys.dart';
 
 import '../../drawer/view.dart';
-import '../../home/pages/views/profile/cubit/profile_cubit.dart';
 import '../../widgets/appBar.dart';
 import '../../widgets/constants.dart';
 import '../../widgets/customTextFeild.dart';
@@ -35,10 +30,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+
     double width = MediaQuery
         .of(context)
         .size

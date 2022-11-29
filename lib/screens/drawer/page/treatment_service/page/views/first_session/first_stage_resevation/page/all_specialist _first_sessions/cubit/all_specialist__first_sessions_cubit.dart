@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../../../../../config/dio_helper/dio.dart';
-import '../../../../../../../../../../home/pages/views/reservations_schedule/view.dart';
 import '../../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../../widgets/date_convertors.dart';
 import '../../../../../../../../diagnostic_service/page/views/resevation_diagnostic/page/all_specialists/models/all_specialist_model.dart';

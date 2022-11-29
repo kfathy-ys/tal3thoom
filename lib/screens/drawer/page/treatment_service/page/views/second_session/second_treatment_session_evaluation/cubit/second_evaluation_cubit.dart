@@ -4,16 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/serives/second_stage_inject/sessions/evaluation_section/answers_service.dart';
 import 'package:tal3thoom/serives/second_stage_inject/sessions/evaluation_section/question_serives.dart';
 
 import '../../../../../../../../widgets/alerts.dart';
 import '../../../../../../diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
-import '../../../first_session/next_sessions/view.dart';
 import '../../next_sessions_two/view.dart';
-import '../../second_next_session/second_next_session.dart';
 
 part 'second_evaluation_state.dart';
 

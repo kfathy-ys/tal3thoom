@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../auth/login/view.dart';
+import '../home/cubit/home_tabebar_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -50,16 +52,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: kPrimaryColor,
                 child: InkWell(
                   onTap: () => userId.isNotEmpty
-                      ? Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeTabScreen()),
-                          (route) => false)
-                      : Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
-                          (route) => false),
+                      ? {
+                          BlocProvider.of<HomeTabeBarCubit>(context)
+                              .changeIndex(1),
+                          Get.offAll(() => const HomeTabScreen()),
+                        }
+                      : Get.offAll(() => LoginScreen()),
                   child: Image.asset(
                     'assets/images/arrow splash icon.png',
                     scale: 1.2,

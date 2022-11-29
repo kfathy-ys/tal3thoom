@@ -2,11 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/auth/login/view.dart';
-import 'package:tal3thoom/screens/home/view.dart';
 import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:tal3thoom/screens/widgets/customTextFeild.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide ContextExtensionss;
 import '../../../../../../config/keys.dart';
@@ -21,7 +19,7 @@ class NewPasswordScreen extends StatefulWidget {
 
   final String email;
 
-  NewPasswordScreen({Key? key, required this.vCode, required this.email})
+  const NewPasswordScreen({Key? key, required this.vCode, required this.email})
       : super(key: key);
 
   @override

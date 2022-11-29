@@ -24,7 +24,6 @@ import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_two/view/questions_card.dart';
 import '../../../second_stage_resevation/view.dart';
-import '../department_one/cubit/second_stage_ssi4_one_cubit.dart';
 import 'cubit/second_stage_ssi4_two_dart_cubit.dart';
 
 // ignore: must_be_immutable

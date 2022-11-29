@@ -2,8 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
-import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
-import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -20,7 +18,6 @@ import '../../../../../../view.dart';
 import '../../first_session/first_stage_additional_traning/view.dart';
 import '../second_stage_oases_test/view.dart';
 import '../second_tratement_sessions_sloki/cubit/second_behavioral_cubit.dart';
-import '../second_tratement_sessions_sloki/view.dart';
 import 'cubit/second_cognitive_section_cubit.dart';
 
 // ignore: must_be_immutable

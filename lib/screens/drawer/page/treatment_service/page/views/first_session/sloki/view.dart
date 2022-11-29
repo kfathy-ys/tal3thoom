@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:image_picker/image_picker.dart';
-import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first_session/sloki/views/build_three.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
@@ -124,7 +123,7 @@ class _SlokiScreenState extends State<SlokiScreen> {
                               : VideoItems(
                                   videoPlayerController:
                                       VideoPlayerController.file(
-                                    File(_file!.path ?? ""),
+                                    File(_file!.path ),
                                   ),
                                 ),
                         ),

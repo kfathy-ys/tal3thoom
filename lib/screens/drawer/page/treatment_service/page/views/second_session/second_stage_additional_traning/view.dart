@@ -7,11 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/video_items.dart';
-import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 
 // ignore: must_be_immutable
