@@ -70,6 +70,8 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
       } else {
         return Alert.success("ssssssssss");
       }
+    } on DioError catch (_) {
+      emit(CognitiveSectionError(msg:  "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());

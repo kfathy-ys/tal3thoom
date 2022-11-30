@@ -79,7 +79,9 @@ class PreQuestionnaireCubit extends Cubit<PreQuestionnaireState> {
       } else {
         return Alert.success("ssssssssss");
       }
-    } catch (e, st) {
+    }on DioError catch (_) {
+      emit(PreQuestionnaireError(msg:   "لا يوجد اتصال بالانترنت "));
+    }  catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 

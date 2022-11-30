@@ -79,7 +79,9 @@ class BehavioralCubit extends Cubit<BehavioralState> {
 
 
 
-    } catch (e, st) {
+    }on DioError catch (_) {
+      emit(BehavioralError(msg:   "لا يوجد اتصال بالانترنت "));
+    }  catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(BehavioralError(msg: e.toString()));

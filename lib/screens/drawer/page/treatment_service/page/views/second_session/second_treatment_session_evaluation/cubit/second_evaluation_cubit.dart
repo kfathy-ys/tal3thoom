@@ -86,7 +86,9 @@ class SecondEvaluationCubit extends Cubit<SecondEvaluationState> {
       } else {
         return Alert.success("ssssssssss");
       }
-    } catch (e, st) {
+    } on DioError catch (_) {
+      emit(SecondEvaluationError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 

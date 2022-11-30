@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
@@ -86,7 +87,9 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       }
 
       emit(UpdateProfileSuccess(profileModel: AllProfile.fromMap(res.data)));
-    } catch (e, st) {
+    } on DioError catch (_) {
+      emit(UpdateProfileError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(UpdateProfileError(msg: e.toString()));

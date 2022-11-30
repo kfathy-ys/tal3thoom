@@ -66,6 +66,8 @@ class DiagnosticSsi4FirstCubit extends Cubit<DiagnosticSsi4FirstState> {
       emit(DiagnosticSsi4FirstSuccess(ssi4QuestionModel: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
 
+    } on DioError catch (_) {
+      emit(DiagnosticSsi4FirstError(msg:  "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
 
 

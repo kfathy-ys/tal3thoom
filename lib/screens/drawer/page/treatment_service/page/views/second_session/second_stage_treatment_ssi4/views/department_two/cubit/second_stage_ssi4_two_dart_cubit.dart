@@ -68,7 +68,9 @@ class SecondStageSsi4TwoDartCubit extends Cubit<SecondStageSsi4TwoDartState> {
       emit(SecondStageSsi4TwoDartSuccess(ssi4QuestionModel: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
 
-    } catch (e, st) {
+    } on DioError catch (_) {
+      emit(SecondStageSsi4TwoDartError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, st) {
       Alert.error(e.toString());
       log(e.toString());
       log(st.toString());

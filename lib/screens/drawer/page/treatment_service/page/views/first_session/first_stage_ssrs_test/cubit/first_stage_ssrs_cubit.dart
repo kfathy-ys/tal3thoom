@@ -59,6 +59,8 @@ class FirstStageSsrsCubit extends Cubit<FirstStageSsrsState> {
             onTap: () =>
                 Get.off(() => const TreatmentSSI4()));
       });
+    } on DioError catch (_) {
+      emit(FirstStageSsrsError(msg:   "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       log(e.toString());
       log(st.toString());

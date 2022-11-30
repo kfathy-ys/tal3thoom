@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tal3thoom/models/section.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/models/diagnostic_history_question_model.dart';
@@ -8,6 +9,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/secon
 import 'package:tal3thoom/serives/second_stage_inject/second_oases_service/answers_service.dart';
 import 'package:tal3thoom/serives/second_stage_inject/second_oases_service/question_serives.dart';
 
+import '../../../../../../../widgets/constants.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 import '../second_stage_ssrs_test/view.dart';
 
@@ -122,6 +124,8 @@ mixin QSecondMixer on State<SecondStageOasesTest> {
       selectedQuestion = questionsBySection[sections.first]!.first;
       setState(() {});
       log('${qList.length} loaded from api and filtered by sectionID');
+    }on DioError catch (_) {
+      customText2(title:   "لا يوجد اتصال بالانترنت ",color:kBlackText);
     } catch (e) {
      // Alert.error('الرجاء قيد الإنتظار !!!');
       Get.snackbar(e.toString(), '');
@@ -180,7 +184,9 @@ mixin QSecondMixer on State<SecondStageOasesTest> {
             title2: "إنتقال إلي إختبار SSRS",
             onTap: () => Get.off(() => const SecondStageSSRSTreatmentScreen()),
           ));
-    } catch (e) {
+    } on DioError catch (_) {
+      customText2(title:   "لا يوجد اتصال بالانترنت ",color:kBlackText);
+    }catch (e) {
       Get.snackbar(e.toString(), '');
     } finally {
       setState(() => isSubmiting = true);

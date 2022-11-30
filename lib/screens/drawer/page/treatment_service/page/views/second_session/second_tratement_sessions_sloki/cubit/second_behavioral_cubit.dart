@@ -77,7 +77,9 @@ class SecondBehavioralCubit extends Cubit<SecondBehavioralState> {
 
 
 
-    } catch (e, st) {
+    } on DioError catch (_) {
+      emit(SecondBehavioralError(msg: "لا يوجد اتصال بالانترنت "));
+    }catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(SecondBehavioralError(msg: e.toString()));

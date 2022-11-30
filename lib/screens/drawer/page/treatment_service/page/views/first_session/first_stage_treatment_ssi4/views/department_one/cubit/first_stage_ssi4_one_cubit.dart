@@ -66,7 +66,9 @@ class FirstStageSsi4OneCubit extends Cubit<FirstStageSsi4OneState> {
       emit(FirstStageSsi4OneSuccess(ssi4QuestionModel: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
 
-    } catch (e, st) {
+    }on DioError catch (_) {
+      emit(FirstStageSsi4OneError(msg:   "لا يوجد اتصال بالانترنت "));
+    }  catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(FirstStageSsi4OneError(msg: e.toString()));

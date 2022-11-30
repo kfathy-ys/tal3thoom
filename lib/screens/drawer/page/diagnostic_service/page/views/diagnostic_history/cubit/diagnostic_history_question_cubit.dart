@@ -80,6 +80,8 @@ class DiagnosticHistoryQuestionCubit
       } else {
         return Alert.success("ssssssssss");
       }
+    } on DioError catch (_) {
+      emit(DiagnosticHistoryQuestionError(msg:  "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       Alert.error(e.toString(), desc: "الرجاء المحاولة مرة أخري وتاكيد اجابات الممكنة المطلوبة وفقا لمعاير التشخيص");
       log("[]][][][error from cubit is" + e.toString());
