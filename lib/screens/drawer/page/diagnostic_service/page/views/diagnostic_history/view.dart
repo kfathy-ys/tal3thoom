@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../config/keys.dart';
+import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
@@ -81,13 +83,31 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
 
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
-                              onTap: () =>
+                              onTap:() async {
+                                if (await Permission.microphone.
+                                    request()
+                                    .isGranted) {
                                   speech.speak(currentQuestion
                                       .description
                                       .toString() +
                                       "الاجابات المتاحة هي "
                                           '${currentQuestion.answers.map((
-                                          lang) => lang.answerOption)}'),
+                                          lang) => lang.answerOption)}');
+                                } else {
+                                  Alert.error(
+                                      "يجب الحصول علي تصريح الوصول الي الميكروفون");
+                                }
+                              },
+
+
+
+
+
+
+
+
+
+
                               child: Image.asset("assets/images/Earphone.png")),
                           suffix: cubit.shouldShowTextField(currentQuestion)
                               ? SizedBox(

@@ -102,9 +102,16 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                   state.ssi4QuestionModel[0].description),
                               color: kBlackText),
                           InkWell(
-                              onTap: () {
-                                speech.speak(parseHtmlString(
-                                    state.ssi4QuestionModel[0].description));
+                              onTap: () async {
+                                if (await Permission.microphone.
+                                    request()
+                                    .isGranted) {
+                                  speech.speak(parseHtmlString(
+                                      state.ssi4QuestionModel[0].description));
+                                } else {
+                                  Alert.error(
+                                      "يجب الحصول علي تصريح الوصول الي الميكروفون");
+                                }
                               },
                               child: Padding(
                                 padding:
@@ -141,13 +148,9 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                   .isGranted) {
                                 pickVideo();
                               } else {
-
-                                Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
-
-
+                                Alert.error(
+                                    "يجب الحصول علي تصريح الوصول الي الخزينة");
                               }
-
-
                             },
                             validator: qValidator(
                                 [IsRequired(KeysConfig.thisFieldRequired)]),

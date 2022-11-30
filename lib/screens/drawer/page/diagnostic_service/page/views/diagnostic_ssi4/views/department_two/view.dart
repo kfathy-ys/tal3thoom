@@ -119,18 +119,30 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                         ),
 
                         InkWell(
-                            onTap: () {
-                              speech.speak(parseHtmlString("السؤال الأول" +
-                                  listOfString[0] +
-                                  "السؤال الثاني" +
-                                  listOfString[1] +
-                                  "السؤال الثالث" +
-                                  listOfString[2] +
-                                  "السؤال الرابع" +
-                                  listOfString[3] +
-                                  "السؤال الخامس" +
-                                  listOfString[4]));
+                            onTap:() async {
+                              if (await Permission.microphone.
+                                  request()
+                                  .isGranted) {
+                                speech.speak(parseHtmlString("السؤال الأول" +
+                                    listOfString[0] +
+                                    "السؤال الثاني" +
+                                    listOfString[1] +
+                                    "السؤال الثالث" +
+                                    listOfString[2] +
+                                    "السؤال الرابع" +
+                                    listOfString[3] +
+                                    "السؤال الخامس" +
+                                    listOfString[4]));
+                              } else {
+                                Alert.error(
+                                    "يجب الحصول علي تصريح الوصول الي الميكروفون");
+                              }
                             },
+
+
+
+
+
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),

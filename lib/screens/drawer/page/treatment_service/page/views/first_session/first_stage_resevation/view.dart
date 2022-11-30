@@ -139,31 +139,8 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                                 date: selectedDate!));
                       },
                     )
-/*
-                       BlocConsumer<DiagnosticSpecialistsCubit, DiagnosticSpecialistsState>(
-                      listener: (context, state) {
 
-                        if(state is DiagnosticSpecialistsSuccess){
-                          print(state.allSpecialistModel.data.length);
-                            navigateTo(context, DiagnosticAllSpecialists(allSpecialistModel: state.allSpecialistModel));
 
-                        }
-                      },
-                      builder: (context, state) {
-
-                        return state is! DiagnosticSpecialistsLoading ? SmallButton(
-                          title: "بحث",
-                          onPressed: () {
-                            BlocProvider.of<DiagnosticSpecialistsCubit>(
-                                context)
-                                .getSpecialists(
-                              startTime: selectedPeriodId!.toString(),
-                              date: selectedDate!.toString(),);
-                          },
-                        ):const LoadingFadingCircleSmall();
-                      },
-                    )
-*/
                   ]);
             },
           ),

@@ -105,10 +105,24 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                                   state.ssi4QuestionModel[0].description),
                               color: kBlackText),
                           InkWell(
-                              onTap: () {
-                                speech.speak(parseHtmlString(
+                              onTap: () async {
+                                if (await Permission.storage
+                                    .request()
+                                    .isGranted) {   speech.speak(parseHtmlString(
                                     state.ssi4QuestionModel[0].description));
+                                } else {
+
+                                  Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
+
+
+                                }
+
+
                               },
+
+
+
+
                               child: Padding(
                                 padding:
                                 const EdgeInsets.symmetric(vertical: 8.0),

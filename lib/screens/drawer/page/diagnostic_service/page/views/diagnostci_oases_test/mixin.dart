@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tal3thoom/models/section.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostci_oases_test/view.dart';
@@ -7,6 +8,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/answers_service.dart';
 import 'package:tal3thoom/serives/diagnostics_injects/diagnostic_oases_service/question_serives.dart';
+import '../../../../../../widgets/constants.dart';
 import '../diagnostic_ssrs_test/view.dart';
 import '../success_page.dart';
 
@@ -178,7 +180,9 @@ mixin QMixer on State<DiagnosticOasesTest> {
             title2: "إنتقال إلي إختبار SSRS",
             onTap: () => Get.off(() => const SSRSDiagnosticsScreen()),
           ));
-    } catch (e) {
+    } on DioError catch (_) {
+      customText2(title:   "لا يوجد اتصال بالانترنت ",color: kBlackText);
+    }catch (e) {
       Get.snackbar(e.toString(), '');
     } finally {
       setState(() => isSubmiting = true);

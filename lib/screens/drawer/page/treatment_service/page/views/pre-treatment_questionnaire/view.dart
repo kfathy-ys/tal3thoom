@@ -92,16 +92,7 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                                   labelText: "${index + 1} - " +
                                       state.preQuestionnaireModel[index]
                                           .description,
-                                  // suffix:    Container(
-                                  //   width: context.width * 0.1,
-                                  //      height: context.height * 0.05,
-                                  //   decoration:
-                                  //   const BoxDecoration(color: kTextColor,borderRadius: BorderRadius.all(Radius.circular(80))),
-                                  //   child: Center(
-                                  //     child: customText3(
-                                  //         title: "${index+1}", color: kHomeColor),
-                                  //   ),
-                                  // ),
+
                                 ),
                                 initialValue: cubit
                                     .answer[state.preQuestionnaireModel[index]],

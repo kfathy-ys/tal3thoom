@@ -122,18 +122,31 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                         //  CardQuestions(index: "0", desc:  parseHtmlString(state.ssi4QuestionModel[1].description.trArgs(["01"]))),
                         // customText4(title: allString, color: kBlackText),
                         InkWell(
-                            onTap: () {
-                              speech.speak(parseHtmlString("السؤال الأول" +
-                                  listOfString[0] +
-                                  "السؤال الثاني" +
-                                  listOfString[1] +
-                                  "السؤال الثالث" +
-                                  listOfString[2] +
-                                  "السؤال الرابع" +
-                                  listOfString[3] +
-                                  "السؤال الخامس" +
-                                  listOfString[4]));
+                            onTap: () async {
+                              if (await Permission.microphone.
+                                  request()
+                                  .isGranted) {
+                                speech.speak(parseHtmlString("السؤال الأول" +
+                                    listOfString[0] +
+                                    "السؤال الثاني" +
+                                    listOfString[1] +
+                                    "السؤال الثالث" +
+                                    listOfString[2] +
+                                    "السؤال الرابع" +
+                                    listOfString[3] +
+                                    "السؤال الخامس" +
+                                    listOfString[4]));
+                              } else {
+                                Alert.error(
+                                    "يجب الحصول علي تصريح الوصول الي الميكروفون");
+                              }
                             },
+
+
+
+
+
+
                             child: Padding(
                               padding:
                               const EdgeInsets.symmetric(vertical: 8.0),
