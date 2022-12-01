@@ -17,7 +17,9 @@ import '../../../../../../../../../config/keys.dart';
 
 import '../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../widgets/constants.dart';
+import '../../../../../../../../widgets/record_video_button.dart';
 import '../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../view.dart';
 import '../../cubit/diagnostic_ssi4_first_cubit.dart';
@@ -152,10 +154,23 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                     "يجب الحصول علي تصريح الوصول الي الخزينة");
                               }
                             },
+
                             validator: qValidator(
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
+
+                          // SmallButtonSizerRecordVideo(onPressed: () async {
+                          //   if (await Permission.camera
+                          //       .request()
+                          //       .isGranted) {
+                          //    // Get.to(()=>CameraPage());
+                          //     print("خرااااااا");
+                          //   } else {
+                          //     Alert.error(
+                          //         "يجب الحصول علي تصريح الوصول الي الكاميرا");
+                          //   }
+                          // }, ),
                           const AlertVideoMessage(),
                           state is! DiagnosticSsi4FirstLoading
                               ? MediaButton(

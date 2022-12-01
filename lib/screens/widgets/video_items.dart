@@ -6,10 +6,12 @@ import 'package:chewie/chewie.dart';
 import 'constants.dart';
 
 class VideoItems extends StatefulWidget {
+
   final VideoPlayerController videoPlayerController;
-  const VideoItems({
+   const VideoItems({
     Key? key,
     required this.videoPlayerController,
+
   }) : super(key: key);
 
   @override

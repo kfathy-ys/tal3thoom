@@ -49,12 +49,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
           children: [
             customBoldText(
                 title: KeysConfig.qNames[number], color: kPrimaryColor),
-            // customText9(
-            //   //// TODO::: todo 5 varaibles to store length for every qlist
-            //   color: kPrimaryColor,
-            //   title:  " (${cubit.index} من ${qList.length})",
-            //
-            // ),
+
           ],
         ),
         children: [

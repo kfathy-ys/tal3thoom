@@ -51,7 +51,7 @@ class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
     return SizedBox(
       // margin: const EdgeInsets.symmetric(horizontal: 6),
       height: MediaQuery.of(context).size.height / 18,
-      width: MediaQuery.of(context).size.width / 1.8,
+      width: MediaQuery.of(context).size.width / 1.9,
       child: TextFormField(
         enabled: false,
         onTap: widget.onTap,
@@ -66,7 +66,7 @@ class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
         onChanged: (widget.onsave),
         style: const TextStyle(fontSize: 14, color: kPrimaryColor),
         decoration: InputDecoration(
-          hintText: "رفع فيديو قمت بتسجيله مسبقا",
+          hintText: "تسجيل فيديو قمت بتسجيله مسبقا",
           prefixIcon: Icon(
             widget.dIcon,
             color: kPrimaryColor,
