@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -105,8 +106,8 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                               color: kBlackText),
                           InkWell(
                               onTap: () async {
-                                if (await Permission.microphone.
-                                    request()
+                                if (await Permission.microphone
+                                    .request()
                                     .isGranted) {
                                   speech.speak(parseHtmlString(
                                       state.ssi4QuestionModel[0].description));
@@ -126,13 +127,10 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                             height: context.height * 0.25,
                             child: _file == null
                                 ? Container(
-                                    //padding: EdgeInsets.symmetric(vertical: 4,),
                                     decoration: BoxDecoration(
                                         color: kBlackText,
                                         border: Border.all(
-                                            color: kPrimaryColor, width: 3)
-                                        // borderRadius: BorderRadius.circular(4)
-                                        ),
+                                            color: kPrimaryColor, width: 3)),
                                   )
                                 : VideoItems(
                                     videoPlayerController:
@@ -154,23 +152,30 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                     "يجب الحصول علي تصريح الوصول الي الخزينة");
                               }
                             },
-
                             validator: qValidator(
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
+                          SmallButtonSizerRecordVideo(
+                            onPressed: () async {
+                              if (await Permission.camera.request().isGranted) {
+                                Get.to(() => CameraPage(
+                                      onAdd: (x) {
+                                        setState(() {
+                                          _file = x;
 
-                          // SmallButtonSizerRecordVideo(onPressed: () async {
-                          //   if (await Permission.camera
-                          //       .request()
-                          //       .isGranted) {
-                          //    // Get.to(()=>CameraPage());
-                          //     print("خرااااااا");
-                          //   } else {
-                          //     Alert.error(
-                          //         "يجب الحصول علي تصريح الوصول الي الكاميرا");
-                          //   }
-                          // }, ),
+                                        });
+
+                                      },
+
+                                ));
+
+                              } else {
+                                Alert.error(
+                                    "يجب الحصول علي تصريح الوصول الي الكاميرا");
+                              }
+                            },
+                          ),
                           const AlertVideoMessage(),
                           state is! DiagnosticSsi4FirstLoading
                               ? MediaButton(
@@ -287,6 +292,14 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
       await controller.play();
       setState(() {});
     }
+  }
+  Future<dynamic>getFileSize(dynamic filepath, int decimals) async {
+    var file = File(filepath) ;
+    int bytes = await file.length();
+    if (bytes <= 0) return "0 B";
+    const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    var i = (log(bytes) / log(1024)).floor();
+    return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
   }
 // void _uploadVideo() async {
 //   FilePickerResult? result = await FilePicker.platform.pickFiles(
