@@ -13,8 +13,10 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
+import '../../../../../../../../../widgets/record_video_button.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 
@@ -164,6 +166,27 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
                             context: context,
                           ),
+                          SmallButtonSizerRecordVideo(
+                            onPressed: () async {
+                              if (await Permission.camera.request().isGranted) {
+                                Get.to(() => CameraPage(
+                                  onAdd: (x) {
+                                    setState(() {
+                                      _file = x;
+
+                                    });
+
+                                  },
+
+                                ));
+
+                              } else {
+                                Alert.error(
+                                    "يجب الحصول علي تصريح الوصول الي الكاميرا");
+                              }
+                            },
+                          ),
+
                           const AlertVideoMessage(),
 
 

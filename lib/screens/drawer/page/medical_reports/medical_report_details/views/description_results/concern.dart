@@ -12,7 +12,7 @@ class ConcernResult extends StatelessWidget {
   final String fav;
   final String cases;
 
-  const ConcernResult(
+   ConcernResult(
       {Key? key,
       required this.title1,
       required this.title2,
@@ -22,10 +22,12 @@ class ConcernResult extends StatelessWidget {
         required this.fav, required this.cases})
       : super(key: key);
 
+
+
+
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
@@ -46,7 +48,37 @@ class ConcernResult extends StatelessWidget {
         ],
       ),
     );
+
+
   }
+
+
+
+
+
+
+
+
+
+  TextStyle textStyle(){
+    return const TextStyle(color: kButtonRedDark, fontSize: 14, fontFamily: 'DinBold');
+  }
+  Widget text({required String normalText}){
+    return customText7(title: normalText , color: kBlackText);
+  }
+
+TextSpan textSpan(){
+    return  TextSpan(
+        //text: 'This is textspan ',
+        children: <InlineSpan>[
+          TextSpan(
+            text: name,
+            style: textStyle(),
+          ),
+        ],
+
+    );
+}
 }
 /*
 * Testpayment is a 0 years old male . He came to the SHS therapeutic approach for a fluency evaluation/treatment due to his concern over persistent stuttering. Specifically Testpayment was concerned that the stuttering was becoming worse and frustration was decreasing.*/

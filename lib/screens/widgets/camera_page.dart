@@ -9,6 +9,7 @@ import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 import 'constants.dart';
+import 'loading.dart';
 
 class CameraPage extends StatefulWidget {
 
@@ -72,7 +73,7 @@ class _CameraPageState extends State<CameraPage> {
       await _cameraController.startVideoRecording();
 
       setState(() => _isRecording = true);
-      Future.delayed(const Duration(seconds: 10),(){
+      Future.delayed(const Duration(seconds: 15),(){
         _stopRecordVideo();
         Alert.error("الفيديو المطلوب تعدي عدد الميغا بايت المطلوبة ");
 
@@ -97,7 +98,7 @@ class _CameraPageState extends State<CameraPage> {
       return Container(
         color: Colors.white,
         child: const Center(
-          child: CircularProgressIndicator(),
+          child: LoadingFadingCircle(),
         ),
       );
     } else {
@@ -126,65 +127,4 @@ class _CameraPageState extends State<CameraPage> {
   }
 
 
-/*  Widget _buildResendCounter() {
-    return Countdown(
-      seconds: 10,
-      controller: _countdownController,
-      onFinished: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.red,
-            content: Text('يجب ان يكون الفيديو 10 ثواني فقط',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Cairo',
-                    fontSize: 12)),
-          ),
-        );
-        _stopRecordVideo();
-      },
-      build: (context, time) {
-        final showResetBottom = time.toInt() == 0;
-        final minutes = time >= 60 ? (time / 60).round() : 0;
-        final seconds = (time - minutes * 60).round();
-        print(" khaled${minutes } : ${seconds}");
-        return GestureDetector(
-          onTap: () {
-            // _handleCodeResend();
-            if (showResetBottom) {
-              _countdownController.restart();
-            }
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            //mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                "KeysConfig.resent",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: showResetBottom ? Colors.black : kPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'DinReguler',
-                  fontSize: 12,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '$minutes:${seconds < 10 ? 0 : ''}${seconds.toInt()}',
-                  style: TextStyle(
-                    color: !showResetBottom ? Colors.black : Colors.black45,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }*/
 }

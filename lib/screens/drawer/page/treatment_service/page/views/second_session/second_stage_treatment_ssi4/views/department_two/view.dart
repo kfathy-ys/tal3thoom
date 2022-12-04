@@ -16,8 +16,10 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
+import '../../../../../../../../../widgets/record_video_button.dart';
 import '../../../../../../../../../widgets/video_items.dart';
 import '../../../../../../../../view.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/alert_vedio_size.dart';
@@ -194,6 +196,27 @@ class _SecondTreatmentSSI4TwoState extends State<SecondTreatmentSSI4Two> {
                           qValidator([IsRequired("thisFieldRequired")]),
                           context: context,
                         ),
+                        SmallButtonSizerRecordVideo(
+                          onPressed: () async {
+                            if (await Permission.camera.request().isGranted) {
+                              Get.to(() => CameraPage(
+                                onAdd: (x) {
+                                  setState(() {
+                                    _file = x;
+
+                                  });
+
+                                },
+
+                              ));
+
+                            } else {
+                              Alert.error(
+                                  "يجب الحصول علي تصريح الوصول الي الكاميرا");
+                            }
+                          },
+                        ),
+
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset("assets/images/record.png"),

@@ -67,7 +67,7 @@ class MedicalReportsDetails extends StatelessWidget {
                       final cubit =
                           BlocProvider.of<MedicalReportDetailsCubit>(context);
                       var content = cubit.allReportsDetails.patient;
-                      var pContent = cubit.allReportsDetails;
+                      var pContent= cubit.allReportsDetails;
 
                       var oasesResult = cubit.allReportsDetails.oasesResults;
 
@@ -87,7 +87,7 @@ class MedicalReportsDetails extends StatelessWidget {
                             HeadSubHead(
                                 head1: "رقم الهوية  ",
                                 head2: "ID No",
-                                sunHead: content.idCardNumber ?? ""),
+                                sunHead: content.idCardNumber .toString()),
                             HeadSubHead(
                                 head1: "الجنس  ",
                                 head2: "Gender",
@@ -112,31 +112,31 @@ class MedicalReportsDetails extends StatelessWidget {
                             HeadSubHead(
                               head1: "تاريخ التسجيل ",
                               head2: "Date of enrolment",
-                              sunHead: pContent.enrolmentDate ?? "",
+                              sunHead: pContent.enrolmentDate .toString(),
                             ),
                             //DateConverter.dateConverterMonth(pContent.enrolmentDate!.toString())??""),
                             HeadSubHead(
                                 head1: "تاريخ الخروج ",
                                 head2: "Discharge date",
-                                sunHead: pContent.dischargeDate ?? ""),
+                                sunHead: state.allReports.data!.dischargeDate .toString()),
                             ConcernResult(
                               title1: " Area of",
                               title2: "Concern",
                               name: content.firstName!,
-                              age: pContent.patientAge ?? "",
+                              age: state.allReports.data!.patientAge.toString(),
                               sex: content.gender!,
-                              fav: pContent.heOrShe ?? "",
-                              cases: pContent.stutteringWasBecoming ?? "",
+                              fav: state.allReports.data!.heOrShe.toString(),
+                              cases:state.allReports.data!.stutteringWasBecoming.toString(),
                             ),
                             BackGroundInfo(
                               title1: " Background ",
                               title2: "Information",
                               name: content.firstName!,
-                              cases: pContent.bornWith ?? "",
-                              schollDegree: pContent.stutteringNoticedAge ?? "",
+                              cases: state.allReports.data!.bornWith.toString(),
+                              schollDegree: state.allReports.data!.stutteringNoticedAge.toString(),
                               sex: content.gender!,
-                              upTo: pContent.theStuttering.toString(),
-                              finish: pContent.hasBecome.toString(),
+                              upTo: state.allReports.data!.theStuttering.toString(),
+                              finish:state.allReports.data!.hasBecome.toString(),
                             ),
                             TestingCase(
                                 title1: " Fluency ",
@@ -146,14 +146,14 @@ class MedicalReportsDetails extends StatelessWidget {
                               title1: " Overall Assessment",
                               title2: "(OASES)",
                               name: content.firstName!,
-                              her: pContent.hisOrHer ?? "",
+                              her: state.allReports.data!.hisOrHer.toString(),
                             ),
                             OverAll(
                               title1: " Overall Assessment",
                               title2: "(Summary)",
                               name: content.firstName!,
-                              age: pContent.patientAge ?? "",
-                              mild: pContent.severityEquivalent ?? "",
+                              age: state.allReports.data!.patientAge .toString(),
+                              mild: state.allReports.data!.severityEquivalent .toString(),
                             ),
                             SizedBox(
                               height: context.height * 0.02,
@@ -328,17 +328,17 @@ class MedicalReportsDetails extends StatelessWidget {
 
                             NoHead(
                               name: content.firstName!,
-                              her: pContent.hisOrHer ?? "",
-                              impactRating: pContent.hisOrHer ?? "",
+                              her: state.allReports.data!.hisOrHer .toString(),
+                              impactRating: state.allReports.data!.hisOrHer .toString(),
                             ),
 
                             Recommended(
                               title1: "",
                               title2: "Recommendations",
                               name: content.firstName!,
-                              her: pContent.hisOrHer ?? "",
-                              mild: pContent.exhibits ?? "",
-                              doctorDep: pContent.specialistName!.toString(),
+                              her: state.allReports.data!.hisOrHer .toString(),
+                              mild: state.allReports.data!.exhibits .toString(),
+                              doctorDep: state.allReports.data!.specialistName!.toString(),
                               doctorName: ": "+ state.allReports.data!.supervisorName! ,
                             ),
 
