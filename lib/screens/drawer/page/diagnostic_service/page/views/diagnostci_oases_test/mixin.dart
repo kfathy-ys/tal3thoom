@@ -123,7 +123,7 @@ mixin QMixer on State<DiagnosticOasesTest> {
       setState(() {});
       log('${qList.length} loaded from api and filtered by sectionID');
     } catch (e) {
-     // Alert.error('الرجاء قيد الإنتظار !!!');
+      // Alert.error('الرجاء قيد الإنتظار !!!');
       Get.snackbar(e.toString(), '');
     } finally {
       setState(() => isSubmiting = false);
@@ -165,15 +165,15 @@ mixin QMixer on State<DiagnosticOasesTest> {
     //   selectNextQuestion();
     // } else {
     //  submit();
-  //  }
+    //  }
   }
+
   bool isSubmiting = false;
   Future<void> submit() async {
     try {
       setState(() => isSubmiting = true);
       await DiagnosticOasesAnswers.postDiagnosticOasesAnswers(
         answers: allAnswers,
-
       );
       Get.off(() => SuccessView(
             title1: "لقد تم إنتهاء إختبار OASES بنجاح",
@@ -181,8 +181,8 @@ mixin QMixer on State<DiagnosticOasesTest> {
             onTap: () => Get.off(() => const SSRSDiagnosticsScreen()),
           ));
     } on DioError catch (_) {
-      customText2(title:   "لا يوجد اتصال بالانترنت ",color: kBlackText);
-    }catch (e) {
+      customText2(title: "لا يوجد اتصال بالانترنت ", color: kBlackText);
+    } catch (e) {
       Get.snackbar(e.toString(), '');
     } finally {
       setState(() => isSubmiting = true);

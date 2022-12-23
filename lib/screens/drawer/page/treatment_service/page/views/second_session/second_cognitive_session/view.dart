@@ -1,19 +1,19 @@
 import 'dart:developer';
 
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/success_widget.dart';
 import '../../../../../../../widgets/sucess_widget_treatment_tests.dart';
-import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../first_session/first_stage_additional_traning/view.dart';
 import '../second_stage_oases_test/view.dart';
@@ -31,6 +31,13 @@ class SecondTreatmentSession extends StatefulWidget {
 class _SecondTreatmentSessionState extends State<SecondTreatmentSession> {
   final currentStage = Prefs.getString("currentStage");
   final currentDiagnosesStatus = Prefs.getString("currentDiagnosesStatus");
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -229,17 +236,32 @@ class _SecondTreatmentSessionState extends State<SecondTreatmentSession> {
                                                     width: context.width * 0.8,
                                                     height:
                                                         context.height * 0.25,
-                                                    child: VideoItems(
-                                                      videoPlayerController:
-                                                          VideoPlayerController
-                                                              .network(
-                                                        "http://dev-sas.cpt-it.com/api/" +
-                                                            state
-                                                                .questionModel[
-                                                                    index]
-                                                                .videoFile
-                                                                .toString(),
-                                                      ),
+                                                    child:
+
+                                                        // BetterVideoItems(video:      BetterPlayer.network(
+                                                        //   "http://mcsc-saudi.com/api/" +
+                                                        //       state
+                                                        //           .questionModel[
+                                                        //       index]
+                                                        //           .videoFile
+                                                        //           .toString(),
+                                                        //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                                        //     aspectRatio: 16 / 9,
+                                                        //   ),
+                                                        // ),
+                                                        //
+                                                        //
+                                                        //
+                                                        //
+                                                        // ),
+
+                                                        VideoScreen(
+                                                      url: "http://mcsc-saudi.com/api/" +
+                                                          state
+                                                              .questionModel[
+                                                                  index]
+                                                              .videoFile
+                                                              .toString(),
                                                     ),
                                                   ),
                                           ],

@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-class AllMessages extends Equatable{
+class AllMessages extends Equatable {
   dynamic data;
   List<Messages>? messages;
   int? status;
@@ -34,7 +34,7 @@ class AllMessages extends Equatable{
   }
 
   @override
-  List<Object?> get props => [data,messages,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
 class Messages extends Equatable {
@@ -62,5 +62,5 @@ class Messages extends Equatable {
   }
 
   @override
-  List<Object?> get props => [code, body, title , type];
+  List<Object?> get props => [code, body, title, type];
 }

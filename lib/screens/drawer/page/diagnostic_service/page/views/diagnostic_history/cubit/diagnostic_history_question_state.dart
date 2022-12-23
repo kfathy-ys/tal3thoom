@@ -12,11 +12,12 @@ class DiagnosticHistoryQuestionSuccess extends DiagnosticHistoryQuestionState {
   DiagnosticHistoryQuestionSuccess(
       {required this.diagnosticHistoryQuestionModel});
 }
+
 class DiagnosticHistoryQuestionMessage extends DiagnosticHistoryQuestionState {
   final List<Message> message;
-  DiagnosticHistoryQuestionMessage(
-      {required this.message});
+  DiagnosticHistoryQuestionMessage({required this.message});
 }
+
 class DiagnosticHistoryQuestionError extends DiagnosticHistoryQuestionState {
   final String msg;
 

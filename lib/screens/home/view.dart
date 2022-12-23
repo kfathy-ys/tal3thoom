@@ -1,4 +1,3 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:tal3thoom/screens/drawer/view.dart';
 import 'package:tal3thoom/screens/widgets/appBar.dart';
@@ -60,7 +59,6 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                 press: (context) => Scaffold.of(context).openDrawer()),
             body: cubit.widgetOptions.elementAt(cubit.index),
 
-
             //
             // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             // floatingActionButton: FloatingActionButton(
@@ -83,27 +81,25 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
             //   //other params
             // ),
 
-
-            bottomNavigationBar:  ConvexAppBar(
-             // cornerRadius: 12,
+            bottomNavigationBar: ConvexAppBar(
+              // cornerRadius: 12,
 
               elevation: 20,
 
-               style: TabStyle.reactCircle,
+              style: TabStyle.reactCircle,
               //  key: cubit.bottomNavigationKey,
               initialActiveIndex: cubit.index,
-             height: 50.0,
+              height: 50.0,
               items: [
-
                 TabItem(
-                 // title: "ملفي",
+                  // title: "ملفي",
                   icon: buildImage(image: 'assets/images/Profile 1.png'),
                 ),
                 TabItem(
-                   // title: "الرئيسية",
+                    // title: "الرئيسية",
                     icon: buildImage(image: 'assets/images/main.png')),
                 TabItem(
-              //  title:   "الحجوزات",
+                    //  title:   "الحجوزات",
                     icon:
                         buildImage(image: 'assets/images/white calendar.png')),
                 // buildImage(image: 'assets/images/Profile 1.png'),
@@ -127,10 +123,10 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       ),
     );
   }
+
   final iconList = <IconData>[
     Icons.brightness_5,
     Icons.brightness_4,
-
   ];
   Image buildImage({required String image}) {
     return Image.asset(

@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +61,10 @@ class _NextSessionState extends State<NextSession> {
             CustomButton(
               title: "الإنتقال إلي المرحلة التالية",
               onPressed: () {
-                BlocProvider.of<CognitiveSectionCubit>(context).getCognitiveSection();
-                Get.off(()=> const FirstTreatmentSession());
-               // ;
+                BlocProvider.of<CognitiveSectionCubit>(context)
+                    .getCognitiveSection();
+                Get.off(() => const FirstTreatmentSession());
+                // ;
               },
             ),
           ],

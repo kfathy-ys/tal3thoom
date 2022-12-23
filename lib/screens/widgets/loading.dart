@@ -54,7 +54,9 @@ class LoadingFadingCircle extends StatelessWidget {
       ),
     );
   }
-}class LoadingFadingCircleWhite extends StatelessWidget {
+}
+
+class LoadingFadingCircleWhite extends StatelessWidget {
   const LoadingFadingCircleWhite({Key? key}) : super(key: key);
 
   @override

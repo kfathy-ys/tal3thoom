@@ -3,15 +3,13 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diag
 
 import '../../../../config/dio_helper/dio.dart';
 
-
 class CognitiveSectionService {
   static Future<List<Question>> findMany() async {
     final userId = Prefs.getString("userId");
 
-
     final res = await NetWork.get(
         'PatientExams/GetExamQuestionsAnswersByExamCodeAndSectionName/$userId/cog');
-        return List.from(res.data["data"])
+    return List.from(res.data["data"])
         .map((e) => Question.fromJson(e))
         .toList();
   }

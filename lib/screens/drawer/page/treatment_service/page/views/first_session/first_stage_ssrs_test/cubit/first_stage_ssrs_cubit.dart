@@ -15,7 +15,7 @@ import '../../first_stage_treatment_ssi4/views/department_one/view.dart';
 part 'first_stage_ssrs_state.dart';
 
 class FirstStageSsrsCubit extends Cubit<FirstStageSsrsState> {
-  FirstStageSsrsCubit() : super(FirstStageSsrsInitial()){
+  FirstStageSsrsCubit() : super(FirstStageSsrsInitial()) {
     getFirstSSRSQuestions();
   }
 
@@ -27,14 +27,14 @@ class FirstStageSsrsCubit extends Cubit<FirstStageSsrsState> {
   Future<void> getFirstSSRSQuestions() async {
     emit(FirstStageSsrsLoading());
     try {
-      questionList
-          .assignAll(await FirstStageSsrsQuestionService.findManyFirstStageSsrs());
+      questionList.assignAll(
+          await FirstStageSsrsQuestionService.findManyFirstStageSsrs());
 
       print(questionList);
 
       emit(FirstStageSsrsSuccess(ssrsQuestionModel: questionList));
     } on DioError catch (_) {
-      emit(FirstStageSsrsError(msg:   "لا يوجد اتصال بالانترنت "));
+      emit(FirstStageSsrsError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -47,20 +47,18 @@ class FirstStageSsrsCubit extends Cubit<FirstStageSsrsState> {
 
     try {
       await FirstStageSSRSAnswers.postFirstStageSSRSAnswers(
-        answers: answer,);
-
+        answers: answer,
+      );
 
       emit(FirstStageSsrsSuccess(ssrsQuestionModel: questionList));
       Get.off(() {
         return SuccessView(
-            title1:
-            "لقد تم إنتهاء إختبار SSRS بنجاح",
+            title1: "لقد تم إنتهاء إختبار SSRS بنجاح",
             title2: "إنتقال إلي إختبار SSI-4",
-            onTap: () =>
-                Get.off(() => const TreatmentSSI4()));
+            onTap: () => Get.off(() => const TreatmentSSI4()));
       });
     } on DioError catch (_) {
-      emit(FirstStageSsrsError(msg:   "لا يوجد اتصال بالانترنت "));
+      emit(FirstStageSsrsError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       log(e.toString());
       log(st.toString());

@@ -9,7 +9,10 @@ class CardNumber extends StatelessWidget {
   final bool isSelected;
 
   const CardNumber(
-      {Key? key, required this.onTap, required this.title, required this.isSelected})
+      {Key? key,
+      required this.onTap,
+      required this.title,
+      required this.isSelected})
       : super(key: key);
 
   @override
@@ -20,7 +23,7 @@ class CardNumber extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: isSelected ?kDarkPrimaryColor:Colors.grey,
+          color: isSelected ? kDarkPrimaryColor : Colors.grey,
           borderRadius: BorderRadius.circular(8),
         ),
         width: context.width * 0.15,

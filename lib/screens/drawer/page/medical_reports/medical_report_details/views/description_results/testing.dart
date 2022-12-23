@@ -8,13 +8,12 @@ class TestingCase extends StatelessWidget {
   final String title2;
   final String name;
 
-
-  const TestingCase({Key? key,
+  const TestingCase({
+    Key? key,
     required this.title1,
     required this.title2,
     required this.name,
-  })
-      : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,8 @@ class TestingCase extends StatelessWidget {
             ),
           ),
           customText7(
-              title: "The Stuttering Severity Instrument-Fourth Edition (SSI-4) was administered to determine the frequency, duration, and severity of the stuttering as well as any physical concomitants (e.g., secondary characteristics such as facial tension, body movements, eye blink, etc.) which were present. Two samples of $name speech (reading and conversational speech) were analyzed and used to determine severity of stuttering. Samples are examined for the number and percentage of syllables stuttered (%SS) and a calculation is made of the average of the 3 longest stuttering events in the samples.",
+              title:
+                  "The Stuttering Severity Instrument-Fourth Edition (SSI-4) was administered to determine the frequency, duration, and severity of the stuttering as well as any physical concomitants (e.g., secondary characteristics such as facial tension, body movements, eye blink, etc.) which were present. Two samples of $name speech (reading and conversational speech) were analyzed and used to determine severity of stuttering. Samples are examined for the number and percentage of syllables stuttered (%SS) and a calculation is made of the average of the 3 longest stuttering events in the samples.",
               color: kBlackText)
         ],
       ),

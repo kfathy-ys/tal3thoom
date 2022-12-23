@@ -67,7 +67,7 @@ class _SecondTreatmentSessionEvaluationState
                             alignment: Alignment.centerRight,
                             child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 16.0),
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
                               child: customText2(
                                   title: "القسم التقيمي :", color: kLightText),
                             )),
@@ -79,13 +79,13 @@ class _SecondTreatmentSessionEvaluationState
                               color: kPrimaryColor,
                               child: Center(
                                 child:
-                                customText3(title: "1", color: kHomeColor),
+                                    customText3(title: "1", color: kHomeColor),
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 14),
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 8),
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               // height: context.height * 0.2,
                               width: context.width * 0.8,
                               decoration: BoxDecoration(
@@ -102,28 +102,28 @@ class _SecondTreatmentSessionEvaluationState
                                       itemBuilder: (context, index) {
                                         return FormBuilder(
                                           autovalidateMode:
-                                          AutovalidateMode.always,
+                                              AutovalidateMode.always,
                                           child: FormBuilderRadioGroup<dynamic>(
                                             decoration: const InputDecoration(
                                               contentPadding:
-                                              EdgeInsets.symmetric(
-                                                  horizontal: 10),
+                                                  EdgeInsets.symmetric(
+                                                      horizontal: 10),
                                               labelStyle: TextStyle(
                                                   color: kBlackText,
                                                   fontSize: 18,
                                                   fontFamily: 'DinBold'),
                                               // labelText: state.questionEvaluation[0].description.toString(),
                                             ),
-                                            initialValue: cubit
-                                                .answer[state.questionEvaluation[0]],
+                                            initialValue: cubit.answer[
+                                                state.questionEvaluation[0]],
                                             name: 'best_language',
                                             onChanged: (value) {
                                               log('$value');
                                               if (value != null) {
                                                 setState(() {
                                                   cubit.answer[
-                                                  state.questionEvaluation[
-                                                  0]] = value;
+                                                      state.questionEvaluation[
+                                                          0]] = value;
                                                 });
                                               }
                                             },
@@ -136,17 +136,17 @@ class _SecondTreatmentSessionEvaluationState
                                             options: state
                                                 .questionEvaluation[0].answers
                                                 .map((lang) =>
-                                                FormBuilderFieldOption(
-                                                  value: lang,
-                                                  child: customText3(
-                                                      title: lang
-                                                          .answerOption
-                                                          .toString(),
-                                                      color: kBlackText),
-                                                ))
+                                                    FormBuilderFieldOption(
+                                                      value: lang,
+                                                      child: customText3(
+                                                          title: lang
+                                                              .answerOption
+                                                              .toString(),
+                                                          color: kBlackText),
+                                                    ))
                                                 .toList(growable: false),
                                             controlAffinity:
-                                            ControlAffinity.trailing,
+                                                ControlAffinity.trailing,
                                           ),
                                         );
                                       }),
@@ -163,13 +163,13 @@ class _SecondTreatmentSessionEvaluationState
                               color: kPrimaryColor,
                               child: Center(
                                 child:
-                                customText3(title: "2", color: kHomeColor),
+                                    customText3(title: "2", color: kHomeColor),
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 14),
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 8),
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               // height: context.height * 0.2,
                               width: context.width * 0.8,
                               decoration: BoxDecoration(
@@ -190,28 +190,28 @@ class _SecondTreatmentSessionEvaluationState
                                             // debugPrint(_formKey.currentState!.value.toString());
                                           },
                                           autovalidateMode:
-                                          AutovalidateMode.always,
+                                              AutovalidateMode.always,
                                           child: FormBuilderRadioGroup<dynamic>(
                                             decoration: const InputDecoration(
                                               contentPadding:
-                                              EdgeInsets.symmetric(
-                                                  horizontal: 10),
+                                                  EdgeInsets.symmetric(
+                                                      horizontal: 10),
                                               labelStyle: TextStyle(
                                                   color: kBlackText,
                                                   fontSize: 18,
                                                   fontFamily: 'DinBold'),
                                               // labelText: evaluateNumber[index].name,
                                             ),
-                                            initialValue: cubit
-                                                .answer[state.questionEvaluation[1]],
+                                            initialValue: cubit.answer[
+                                                state.questionEvaluation[1]],
                                             name: 'best_language',
                                             onChanged: (value) {
                                               log('$value');
                                               if (value != null) {
                                                 setState(() {
                                                   cubit.answer[
-                                                  state.questionEvaluation[
-                                                  1]] = value;
+                                                      state.questionEvaluation[
+                                                          1]] = value;
                                                 });
                                               }
                                             },
@@ -224,17 +224,17 @@ class _SecondTreatmentSessionEvaluationState
                                             options: state
                                                 .questionEvaluation[1].answers
                                                 .map((lang) =>
-                                                FormBuilderFieldOption(
-                                                  value: lang,
-                                                  child: customText3(
-                                                      title: lang
-                                                          .answerOption
-                                                          .toString(),
-                                                      color: kBlackText),
-                                                ))
+                                                    FormBuilderFieldOption(
+                                                      value: lang,
+                                                      child: customText3(
+                                                          title: lang
+                                                              .answerOption
+                                                              .toString(),
+                                                          color: kBlackText),
+                                                    ))
                                                 .toList(growable: false),
                                             controlAffinity:
-                                            ControlAffinity.trailing,
+                                                ControlAffinity.trailing,
                                           ),
                                         );
                                       }),
@@ -246,11 +246,11 @@ class _SecondTreatmentSessionEvaluationState
                         MediaButton(
                           onPressed: () {
                             if (cubit.formKey.currentState!.validate()) {
-                              BlocProvider.of<SecondEvaluationCubit>(context).getSecondEvaluationSection();
+                              BlocProvider.of<SecondEvaluationCubit>(context)
+                                  .getSecondEvaluationSection();
 
                               cubit.sendSecondEvaluationSectionAnswers();
                             }
-
                           },
                           color: kPrimaryColor,
                           title: "متابعة",
@@ -268,5 +268,4 @@ class _SecondTreatmentSessionEvaluationState
       ),
     );
   }
-
 }

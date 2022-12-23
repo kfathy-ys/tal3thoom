@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +18,7 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../../../config/keys.dart';
 import '../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/loading.dart';
@@ -37,10 +39,12 @@ class DiagnosticSSI4Two extends StatefulWidget {
 class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
   final _firstController = TextEditingController();
 
+  final FijkPlayer player = FijkPlayer();
+
   @override
   void dispose() {
     _disposeVideoController();
-
+    player.release();
     super.dispose();
   }
 
@@ -95,11 +99,9 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                         SizedBox(
                           width: context.width * 0.8,
                           height: context.height * 0.25,
-                          child: VideoItems(
-                            videoPlayerController:
-                                VideoPlayerController.network(
-                              'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                            ),
+                          child: const VideoScreen(
+                            url:
+                                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                           ),
                         ),
                         Padding(
@@ -107,7 +109,6 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                               vertical: 8.0, horizontal: 12),
                           child: Image.asset("assets/images/secand_class.png"),
                         ),
-
                         SizedBox(
                           height: context.height * 0.75,
                           child: ListView.builder(
@@ -119,11 +120,10 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                                     desc: listOfString[index]);
                               }),
                         ),
-
                         InkWell(
-                            onTap:() async {
-                              if (await Permission.microphone.
-                                  request()
+                            onTap: () async {
+                              if (await Permission.microphone
+                                  .request()
                                   .isGranted) {
                                 speech.speak(parseHtmlString("السؤال الأول" +
                                     listOfString[0] +
@@ -140,17 +140,11 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                                     "يجب الحصول علي تصريح الوصول الي الميكروفون");
                               }
                             },
-
-
-
-
-
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),
                               child: Image.asset("assets/images/Earphone.png"),
                             )),
-
                         Container(
                           margin: const EdgeInsets.symmetric(vertical: 8),
                           width: context.width * 0.8,
@@ -176,18 +170,12 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           title: "fullMessage",
                           controller: _firstController,
                           onPressed1: () async {
-                            if (await Permission.storage
-                                .request()
-                                .isGranted) {
+                            if (await Permission.storage.request().isGranted) {
                               pickVideo();
                             } else {
-
-                              Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
-
-
+                              Alert.error(
+                                  "يجب الحصول علي تصريح الوصول الي الخزينة");
                             }
-
-
                           },
                           validator:
                               qValidator([IsRequired("thisFieldRequired")]),
@@ -197,16 +185,12 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           onPressed: () async {
                             if (await Permission.camera.request().isGranted) {
                               Get.to(() => CameraPage(
-                                onAdd: (x) {
-                                  setState(() {
-                                    _file = x;
-
-                                  });
-
-                                },
-
-                              ));
-
+                                    onAdd: (x) {
+                                      setState(() {
+                                        _file = x;
+                                      });
+                                    },
+                                  ));
                             } else {
                               Alert.error(
                                   "يجب الحصول علي تصريح الوصول الي الكاميرا");
@@ -218,28 +202,26 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           child: Image.asset("assets/images/record.png"),
                         ),
                         const AlertVideoMessage(),
-
                         state is! DiagnosticSsi4FirstLoading
                             ? MediaButton(
                                 onPressed: () {
-
-
                                   _file == null
                                       ? Alert.error(' الفيديو المسجل مطلوب',
                                           desc:
                                               "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
                                       : Get.off(() {
-                                    cubit.postUploadVideoSSI4(
-                                        id: state.ssi4QuestionModel[1].id,
-                                        examId: state.ssi4QuestionModel[1].examId,
-                                        video: _file);
-                                       return  SuccessView(
+                                          cubit.postUploadVideoSSI4(
+                                              id: state.ssi4QuestionModel[1].id,
+                                              examId: state
+                                                  .ssi4QuestionModel[1].examId,
+                                              video: _file);
+                                          return SuccessView(
                                               title1:
                                                   "لقد تم إنتهاء إختبار SSI-4 بنجاح",
                                               title2: "إنتقال إلي حجز موعد",
                                               onTap: () => Get.off(() =>
                                                   ReservationDiagnostic()));
-                                      });
+                                        });
                                 },
                                 title: KeysConfig.next,
                               )

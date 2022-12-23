@@ -1,15 +1,15 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:tal3thoom/config/keys.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../widgets/appBar.dart';
+import '../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
-import '../../../../../../widgets/video_items.dart';
 import '../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../view.dart';
 import '../../../../treatment_service/page/views/first_session/first_stage_induction/view.dart';
@@ -22,8 +22,21 @@ import '../resevation_diagnostic/view.dart';
 import 'cubit/diagnostic_induction_cubit.dart';
 
 // ignore: must_be_immutable
-class InductionDiagnostic extends StatelessWidget {
+class InductionDiagnostic extends StatefulWidget {
   const InductionDiagnostic({Key? key}) : super(key: key);
+
+  @override
+  State<InductionDiagnostic> createState() => _InductionDiagnosticState();
+}
+
+class _InductionDiagnosticState extends State<InductionDiagnostic> {
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +80,10 @@ class InductionDiagnostic extends StatelessWidget {
                       return SizedBox(
                         width: context.width * 0.8,
                         height: context.height * 0.25,
-
-                        ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
-                        child: VideoItems(
-                          videoPlayerController: VideoPlayerController.network(
-                              "http://dev-sas.cpt-it.com/api/" +
-                                  state.inductionDiagnosticModel.data!.videoUrl
-                                      .toString()),
-                        ),
+                        child: VideoScreen(
+                            url: "http://mcsc-saudi.com/api/" +
+                                state.inductionDiagnosticModel.data!.videoUrl
+                                    .toString()),
                       );
                     }
                     if (state is DiagnosticInductionError) {

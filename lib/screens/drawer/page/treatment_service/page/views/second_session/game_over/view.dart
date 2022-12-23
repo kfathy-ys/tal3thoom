@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,6 @@ import '../../../../../../../home/view.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/customButton.dart';
-
 
 // ignore: must_be_immutable
 
@@ -22,7 +20,6 @@ class GameOver extends StatefulWidget {
 class _GameOverState extends State<GameOver> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: kHomeColor,
       appBar: DynamicAppbar(
@@ -40,8 +37,7 @@ class _GameOverState extends State<GameOver> {
               height: context.height * 0.2,
             ),
             customText4(
-                title:
-                "لقد اتممت الجلسلات العلاجية بنجاح \n Game Over  ",
+                title: "لقد اتممت الجلسلات العلاجية بنجاح \n Game Over  ",
                 color: kBlackText),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -52,14 +48,14 @@ class _GameOverState extends State<GameOver> {
                 child: Image.asset("assets/images/success.png"),
               ),
             ),
-
-            CustomButton(color: kPrimaryColor,title: "العودة",onPressed: (){
-
-              BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-              Get.offAll(()=> const HomeTabScreen());
-
-            },)
-
+            CustomButton(
+              color: kPrimaryColor,
+              title: "العودة",
+              onPressed: () {
+                BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
+                Get.offAll(() => const HomeTabScreen());
+              },
+            )
           ],
         ),
       ),

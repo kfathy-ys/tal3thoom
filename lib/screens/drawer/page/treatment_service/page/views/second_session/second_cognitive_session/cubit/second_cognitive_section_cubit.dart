@@ -15,12 +15,9 @@ import '../../second_tratement_sessions_sloki/view.dart';
 part 'second_cognitive_section_state.dart';
 
 class SecondCognitiveSectionCubit extends Cubit<SecondCognitiveSectionState> {
-  SecondCognitiveSectionCubit() : super(SecondCognitiveSectionInitial()){
+  SecondCognitiveSectionCubit() : super(SecondCognitiveSectionInitial()) {
     getSecondCognitiveSection();
   }
-
-
-
 
   final TextEditingController controllerDefault = TextEditingController();
 
@@ -41,6 +38,7 @@ class SecondCognitiveSectionCubit extends Cubit<SecondCognitiveSectionState> {
     }
     return false;
   }
+
   Future<void> getSecondCognitiveSection() async {
     emit(SecondCognitiveSectionLoading());
     try {
@@ -55,17 +53,19 @@ class SecondCognitiveSectionCubit extends Cubit<SecondCognitiveSectionState> {
       emit(SecondCognitiveSectionError(msg: e.toString()));
     }
   }
+
   Future<void> sendSecondCognitiveSectionAnswers() async {
     emit(SecondCognitiveSectionLoading());
     try {
-      final res = await SecondCognitiveSectionAnswersService.postSecondCognitiveSectionAnswers(answers: answer,);
+      final res = await SecondCognitiveSectionAnswersService
+          .postSecondCognitiveSectionAnswers(
+        answers: answer,
+      );
       answer.clear();
       emit(SecondCognitiveSectionSuccess(questionModel: questionList));
       if (res!.type == 2) {
         Alert.error(res.body);
       } else if (res.type == 1) {
-
-
         Alert.success(res.body);
         Get.off(() => const SecondTreatmentSessionsSlokiScreen());
       } else if (res.type == 3) {
@@ -73,9 +73,9 @@ class SecondCognitiveSectionCubit extends Cubit<SecondCognitiveSectionState> {
       } else {
         return Alert.success("ssssssssss");
       }
-    }on DioError catch (_) {
-      emit(SecondCognitiveSectionError(msg:   "لا يوجد اتصال بالانترنت "));
-    }  catch (e, st) {
+    } on DioError catch (_) {
+      emit(SecondCognitiveSectionError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 

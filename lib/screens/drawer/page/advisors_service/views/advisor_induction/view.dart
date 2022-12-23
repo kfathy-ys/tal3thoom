@@ -1,18 +1,31 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 import '../../../../../widgets/appBar.dart';
+import '../../../../../widgets/better_video_widget.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
-import '../../../../../widgets/video_items.dart';
 import '../../../../view.dart';
 import '../Reservation_appointment/view.dart';
 
 // ignore: must_be_immutable
-class AdviserInduction extends StatelessWidget {
+class AdviserInduction extends StatefulWidget {
   const AdviserInduction({Key? key}) : super(key: key);
+
+  @override
+  State<AdviserInduction> createState() => _AdviserInductionState();
+}
+
+class _AdviserInductionState extends State<AdviserInduction> {
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +56,13 @@ class AdviserInduction extends StatelessWidget {
               SizedBox(
                 width: context.width * 0.8,
                 height: context.height * 0.25,
-                child: VideoItems(
-                  videoPlayerController: VideoPlayerController.network(
-                    'http://dev-sas.cpt-it.com/api/media/Introduction.mp4',
-                  ),
+                child: const VideoScreen(
+                  url: 'http://mcsc-saudi.com/api/media/Introduction.mp4',
                 ),
               ),
               MediaButton(
                 onPressed: () {
-                  navigateTo(context,  const ReservationAppointmentScreen());
+                  navigateTo(context, const ReservationAppointmentScreen());
                 },
                 title: ("ابدأ"),
               ),

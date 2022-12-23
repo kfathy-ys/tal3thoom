@@ -61,11 +61,10 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                 color: kHomeColor,
                 child: RefreshIndicator(
                   onRefresh: () async {
-                  cubit.getDiagnosticPayment();
-                  BlocProvider.of<DataAccessPermissionCubit>(
-                      context).getAccessPermission();
-                    return Future<void>.delayed(
-                        const Duration(seconds: 3));
+                    cubit.getDiagnosticPayment();
+                    BlocProvider.of<DataAccessPermissionCubit>(context)
+                        .getAccessPermission();
+                    return Future<void>.delayed(const Duration(seconds: 3));
                   },
                   backgroundColor: kPrimaryColor,
                   color: Colors.white,
@@ -88,7 +87,7 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
+                                        "http://mcsc-saudi.com/Sas/PaymentDiagnosis/$userId",
                                   ));
                               print("object1");
                             },
@@ -105,7 +104,7 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
+                                        "http://mcsc-saudi.com/Sas/PaymentDiagnosis/$userId",
                                   ));
 
                               print("object2");
@@ -123,7 +122,7 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://dev-sas.cpt-it.com/Sas/PaymentDiagnosis/$userId",
+                                        "http://mcsc-saudi.com/Sas/PaymentDiagnosis/$userId",
                                   ));
                               print("object3");
                             },
@@ -137,9 +136,8 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                   // TODO: implement listener
                                 },
                                 builder: (context, state) {
-                                  final checkPay =
-                                      BlocProvider.of<DataAccessPermissionCubit>(
-                                          context);
+                                  final checkPay = BlocProvider.of<
+                                      DataAccessPermissionCubit>(context);
 
                                   if (state is DataAccessPermissionLoading) {
                                     return const LoadingFadingCircle();
@@ -193,8 +191,11 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                                     "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
                                           }
 
-                                          if (state.accessPermissionModel.data!
-                                                      .stagesDiagnosis!.payment ==
+                                          if (state
+                                                      .accessPermissionModel
+                                                      .data!
+                                                      .stagesDiagnosis!
+                                                      .payment ==
                                                   true &&
                                               state
                                                       .accessPermissionModel
@@ -202,8 +203,8 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                                       .stagesDiagnosis!
                                                       .caseHistory ==
                                                   false) {
-                                            Get.offAll(
-                                                () => const DiagnosticHistory());
+                                            Get.offAll(() =>
+                                                const DiagnosticHistory());
                                           }
                                           if (state
                                                       .accessPermissionModel
@@ -238,14 +239,20 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                           if (state.accessPermissionModel.data!
                                                       .stagesDiagnosis!.ssi4 ==
                                                   true &&
-                                              state.accessPermissionModel.data!
-                                                      .stagesDiagnosis!.booking ==
+                                              state
+                                                      .accessPermissionModel
+                                                      .data!
+                                                      .stagesDiagnosis!
+                                                      .booking ==
                                                   false) {
                                             Get.offAll(
                                                 () => ReservationDiagnostic());
                                           }
-                                          if (state.accessPermissionModel.data!
-                                                      .stagesDiagnosis!.booking ==
+                                          if (state
+                                                      .accessPermissionModel
+                                                      .data!
+                                                      .stagesDiagnosis!
+                                                      .booking ==
                                                   true &&
                                               state
                                                       .accessPermissionModel
@@ -268,7 +275,7 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                               )
                             : const LoadingFadingCircleSmall(),
                         SizedBox(
-                          height: context.height * 0.1,
+                          height: context.height * 0.2,
                         )
                       ],
                     ),

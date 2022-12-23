@@ -10,31 +10,31 @@ import '../../models/profile_dtails.dart';
 part 'advisor_profile_details_state.dart';
 
 class AdvisorProfileDetailsCubit extends Cubit<AdvisorProfileDetailsState> {
-
   String? userProfileId;
-  AdvisorProfileDetailsCubit() : super(AdvisorProfileDetailsLoading()) ;
+  AdvisorProfileDetailsCubit() : super(AdvisorProfileDetailsLoading());
 
   // {
   //   getAdvisorsProfileDetails(userProfileId: userProfileId!);
   // }
 
-  Future<void> getAdvisorsProfileDetails({required String userProfileId}) async {
+  Future<void> getAdvisorsProfileDetails(
+      {required String userProfileId}) async {
     emit(AdvisorProfileDetailsLoading());
     try {
-      final res = await NetWork.get(
-          'Specialist/SpecialistByUserId/$userProfileId');
+      final res =
+          await NetWork.get('Specialist/SpecialistByUserId/$userProfileId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
           res.statusCode != 200) {
         throw res.data['message'];
       }
-      print("eeeeeeeeeeeeeeeeeee"+res.data.toString());
+      print("eeeeeeeeeeeeeeeeeee" + res.data.toString());
 
-      final x= AdvisorProfile.fromJson(res.data['data']);
-      emit(AdvisorProfileDetailsSuccess(advisorProfile:x ));
-    }on DioError catch (_) {
-      emit(AdvisorProfileDetailsError(msg:   "لا يوجد اتصال بالانترنت "));
+      final x = AdvisorProfile.fromJson(res.data['data']);
+      emit(AdvisorProfileDetailsSuccess(advisorProfile: x));
+    } on DioError catch (_) {
+      emit(AdvisorProfileDetailsError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

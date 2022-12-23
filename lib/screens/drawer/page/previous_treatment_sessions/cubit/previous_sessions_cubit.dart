@@ -33,22 +33,20 @@ class PreviousSessionsCubit extends Cubit<PreviousSessionsState> {
           res.data['status'] == -1 ||
           res.statusCode != 200) {
         Alert.error(res.data['messages'][0]['title']);
-        print("rrrrrrrrr"+res.data['messages'][0]['title'].toString());
+        print("rrrrrrrrr" + res.data['messages'][0]['title'].toString());
         throw res.data['messages'][0]['title'];
-
       }
-     var x=  PreviousAnswersModel.fromJson(res.data);
+      var x = PreviousAnswersModel.fromJson(res.data);
       print(x.toJson());
-      emit(PreviousSessionsSuccess(previousAnswersModel:
-      PreviousAnswersModel.fromJson(res.data)));
+      emit(PreviousSessionsSuccess(
+          previousAnswersModel: PreviousAnswersModel.fromJson(res.data)));
     } on DioError catch (_) {
-      emit(PreviousSessionsError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
-      Alert.error("لم يتم اخذ الجلسة بعد",desc: "يجب اجتياز بعض المراحل العلاجية ");
+      emit(PreviousSessionsError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
+      Alert.error("لم يتم اخذ الجلسة بعد",
+          desc: "يجب اجتياز بعض المراحل العلاجية ");
       log(es.toString());
       emit(PreviousSessionsError(msg: e.toString()));
     }
   }
-
-
 }

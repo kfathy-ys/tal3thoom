@@ -40,7 +40,6 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: ExpansionTile(
-
         collapsedBackgroundColor: kSky2Button,
         iconColor: kPrimaryColor,
         // childrenPadding: const EdgeInsets.symmetric(horizontal: 14),
@@ -49,7 +48,6 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
           children: [
             customBoldText(
                 title: KeysConfig.qNames[number], color: kPrimaryColor),
-
           ],
         ),
         children: [
@@ -75,52 +73,37 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                       autoFocusOnValidationFailure: true,
                       autovalidateMode: AutovalidateMode.always,
                       child: FormBuilderRadioGroup<Answers>(
-
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
-                              onTap:() async {
-                                if (await Permission.microphone.
-                                    request()
+                              onTap: () async {
+                                if (await Permission.microphone
+                                    .request()
                                     .isGranted) {
-                                  speech.speak(currentQuestion
-                                      .description
-                                      .toString() +
+                                  speech.speak(currentQuestion.description
+                                          .toString() +
                                       "الاجابات المتاحة هي "
-                                          '${currentQuestion.answers.map((
-                                          lang) => lang.answerOption)}');
+                                          '${currentQuestion.answers.map((lang) => lang.answerOption)}');
                                 } else {
                                   Alert.error(
                                       "يجب الحصول علي تصريح الوصول الي الميكروفون");
                                 }
                               },
-
-
-
-
-
-
-
-
-
-
                               child: Image.asset("assets/images/Earphone.png")),
                           suffix: cubit.shouldShowTextField(currentQuestion)
                               ? SizedBox(
-                              height: 60,
-                              width: 150,
-                              child: TextFormField(
-
-                                controller: TextEditingController(
-                                    text:
-                                    cubit.answersTxt[currentQuestion]),
-
-
-                                onChanged: (str) =>
-                                cubit.answersTxt[currentQuestion] = str,
-                                keyboardType: currentQuestion
-                                    .description
-                                    .toString().contains("10")?TextInputType.number :TextInputType.text
-                              ))
+                                  height: 60,
+                                  width: 150,
+                                  child: TextFormField(
+                                      controller: TextEditingController(
+                                          text: cubit
+                                              .answersTxt[currentQuestion]),
+                                      onChanged: (str) => cubit
+                                          .answersTxt[currentQuestion] = str,
+                                      keyboardType: currentQuestion.description
+                                              .toString()
+                                              .contains("10")
+                                          ? TextInputType.number
+                                          : TextInputType.text))
                               : null,
                         ),
                         initialValue: cubit.answer[currentQuestion],
@@ -148,13 +131,12 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                           return '';
                         },
                         options: currentQuestion.answers
-                            .map((lang) =>
-                            FormBuilderFieldOption(
-                              value: lang,
-                              child: customText3(
-                                  title: lang.answerOption.toString(),
-                                  color: kBlackText),
-                            ))
+                            .map((lang) => FormBuilderFieldOption(
+                                  value: lang,
+                                  child: customText3(
+                                      title: lang.answerOption.toString(),
+                                      color: kBlackText),
+                                ))
                             .toList(growable: false),
                         controlAffinity: ControlAffinity.trailing,
                       ),
@@ -169,7 +151,8 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DiagnosticHistoryQuestionCubit>(context).getDiagnosticHistoryQuestion();
+    // BlocProvider.of<DiagnosticHistoryQuestionCubit>(context)
+    //     .getDiagnosticHistoryQuestion();
     return Scaffold(
         backgroundColor: kHomeColor,
         drawer: const MenuItems(),
@@ -190,7 +173,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
               },
               builder: (context, state) {
                 final cubit =
-                BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
+                    BlocProvider.of<DiagnosticHistoryQuestionCubit>(context);
                 if (state is DiagnosticHistoryQuestionLoading) {
                   return const Center(
                     child: LoadingFadingCubeGrid(),
@@ -229,16 +212,16 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                             buildSizedBoxed(context.height),
                             state is! DiagnosticHistoryQuestionLoading
                                 ? MediaButton(
-                              onPressed: () {
-                                if (cubit.formKey.currentState!
-                                    .validate()) {
-                                  cubit.postDiagnosticHistoryAnswers();
-                                }
-                                // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
-                                // Get.to(()=>const DiagnosticHistory());
-                              },
-                              title: KeysConfig.next,
-                            )
+                                    onPressed: () {
+                                      if (cubit.formKey.currentState!
+                                          .validate()) {
+                                        cubit.postDiagnosticHistoryAnswers();
+                                      }
+                                      // Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
+                                      // Get.to(()=>const DiagnosticHistory());
+                                    },
+                                    title: KeysConfig.next,
+                                  )
                                 : const LoadingFadingCircle(),
                             SizedBox(
                               height: context.height * 0.2,
@@ -250,15 +233,20 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionError) {
-
-
-                  return Center(child: Column(
+                  return Center(
+                      child: Column(
                     children: [
-
-                      SizedBox(height: context.height*0.3),
-                      customText2(title: state.msg + "\n" + "الرجاءالرجوع إلي القائمة السابقه\n  والإجابة علي كافة الأسئلة", color: kBlackText),
-                       MediaButton(onPressed:()=>Get.off(()=>const InductionDiagnostic()) ,title: 'إلي القائمة السابقه ',)
-
+                      SizedBox(height: context.height * 0.3),
+                      customText2(
+                          title: state.msg +
+                              "\n" +
+                              "الرجاءالرجوع إلي القائمة السابقه\n  والإجابة علي كافة الأسئلة",
+                          color: kBlackText),
+                      MediaButton(
+                        onPressed: () =>
+                            Get.off(() => const InductionDiagnostic()),
+                        title: 'إلي القائمة السابقه ',
+                      )
                     ],
                   ));
                 }
@@ -269,8 +257,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
         ));
   }
 
-  SizedBox buildSizedBoxed(double height) =>
-      SizedBox(
+  SizedBox buildSizedBoxed(double height) => SizedBox(
         height: context.height * 0.025,
       );
 }

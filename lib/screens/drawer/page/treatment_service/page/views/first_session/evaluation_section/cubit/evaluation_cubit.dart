@@ -59,35 +59,31 @@ class EvaluationCubit extends Cubit<EvaluationState> {
   }
 
   Future<void> sendEvaluationSectionAnswers() async {
-
     emit(EvaluationLoading());
     try {
       final res =
-      await EvaluationSectionAnswersService.postCEvaluationSectionAnswers(
+          await EvaluationSectionAnswersService.postCEvaluationSectionAnswers(
         answers: answer,
       );
       answer.clear();
 
       emit(EvaluationSuccess(questionEvaluation: questionList));
-       log(currentDiagnoses);
-       log(currentDiagnosesStatus);
+      log(currentDiagnoses);
+      log(currentDiagnosesStatus);
 
       if (res!.type == 2) {
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
-       Get.off(() =>const NextSession());
-
-
-
+        Get.off(() => const NextSession());
       } else if (res.type == 3) {
         Alert.success(res.body);
       } else {
         return Alert.success("ssssssssss");
       }
     } on DioError catch (_) {
-      emit(EvaluationError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, st) {
+      emit(EvaluationError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 

@@ -1,4 +1,3 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +29,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
   @override
   Widget build(BuildContext context) {
-
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double width = MediaQuery.of(context).size.width;
     final cubit = BlocProvider.of<DeleteAccountCubit>(context);
 
     return Scaffold(
@@ -51,12 +46,10 @@ class _DeleteAccountState extends State<DeleteAccount> {
           child: SingleChildScrollView(
             child: FadeInLeftBig(
               child: BlocConsumer<DeleteAccountCubit, DeleteAccountState>(
-                listener: (context, state) {
-                },
+                listener: (context, state) {},
                 builder: (context, state) {
                   return Column(
                     children: [
-
                       SizedBox(
                         height: context.height * 0.04,
                       ),
@@ -88,30 +81,25 @@ class _DeleteAccountState extends State<DeleteAccount> {
                         type: TextInputType.visiblePassword,
                       ),
 
-
-                      state is! DeleteAccountSuccess ?
-                      MediaButton(
-                          color: kPrimaryColor,
-                          title: "حذف الحساب",
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              showAlertDialogDeleteAccount(context, () {
-                                cubit.deleteAccount(
-                                    password:
-                                    cubit.passwordController.text);
-                              });
-                            }
-                          }) : const LoadingFadingCircleSmall(),
-
-
-
-
+                      state is! DeleteAccountSuccess
+                          ? MediaButton(
+                              color: kPrimaryColor,
+                              title: "حذف الحساب",
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  showAlertDialogDeleteAccount(context, () {
+                                    cubit.deleteAccount(
+                                        password:
+                                            cubit.passwordController.text);
+                                  });
+                                }
+                              })
+                          : const LoadingFadingCircleSmall(),
                     ],
                   );
                 },
               ),
             ),
-
 
             // BlocConsumer<DeleteAccountCubit, DeleteAccountState>(
             //   listener: (context, state) {},

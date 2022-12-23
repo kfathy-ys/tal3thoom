@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-class AllDatesModel  extends Equatable{
+class AllDatesModel extends Equatable {
   List<String>? data;
   int? status;
   int? dataLength;
@@ -24,5 +24,5 @@ class AllDatesModel  extends Equatable{
   }
 
   @override
-  List<Object?> get props =>[data,status,dataLength];
+  List<Object?> get props => [data, status, dataLength];
 }

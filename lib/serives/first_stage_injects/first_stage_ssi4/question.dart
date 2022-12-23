@@ -15,8 +15,3 @@ class Ssi4FirstQuestionService {
         .toList();
   }
 }
-
-
-
-
-

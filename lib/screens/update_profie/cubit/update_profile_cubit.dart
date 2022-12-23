@@ -12,7 +12,6 @@ import '../../widgets/alerts.dart';
 part 'update_profile_state.dart';
 
 class UpdateProfileCubit extends Cubit<UpdateProfileState> {
-
   UpdateProfileCubit() : super(UpdateProfileInitial());
 
   final phoneController = TextEditingController();
@@ -52,7 +51,6 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
     required String birthDate,
     required String nationality,
     required String idCardNumber,
-
     required String country,
     required String city,
     required String workPlace,
@@ -68,7 +66,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           "lastName": lastName,
           "email": email,
           "phoneNumber": phoneNumber,
-          "countryPhoneCode":countryPhoneCode,
+          "countryPhoneCode": countryPhoneCode,
           "gender": typeSexId,
           "birthDate": "2022-10-10",
           "nationality": nationality,
@@ -76,7 +74,6 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           "country": country,
           "city": city,
           "userId": userId,
-
           "workPlace": workPlace,
           "type": typeReadId
         },
@@ -89,7 +86,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       emit(UpdateProfileSuccess(profileModel: AllProfile.fromMap(res.data)));
     } on DioError catch (_) {
       emit(UpdateProfileError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, st) {
+    } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(UpdateProfileError(msg: e.toString()));

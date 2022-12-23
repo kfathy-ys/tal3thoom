@@ -9,7 +9,7 @@ class PreQuestionnaireService {
 
     final res = await NetWork.get(
         'PatientExams/GetExamQuestionsAnswersByExameCode/$userId/EX_PRE_TRE/1');
-        return List.from(res.data["data"])
+    return List.from(res.data["data"])
         .map((e) => Question.fromJson(e))
         .toList();
   }

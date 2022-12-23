@@ -21,21 +21,21 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit  = BlocProvider.of<ForgetPasswordCubit>(context);
+    final cubit = BlocProvider.of<ForgetPasswordCubit>(context);
 
     return Scaffold(
       backgroundColor: kHomeColor,
       body: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
-
           if (state is ForgetPasswordSuccess) {
             Alert.success(
               "الرجاء متابعه البريد الالكتروني ",
               desc: "تم ارسال كود التفعيل .. ارفقه هنا ",
             );
 
-            Get.to(()=>  VCodeScreen(vCode: state.forgetPasswordModel.data!.code!, email: cubit.emailController.text));
-
+            Get.to(() => VCodeScreen(
+                vCode: state.forgetPasswordModel.data!.code!,
+                email: cubit.emailController.text));
           } else if (state is ForgetPasswordError) {
             // Alert.error(state.msg.toString());
             Alert.error(
@@ -43,11 +43,9 @@ class ForgetPassword extends StatelessWidget {
               desc: "الرجاء التاكد من البريد الإلكتروني",
             );
           }
-
         },
         builder: (context, state) {
-
-          final cubit  = BlocProvider.of<ForgetPasswordCubit>(context);
+          final cubit = BlocProvider.of<ForgetPasswordCubit>(context);
           return SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -76,23 +74,22 @@ class ForgetPassword extends StatelessWidget {
                     SizedBox(
                       height: context.height * 0.05,
                     ),
-                 state is! ForgetPasswordLoading ?   CustomButton(
-                      color: kPrimaryColor,
-                      title: KeysConfig.sendCode,
-                      onPressed: () {
-
-                        if (_formKey.currentState!.validate()) {
-                          cubit.forgetPassword(
-                              email: cubit.emailController.text,
-                          );
-
-                        }
-                      },
-                    ):const LoadingFadingCircle(),
+                    state is! ForgetPasswordLoading
+                        ? CustomButton(
+                            color: kPrimaryColor,
+                            title: KeysConfig.sendCode,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                cubit.forgetPassword(
+                                  email: cubit.emailController.text,
+                                );
+                              }
+                            },
+                          )
+                        : const LoadingFadingCircle(),
                     SizedBox(
                       height: context.height * 0.01,
                     ),
-
                   ],
                 ),
               ),

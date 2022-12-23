@@ -3,12 +3,11 @@ import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../../../config/keys.dart';
 import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
-import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../../view.dart';
 import '../../first_session/first_payment_treatment/view.dart';
@@ -18,14 +17,14 @@ class TreatmentServiceInduction extends StatefulWidget {
   const TreatmentServiceInduction({Key? key}) : super(key: key);
 
   @override
-  State<TreatmentServiceInduction> createState() => _TreatmentServiceInductionState();
+  State<TreatmentServiceInduction> createState() =>
+      _TreatmentServiceInductionState();
 }
 
 class _TreatmentServiceInductionState extends State<TreatmentServiceInduction> {
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DataAccessPermissionCubit>(
-        context).getAccessPermission();
+    BlocProvider.of<DataAccessPermissionCubit>(context).getAccessPermission();
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -50,15 +49,30 @@ class _TreatmentServiceInductionState extends State<TreatmentServiceInduction> {
                 SizedBox(
                   width: context.width * 0.8,
                   height: context.height * 0.25,
-                  child: VideoItems(
-                    videoPlayerController: VideoPlayerController.network(
-                      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                    ),
+                  child:
+
+                      // BetterVideoItems(video:      BetterPlayer.network(
+                      //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                      //
+                      //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                      //     aspectRatio: 16 / 9,
+                      //   ),
+                      // ),
+                      //
+                      //
+                      //
+                      //
+                      // ),
+                      //
+
+                      const VideoScreen(
+                    url:
+                        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                   ),
                 ),
                 MediaButton(
                   onPressed: () {
-                    navigateTo(context,  FirstPaymentTreatment());
+                    navigateTo(context, FirstPaymentTreatment());
                   },
                   title: KeysConfig.next,
                 ),

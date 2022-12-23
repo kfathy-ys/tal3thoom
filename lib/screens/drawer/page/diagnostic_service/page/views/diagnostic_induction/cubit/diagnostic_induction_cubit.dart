@@ -30,8 +30,8 @@ class DiagnosticInductionCubit extends Cubit<DiagnosticInductionState> {
           inductionDiagnosticModel:
               InductionDiagnosticModel.fromJson(res.data)));
     } on DioError catch (_) {
-      emit(DiagnosticInductionError(meg:  "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+      emit(DiagnosticInductionError(meg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(DiagnosticInductionError(meg: e.toString()));

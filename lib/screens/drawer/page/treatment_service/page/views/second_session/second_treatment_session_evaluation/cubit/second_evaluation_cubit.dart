@@ -15,11 +15,9 @@ import '../../next_sessions_two/view.dart';
 part 'second_evaluation_state.dart';
 
 class SecondEvaluationCubit extends Cubit<SecondEvaluationState> {
-  SecondEvaluationCubit() : super(SecondEvaluationInitial()){
+  SecondEvaluationCubit() : super(SecondEvaluationInitial()) {
     getSecondEvaluationSection();
   }
-
-
 
   final TextEditingController controllerDefault = TextEditingController();
 
@@ -60,11 +58,10 @@ class SecondEvaluationCubit extends Cubit<SecondEvaluationState> {
   }
 
   Future<void> sendSecondEvaluationSectionAnswers() async {
-
     emit(SecondEvaluationLoading());
     try {
-      final res =
-      await SecondEvaluationSectionAnswersService.postSecondCEvaluationSectionAnswers(
+      final res = await SecondEvaluationSectionAnswersService
+          .postSecondCEvaluationSectionAnswers(
         answers: answer,
       );
       answer.clear();
@@ -77,10 +74,7 @@ class SecondEvaluationCubit extends Cubit<SecondEvaluationState> {
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
-        Get.off(() =>const NextTwoSession());
-
-
-
+        Get.off(() => const NextTwoSession());
       } else if (res.type == 3) {
         Alert.success(res.body);
       } else {
@@ -88,7 +82,7 @@ class SecondEvaluationCubit extends Cubit<SecondEvaluationState> {
       }
     } on DioError catch (_) {
       emit(SecondEvaluationError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, st) {
+    } catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 

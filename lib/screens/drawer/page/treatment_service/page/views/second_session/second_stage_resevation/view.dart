@@ -35,8 +35,8 @@ class SecondStageTreatmentReservation extends StatelessWidget {
         width: context.width,
         color: kHomeColor,
         child: SingleChildScrollView(
-          child:
-              BlocConsumer<SecondAvailableDatesCubit, SecondAvailableDatesState>(
+          child: BlocConsumer<SecondAvailableDatesCubit,
+              SecondAvailableDatesState>(
             listener: (context, state) {},
             builder: (context, state) {
               final cubit = BlocProvider.of<SecondAvailableDatesCubit>(context);

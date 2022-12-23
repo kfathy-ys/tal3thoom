@@ -19,16 +19,17 @@ class MyHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       //color: Colors.pinkAccent,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          FadeInUpBig(child: Image.asset("assets/images/main_page.png", fit: BoxFit.fill)),
+          FadeInUpBig(
+              child:
+                  Image.asset("assets/images/main_page.png", fit: BoxFit.fill)),
           Positioned(
-              top: context.height*0.3,
-              right: context.width*0.2,
+              top: context.height * 0.3,
+              right: context.width * 0.2,
               child: SizedBox(
                   //color: Colors.pinkAccent,
                   height: context.height * 0.11,
@@ -37,13 +38,13 @@ class MyHomeScreen extends StatelessWidget {
                       onTap: () {
                         print("object1");
 
-                        Get.to(()=> const InductionDiagnostic());
+                        Get.to(() => const InductionDiagnostic());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: context.height*0.3,
-              left: context.width*0.2,
+              top: context.height * 0.3,
+              left: context.width * 0.2,
               child: SizedBox(
                   //color: Colors.pinkAccent,
                   height: context.height * 0.11,
@@ -51,13 +52,13 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object2");
-                        Get.to(()=> const FirstTreatmentInduction());
+                        Get.to(() => const FirstTreatmentInduction());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: context.height*0.46,
-              right: context.width*0.25,
+              top: context.height * 0.46,
+              right: context.width * 0.25,
               child: SizedBox(
                   // color: Colors.pinkAccent,
                   height: context.height * 0.08,
@@ -65,13 +66,13 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object3");
-                        Get.to(()=>const MedicalReports());
+                        Get.to(() => const MedicalReports());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),
           Positioned(
-              top: context.height*0.6,
-              right: context.width*0.25,
+              top: context.height * 0.6,
+              right: context.width * 0.25,
               child: SizedBox(
                   //color: Colors.pinkAccent,
                   height: context.height * 0.08,
@@ -79,7 +80,7 @@ class MyHomeScreen extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         print("object4");
-                        Get.to(()=> const AdviserInduction());
+                        Get.to(() => const AdviserInduction());
                       },
                       child: customText7(
                           title: "title", color: Colors.transparent)))),

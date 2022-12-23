@@ -7,8 +7,6 @@ import '../../../../../../config/keys.dart';
 
 // ignore: must_be_immutable
 class DiagnosticServices extends StatelessWidget {
-
-
   final VoidCallback onTapInductions;
   final VoidCallback onTapPayment;
   final VoidCallback onTapHistory;
@@ -17,14 +15,15 @@ class DiagnosticServices extends StatelessWidget {
   final VoidCallback onTapSSi;
   final VoidCallback onTapAppointentReservation;
 
-  final Widget isPayment ;
-  final Widget isCaseHistory ;
-  final Widget isOases ;
+  final Widget isPayment;
+  final Widget isCaseHistory;
+  final Widget isOases;
   final Widget isSsrs;
   final Widget isSsi4;
   final Widget isDiagnosticReserved;
 
-  const DiagnosticServices({super.key,
+  const DiagnosticServices({
+    super.key,
     required this.onTapInductions,
     required this.onTapPayment,
     required this.onTapHistory,
@@ -32,17 +31,17 @@ class DiagnosticServices extends StatelessWidget {
     required this.onTapSSRS,
     required this.onTapSSi,
     required this.onTapAppointentReservation,
-      required this.isPayment ,
-      required this.isCaseHistory ,
-      required this.isOases ,
-      required this.isSsrs ,
-      required this.isSsi4 ,
-      required this.isDiagnosticReserved ,
+    required this.isPayment,
+    required this.isCaseHistory,
+    required this.isOases,
+    required this.isSsrs,
+    required this.isSsi4,
+    required this.isDiagnosticReserved,
   });
 
   @override
   Widget build(BuildContext context) {
-     DiagnosticPaymentModel? diagnosticPaymentModel;
+    DiagnosticPaymentModel? diagnosticPaymentModel;
 
     double height = MediaQuery.of(context).size.height;
 
@@ -82,9 +81,7 @@ class DiagnosticServices extends StatelessWidget {
                   customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
-              trailing: isPayment ,
-
-
+              trailing: isPayment,
             ),
           ),
           Container(
@@ -137,16 +134,15 @@ class DiagnosticServices extends StatelessWidget {
             height: context.height * 0.08,
             color: kRoundBorderColor,
             child: ListTile(
-              onTap: onTapSSi,
-              title: Row(
-                children: [
-                  Image.asset("assets/images/paper.png"),
-                  buildSizedBox(),
-                  customText4(title: KeysConfig.test4, color: kBlackText),
-                ],
-              ),
-              trailing: isSsi4
-            ),
+                onTap: onTapSSi,
+                title: Row(
+                  children: [
+                    Image.asset("assets/images/paper.png"),
+                    buildSizedBox(),
+                    customText4(title: KeysConfig.test4, color: kBlackText),
+                  ],
+                ),
+                trailing: isSsi4),
           ),
           Container(
             height: context.height * 0.08,
@@ -165,7 +161,6 @@ class DiagnosticServices extends StatelessWidget {
                       title: KeysConfig.BookSpecialist, color: kBlackText),
                 ],
               ),
-
               trailing: isDiagnosticReserved,
             ),
           ),

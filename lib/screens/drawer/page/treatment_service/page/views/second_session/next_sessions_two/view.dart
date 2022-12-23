@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import '../../../../../../../widgets/customButton.dart';
 import '../second_cognitive_session/cubit/second_cognitive_section_cubit.dart';
 import '../second_cognitive_session/view.dart';
 import '../second_stage_additional_traning/view.dart';
-
 
 // ignore: must_be_immutable
 
@@ -44,7 +42,7 @@ class _NextTwoSessionState extends State<NextTwoSession> {
             ),
             customText4(
                 title:
-                "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
+                    "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
                 color: kBlackText),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -63,8 +61,9 @@ class _NextTwoSessionState extends State<NextTwoSession> {
             CustomButton(
               title: "الإنتقال إلي المرحلة التالية",
               onPressed: () {
-                BlocProvider.of<SecondCognitiveSectionCubit>(context).getSecondCognitiveSection();
-                Get.off(()=> const SecondTreatmentSession());
+                BlocProvider.of<SecondCognitiveSectionCubit>(context)
+                    .getSecondCognitiveSection();
+                Get.off(() => const SecondTreatmentSession());
                 // ;
               },
             ),

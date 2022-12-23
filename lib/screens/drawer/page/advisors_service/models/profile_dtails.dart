@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-class AdvisorModel  extends Equatable{
+class AdvisorModel extends Equatable {
   AdvisorProfile? data;
   int? status;
   int? dataLength;
@@ -26,10 +26,10 @@ class AdvisorModel  extends Equatable{
   }
 
   @override
-  List<Object?> get props => [data,status,dataLength];
+  List<Object?> get props => [data, status, dataLength];
 }
 
-class AdvisorProfile extends Equatable{
+class AdvisorProfile extends Equatable {
   String? firstName;
   String? lastName;
   String? email;
@@ -60,50 +60,49 @@ class AdvisorProfile extends Equatable{
 
   AdvisorProfile(
       {this.firstName,
-        this.lastName,
-        this.email,
-        this.password,
-        this.birthDate,
-        this.gender,
-        this.midName,
-        this.phoneNumber,
-        this.idCardNumber,
-        this.address,
-        this.employer,
-        this.nationality,
-        this.userId,
-        this.id,
-        this.attachment,
-        this.attachmentName,
-        this.fileNameURL,
-        this.experienceYears,
-        this.job,
-        this.education,
-        this.scientificDegree,
-        this.zoomEmail,
-        this.joinedInYourConsultant,
-        this.consultationPriceInHour,
-        this.consultationPriceIn45Minute,
-        this.consultationPriceIn30Minute,
-        this.consultationPriceIn15Minute});
+      this.lastName,
+      this.email,
+      this.password,
+      this.birthDate,
+      this.gender,
+      this.midName,
+      this.phoneNumber,
+      this.idCardNumber,
+      this.address,
+      this.employer,
+      this.nationality,
+      this.userId,
+      this.id,
+      this.attachment,
+      this.attachmentName,
+      this.fileNameURL,
+      this.experienceYears,
+      this.job,
+      this.education,
+      this.scientificDegree,
+      this.zoomEmail,
+      this.joinedInYourConsultant,
+      this.consultationPriceInHour,
+      this.consultationPriceIn45Minute,
+      this.consultationPriceIn30Minute,
+      this.consultationPriceIn15Minute});
 
   AdvisorProfile.fromJson(Map<String, dynamic> json) {
-
     /// TODO:
     //firstName = json.containsKey("firstName")?json['firstName'] :"";
-     firstName = json['firstName'] ??"";
-    lastName = json['lastName']??"";
-    email = json['email']??"";
-    password = json['password']??"";
-    birthDate = json['birthDate']??"";
-    gender = json['gender']??"";
-    midName = json['midName']??"";
-    phoneNumber = json['phoneNumber']??"";
-    idCardNumber = json['idCardNumber']??"";
-    address = json['address']??"";
-    employer = json['employer']??"";
+    firstName = json['firstName'] ?? "";
+    lastName = json['lastName'] ?? "";
+    email = json['email'] ?? "";
+    password = json['password'] ?? "";
+    birthDate = json['birthDate'] ?? "";
+    gender = json['gender'] ?? "";
+    midName = json['midName'] ?? "";
+    phoneNumber = json['phoneNumber'] ?? "";
+    idCardNumber = json['idCardNumber'] ?? "";
+    address = json['address'] ?? "";
+    employer = json['employer'] ?? "";
     nationality = json['nationality'];
-    userId = json['userId'] ??0;
+    userId = json['userId'] ?? 0;
     id = json['id'];
     attachment = json['attachment'];
     attachmentName = json['attachmentName'];
@@ -154,39 +153,32 @@ class AdvisorProfile extends Equatable{
 
   @override
   List<Object?> get props => [
-
-    firstName,
-    lastName,
-    email,
-    password,
-    birthDate,
-    gender,
-    midName,
-    phoneNumber,
-    idCardNumber,
-    address,
-    employer,
-    nationality,
-    userId,
-    id,
-    attachment,
-    attachmentName,
-    fileNameURL,
-    experienceYears,
-    job,
-    education,
-    scientificDegree,
-    zoomEmail,
-    joinedInYourConsultant,
-    consultationPriceInHour,
-    consultationPriceIn45Minute,
-    consultationPriceIn30Minute,
-    consultationPriceIn15Minute,
-
-  ];
+        firstName,
+        lastName,
+        email,
+        password,
+        birthDate,
+        gender,
+        midName,
+        phoneNumber,
+        idCardNumber,
+        address,
+        employer,
+        nationality,
+        userId,
+        id,
+        attachment,
+        attachmentName,
+        fileNameURL,
+        experienceYears,
+        job,
+        education,
+        scientificDegree,
+        zoomEmail,
+        joinedInYourConsultant,
+        consultationPriceInHour,
+        consultationPriceIn45Minute,
+        consultationPriceIn30Minute,
+        consultationPriceIn15Minute,
+      ];
 }
-
-
-
-
-

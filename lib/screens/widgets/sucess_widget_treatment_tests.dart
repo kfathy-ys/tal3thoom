@@ -3,7 +3,6 @@ import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';
 import 'constants.dart';
@@ -16,15 +15,17 @@ class SuccessViewJumpTest extends StatelessWidget {
   final String? title3;
   final VoidCallback? onTap;
   final VoidCallback? onTap2;
-  bool? goNext ;
+  bool? goNext;
 
-  SuccessViewJumpTest({
-    Key? key,
-    required this.title1,
-    required this.title2,
-    this.onTap,
-    this.goNext=false, this.title3, this.onTap2
-  }) : super(key: key);
+  SuccessViewJumpTest(
+      {Key? key,
+      required this.title1,
+      required this.title2,
+      this.onTap,
+      this.goNext = false,
+      this.title3,
+      this.onTap2})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +63,21 @@ class SuccessViewJumpTest extends StatelessWidget {
               }
             },
             title: title2),
+        goNext == true
+            ? CustomButton(
+                color: kPrimaryColor,
+                onPressed: () {
+                  if (onTap2 != null) {
+                    onTap2!();
+                  }
 
-        goNext == true ?  CustomButton(
-            color: kPrimaryColor,
-            onPressed: () {
-              if (onTap2 != null) {
-                onTap2!();
-              }
-
-              // else {
-              //   BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-              //   navigateTo(context, const HomeTabScreen());
-              // }
-            },
-            title: title3):const SizedBox.shrink(),
+                  // else {
+                  //   BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+                  //   navigateTo(context, const HomeTabScreen());
+                  // }
+                },
+                title: title3)
+            : const SizedBox.shrink(),
       ]),
     );
   }

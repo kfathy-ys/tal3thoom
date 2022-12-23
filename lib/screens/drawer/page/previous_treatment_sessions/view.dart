@@ -1,14 +1,14 @@
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/drawer/page/previous_treatment_sessions/views/drop_down_result_sessions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../widgets/appBar.dart';
+import '../../../widgets/better_video_widget.dart';
 import '../../../widgets/constants.dart';
 import '../../../widgets/loading.dart';
-import '../../../widgets/video_items.dart';
 import '../../view.dart';
 import 'cubit/previous_sessions_cubit.dart';
 
@@ -23,7 +23,14 @@ class ResultsPreviousTreatmentSessions extends StatefulWidget {
 
 class _ResultsPreviousTreatmentSessionsState
     extends State<ResultsPreviousTreatmentSessions> {
+  final FijkPlayer player = FijkPlayer();
+
   String? sessionNumber;
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +156,6 @@ class _ResultsPreviousTreatmentSessionsState
                                                           child:
                                                               FormBuilderRadioGroup<
                                                                   dynamic>(
-
                                                             decoration:
                                                                 InputDecoration(
                                                               labelStyle: const TextStyle(
@@ -158,19 +164,19 @@ class _ResultsPreviousTreatmentSessionsState
                                                                   fontSize: 18,
                                                                   fontFamily:
                                                                       'DinBold'),
-
-                                                                  label:      Wrap(
-                                                                      children: [Text("${index + 1} - " +
-                                                                              state
-                                                                                  .previousAnswersModel
-                                                                                  .data!
-                                                                                  .cognitiveResult![
-                                                                              index]
-                                                                                  .question!
-                                                                                  .description!, )]),
+                                                              label: Wrap(
+                                                                  children: [
+                                                                    Text(
+                                                                      "${index + 1} - " +
+                                                                          state
+                                                                              .previousAnswersModel
+                                                                              .data!
+                                                                              .cognitiveResult![index]
+                                                                              .question!
+                                                                              .description!,
+                                                                    )
+                                                                  ]),
                                                             ),
-
-
                                                             initialValue: state
                                                                 .previousAnswersModel
                                                                 .data!
@@ -224,20 +230,40 @@ class _ResultsPreviousTreatmentSessionsState
                                                     width: context.width * 0.8,
                                                     height:
                                                         context.height * 0.25,
-                                                    child: VideoItems(
-                                                      videoPlayerController:
-                                                          VideoPlayerController
-                                                              .network(
-                                                        "http://dev-sas.cpt-it.com/api/" +
-                                                            state
-                                                                .previousAnswersModel
-                                                                .data!
-                                                                .cognitiveResult![
-                                                                    index]
-                                                                .question!
-                                                                .videoFile!
-                                                                .toString(),
-                                                      ),
+                                                    child:
+
+                                                        // BetterVideoItems(video:
+                                                        //
+                                                        // BetterPlayer.network(
+                                                        //   "http://mcsc-saudi.com/api/" +
+                                                        //       state
+                                                        //           .previousAnswersModel
+                                                        //           .data!
+                                                        //           .cognitiveResult![
+                                                        //       index]
+                                                        //           .question!
+                                                        //           .videoFile!
+                                                        //           .toString(),
+                                                        //
+                                                        //
+                                                        //
+                                                        //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                                        //     aspectRatio: 16 / 9,
+                                                        //   ),
+                                                        // ),
+                                                        //
+                                                        //                 ),
+
+                                                        VideoScreen(
+                                                      url: "http://mcsc-saudi.com/api/" +
+                                                          state
+                                                              .previousAnswersModel
+                                                              .data!
+                                                              .cognitiveResult![
+                                                                  index]
+                                                              .question!
+                                                              .videoFile!
+                                                              .toString(),
                                                     ),
                                                   ),
                                           ],
@@ -249,7 +275,8 @@ class _ResultsPreviousTreatmentSessionsState
                         );
                       }
                       if (state is PreviousSessionsError) {
-                        return customText10(title: "لم يتم اخذ الجلسة بعد",color: kBlackText);
+                        return customText10(
+                            title: "لم يتم اخذ الجلسة بعد", color: kBlackText);
                       }
                       return const SizedBox();
                     },
@@ -274,106 +301,140 @@ class _ResultsPreviousTreatmentSessionsState
                         return SizedBox(
                           height: context.height * 0.4,
                           child: state.previousAnswersModel.data!
-                              .behavioralResult!.isEmpty ? Center(
-                              child: customText2(
-                                  title:
-                                  " لا يوجد نتائج متاحة الاّن",
-                                  color: kBlackText)):ListView.builder(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: state.previousAnswersModel.data!
-                                .behavioralResult!.length,
-                            itemBuilder: (context, index) {
-                              List<String> listOfString = [];
-                              dynamic allString = state.previousAnswersModel
-                                  .data!.behavioralResult![index].question!.hint
-                                  .toString();
-                              listOfString = [allString];
-                              listOfString = allString.split(";;");
-                              print(
-                                  "***************************************************************");
+                                  .behavioralResult!.isEmpty
+                              ? Center(
+                                  child: customText2(
+                                      title: " لا يوجد نتائج متاحة الاّن",
+                                      color: kBlackText))
+                              : ListView.builder(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4),
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: state.previousAnswersModel.data!
+                                      .behavioralResult!.length,
+                                  itemBuilder: (context, index) {
+                                    List<String> listOfString = [];
+                                    dynamic allString = state
+                                        .previousAnswersModel
+                                        .data!
+                                        .behavioralResult![index]
+                                        .question!
+                                        .hint
+                                        .toString();
+                                    listOfString = [allString];
+                                    listOfString = allString.split(";;");
+                                    print(
+                                        "***************************************************************");
 
-                              print(listOfString);
+                                    print(listOfString);
 
-                              print(
-                                  "meddddddddd ${state.previousAnswersModel.data!.behavioralResult![index].patientAnswers?.first.toString()}");
-                              return Column(
-                                children: [
-                                  Center(
-                                    child: state
-                                                .previousAnswersModel
-                                                .data!
-                                                .behavioralResult![index]
-                                                .question!
-                                                .videoFile ==
-                                            null
-                                        ? const SizedBox.shrink()
-                                        : Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 8),
-                                            width: context.width * 0.8,
-                                            height: context.height * 0.25,
-                                            child: VideoItems(
-                                              videoPlayerController:
-                                                  VideoPlayerController.network(
-                                                "http://dev-sas.cpt-it.com/api/" +
-                                                    state
-                                                        .previousAnswersModel
-                                                        .data!
-                                                        .behavioralResult![
-                                                            index]
-                                                        .question!
-                                                        .videoFile
-                                                        .toString(),
-                                              ),
-                                            ),
-                                          ),
-                                  ),
-                                  state
-                                              .previousAnswersModel
-                                              .data!
-                                              .behavioralResult![index]
-                                              .question!
-                                              .hint ==
-                                          null
-                                      ? const SizedBox.shrink()
-                                      : SizedBox(
-                                          height: context.height * 0.08,
-                                          child: ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: listOfString.length,
-                                              itemBuilder: (context, index) {
-                                                return Container(
-                                                  decoration: BoxDecoration(
-                                                      color: kSkyLightColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8)),
+                                    print(
+                                        "meddddddddd ${state.previousAnswersModel.data!.behavioralResult![index].patientAnswers?.first.toString()}");
+                                    return Column(
+                                      children: [
+                                        Center(
+                                          child: state
+                                                      .previousAnswersModel
+                                                      .data!
+                                                      .behavioralResult![index]
+                                                      .question!
+                                                      .videoFile ==
+                                                  null
+                                              ? const SizedBox.shrink()
+                                              : Container(
                                                   margin: const EdgeInsets
-                                                      .symmetric(
-                                                    horizontal: 4,
+                                                      .symmetric(vertical: 8),
+                                                  width: context.width * 0.8,
+                                                  height: context.height * 0.25,
+                                                  child:
+                                                      // BetterVideoItems(video:
+                                                      //
+                                                      // BetterPlayer.network(
+                                                      //   "http://mcsc-saudi.com/api/" +
+                                                      //       state
+                                                      //           .previousAnswersModel
+                                                      //           .data!
+                                                      //           .behavioralResult![
+                                                      //       index]
+                                                      //           .question!
+                                                      //           .videoFile
+                                                      //           .toString(),
+                                                      //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                                      //     aspectRatio: 16 / 9,
+                                                      //   ),
+                                                      // ),
+                                                      //
+
+                                                      //  ),
+
+                                                      VideoScreen(
+                                                    url: "http://mcsc-saudi.com/api/" +
+                                                        state
+                                                            .previousAnswersModel
+                                                            .data!
+                                                            .behavioralResult![
+                                                                index]
+                                                            .question!
+                                                            .videoFile
+                                                            .toString(),
                                                   ),
-                                                  padding: const EdgeInsets
-                                                      .symmetric(horizontal: 2),
-                                                  height: context.height * 0.08,
-                                                  child: Center(
-                                                    child: customText4(
-                                                        title:
-                                                            listOfString[index],
-                                                        color: kBlackText),
-                                                  ),
-                                                );
-                                              })),
-                                ],
-                              );
-                            },
-                          ),
+                                                ),
+                                        ),
+                                        state
+                                                    .previousAnswersModel
+                                                    .data!
+                                                    .behavioralResult![index]
+                                                    .question!
+                                                    .hint ==
+                                                null
+                                            ? const SizedBox.shrink()
+                                            : SizedBox(
+                                                height: context.height * 0.08,
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount:
+                                                        listOfString.length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return Container(
+                                                        decoration: BoxDecoration(
+                                                            color:
+                                                                kSkyLightColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        margin: const EdgeInsets
+                                                            .symmetric(
+                                                          horizontal: 4,
+                                                        ),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 2),
+                                                        height: context.height *
+                                                            0.08,
+                                                        child: Center(
+                                                          child: customText4(
+                                                              title:
+                                                                  listOfString[
+                                                                      index],
+                                                              color:
+                                                                  kBlackText),
+                                                        ),
+                                                      );
+                                                    })),
+                                      ],
+                                    );
+                                  },
+                                ),
                         );
                       }
                       if (state is PreviousSessionsError) {
-                                 return customText10(title: "لم يتم اخذ الجلسة بعد",color: kBlackText);
-
+                        return customText10(
+                            title: "لم يتم اخذ الجلسة بعد", color: kBlackText);
                       }
                       return const SizedBox();
                     },
@@ -391,62 +452,85 @@ class _ResultsPreviousTreatmentSessionsState
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Center(
-                            child:state.previousAnswersModel.data!
-                                .conclution!.toString().isEmpty ? Center(
-                                child: customText2(
-                                    title:
-                                    " لا يوجد نتائج متاحة الاّن",
-                                    color: kBlackText)): Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                buildColumn(context.height, context.width,
-                                    curve: false,
-                                    head: "عدد أسئلة القسم المعرفى",
-                                    answer: state.previousAnswersModel.data!
-                                        .conclution!.totalCognitiveQuestions!
-                                        .toString()),
-                                buildColumn(context.height, context.width,
-                                    curve: false,
-                                    head: "الإجابات الصحيحة",
-                                    answer: state.previousAnswersModel.data!
-                                        .conclution!.correctCognitiveAnswers
-                                        .toString()),
-                                buildColumnWithImage(
-                                    context.height, context.width,
-                                    head:
-                                        "عرض الفيديو الخاص بالمريض (القسم السلوكى )",
-                                    curve: false, onTap: () {
-                                  showAlertDialogVideo(
-                                      context,
-                                      Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 8),
-                                        width: context.width * 0.8,
-                                        height: context.height * 0.25,
-                                        child: Card(
-                                          child: VideoItems(
-                                            videoPlayerController:
-                                                VideoPlayerController.network(
-                                              "http://dev-sas.cpt-it.com/api/" +
-                                                  state
-                                                      .previousAnswersModel
-                                                      .data!
-                                                      .conclution!
-                                                      .answerdVideo!
-                                                      .toString(),
-                                            ),
-                                          ),
-                                        ),
-                                      ));
-                                }),
-                              ],
-                            ),
+                            child: state.previousAnswersModel.data!.conclution!
+                                    .toString()
+                                    .isEmpty
+                                ? Center(
+                                    child: customText2(
+                                        title: " لا يوجد نتائج متاحة الاّن",
+                                        color: kBlackText))
+                                : Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      buildColumn(context.height, context.width,
+                                          curve: false,
+                                          head: "عدد أسئلة القسم المعرفى",
+                                          answer: state
+                                              .previousAnswersModel
+                                              .data!
+                                              .conclution!
+                                              .totalCognitiveQuestions!
+                                              .toString()),
+                                      buildColumn(context.height, context.width,
+                                          curve: false,
+                                          head: "الإجابات الصحيحة",
+                                          answer: state
+                                              .previousAnswersModel
+                                              .data!
+                                              .conclution!
+                                              .correctCognitiveAnswers
+                                              .toString()),
+                                      buildColumnWithImage(
+                                          context.height, context.width,
+                                          head:
+                                              "عرض الفيديو الخاص بالمريض (القسم السلوكى )",
+                                          curve: false, onTap: () {
+                                        showAlertDialogVideo(
+                                            context,
+                                            Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8),
+                                              width: context.width * 0.8,
+                                              height: context.height * 0.25,
+                                              child: Card(
+                                                child:
+
+                                                    // BetterPlayer.network(
+                                                    //   "http://mcsc-saudi.com/api/" +
+                                                    //       state
+                                                    //           .previousAnswersModel
+                                                    //           .data!
+                                                    //           .conclution!
+                                                    //           .answerdVideo!
+                                                    //           .toString(),
+                                                    //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                                    //     aspectRatio: 16 / 9,
+                                                    //   ),
+                                                    // ),
+                                                    //
+                                                    //
+
+                                                    VideoScreen(
+                                                  url: "http://mcsc-saudi.com/api/" +
+                                                      state
+                                                          .previousAnswersModel
+                                                          .data!
+                                                          .conclution!
+                                                          .answerdVideo!
+                                                          .toString(),
+                                                ),
+                                              ),
+                                            ));
+                                      }),
+                                    ],
+                                  ),
                           ),
                         );
                       }
                       if (state is PreviousSessionsError) {
-                        return customText10(title: "لم يتم اخذ الجلسة بعد",color: kBlackText);
-
+                        return customText10(
+                            title: "لم يتم اخذ الجلسة بعد", color: kBlackText);
                       }
                       return const SizedBox();
                     },
@@ -514,8 +598,8 @@ class _ResultsPreviousTreatmentSessionsState
                         );
                       }
                       if (state is PreviousSessionsError) {
-                        return customText10(title: "لم يتم اخذ الجلسة بعد",color: kBlackText);
-
+                        return customText10(
+                            title: "لم يتم اخذ الجلسة بعد", color: kBlackText);
                       }
                       return const SizedBox();
                     },

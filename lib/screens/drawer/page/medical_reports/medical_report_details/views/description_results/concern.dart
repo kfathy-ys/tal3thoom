@@ -12,22 +12,19 @@ class ConcernResult extends StatelessWidget {
   final String fav;
   final String cases;
 
-   ConcernResult(
+  const ConcernResult(
       {Key? key,
       required this.title1,
       required this.title2,
       required this.name,
-        required this.age,
-        required this.sex,
-        required this.fav, required this.cases})
+      required this.age,
+      required this.sex,
+      required this.fav,
+      required this.cases})
       : super(key: key);
-
-
-
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
@@ -44,41 +41,35 @@ class ConcernResult extends StatelessWidget {
               ],
             ),
           ),
-          customText7(title: "$name is a $age years old $sex . He came to the SHS therapeutic approach for a fluency evaluation/treatment due to $fav concern over persistent stuttering. Specifically $name was concerned that the stuttering was becoming $cases.", color: kBlackText)
+          customText7(
+              title:
+                  "$name is a $age years old $sex . He came to the SHS therapeutic approach for a fluency evaluation/treatment due to $fav concern over persistent stuttering. Specifically $name was concerned that the stuttering was becoming $cases.",
+              color: kBlackText)
         ],
       ),
     );
-
-
   }
 
-
-
-
-
-
-
-
-
-  TextStyle textStyle(){
-    return const TextStyle(color: kButtonRedDark, fontSize: 14, fontFamily: 'DinBold');
-  }
-  Widget text({required String normalText}){
-    return customText7(title: normalText , color: kBlackText);
+  TextStyle textStyle() {
+    return const TextStyle(
+        color: kButtonRedDark, fontSize: 14, fontFamily: 'DinBold');
   }
 
-TextSpan textSpan(){
-    return  TextSpan(
-        //text: 'This is textspan ',
-        children: <InlineSpan>[
-          TextSpan(
-            text: name,
-            style: textStyle(),
-          ),
-        ],
+  Widget text({required String normalText}) {
+    return customText7(title: normalText, color: kBlackText);
+  }
 
+  TextSpan textSpan() {
+    return TextSpan(
+      //text: 'This is textspan ',
+      children: <InlineSpan>[
+        TextSpan(
+          text: name,
+          style: textStyle(),
+        ),
+      ],
     );
-}
+  }
 }
 /*
 * Testpayment is a 0 years old male . He came to the SHS therapeutic approach for a fluency evaluation/treatment due to his concern over persistent stuttering. Specifically Testpayment was concerned that the stuttering was becoming worse and frustration was decreasing.*/

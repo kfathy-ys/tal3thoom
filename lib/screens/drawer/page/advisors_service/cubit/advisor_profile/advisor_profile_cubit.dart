@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -16,26 +15,21 @@ class AdvisorProfileCubit extends Cubit<AdvisorProfileState> {
   AllAdvisors? selectedAdvisor;
   void onAdvChange(AllAdvisors value) => selectedAdvisor = value;
 
-
   int? selectedTime;
   void onTimeChange(int value) => selectedTime = value;
-
 
   String? selectedDates;
   void onDatesChange(String value) => selectedDates = value;
 
+  List<AllReservationsAdvisorModel> allReservationsAdvisorModel = [];
 
-
-
-  List <AllReservationsAdvisorModel> allReservationsAdvisorModel =[];
-
-
-
-  Future<void> getAllAdvisors({required int userProfileId ,required int time , required data}) async {
+  Future<void> getAllAdvisors(
+      {required int userProfileId, required int time, required data}) async {
     emit(AllAdvisorToReservedLoading());
     try {
       allReservationsAdvisorModel.clear();
-      final res = await NetWork.get('Schedule/GetScheduleDetailsBySpecialistIdAndSessionDurationAndSessionDate/$userProfileId/$time/$data/Consult');
+      final res = await NetWork.get(
+          'Schedule/GetScheduleDetailsBySpecialistIdAndSessionDurationAndSessionDate/$userProfileId/$time/$data/Consult');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -43,19 +37,17 @@ class AdvisorProfileCubit extends Cubit<AdvisorProfileState> {
         throw res.data['message'];
       }
 
-      print("before ""${AllReservationsAdvisorModel.fromJson(res.data)}");
+      print("before " "${AllReservationsAdvisorModel.fromJson(res.data)}");
 
+      emit(AllAdvisorToReservedSuccess(
+          allAdvisorToReservedModel:
+              AllReservationsAdvisorModel.fromJson(res.data)));
 
-      emit(AllAdvisorToReservedSuccess(allAdvisorToReservedModel: AllReservationsAdvisorModel.fromJson(res.data) ));
-
-      print("after ""${AllReservationsAdvisorModel.fromJson(res.data)}");
-
+      print("after " "${AllReservationsAdvisorModel.fromJson(res.data)}");
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AllAdvisorToReservedError(msg: e.toString()));
     }
   }
-
-
 }

@@ -15,7 +15,7 @@ import '../../../../../../../../diagnostic_service/page/views/diagnostic_history
 part 'first_stage_ssi4_one_state.dart';
 
 class FirstStageSsi4OneCubit extends Cubit<FirstStageSsi4OneState> {
-  FirstStageSsi4OneCubit() : super(FirstStageSsi4OneInitial()){
+  FirstStageSsi4OneCubit() : super(FirstStageSsi4OneInitial()) {
     getSSI4FirstStageQuestions();
   }
 
@@ -35,7 +35,7 @@ class FirstStageSsi4OneCubit extends Cubit<FirstStageSsi4OneState> {
 
       emit(FirstStageSsi4OneSuccess(ssi4QuestionModel: questionList));
     } on DioError catch (_) {
-      emit(FirstStageSsi4OneError(msg:   "لا يوجد اتصال بالانترنت "));
+      emit(FirstStageSsi4OneError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       print("err");
       log(e.toString());
@@ -49,13 +49,11 @@ class FirstStageSsi4OneCubit extends Cubit<FirstStageSsi4OneState> {
     required int examId,
     required dynamic video,
   }) async {
-
     final formData = _dio.FormData.fromMap({
-      "record": _dio.MultipartFile.fromFileSync(video.path,
-          filename: video.path),
+      "record":
+          _dio.MultipartFile.fromFileSync(video.path, filename: video.path),
     });
     try {
-
       final body = formData;
       final res = await NetWork.post(
           'PatientExams/AddPatientSSI4ExamAnswers/$userId/$examId/$id/2',
@@ -65,14 +63,12 @@ class FirstStageSsi4OneCubit extends Cubit<FirstStageSsi4OneState> {
       }
       emit(FirstStageSsi4OneSuccess(ssi4QuestionModel: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
-
-    }on DioError catch (_) {
-      emit(FirstStageSsi4OneError(msg:   "لا يوجد اتصال بالانترنت "));
-    }  catch (e, st) {
+    } on DioError catch (_) {
+      emit(FirstStageSsi4OneError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(FirstStageSsi4OneError(msg: e.toString()));
     }
   }
-
 }

@@ -12,12 +12,20 @@ class DiagnosticReservationAvailableDateModel extends Equatable {
     required this.dataLength,
   });
 
-
-
-  factory DiagnosticReservationAvailableDateModel.fromMap(Map<String, dynamic> map) {
+  factory DiagnosticReservationAvailableDateModel.fromMap(
+      Map<String, dynamic> map) {
     return DiagnosticReservationAvailableDateModel(
-      data: List<DateTime>.from((map['data'] as List<dynamic>).map<DateTime>((x) => DateTime(x["year"],x["month"],x["day"],),),),
-      messages: List<dynamic>.from((map['messages'] ?? const <dynamic>[]) as List<dynamic>),
+      data: List<DateTime>.from(
+        (map['data'] as List<dynamic>).map<DateTime>(
+          (x) => DateTime(
+            x["year"],
+            x["month"],
+            x["day"],
+          ),
+        ),
+      ),
+      messages: List<dynamic>.from(
+          (map['messages'] ?? const <dynamic>[]) as List<dynamic>),
       status: (map['status'].toInt() ?? 0) as int,
       dataLength: (map['dataLength'].toInt() ?? 0) as int,
     );

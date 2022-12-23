@@ -11,7 +11,6 @@ part 'vcode_state.dart';
 class VcodeCubit extends Cubit<VcodeState> {
   VcodeCubit() : super(VcodeInitial());
 
-
   final pinCodeController = TextEditingController();
 
   Future<void> vCode({
@@ -22,11 +21,7 @@ class VcodeCubit extends Cubit<VcodeState> {
     try {
       final res = await NetWork.post(
         'Patients/AddForgetPasswordByCode',
-        body: {
-          "email": email,
-          "password":null,
-          "code": code
-        },
+        body: {"email": email, "password": null, "code": code},
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
@@ -43,9 +38,7 @@ class VcodeCubit extends Cubit<VcodeState> {
       );
       log(e.toString());
       log(st.toString());
-      emit(VcodeError(
-          msg: res.data["messages"][0]["title"].toString()));
+      emit(VcodeError(msg: res.data["messages"][0]["title"].toString()));
     }
   }
-
 }

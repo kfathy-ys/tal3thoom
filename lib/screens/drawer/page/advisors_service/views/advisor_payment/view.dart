@@ -45,7 +45,7 @@ class PaymentAdvisor extends StatelessWidget {
                         const WebView(
                           javascriptMode: JavascriptMode.unrestricted,
                           initialUrl:
-                              "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                              "http://mcsc-saudi.com/Sas/PaymentTreatment",
                         ));
 
                     print("object1");
@@ -59,7 +59,7 @@ class PaymentAdvisor extends StatelessWidget {
                         const WebView(
                           javascriptMode: JavascriptMode.unrestricted,
                           initialUrl:
-                              "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                              "http://mcsc-saudi.com/Sas/PaymentTreatment",
                         ));
                     print("object2");
                   },
@@ -72,7 +72,7 @@ class PaymentAdvisor extends StatelessWidget {
                         const WebView(
                           javascriptMode: JavascriptMode.unrestricted,
                           initialUrl:
-                              "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                              "http://mcsc-saudi.com/Sas/PaymentTreatment",
                         ));
                     print("object3");
                   },
@@ -84,7 +84,7 @@ class PaymentAdvisor extends StatelessWidget {
 
                   navigateTo(
                       context,
-                       SuccessView(
+                      SuccessView(
                         title1: "لقد تم عملية الدفع  بنجاح",
                         title2: "الإنتقال إلي جدول الحجوزات",
                       ));

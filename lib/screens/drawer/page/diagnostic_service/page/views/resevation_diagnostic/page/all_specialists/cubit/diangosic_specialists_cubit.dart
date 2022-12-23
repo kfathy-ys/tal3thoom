@@ -12,7 +12,6 @@ import '../models/all_specialist_model.dart';
 part 'diangosic_specialists_state.dart';
 
 class DiagnosticSpecialistsCubit extends Cubit<DiagnosticSpecialistsState> {
-
   DiagnosticSpecialistsCubit() : super(DiagnosticSpecialistsInitial());
 
   Future<void> getSpecialists(
@@ -38,11 +37,6 @@ class DiagnosticSpecialistsCubit extends Cubit<DiagnosticSpecialistsState> {
     }
   }
 
-
-
-
-
-
   Future<void> diagnosticCreateReservation({required int specialistId}) async {
     try {
       final userId = Prefs.getString("userId");
@@ -54,7 +48,6 @@ class DiagnosticSpecialistsCubit extends Cubit<DiagnosticSpecialistsState> {
         throw res.data['message'];
       }
 
-
       emit(DiagnosticSpecialistsSuccess(
           allSpecialistModel: AllSpecialistModel.fromMap(res.data)));
 
@@ -63,20 +56,18 @@ class DiagnosticSpecialistsCubit extends Cubit<DiagnosticSpecialistsState> {
             desc:
                 "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
 
-
-
-       // Get.offAll(() => const ReservationsSchedule());
+        // Get.offAll(() => const ReservationsSchedule());
       }
       if (res.data['status'] == 2) {
         Alert.error('تم الحجز مع المتخصص من قبل بنجاح',
             desc: "عذراً..لايمكنك الحجز يجيب انهاء الاختبارا");
       }
-
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
-        Alert.error(e.toString(),
-          );
+      Alert.error(
+        e.toString(),
+      );
       emit(DiagnosticSpecialistsError(msg: e.toString()));
     }
   }

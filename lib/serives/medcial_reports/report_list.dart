@@ -7,8 +7,7 @@ class AllReportsService {
   static Future<List<AllReports>> findMany() async {
     final userId = Prefs.getString("userId");
 
-    final res = await NetWork.get(
-        'Report/GetPatientApprovedReports/$userId');
+    final res = await NetWork.get('Report/GetPatientApprovedReports/$userId');
     return List.from(res.data["data"])
         .map((e) => AllReports.fromJson(e))
         .toList();

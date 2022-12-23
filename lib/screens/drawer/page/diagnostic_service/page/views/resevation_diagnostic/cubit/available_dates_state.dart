@@ -10,7 +10,7 @@ class AvailableDatesLoading extends AvailableDatesState {}
 class AvailableDatesSuccess extends AvailableDatesState {
   final DiagnosticReservationAvailableDateModel availableDatesModel;
   final List<DateTime> dates;
- // final List<AllAvailableDates> dates;
+  // final List<AllAvailableDates> dates;
 
   AvailableDatesSuccess(
       {required this.dates, required this.availableDatesModel});
@@ -23,8 +23,6 @@ class AvailableDatesError extends AvailableDatesState {
 }
 
 class AvailableDatesEmpty extends AvailableDatesState {}
-
-
 
 class AvailablePeriodLoading extends AvailableDatesState {}
 

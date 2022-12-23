@@ -39,9 +39,9 @@ class _VideoPageState extends State<VideoPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.check),
-            onPressed: () async{
+            onPressed: () async {
               print('do something with the file');
-              print("Video Size = "+await getFileSize(widget.filePath, 1));
+              print("Video Size = " + await getFileSize(widget.filePath, 1));
             },
           )
         ],
@@ -60,7 +60,7 @@ class _VideoPageState extends State<VideoPage> {
     );
   }
 
-  Future<dynamic>getFileSize(dynamic filepath, int decimals) async {
+  Future<dynamic> getFileSize(dynamic filepath, int decimals) async {
     var file = File(filepath);
     int bytes = await file.length();
     if (bytes <= 0) return "0 B";

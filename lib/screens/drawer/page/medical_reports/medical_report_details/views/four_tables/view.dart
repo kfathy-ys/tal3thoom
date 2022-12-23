@@ -38,9 +38,8 @@ class FourTables extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
-       // mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         children: [
-
           custom12Text(title: title1, color: textColor),
           custom12Text(title: title2, color: textColor),
           custom12Text(title: title3, color: textColor),

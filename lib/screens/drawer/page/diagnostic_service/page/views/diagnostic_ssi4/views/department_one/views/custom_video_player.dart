@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerView extends StatefulWidget {
   final String video;
 
   const VideoPlayerView({super.key, required this.video});
-
 
   @override
   _VideoPlayerViewState createState() => _VideoPlayerViewState();
@@ -43,39 +41,39 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       // appBar: appBar(context: context, title: "", leading: true),
+        // appBar: appBar(context: context, title: "", leading: true),
         body: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Center(
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  _controller!.value.isPlaying
-                      ? _controller!.pause()
-                      : _controller!.play();
-                });
-              },
-              child: _controller == null
-                  ? const CircularProgressIndicator()
-                  : Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
+      height: MediaQuery.of(context).size.height,
+      child: Center(
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              _controller!.value.isPlaying
+                  ? _controller!.pause()
+                  : _controller!.play();
+            });
+          },
+          child: _controller == null
+              ? const CircularProgressIndicator()
+              : Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12),
+                    ),
                   ),
+                  child:
+                      // _youtubePlayer()
+                      _controller!.value.isInitialized
+                          ? AspectRatio(
+                              aspectRatio: _controller!.value.aspectRatio,
+                              child: VideoPlayer(
+                                _controller!,
+                              ),
+                            )
+                          : const CircularProgressIndicator(),
                 ),
-                child:
-                // _youtubePlayer()
-                _controller!.value.isInitialized
-                    ? AspectRatio(
-                  aspectRatio: _controller!.value.aspectRatio,
-                  child: VideoPlayer(
-                    _controller!,
-                  ),
-                )
-                    : const CircularProgressIndicator(),
-              ),
-            ),
-          ),
-        ));
+        ),
+      ),
+    ));
   }
 }

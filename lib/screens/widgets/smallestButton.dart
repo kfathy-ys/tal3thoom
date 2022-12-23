@@ -95,16 +95,15 @@ class SmallButtonOases extends StatelessWidget {
   final String? title;
   final Color? color;
 
-
   final bool isLoading;
-   final Color? loadingColor;
+  final Color? loadingColor;
   // ignore: use_key_in_widget_constructors
   const SmallButtonOases(
       {required this.onPressed,
       required this.title,
       this.color,
       this.isLoading = false,
-      this.loadingColor });
+      this.loadingColor});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

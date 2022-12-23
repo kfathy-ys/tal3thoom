@@ -15,7 +15,7 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
- // LoginModel? model;
+  // LoginModel? model;
 
   Future<void> userLogin({
     required String email,
@@ -45,8 +45,6 @@ class LoginCubit extends Cubit<LoginState> {
       Prefs.setString("firstName", loginModel.data!.userName!);
       Prefs.setString("lastName", loginModel.data!.email!);
 
-
-
       log("${res.data["data"]["token"]}");
       log("${res.data["data"]["userId"]}");
 
@@ -54,12 +52,12 @@ class LoginCubit extends Cubit<LoginState> {
       log("${res.data["data"]["email"]}");
       log("${res.data["data"]["phoneNumber"]}");
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
-    }  on DioError catch (_) {
-      emit(LoginError( "لا يوجد اتصال بالانترنت "));
+    } on DioError catch (_) {
+      emit(LoginError("لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       Alert.error(e.toString());
-       log(e.toString());
-       log(st.toString());
+      log(e.toString());
+      log(st.toString());
       emit(LoginError(e.toString()));
     }
   }

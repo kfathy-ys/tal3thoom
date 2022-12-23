@@ -9,7 +9,7 @@ class QuestionService {
 
     final res = await NetWork.get(
         'CaseHistory/GetCaseHistoryByExameCode/$userId/ex_ph');
-        return List.from(res.data["data"])
+    return List.from(res.data["data"])
         .map((e) => Question.fromJson(e))
         .toList();
   }

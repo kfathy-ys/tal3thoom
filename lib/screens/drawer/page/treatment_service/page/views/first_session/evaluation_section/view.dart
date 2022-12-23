@@ -114,8 +114,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                                                   fontFamily: 'DinBold'),
                                               // labelText: state.questionEvaluation[0].description.toString(),
                                             ),
-                                            initialValue: cubit
-                                                .answer[state.questionEvaluation[0]],
+                                            initialValue: cubit.answer[
+                                                state.questionEvaluation[0]],
                                             name: 'best_language',
                                             onChanged: (value) {
                                               log('$value');
@@ -202,8 +202,8 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                                                   fontFamily: 'DinBold'),
                                               // labelText: evaluateNumber[index].name,
                                             ),
-                                            initialValue: cubit
-                                                .answer[state.questionEvaluation[1]],
+                                            initialValue: cubit.answer[
+                                                state.questionEvaluation[1]],
                                             name: 'best_language',
                                             onChanged: (value) {
                                               log('$value');
@@ -246,11 +246,11 @@ class _EvaluationSectionScreenState extends State<EvaluationSectionScreen> {
                         MediaButton(
                           onPressed: () {
                             if (cubit.formKey.currentState!.validate()) {
-                              BlocProvider.of<EvaluationCubit>(context).getEvaluationSection();
+                              BlocProvider.of<EvaluationCubit>(context)
+                                  .getEvaluationSection();
 
                               cubit.sendEvaluationSectionAnswers();
                             }
-
                           },
                           color: kPrimaryColor,
                           title: "متابعة",

@@ -90,7 +90,10 @@ class _VCodeScreenState extends State<VCodeScreen> {
                         Alert.success("تم تفعيل الحساب بنجاح ",
                             desc: "الرجاء تاكيد كلمة المرور ");
 
-                        Get.to(() => NewPasswordScreen(vCode: widget.vCode,email: widget.email,));
+                        Get.to(() => NewPasswordScreen(
+                              vCode: widget.vCode,
+                              email: widget.email,
+                            ));
                       } else {
                         Alert.error(
                           "عزيزي العميل",

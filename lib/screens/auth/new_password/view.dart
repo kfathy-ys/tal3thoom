@@ -48,7 +48,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 "مرحبا بكم في تطبيق كلامي",
                 desc: "تم تسجيل الدخول بنجاح",
               );
-          Get.offAll(LoginScreen());
+              Get.offAll(LoginScreen());
             } else if (state is NewPasswordError) {
               Alert.error(
                 "عزيزي العميل",

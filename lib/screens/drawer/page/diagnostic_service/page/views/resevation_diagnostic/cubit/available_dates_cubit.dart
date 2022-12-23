@@ -12,14 +12,12 @@ import '../models/diagnostic_reservation_available_dates_model.dart';
 part 'available_dates_state.dart';
 
 class AvailableDatesCubit extends Cubit<AvailableDatesState> {
-  AvailableDatesCubit() : super(AvailableDatesInitial()){
+  AvailableDatesCubit() : super(AvailableDatesInitial()) {
     getAvailableDatesDiagnostic();
   }
 
-
   String? typeSexId;
   String onSexTypeChanged(String value) => typeSexId = value;
-
 
   final dates = <DateTime>[];
   final availableDates = <DateTime>[];
@@ -39,17 +37,17 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
       }
 
       (res.data['data'] as List)
-          .map((e) => dates.add(DateTime(e["year"],e["month"],e["day"])))
+          .map((e) => dates.add(DateTime(e["year"], e["month"], e["day"])))
           .toList();
 
-
       emit(AvailableDatesSuccess(
-        availableDatesModel: DiagnosticReservationAvailableDateModel.fromMap(res.data),
+        availableDatesModel:
+            DiagnosticReservationAvailableDateModel.fromMap(res.data),
         dates: dates,
       ));
     } on DioError catch (_) {
-      emit(AvailableDatesError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+      emit(AvailableDatesError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AvailableDatesError(msg: e.toString()));
@@ -78,12 +76,11 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
 
       emit(AvailablePeriodSuccess());
     } on DioError catch (_) {
-      emit(AvailablePeriodError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+      emit(AvailablePeriodError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AvailablePeriodError(msg: e.toString()));
     }
   }
-
 }

@@ -9,10 +9,9 @@ class FirstOasesAnswers {
   }) async {
     final list = [];
 
-
     final userId = Prefs.getString("userId");
 
-    answers.forEach((k,v ) {
+    answers.forEach((k, v) {
       list.add({
         "userId": userId,
         "patientCurrentStage": 2,
@@ -25,10 +24,8 @@ class FirstOasesAnswers {
       });
     });
     final res = await NetWork.post(
-      'PatientExams/AddPatientOasesExamAllQuestionsAnswers',
-      body: list);
-
-
+        'PatientExams/AddPatientOasesExamAllQuestionsAnswers',
+        body: list);
 
     if (res.data['status'] == 1 || res.data['status'] == 200) {
       final _msg = Message.fromMap(res.data['messages'][0]);

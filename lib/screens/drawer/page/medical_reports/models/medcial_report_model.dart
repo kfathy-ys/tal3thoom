@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-
-
-
-
-class MedicalReportsModel extends Equatable{
+class MedicalReportsModel extends Equatable {
   AllReports? data;
   int? status;
   int? dataLength;
@@ -28,10 +24,10 @@ class MedicalReportsModel extends Equatable{
   }
 
   @override
-  List<Object?> get props =>[data,status,dataLength];
+  List<Object?> get props => [data, status, dataLength];
 }
 
-class AllReports extends Equatable{
+class AllReports extends Equatable {
   int? id;
   String? reportName;
   int? patientId;
@@ -41,7 +37,7 @@ class AllReports extends Equatable{
   int? supervisorId;
   String? supervisorName;
   String? enrolmentDate;
- dynamic dischargeDate;
+  dynamic dischargeDate;
   String? stutteringWasBecoming;
   String? bornWith;
   String? stutteringNoticedAge;
@@ -51,8 +47,8 @@ class AllReports extends Equatable{
   String? exhibits;
   String? generatedBy;
   String? generatedAt;
- dynamic regeneratedBy;
- dynamic regeneratedAt;
+  dynamic regeneratedBy;
+  dynamic regeneratedAt;
   String? approvedBy;
   String? approvedAt;
   bool? isPending;
@@ -68,52 +64,52 @@ class AllReports extends Equatable{
   num? totalScore;
   String? severityEquivalent;
   String? percentileRank;
- dynamic ssrsValue;
+  dynamic ssrsValue;
   Patient? patient;
   OasesResults? oasesResults;
   VideosFrequencyDetails? videosFrequencyDetails;
 
   AllReports(
       {this.id,
-        this.reportName,
-        this.patientId,
-        this.specialistId,
-        this.specialistName,
-        this.specialistScientificDegree,
-        this.supervisorId,
-        this.supervisorName,
-        this.enrolmentDate,
-        this.dischargeDate,
-        this.stutteringWasBecoming,
-        this.bornWith,
-        this.stutteringNoticedAge,
-        this.stutteringNoticedByWhome,
-        this.theStuttering,
-        this.hasBecome,
-        this.exhibits,
-        this.generatedBy,
-        this.generatedAt,
-        this.regeneratedBy,
-        this.regeneratedAt,
-        this.approvedBy,
-        this.approvedAt,
-        this.isPending,
-        this.isRegenerated,
-        this.isApproved,
-        this.heOrShe,
-        this.hisOrHer,
-        this.patientAge,
-        this.frequencyScore,
-        this.durationScore,
-        this.physicalScore,
-        this.stutteringDuration,
-        this.totalScore,
-        this.severityEquivalent,
-        this.percentileRank,
-        this.ssrsValue,
-        this.patient,
-        this.oasesResults,
-        this.videosFrequencyDetails});
+      this.reportName,
+      this.patientId,
+      this.specialistId,
+      this.specialistName,
+      this.specialistScientificDegree,
+      this.supervisorId,
+      this.supervisorName,
+      this.enrolmentDate,
+      this.dischargeDate,
+      this.stutteringWasBecoming,
+      this.bornWith,
+      this.stutteringNoticedAge,
+      this.stutteringNoticedByWhome,
+      this.theStuttering,
+      this.hasBecome,
+      this.exhibits,
+      this.generatedBy,
+      this.generatedAt,
+      this.regeneratedBy,
+      this.regeneratedAt,
+      this.approvedBy,
+      this.approvedAt,
+      this.isPending,
+      this.isRegenerated,
+      this.isApproved,
+      this.heOrShe,
+      this.hisOrHer,
+      this.patientAge,
+      this.frequencyScore,
+      this.durationScore,
+      this.physicalScore,
+      this.stutteringDuration,
+      this.totalScore,
+      this.severityEquivalent,
+      this.percentileRank,
+      this.ssrsValue,
+      this.patient,
+      this.oasesResults,
+      this.videosFrequencyDetails});
 
   AllReports.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -154,7 +150,7 @@ class AllReports extends Equatable{
     percentileRank = json['percentileRank'];
     ssrsValue = json['ssrsValue'];
     patient =
-    json['patient'] != null ? Patient.fromJson(json['patient']) : null;
+        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     oasesResults = json['oasesResults'] != null
         ? OasesResults.fromJson(json['oasesResults'])
         : null;
@@ -216,52 +212,50 @@ class AllReports extends Equatable{
 
   @override
   List<Object?> get props => [
-
-   id,
-   reportName,
-   patientId,
-   specialistId,
-   specialistName,
-   specialistScientificDegree,
-   supervisorId,
-   supervisorName,
-   enrolmentDate,
-   dischargeDate,
-   stutteringWasBecoming,
-   bornWith,
-   stutteringNoticedAge,
-   stutteringNoticedByWhome,
-   theStuttering,
-   hasBecome,
-   exhibits,
-   generatedBy,
-   generatedAt,
-   regeneratedBy,
-   regeneratedAt,
-   approvedBy,
-   approvedAt,
-   isPending,
-   isRegenerated,
-   isApproved,
-   heOrShe,
-   hisOrHer,
-   patientAge,
-   frequencyScore,
-   durationScore,
-   physicalScore,
-   stutteringDuration,
-   totalScore,
-   severityEquivalent,
-   percentileRank,
-   ssrsValue,
-   patient,
-   oasesResults,
-   videosFrequencyDetails
-
-  ];
+        id,
+        reportName,
+        patientId,
+        specialistId,
+        specialistName,
+        specialistScientificDegree,
+        supervisorId,
+        supervisorName,
+        enrolmentDate,
+        dischargeDate,
+        stutteringWasBecoming,
+        bornWith,
+        stutteringNoticedAge,
+        stutteringNoticedByWhome,
+        theStuttering,
+        hasBecome,
+        exhibits,
+        generatedBy,
+        generatedAt,
+        regeneratedBy,
+        regeneratedAt,
+        approvedBy,
+        approvedAt,
+        isPending,
+        isRegenerated,
+        isApproved,
+        heOrShe,
+        hisOrHer,
+        patientAge,
+        frequencyScore,
+        durationScore,
+        physicalScore,
+        stutteringDuration,
+        totalScore,
+        severityEquivalent,
+        percentileRank,
+        ssrsValue,
+        patient,
+        oasesResults,
+        videosFrequencyDetails
+      ];
 }
 
-class Patient extends Equatable{
+class Patient extends Equatable {
   int? id;
   String? firstName;
   String? middleName;
@@ -274,7 +268,7 @@ class Patient extends Equatable{
   String? country;
   String? city;
   String? neighborhood;
- dynamic address;
+  dynamic address;
   String? workPlace;
   String? nationality;
   String? gender;
@@ -293,33 +287,33 @@ class Patient extends Equatable{
 
   Patient(
       {this.id,
-        this.firstName,
-        this.middleName,
-        this.lastName,
-        this.fullName,
-        this.email,
-        this.phoneNumber,
-        this.countryPhoneCode,
-        this.idCardNumber,
-        this.country,
-        this.city,
-        this.neighborhood,
-        this.address,
-        this.workPlace,
-        this.nationality,
-        this.gender,
-        this.birthDate,
-        this.userId,
-        this.isActive,
-        this.randomNumber,
-        this.type,
-        this.currentStage,
-        this.currentDiagnoses,
-        this.nextSession,
-        this.allowBooking,
-        this.needSsi4Evaluation,
-        this.currentDiagnosesStatus,
-        this.diagnosesStatusUpdatedAt});
+      this.firstName,
+      this.middleName,
+      this.lastName,
+      this.fullName,
+      this.email,
+      this.phoneNumber,
+      this.countryPhoneCode,
+      this.idCardNumber,
+      this.country,
+      this.city,
+      this.neighborhood,
+      this.address,
+      this.workPlace,
+      this.nationality,
+      this.gender,
+      this.birthDate,
+      this.userId,
+      this.isActive,
+      this.randomNumber,
+      this.type,
+      this.currentStage,
+      this.currentDiagnoses,
+      this.nextSession,
+      this.allowBooking,
+      this.needSsi4Evaluation,
+      this.currentDiagnosesStatus,
+      this.diagnosesStatusUpdatedAt});
 
   Patient.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -387,40 +381,38 @@ class Patient extends Equatable{
 
   @override
   List<Object?> get props => [
-
-    id,
-    firstName,
-    middleName,
-    lastName,
-    fullName,
-    email,
-    phoneNumber,
-    countryPhoneCode,
-    idCardNumber,
-    country,
-    city,
-    neighborhood,
-    address,
-    workPlace,
-    nationality,
-    gender,
-    birthDate,
-    userId,
-    isActive,
-    randomNumber,
-    type,
-    currentStage,
-    currentDiagnoses,
-    nextSession,
-    allowBooking,
-    needSsi4Evaluation,
-    currentDiagnosesStatus,
-    diagnosesStatusUpdatedAt
-
-  ];
+        id,
+        firstName,
+        middleName,
+        lastName,
+        fullName,
+        email,
+        phoneNumber,
+        countryPhoneCode,
+        idCardNumber,
+        country,
+        city,
+        neighborhood,
+        address,
+        workPlace,
+        nationality,
+        gender,
+        birthDate,
+        userId,
+        isActive,
+        randomNumber,
+        type,
+        currentStage,
+        currentDiagnoses,
+        nextSession,
+        allowBooking,
+        needSsi4Evaluation,
+        currentDiagnosesStatus,
+        diagnosesStatusUpdatedAt
+      ];
 }
 
-class OasesResults extends Equatable{
+class OasesResults extends Equatable {
   Section1? section1;
   Section1? section2;
   Section3? section3;
@@ -429,27 +421,22 @@ class OasesResults extends Equatable{
 
   OasesResults(
       {this.section1,
-        this.section2,
-        this.section3,
-        this.section4,
-        this.section5});
+      this.section2,
+      this.section3,
+      this.section4,
+      this.section5});
 
   OasesResults.fromJson(Map<String, dynamic> json) {
-    section1 = json['section1'] != null
-        ? Section1.fromJson(json['section1'])
-        : null;
-    section2 = json['section2'] != null
-        ? Section1.fromJson(json['section2'])
-        : null;
-    section3 = json['section3'] != null
-        ? Section3.fromJson(json['section3'])
-        : null;
-    section4 = json['section4'] != null
-        ? Section1.fromJson(json['section4'])
-        : null;
-    section5 = json['section5'] != null
-        ? Section5.fromJson(json['section5'])
-        : null;
+    section1 =
+        json['section1'] != null ? Section1.fromJson(json['section1']) : null;
+    section2 =
+        json['section2'] != null ? Section1.fromJson(json['section2']) : null;
+    section3 =
+        json['section3'] != null ? Section3.fromJson(json['section3']) : null;
+    section4 =
+        json['section4'] != null ? Section1.fromJson(json['section4']) : null;
+    section5 =
+        json['section5'] != null ? Section5.fromJson(json['section5']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -473,17 +460,10 @@ class OasesResults extends Equatable{
   }
 
   @override
-  List<Object?> get props => [
-
-   section1,
-   section2,
-   section3,
-   section4,
-   section5
-  ];
+  List<Object?> get props => [section1, section2, section3, section4, section5];
 }
 
-class Section1 extends Equatable{
+class Section1 extends Equatable {
   int? sectionId;
   String? sectionName;
   String? sectionNameEn;
@@ -494,12 +474,12 @@ class Section1 extends Equatable{
 
   Section1(
       {this.sectionId,
-        this.sectionName,
-        this.sectionNameEn,
-        this.points,
-        this.answeredQuestions,
-        this.impactDegree,
-        this.impactRating});
+      this.sectionName,
+      this.sectionNameEn,
+      this.points,
+      this.answeredQuestions,
+      this.impactDegree,
+      this.impactRating});
 
   Section1.fromJson(Map<String, dynamic> json) {
     sectionId = json['sectionId'];
@@ -525,18 +505,17 @@ class Section1 extends Equatable{
 
   @override
   List<Object?> get props => [
-  sectionId,
-  sectionName,
-  sectionNameEn,
-  points,
-  answeredQuestions,
-  impactDegree,
-  impactRating
-
-  ];
+        sectionId,
+        sectionName,
+        sectionNameEn,
+        points,
+        answeredQuestions,
+        impactDegree,
+        impactRating
+      ];
 }
 
-class Section3 extends Equatable{
+class Section3 extends Equatable {
   int? sectionId;
   String? sectionName;
   String? sectionNameEn;
@@ -547,12 +526,12 @@ class Section3 extends Equatable{
 
   Section3(
       {this.sectionId,
-        this.sectionName,
-        this.sectionNameEn,
-        this.points,
-        this.answeredQuestions,
-        this.impactDegree,
-        this.impactRating});
+      this.sectionName,
+      this.sectionNameEn,
+      this.points,
+      this.answeredQuestions,
+      this.impactDegree,
+      this.impactRating});
 
   Section3.fromJson(Map<String, dynamic> json) {
     sectionId = json['sectionId'];
@@ -577,19 +556,19 @@ class Section3 extends Equatable{
   }
 
   @override
-  List<Object?> get props =>[
-    sectionId,
-    sectionName,
-    sectionNameEn,
-    points,
-    answeredQuestions,
-    impactDegree,
-    impactRating
-  ];
+  List<Object?> get props => [
+        sectionId,
+        sectionName,
+        sectionNameEn,
+        points,
+        answeredQuestions,
+        impactDegree,
+        impactRating
+      ];
 }
 
-class Section5 extends Equatable{
- dynamic sectionId;
+class Section5 extends Equatable {
+  dynamic sectionId;
   String? sectionName;
   String? sectionNameEn;
   dynamic? points;
@@ -599,12 +578,12 @@ class Section5 extends Equatable{
 
   Section5(
       {this.sectionId,
-        this.sectionName,
-        this.sectionNameEn,
-        this.points,
-        this.answeredQuestions,
-        this.impactDegree,
-        this.impactRating});
+      this.sectionName,
+      this.sectionNameEn,
+      this.points,
+      this.answeredQuestions,
+      this.impactDegree,
+      this.impactRating});
 
   Section5.fromJson(Map<String, dynamic> json) {
     sectionId = json['sectionId'];
@@ -630,18 +609,17 @@ class Section5 extends Equatable{
 
   @override
   List<Object?> get props => [
-
-   sectionId,
-   sectionName,
-   sectionNameEn,
-   points,
-   answeredQuestions,
-   impactDegree,
-   impactRating
-  ];
+        sectionId,
+        sectionName,
+        sectionNameEn,
+        points,
+        answeredQuestions,
+        impactDegree,
+        impactRating
+      ];
 }
 
-class VideosFrequencyDetails extends Equatable{
+class VideosFrequencyDetails extends Equatable {
   SpeakingSample? speakingSample;
   SpeakingSample? readingSample;
 
@@ -668,16 +646,11 @@ class VideosFrequencyDetails extends Equatable{
   }
 
   @override
-  List<Object?> get props => [
-
-
-    speakingSample,
-    readingSample
-  ];
+  List<Object?> get props => [speakingSample, readingSample];
 }
 
-class SpeakingSample extends Equatable{
- dynamic videoUrl;
+class SpeakingSample extends Equatable {
+  dynamic videoUrl;
   int? sectionId;
   String? sectionName;
   String? sectionNameEn;
@@ -687,12 +660,12 @@ class SpeakingSample extends Equatable{
 
   SpeakingSample(
       {this.videoUrl,
-        this.sectionId,
-        this.sectionName,
-        this.sectionNameEn,
-        this.sttCount,
-        this.ssValue,
-        this.taskScore});
+      this.sectionId,
+      this.sectionName,
+      this.sectionNameEn,
+      this.sttCount,
+      this.ssValue,
+      this.taskScore});
 
   SpeakingSample.fromJson(Map<String, dynamic> json) {
     videoUrl = json['videoUrl'];
@@ -718,12 +691,12 @@ class SpeakingSample extends Equatable{
 
   @override
   List<Object?> get props => [
-    videoUrl,
-    sectionId,
-    sectionName,
-    sectionNameEn,
-    sttCount,
-    ssValue,
-    taskScore
-  ];
+        videoUrl,
+        sectionId,
+        sectionName,
+        sectionNameEn,
+        sttCount,
+        ssValue,
+        taskScore
+      ];
 }

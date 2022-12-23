@@ -67,7 +67,7 @@ class MedicalReportsDetails extends StatelessWidget {
                       final cubit =
                           BlocProvider.of<MedicalReportDetailsCubit>(context);
                       var content = cubit.allReportsDetails.patient;
-                      var pContent= cubit.allReportsDetails;
+                      var pContent = cubit.allReportsDetails;
 
                       var oasesResult = cubit.allReportsDetails.oasesResults;
 
@@ -87,7 +87,7 @@ class MedicalReportsDetails extends StatelessWidget {
                             HeadSubHead(
                                 head1: "رقم الهوية  ",
                                 head2: "ID No",
-                                sunHead: content.idCardNumber .toString()),
+                                sunHead: content.idCardNumber.toString()),
                             HeadSubHead(
                                 head1: "الجنس  ",
                                 head2: "Gender",
@@ -112,13 +112,14 @@ class MedicalReportsDetails extends StatelessWidget {
                             HeadSubHead(
                               head1: "تاريخ التسجيل ",
                               head2: "Date of enrolment",
-                              sunHead: pContent.enrolmentDate .toString(),
+                              sunHead: pContent.enrolmentDate.toString(),
                             ),
                             //DateConverter.dateConverterMonth(pContent.enrolmentDate!.toString())??""),
                             HeadSubHead(
                                 head1: "تاريخ الخروج ",
                                 head2: "Discharge date",
-                                sunHead: state.allReports.data!.dischargeDate .toString()),
+                                sunHead: state.allReports.data!.dischargeDate
+                                    .toString()),
                             ConcernResult(
                               title1: " Area of",
                               title2: "Concern",
@@ -126,17 +127,23 @@ class MedicalReportsDetails extends StatelessWidget {
                               age: state.allReports.data!.patientAge.toString(),
                               sex: content.gender!,
                               fav: state.allReports.data!.heOrShe.toString(),
-                              cases:state.allReports.data!.stutteringWasBecoming.toString(),
+                              cases: state
+                                  .allReports.data!.stutteringWasBecoming
+                                  .toString(),
                             ),
                             BackGroundInfo(
                               title1: " Background ",
                               title2: "Information",
                               name: content.firstName!,
                               cases: state.allReports.data!.bornWith.toString(),
-                              schollDegree: state.allReports.data!.stutteringNoticedAge.toString(),
+                              schollDegree: state
+                                  .allReports.data!.stutteringNoticedAge
+                                  .toString(),
                               sex: content.gender!,
-                              upTo: state.allReports.data!.theStuttering.toString(),
-                              finish:state.allReports.data!.hasBecome.toString(),
+                              upTo: state.allReports.data!.theStuttering
+                                  .toString(),
+                              finish:
+                                  state.allReports.data!.hasBecome.toString(),
                             ),
                             TestingCase(
                                 title1: " Fluency ",
@@ -152,73 +159,61 @@ class MedicalReportsDetails extends StatelessWidget {
                               title1: " Overall Assessment",
                               title2: "(Summary)",
                               name: content.firstName!,
-                              age: state.allReports.data!.patientAge .toString(),
-                              mild: state.allReports.data!.severityEquivalent .toString(),
+                              age: state.allReports.data!.patientAge.toString(),
+                              mild: state.allReports.data!.severityEquivalent
+                                  .toString(),
                             ),
                             SizedBox(
                               height: context.height * 0.02,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-
                               children: [
-                                buildColumnOases(context,
-                                    width: context.width * 0.15,
-                                    title1: "Total Score",
-                                    title2: state
-                                        .allReports
-                                        .data!
-                                       .frequencyScore.toString(),
-                                    title3: state
-                                        .allReports
-                                        .data!
-                                        .frequencyScore.toString(),
-                                    title4:state
-                                        .allReports
-                                        .data!
-                                        .durationScore.toString(),
-                                    title5: state
-                                        .allReports
-                                        .data!
-                                        .physicalScore.toString(),
-                                title6: state
-                                    .allReports
-                                    .data!
-                                    .totalScore.toString(),
-                                title7: state
-                                    .allReports
-                                    .data!
-                                    .percentileRank.toString(),
-                                title8: state
-                                    .allReports
-                                    .data!
-                                    .severityEquivalent.toString(),),
+                                buildColumnOases(
+                                  context,
+                                  width: context.width * 0.15,
+                                  title1: "Total Score",
+                                  title2: state.allReports.data!.frequencyScore
+                                      .toString(),
+                                  title3: state.allReports.data!.frequencyScore
+                                      .toString(),
+                                  title4: state.allReports.data!.durationScore
+                                      .toString(),
+                                  title5: state.allReports.data!.physicalScore
+                                      .toString(),
+                                  title6: state.allReports.data!.totalScore
+                                      .toString(),
+                                  title7: state.allReports.data!.percentileRank
+                                      .toString(),
+                                  title8: state
+                                      .allReports.data!.severityEquivalent
+                                      .toString(),
+                                ),
                                 buildColumnOases(context,
                                     width: context.width * 0.28,
                                     title1: "Findings / Observations",
-                                    title2: "${state
-                                        .allReports
-                                        .data!
-                                        .videosFrequencyDetails!
-                                        .speakingSample!
-                                        .sttCount!.toInt()}""/"+state
-                                        .allReports
-                                        .data!
-                                        .videosFrequencyDetails!
-                                        .speakingSample!
-                                        .ssValue!.toString(),
-                                    title3: "${state
-                                        .allReports
-                                        .data!
-                                        .videosFrequencyDetails!
-                                        .readingSample!
-                                        .sttCount!.toInt()}""/"+state
-                                        .allReports
-                                        .data!
-                                        .videosFrequencyDetails!
-                                        .readingSample!
-                                        .ssValue!.toString(),
-                                    title4:state.allReports.data!.stutteringDuration!,
+                                    title2:
+                                        "${state.allReports.data!.videosFrequencyDetails!.speakingSample!.sttCount!.toInt()}"
+                                                "/" +
+                                            state
+                                                .allReports
+                                                .data!
+                                                .videosFrequencyDetails!
+                                                .speakingSample!
+                                                .ssValue!
+                                                .toString(),
+                                    title3:
+                                        "${state.allReports.data!.videosFrequencyDetails!.readingSample!.sttCount!.toInt()}"
+                                                "/" +
+                                            state
+                                                .allReports
+                                                .data!
+                                                .videosFrequencyDetails!
+                                                .readingSample!
+                                                .ssValue!
+                                                .toString(),
+                                    title4: state
+                                        .allReports.data!.stutteringDuration!,
                                     title5: "",
                                     title6: "",
                                     title7: "",
@@ -239,7 +234,7 @@ class MedicalReportsDetails extends StatelessWidget {
                                         .readingSample!
                                         .sectionNameEn!,
                                     title4:
-                                    "Duration (average of 3 longest stuttering events)	",
+                                        "Duration (average of 3 longest stuttering events)	",
                                     title5: "Physical concomitants",
                                     title6: "Total Overall Score",
                                     title7: "Percentile",
@@ -262,7 +257,7 @@ class MedicalReportsDetails extends StatelessWidget {
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                             // mainAxisSize: MainAxisSize.min,
+                              // mainAxisSize: MainAxisSize.min,
                               children: [
                                 buildColumnOases(context,
                                     width: context.width * 0.25,
@@ -328,18 +323,21 @@ class MedicalReportsDetails extends StatelessWidget {
 
                             NoHead(
                               name: content.firstName!,
-                              her: state.allReports.data!.hisOrHer .toString(),
-                              impactRating: state.allReports.data!.hisOrHer .toString(),
+                              her: state.allReports.data!.hisOrHer.toString(),
+                              impactRating:
+                                  state.allReports.data!.hisOrHer.toString(),
                             ),
 
                             Recommended(
                               title1: "",
                               title2: "Recommendations",
                               name: content.firstName!,
-                              her: state.allReports.data!.hisOrHer .toString(),
-                              mild: state.allReports.data!.exhibits .toString(),
-                              doctorDep: state.allReports.data!.specialistName!.toString(),
-                              doctorName: ": "+ state.allReports.data!.supervisorName! ,
+                              her: state.allReports.data!.hisOrHer.toString(),
+                              mild: state.allReports.data!.exhibits.toString(),
+                              doctorDep: state.allReports.data!.specialistName!
+                                  .toString(),
+                              doctorName:
+                                  ": " + state.allReports.data!.supervisorName!,
                             ),
 
                             SizedBox(
@@ -365,15 +363,17 @@ class MedicalReportsDetails extends StatelessWidget {
   }
 
   Widget buildColumnOases(
-    BuildContext context,{
-        String title6 ="",String title7="",String title8="",
-        required double width,
+    BuildContext context, {
+    String title6 = "",
+    String title7 = "",
+    String title8 = "",
+    required double width,
     required String title1,
     required String title2,
     required String title3,
     required String title4,
     required String title5,
-  }){
+  }) {
     return Column(
       children: [
         Container(
@@ -416,8 +416,6 @@ class MedicalReportsDetails extends StatelessWidget {
             child: custom12Text(title: title5, color: kBlackText),
           ),
         ),
-
-
         Container(
           height: context.height * 0.08,
           width: width,

@@ -13,14 +13,16 @@ class BackGroundInfo extends StatelessWidget {
   final String cases;
   final String schollDegree;
 
-  const BackGroundInfo({Key? key,
-    required this.title1,
-    required this.title2,
-    required this.name,
-    required this.upTo,
-    required this.sex,
-    required this.finish,
-    required this.cases, required this.schollDegree})
+  const BackGroundInfo(
+      {Key? key,
+      required this.title1,
+      required this.title2,
+      required this.name,
+      required this.upTo,
+      required this.sex,
+      required this.finish,
+      required this.cases,
+      required this.schollDegree})
       : super(key: key);
 
   @override
@@ -44,7 +46,8 @@ class BackGroundInfo extends StatelessWidget {
             ),
           ),
           customText7(
-              title: "$name was asked to answer a series of questions regarding stuttering which focused on experiences at home, school, and in previous therapy. $name was born with $cases . Stuttering was noticed at age $schollDegree and was first identified through $sex. The stuttering $upTo over time and has become $finish.",
+              title:
+                  "$name was asked to answer a series of questions regarding stuttering which focused on experiences at home, school, and in previous therapy. $name was born with $cases . Stuttering was noticed at age $schollDegree and was first identified through $sex. The stuttering $upTo over time and has become $finish.",
               color: kBlackText)
         ],
       ),

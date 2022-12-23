@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,8 +8,7 @@ import '../../../models/advisor_model.dart';
 class DropDownSpecialist extends StatefulWidget {
   final ValueChanged<AllAdvisors> onChanged;
   final AllAdvisors? initial;
-  const DropDownSpecialist(
-      {Key? key, required this.onChanged, this.initial})
+  const DropDownSpecialist({Key? key, required this.onChanged, this.initial})
       : super(key: key);
 
   @override
@@ -31,7 +29,7 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
 
   @override
   Widget build(BuildContext context) {
-        return Container(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       width: MediaQuery.of(context).size.width / 1.9,
@@ -73,7 +71,7 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
             return DropdownMenuItem<AllAdvisors>(
               value: value,
               child: Text(
-                value.fullName! ,
+                value.fullName!,
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,
@@ -86,9 +84,11 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
       ),
     );
   }
+
   Future<void> getAllAdvisors() async {
     libs.clear();
-    final res = await NetWork.get('Specialist/GetSpecialistsThatHaveConsultationDates');
+    final res =
+        await NetWork.get('Specialist/GetSpecialistsThatHaveConsultationDates');
     (res.data['data'] as List)
         .map((e) => libs.add(AllAdvisors.fromJson(e)))
         .toList();
@@ -100,6 +100,5 @@ class _DropDownSpecialistState extends State<DropDownSpecialist> {
     //
     // Prefs.setString("userId", allAdvisors.userId!);
     // log("${res.data["data"]["userId"]}");
-
   }
 }

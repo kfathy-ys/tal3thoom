@@ -3,13 +3,12 @@ import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diag
 
 import '../../../config/dio_helper/dio.dart';
 
-
 class PreQuestionnaireAnswersService {
   static Future<Message?> postPreQuestionnaireAnswers({
     required Map<Question, Answers> answers,
     required Map<Question, String> answersTxt,
   }) async {
-   buildPatientAnswers(Question q) {
+    buildPatientAnswers(Question q) {
       final answer = answers[q];
       if (answer == null || answer.isOther) {
         return [answersTxt[q]!];
@@ -19,7 +18,7 @@ class PreQuestionnaireAnswersService {
 
     final userId = Prefs.getString("userId");
 
-  final res =   await NetWork.post(
+    final res = await NetWork.post(
       'PatientExams/AddPatienPreTreatmentExamAnswersMobile',
       body: <Question>{
         ...answers.keys,
@@ -29,13 +28,11 @@ class PreQuestionnaireAnswersService {
           "userId": userId,
           "questionId": q.id,
           "examId": q.examId,
-         "answerId": buildPatientAnswers(q)
+          "answerId": buildPatientAnswers(q)
         };
       }).toList(),
-    
     );
-    if (res.data['status'] == 1 ||
-        res.data['status'] == 200){
+    if (res.data['status'] == 1 || res.data['status'] == 200) {
       final _msg = Message.fromMap(res.data['messages'][0]);
       return _msg;
     }

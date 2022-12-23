@@ -6,15 +6,17 @@ import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/date_convertors.dart';
 
 class DropDownAvailableDates extends StatefulWidget {
-
   final dynamic userProfileId;
   final dynamic time;
   final ValueChanged<dynamic> onChanged;
   final dynamic initial;
   const DropDownAvailableDates(
-      {Key? key, required this.onChanged, this.initial, required this.userProfileId, this.time})
+      {Key? key,
+      required this.onChanged,
+      this.initial,
+      required this.userProfileId,
+      this.time})
       : super(key: key);
-
 
   @override
   State<DropDownAvailableDates> createState() => _DropDownAvailableDatesState();
@@ -34,7 +36,6 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -95,13 +96,14 @@ class _DropDownAvailableDatesState extends State<DropDownAvailableDates> {
 
   Future<void> getAllDates() async {
     libs.clear();
-    final res = await NetWork.get('Schedule/GetSpecialistAvailableSessionDurationDates/${widget.userProfileId}/${widget.time}/Consult');
+    final res = await NetWork.get(
+        'Schedule/GetSpecialistAvailableSessionDurationDates/${widget.userProfileId}/${widget.time}/Consult');
 
-    print("Timmmmmmmmmmmme"+res.data["data"].runtimeType.toString());
+    print("Timmmmmmmmmmmme" + res.data["data"].runtimeType.toString());
 
     libs.addAll(res.data['data']);
 
-    print("Timmmmmmmmmmmme"+res.data["data"].toString());
+    print("Timmmmmmmmmmmme" + res.data["data"].toString());
     setState(() {});
   }
 }

@@ -4,13 +4,17 @@ part of 'first_available_dates_cubit.dart';
 abstract class FirstAvailableDatesState {}
 
 class FirstAvailableDatesInitial extends FirstAvailableDatesState {}
+
 class FirstAvailableDatesLoading extends FirstAvailableDatesState {}
+
 class FirstAvailableDatesSuccess extends FirstAvailableDatesState {
   final DiagnosticReservationAvailableDateModel availableDatesModel;
   final List<DateTime> dates;
 
-  FirstAvailableDatesSuccess({required this.availableDatesModel,required this.dates});
+  FirstAvailableDatesSuccess(
+      {required this.availableDatesModel, required this.dates});
 }
+
 class FirstAvailableDatesError extends FirstAvailableDatesState {
   final String msg;
 
@@ -18,8 +22,6 @@ class FirstAvailableDatesError extends FirstAvailableDatesState {
 }
 
 class AvailableDatesEmpty extends FirstAvailableDatesState {}
-
-
 
 class AvailablePeriodLoading extends FirstAvailableDatesState {}
 

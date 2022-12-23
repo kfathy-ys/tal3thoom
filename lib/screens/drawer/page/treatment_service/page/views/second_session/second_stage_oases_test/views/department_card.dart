@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../../../../../widgets/constants.dart';
 
-
 // ignore: must_be_immutable
 class DepartmentCard extends StatelessWidget {
   final String title;

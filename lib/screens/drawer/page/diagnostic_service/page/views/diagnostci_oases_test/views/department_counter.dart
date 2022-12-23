@@ -16,7 +16,7 @@ class DepartmentCounter extends StatelessWidget {
       children: [
         Row(
           children: [
-           // customText9(title: "القسم: \t ", color: kPrimaryColor),
+            // customText9(title: "القسم: \t ", color: kPrimaryColor),
             Expanded(child: customText9(title: head, color: kBlackText)),
           ],
         ),

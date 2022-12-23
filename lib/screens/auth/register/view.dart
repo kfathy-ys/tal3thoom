@@ -70,7 +70,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const String sCharacters = "يجب أن تحتوي على 6 أحرف على الأقل منها حروف كبيرة و صغيرة وأرقام وعلامات خاصة";
+    const String sCharacters =
+        "يجب أن تحتوي على 6 أحرف على الأقل منها حروف كبيرة و صغيرة وأرقام وعلامات خاصة";
 
     return BlocProvider(
       create: (context) => RegisterCubit(),
@@ -205,7 +206,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context: context,
                           firstDate: DateTime(1950),
                           lastDate: DateTime(2030),
-
                           initialDate: DateTime(1950),
                         ).then((value) {
                           if (value == null) return;
@@ -497,14 +497,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     dIcon: Icons.lock_outline,
                     label: KeysConfig.password,
                     controller: _passController,
-                    validator:
-
-                    qValidator([
+                    validator: qValidator([
                       IsRequired(KeysConfig.enterPass),
-                     // ContainsAny([r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'],sCharacters),
-                      RegExpRule(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),sCharacters),
-                      MinLength(6,
+                      // ContainsAny([r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'],sCharacters),
+                      RegExpRule(
+                          RegExp(
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),
                           sCharacters),
+                      MinLength(6, sCharacters),
                       MaxLength(30),
                     ]),
                     // type: TextInputType.text,
@@ -512,7 +512,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     // textInputFormatter: [
                     //   FilteringTextInputFormatter.allow(
                     //       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')),
-                   // ],
+                    // ],
                   ),
                   CustomTextField(
                     hint: KeysConfig.confirmPass,
@@ -667,9 +667,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     trailing: GestureDetector(
                       onTap: () {
-
-
-                        Get.to(()=>const PolicyAndPrivacy());
+                        Get.to(() => const PolicyAndPrivacy());
                       },
                       child: const Text(KeysConfig.conditions,
                           style: TextStyle(

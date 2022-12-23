@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+import 'package:video_player/video_player.dart';
 
 import 'constants.dart';
 
 class VideoItems extends StatefulWidget {
-
   final VideoPlayerController videoPlayerController;
-   const VideoItems({
+  const VideoItems({
     Key? key,
     required this.videoPlayerController,
-
   }) : super(key: key);
 
   @override

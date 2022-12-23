@@ -1,15 +1,15 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../../../config/keys.dart';
 import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/loading.dart';
-import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../../view.dart';
 import '../../first_session/first_payment_treatment/view.dart';
@@ -37,6 +37,14 @@ class FirstTreatmentInduction extends StatefulWidget {
 }
 
 class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
+
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<DataAccessPermissionCubit>(context).getAccessPermission();
@@ -85,14 +93,28 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                           height: context.height * 0.25,
 
                           ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
-                          child: VideoItems(
-                            videoPlayerController:
-                                VideoPlayerController.network(
-                                    "http://dev-sas.cpt-it.com/api/" +
-                                        state.inductionDiagnosticModel.data!
-                                            .videoUrl
-                                            .toString()),
-                          ),
+                          child:
+
+                              // BetterVideoItems(video:      BetterPlayer.network(
+                              //   "http://mcsc-saudi.com/api/" +
+                              //       state.inductionDiagnosticModel.data!
+                              //           .videoUrl
+                              //           .toString(),
+                              //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                              //     aspectRatio: 16 / 9,
+                              //   ),
+                              // ),
+                              //
+                              //
+                              //
+                              //
+                              // ),
+
+                              VideoScreen(
+                                  url: "http://mcsc-saudi.com/api/" +
+                                      state.inductionDiagnosticModel.data!
+                                          .videoUrl
+                                          .toString()),
                         );
                       }
                       if (state is FirstStageInductionError) {
@@ -112,64 +134,64 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                     if (state is DataAccessPermissionSuccess) {
                       return MediaButton(
                         onPressed: () {
-
                           if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .closeBooking ==
-                              true &&
+                                      .closeBooking ==
+                                  true &&
                               state.accessPermissionModel.data!.stagesTreatment!
-                                  .paymentTreatmentOne ==
+                                      .paymentTreatmentOne ==
                                   false) {
                             Get.offAll(() => FirstPaymentTreatment());
                           }
 
                           if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .closeBooking ==
-                              true && state.accessPermissionModel.data!.stagesTreatment!
-                              .paymentTreatmentOne ==
-                              true &&
+                                      .closeBooking ==
+                                  true &&
                               state.accessPermissionModel.data!.stagesTreatment!
-                                  .preTreatment ==
+                                      .paymentTreatmentOne ==
+                                  true &&
+                              state.accessPermissionModel.data!.stagesTreatment!
+                                      .preTreatment ==
                                   false) {
                             Get.offAll(() => const PretreatmentQuestionnaire());
                           }
                           if (state.accessPermissionModel.data!.stagesTreatment!
-                              .preTreatment ==
-                              true &&
+                                      .preTreatment ==
+                                  true &&
                               state.accessPermissionModel.data!
-                                  .stagesTreatmentFirst!.sessions ==
+                                      .stagesTreatmentFirst!.sessions ==
                                   false) {
                             Get.offAll(() => const FirstTreatmentSession());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentFirst!.sessions ==
-                              true &&
+                                      .stagesTreatmentFirst!.sessions ==
+                                  true &&
                               state.accessPermissionModel.data!
-                                  .stagesTreatmentFirst!.oases ==
+                                      .stagesTreatmentFirst!.oases ==
                                   false) {
                             Get.offAll(() => const FirstStageOasesTest());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentFirst!.oases ==
-                              true &&
+                                      .stagesTreatmentFirst!.oases ==
+                                  true &&
                               state.accessPermissionModel.data!
-                                  .stagesTreatmentFirst!.ssrs ==
+                                      .stagesTreatmentFirst!.ssrs ==
                                   false) {
                             Get.offAll(
-                                    () => const FirstStageSSRSTreatmentScreen());
+                                () => const FirstStageSSRSTreatmentScreen());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentFirst!.ssrs ==
-                              true &&
+                                      .stagesTreatmentFirst!.ssrs ==
+                                  true &&
                               state.accessPermissionModel.data!
-                                  .stagesTreatmentFirst!.ssi4 ==
+                                      .stagesTreatmentFirst!.ssi4 ==
                                   false) {
                             Get.offAll(() => const TreatmentSSI4());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentFirst!.ssi4 ==
-                              true &&
+                                      .stagesTreatmentFirst!.ssi4 ==
+                                  true &&
                               state.accessPermissionModel.data!
-                                  .stagesTreatmentFirst!.booking ==
+                                      .stagesTreatmentFirst!.booking ==
                                   false) {
                             Get.offAll(() => FirstStageTreatmentReservation());
                           }
@@ -177,65 +199,67 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                           // ///////////////////////////////////////
                           //
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentFirst!.closeBooking ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatment!.paymentTreatmentTwo ==
-                              false) {
+                                      .stagesTreatmentFirst!.closeBooking ==
+                                  true &&
+                              state.accessPermissionModel.data!.stagesTreatment!
+                                      .paymentTreatmentTwo ==
+                                  false) {
                             Get.offAll(() => FirstPaymentTreatment());
                           }
 
-
-                          if (state.accessPermissionModel.data!
-                              .stagesTreatment!.paymentTreatmentTwo ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentFirst!.closeBooking ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.sessions ==
-                              false) {
-                            Get.offAll(
-                                    () => const SecondTreatmentSession());
+                          if (state.accessPermissionModel.data!.stagesTreatment!
+                                      .paymentTreatmentTwo ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentFirst!.closeBooking ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentSecond!.sessions ==
+                                  false) {
+                            Get.offAll(() => const SecondTreatmentSession());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.sessions ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.oases ==
-                              false) {
+                                      .stagesTreatmentSecond!.sessions ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentSecond!.oases ==
+                                  false) {
                             Get.offAll(() => const SecondStageOasesTest());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.oases ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.ssrs ==
-                              false) {
-                            Get.offAll(() =>
-                            const SecondStageSSRSTreatmentScreen());
+                                      .stagesTreatmentSecond!.oases ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentSecond!.ssrs ==
+                                  false) {
+                            Get.offAll(
+                                () => const SecondStageSSRSTreatmentScreen());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.ssrs ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.ssi4 ==
-                              false) {
+                                      .stagesTreatmentSecond!.ssrs ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentSecond!.ssi4 ==
+                                  false) {
                             Get.offAll(() => const SecondTreatmentSSI4());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.ssi4 ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.booking ==
-                              false) {
-                            Get.offAll(
-                                    () => SecondStageTreatmentReservation());
+                                      .stagesTreatmentSecond!.ssi4 ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentSecond!.booking ==
+                                  false) {
+                            Get.offAll(() => SecondStageTreatmentReservation());
                           }
                           if (state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.booking ==
-                              true && state.accessPermissionModel.data!
-                              .stagesTreatmentSecond!.closeBooking ==
-                              true) {
+                                      .stagesTreatmentSecond!.booking ==
+                                  true &&
+                              state.accessPermissionModel.data!
+                                      .stagesTreatmentSecond!.closeBooking ==
+                                  true) {
                             Get.offAll(() => const GameOver());
                           }
-
-
                         },
-
                         title: KeysConfig.next,
                       );
                     }

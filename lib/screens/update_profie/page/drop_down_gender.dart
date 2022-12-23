@@ -5,7 +5,6 @@ import 'package:tal3thoom/config/keys.dart';
 
 import '../../widgets/constants.dart';
 
-
 enum TypeSex { Male, Female }
 
 class DropDownGender extends StatefulWidget {
@@ -53,8 +52,6 @@ class _DropDownGenderState extends State<DropDownGender> {
         //
         //  ),
         child: DropdownButtonFormField<TypeSex>(
-
-
           isExpanded: true,
           value: selected,
           // autofocus: true,
@@ -68,7 +65,7 @@ class _DropDownGenderState extends State<DropDownGender> {
           },
 
           isDense: true,
-          hint:  const Text(
+          hint: const Text(
             "الجنس :",
             style: TextStyle(
               color: kPrimaryColor,
@@ -79,7 +76,7 @@ class _DropDownGenderState extends State<DropDownGender> {
 
           decoration: InputDecoration(
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: kPrimaryColor, width: 1),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +16,7 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
+import '../../../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
@@ -37,11 +39,13 @@ class SecondTreatmentSSI4 extends StatefulWidget {
 
 class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
   final _firstController = TextEditingController();
+  final FijkPlayer player = FijkPlayer();
 
   @override
   void dispose() {
-    _disposeVideoController();
     super.dispose();
+    player.release();
+    _disposeVideoController();
   }
 
   @override
@@ -84,24 +88,36 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                            Image.asset("assets/images/Fourth test1.png"),
+                                Image.asset("assets/images/Fourth test1.png"),
                           ),
-
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
-                            child: VideoItems(
-                              videoPlayerController:
-                              VideoPlayerController.network(
-                                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                              ),
+                            child:
+
+                                // BetterVideoItems(video:      BetterPlayer.network(
+                                //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                                //
+                                //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                //     aspectRatio: 16 / 9,
+                                //   ),
+                                // ),
+                                //
+                                //
+                                //
+                                //
+                                // ),
+                                //
+
+                                const VideoScreen(
+                              url:
+                                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Image.asset("assets/images/first_class.png"),
                           ),
-
                           customText4(
                               title: parseHtmlString(
                                   state.ssi4QuestionModel[0].description),
@@ -110,45 +126,52 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                               onTap: () async {
                                 if (await Permission.storage
                                     .request()
-                                    .isGranted) {   speech.speak(parseHtmlString(
-                                    state.ssi4QuestionModel[0].description));
+                                    .isGranted) {
+                                  speech.speak(parseHtmlString(
+                                      state.ssi4QuestionModel[0].description));
                                 } else {
-
-                                  Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
-
-
+                                  Alert.error(
+                                      "يجب الحصول علي تصريح الوصول الي الخزينة");
                                 }
-
-
                               },
-
-
-
-
                               child: Padding(
                                 padding:
-                                const EdgeInsets.symmetric(vertical: 8.0),
+                                    const EdgeInsets.symmetric(vertical: 8.0),
                                 child:
-                                Image.asset("assets/images/Earphone.png"),
+                                    Image.asset("assets/images/Earphone.png"),
                               )),
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
                             child: _file == null
                                 ? Container(
-                              //padding: EdgeInsets.symmetric(vertical: 4,),
-                              decoration: BoxDecoration(
-                                  color: kBlackText,
-                                  border: Border.all(
-                                      color: kPrimaryColor, width: 3)
-                                // borderRadius: BorderRadius.circular(4)
-                              ),
-                            )
-                                : VideoItems(
-                              videoPlayerController:
-                              VideoPlayerController.file(
-                                  File(_file!.path)),
-                            ),
+                                    //padding: EdgeInsets.symmetric(vertical: 4,),
+                                    decoration: BoxDecoration(
+                                        color: kBlackText,
+                                        border: Border.all(
+                                            color: kPrimaryColor, width: 3)
+                                        // borderRadius: BorderRadius.circular(4)
+                                        ),
+                                  )
+                                :
+
+                                // BetterVideoItems(video:      BetterPlayer.file(
+                                //   "${File(_file!.path)}",
+                                //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                //     aspectRatio: 16 / 9,
+                                //   ),
+                                // ),
+                                //
+                                //
+                                //
+                                //
+                                // ),
+
+                                VideoItems(
+                                    videoPlayerController:
+                                        VideoPlayerController.file(
+                                            File(_file!.path)),
+                                  ),
                           ),
                           CardUploadVideo(
                             height: context.height * 0.18,
@@ -160,13 +183,9 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                                   .isGranted) {
                                 pickVideo();
                               } else {
-
-                                Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
-
-
+                                Alert.error(
+                                    "يجب الحصول علي تصريح الوصول الي الخزينة");
                               }
-
-
                             },
                             validator: qValidator(
                                 [IsRequired(KeysConfig.thisFieldRequired)]),
@@ -176,42 +195,43 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                             onPressed: () async {
                               if (await Permission.camera.request().isGranted) {
                                 Get.to(() => CameraPage(
-                                  onAdd: (x) {
-                                    setState(() {
-                                      _file = x;
-
-                                    });
-
-                                  },
-
-                                ));
-
+                                      onAdd: (x) {
+                                        setState(() {
+                                          _file = x;
+                                        });
+                                      },
+                                    ));
                               } else {
                                 Alert.error(
                                     "يجب الحصول علي تصريح الوصول الي الكاميرا");
                               }
                             },
                           ),
-
                           const AlertVideoMessage(),
+                          state is! SecondStageSsi4OneLoading
+                              ? MediaButton(
+                                  onPressed: () {
+                                    _file == null
+                                        ? Alert.error(' الفيديو المسجل مطلوب',
+                                            desc:
+                                                "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
+                                        : Get.off(() {
+                                            cubit
+                                                .postUploadVideoSSI4SecondFirstStage(
+                                                    id: state
+                                                        .ssi4QuestionModel[0]
+                                                        .id,
+                                                    examId: state
+                                                        .ssi4QuestionModel[0]
+                                                        .examId,
+                                                    video: _file);
 
-                          state is! SecondStageSsi4OneLoading ? MediaButton(
-                            onPressed: () {
-                              _file == null
-                                  ? Alert.error(' الفيديو المسجل مطلوب',
-                                  desc: "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                  :Get.off(() {
-                                cubit.postUploadVideoSSI4SecondFirstStage(id: state.ssi4QuestionModel[0].id, examId: state.ssi4QuestionModel[0].examId, video: _file);
-
-                                return const SecondTreatmentSSI4Two();
-                              });
-
-
-                            },
-
-
-                            title: "متابعة",
-                          ) : const LoadingFadingCircle(),
+                                            return const SecondTreatmentSSI4Two();
+                                          });
+                                  },
+                                  title: "متابعة",
+                                )
+                              : const LoadingFadingCircle(),
                           buildSizedBox(context.height),
                         ],
                       ),
@@ -369,7 +389,6 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
 // }
 }
 
-SizedBox buildSizedBox(double height) =>
-    SizedBox(
+SizedBox buildSizedBox(double height) => SizedBox(
       height: height * 0.05,
     );

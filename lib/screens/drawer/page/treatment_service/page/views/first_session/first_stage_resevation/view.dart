@@ -82,7 +82,6 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                             child: CalendarDatePicker(
                               firstDate: DateTime.now(),
                               initialDate: DateTime.now(),
-
                               lastDate: DateTime(2031),
                               onDateChanged: (value) {
                                 selectedDate = value;
@@ -139,8 +138,6 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                                 date: selectedDate!));
                       },
                     )
-
-
                   ]);
             },
           ),

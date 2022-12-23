@@ -16,10 +16,9 @@ import '../../../../../../../../widgets/alerts.dart';
 part 'behavioral_state.dart';
 
 class BehavioralCubit extends Cubit<BehavioralState> {
-  BehavioralCubit() : super(BehavioralInitial()){
+  BehavioralCubit() : super(BehavioralInitial()) {
     getBehavioralSection();
   }
-
 
   var userId = Prefs.getString("userId");
   final questionList = <Question>[];
@@ -30,16 +29,15 @@ class BehavioralCubit extends Cubit<BehavioralState> {
   Future<void> getBehavioralSection() async {
     emit(BehavioralLoading());
     try {
-      questionList
-          .assignAll(await BehavioralSectionService.findMany());
+      questionList.assignAll(await BehavioralSectionService.findMany());
 
       print(questionList);
       answer.clear();
 
       emit(BehavioralSuccess(behavioralSection: questionList));
     } on DioError catch (_) {
-      emit(BehavioralError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+      emit(BehavioralError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       print("err");
       log(e.toString());
       log(es.toString());
@@ -51,17 +49,13 @@ class BehavioralCubit extends Cubit<BehavioralState> {
     required int questionId,
     required int examId,
     required dynamic video,
-
   }) async {
-
-
     final formData = _dio.FormData.fromMap({
-      "record": _dio.MultipartFile.fromFileSync(video.path,
-          filename: video.path),
+      "record":
+          _dio.MultipartFile.fromFileSync(video.path, filename: video.path),
     });
-   // questionList.clear();
+    // questionList.clear();
     emit(BehavioralLoading());
-
 
     try {
       final body = formData;
@@ -71,17 +65,15 @@ class BehavioralCubit extends Cubit<BehavioralState> {
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
-      emit(BehavioralSuccess(behavioralSection:  questionList));
+      emit(BehavioralSuccess(behavioralSection: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
       // Timer(const Duration(seconds: 10), () {
       //
       // });
 
-
-
-    }on DioError catch (_) {
-      emit(BehavioralError(msg:   "لا يوجد اتصال بالانترنت "));
-    }  catch (e, st) {
+    } on DioError catch (_) {
+      emit(BehavioralError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(BehavioralError(msg: e.toString()));

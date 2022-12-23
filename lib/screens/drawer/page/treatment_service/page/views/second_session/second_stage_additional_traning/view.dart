@@ -1,15 +1,15 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:fijkplayer/fijkplayer.dart';
+import 'package:tal3thoom/screens/widgets/better_video_widget.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
-import '../../../../../../../widgets/video_items.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 
 // ignore: must_be_immutable
@@ -24,6 +24,13 @@ class SecondStageAdditionalTrainingScreen extends StatefulWidget {
 class _SecondStageAdditionalTrainingScreenState
     extends State<SecondStageAdditionalTrainingScreen> {
   final _firstController = TextEditingController();
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,6 @@ class _SecondStageAdditionalTrainingScreenState
     //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: context.height,
@@ -49,10 +55,24 @@ class _SecondStageAdditionalTrainingScreenState
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   width: context.width * 0.8,
                   height: context.height * 0.25,
-                  child: VideoItems(
-                    videoPlayerController: VideoPlayerController.network(
-                      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                    ),
+                  child:
+
+                      // BetterVideoItems(video:      BetterPlayer.network(
+                      //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                      //
+                      //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                      //     aspectRatio: 16 / 9,
+                      //   ),
+                      // ),
+                      //
+                      //
+                      //
+                      //
+                      // ),
+
+                      const VideoScreen(
+                    url:
+                        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                   ),
                 ),
                 customText3(

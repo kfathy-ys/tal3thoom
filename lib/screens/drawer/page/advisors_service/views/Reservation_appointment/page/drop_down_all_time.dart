@@ -5,12 +5,14 @@ import '../../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../widgets/constants.dart';
 
 class DropDownDurations extends StatefulWidget {
-
-final dynamic userProfileId;
+  final dynamic userProfileId;
   final ValueChanged<dynamic> onChanged;
   final dynamic initial;
   const DropDownDurations(
-      {Key? key, required this.onChanged, this.initial, required this.userProfileId})
+      {Key? key,
+      required this.onChanged,
+      this.initial,
+      required this.userProfileId})
       : super(key: key);
 
   @override
@@ -77,7 +79,7 @@ class _DropDownDurationsState extends State<DropDownDurations> {
             return DropdownMenuItem<dynamic>(
               value: value,
               child: Text(
-                "$value دقيقة " ,
+                "$value دقيقة ",
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 16,
@@ -90,15 +92,17 @@ class _DropDownDurationsState extends State<DropDownDurations> {
       ),
     );
   }
+
   Future<void> getAllATime() async {
     libs.clear();
-    final res = await NetWork.get('Schedule/GetSpecialistAvailableSessionsDurations/${widget.userProfileId}/Consult');
+    final res = await NetWork.get(
+        'Schedule/GetSpecialistAvailableSessionsDurations/${widget.userProfileId}/Consult');
 
-    print("Timmmmmmmmmmmme"+res.data["data"].runtimeType.toString());
+    print("Timmmmmmmmmmmme" + res.data["data"].runtimeType.toString());
 
     libs.addAll(res.data['data']);
 
-    print("Timmmmmmmmmmmme"+res.data["data"].toString());
+    print("Timmmmmmmmmmmme" + res.data["data"].toString());
     setState(() {});
   }
 }

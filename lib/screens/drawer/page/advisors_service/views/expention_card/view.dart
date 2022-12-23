@@ -18,7 +18,6 @@ class AdvisorsService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ExpansionTile(
         backgroundColor: kPrimaryColor,
         leading: Image.asset("assets/images/Doctor.png"),

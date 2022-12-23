@@ -12,13 +12,12 @@ import '../../../../../../diagnostic_service/page/views/resevation_diagnostic/mo
 part 'first_available_dates_state.dart';
 
 class FirstAvailableDatesCubit extends Cubit<FirstAvailableDatesState> {
-  FirstAvailableDatesCubit() : super(FirstAvailableDatesInitial()){
+  FirstAvailableDatesCubit() : super(FirstAvailableDatesInitial()) {
     getAvailableDatesFirstStage();
   }
 
   String? typeSexId;
   String onSexTypeChanged(String value) => typeSexId = value;
-
 
   final dates = <DateTime>[];
   final availableDates = <DateTime>[];
@@ -38,16 +37,16 @@ class FirstAvailableDatesCubit extends Cubit<FirstAvailableDatesState> {
       }
 
       (res.data['data'] as List)
-          .map((e) => dates.add(DateTime(e["year"],e["month"],e["day"])))
+          .map((e) => dates.add(DateTime(e["year"], e["month"], e["day"])))
           .toList();
 
-
       emit(FirstAvailableDatesSuccess(
-        availableDatesModel: DiagnosticReservationAvailableDateModel.fromMap(res.data),
+        availableDatesModel:
+            DiagnosticReservationAvailableDateModel.fromMap(res.data),
         dates: dates,
       ));
     } on DioError catch (_) {
-      emit(FirstAvailableDatesError(msg:   "لا يوجد اتصال بالانترنت "));
+      emit(FirstAvailableDatesError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -76,9 +75,9 @@ class FirstAvailableDatesCubit extends Cubit<FirstAvailableDatesState> {
           .toList();
 
       emit(AvailablePeriodSuccess());
-    }  on DioError catch (_) {
-      emit(FirstAvailableDatesError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+    } on DioError catch (_) {
+      emit(FirstAvailableDatesError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(AvailablePeriodError(msg: e.toString()));

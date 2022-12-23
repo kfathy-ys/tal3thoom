@@ -13,9 +13,10 @@ import '../../../../../../../diagnostic_service/page/views/resevation_diagnostic
 
 part 'all_specialist__second_sessions_state.dart';
 
-class AllSpecialistSecondSessionsCubit extends Cubit<AllSpecialistSecondSessionsState> {
-  AllSpecialistSecondSessionsCubit() : super(AllSpecialistSecondSessionsInitial());
-
+class AllSpecialistSecondSessionsCubit
+    extends Cubit<AllSpecialistSecondSessionsState> {
+  AllSpecialistSecondSessionsCubit()
+      : super(AllSpecialistSecondSessionsInitial());
 
   Future<void> getSpecialistsSecondStage(
       {required String startTime, required String date}) async {
@@ -37,7 +38,7 @@ class AllSpecialistSecondSessionsCubit extends Cubit<AllSpecialistSecondSessions
       if (res.data['status'] == 1) {
         Alert.success('تم الحجز مع المتخصص بنجاح',
             desc:
-            "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
+                "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
         Get.offAll(() => const ReservationsSchedule());
       }
       if (res.data['status'] == 2) {
@@ -52,12 +53,8 @@ class AllSpecialistSecondSessionsCubit extends Cubit<AllSpecialistSecondSessions
     }
   }
 
-
-
-
-
-
-  Future<void> secondStagesSessionsCreateReservation({required int specialistId}) async {
+  Future<void> secondStagesSessionsCreateReservation(
+      {required int specialistId}) async {
     try {
       final userId = Prefs.getString("userId");
 
@@ -68,31 +65,26 @@ class AllSpecialistSecondSessionsCubit extends Cubit<AllSpecialistSecondSessions
         throw res.data['message'];
       }
 
-
       emit(AllSpecialistSecondSessionsSuccess(
           allSpecialistModel: AllSpecialistModel.fromMap(res.data)));
 
       if (res.data['status'] == 1) {
         Alert.success('تم الحجز مع المتخصص بنجاح',
             desc:
-            "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
+                "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
         //Get.offAll(() => const ReservationsSchedule());
       }
       if (res.data['status'] == 2) {
         Alert.error('تم الحجز مع المتخصص من قبل بنجاح',
             desc: "عذراً..لايمكنك الحجز يجيب انهاء الاختبارا");
       }
-
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
-      Alert.error(e.toString(),
+      Alert.error(
+        e.toString(),
       );
       emit(AllSpecialistSecondSessionsError(msg: e.toString()));
     }
   }
-
-
-
 }
-

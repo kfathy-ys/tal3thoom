@@ -15,11 +15,9 @@ import '../../../../../../../../diagnostic_service/page/views/diagnostic_history
 part 'second_stage_ssi4_two_dart_state.dart';
 
 class SecondStageSsi4TwoDartCubit extends Cubit<SecondStageSsi4TwoDartState> {
-  SecondStageSsi4TwoDartCubit() : super(SecondStageSsi4TwoDartInitial()){
+  SecondStageSsi4TwoDartCubit() : super(SecondStageSsi4TwoDartInitial()) {
     getSSI4TwoSecondStageQuestions();
   }
-
-
 
   var userId = Prefs.getString("userId");
   final questionList = <Question>[];
@@ -36,7 +34,7 @@ class SecondStageSsi4TwoDartCubit extends Cubit<SecondStageSsi4TwoDartState> {
       print(questionList);
 
       emit(SecondStageSsi4TwoDartSuccess(ssi4QuestionModel: questionList));
-    }on DioError catch (_) {
+    } on DioError catch (_) {
       emit(SecondStageSsi4TwoDartError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       print("err");
@@ -51,13 +49,11 @@ class SecondStageSsi4TwoDartCubit extends Cubit<SecondStageSsi4TwoDartState> {
     required int examId,
     required dynamic video,
   }) async {
-
     final formData = _dio.FormData.fromMap({
-      "record": _dio.MultipartFile.fromFileSync(video.path,
-          filename: video.path),
+      "record":
+          _dio.MultipartFile.fromFileSync(video.path, filename: video.path),
     });
     try {
-
       final body = formData;
       final res = await NetWork.post(
           'PatientExams/AddPatientSSI4ExamAnswers/$userId/$examId/$id/4',
@@ -67,15 +63,13 @@ class SecondStageSsi4TwoDartCubit extends Cubit<SecondStageSsi4TwoDartState> {
       }
       emit(SecondStageSsi4TwoDartSuccess(ssi4QuestionModel: questionList));
       Alert.success('تم رفع الفيديو بنجاح');
-
     } on DioError catch (_) {
       emit(SecondStageSsi4TwoDartError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, st) {
+    } catch (e, st) {
       Alert.error(e.toString());
       log(e.toString());
       log(st.toString());
       emit(SecondStageSsi4TwoDartError(msg: e.toString()));
     }
   }
-
 }

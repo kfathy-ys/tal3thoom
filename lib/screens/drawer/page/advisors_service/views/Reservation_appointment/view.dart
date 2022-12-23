@@ -199,7 +199,7 @@ class _ReservationAppointmentScreenState
                                                           JavascriptMode
                                                               .unrestricted,
                                                       initialUrl:
-                                                          "http://dev-sas.cpt-it.com/Sas/PaymentConsultant/$userId/${state.allAdvisorToReservedModel.data![index].id!}",
+                                                          "http://mcsc-saudi.com/Sas/PaymentConsultant/$userId/${state.allAdvisorToReservedModel.data![index].id!}",
                                                     ));
                                               }),
                                         );

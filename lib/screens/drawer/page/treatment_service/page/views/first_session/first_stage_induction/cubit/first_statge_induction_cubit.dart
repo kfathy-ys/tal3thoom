@@ -10,9 +10,8 @@ import '../../../../../../../../../config/dio_helper/dio.dart';
 part 'first_statge_induction_state.dart';
 
 class FirstStageInductionCubit extends Cubit<FirstStageInductionState> {
-  FirstStageInductionCubit() : super(FirstStageInductionInitial()){
+  FirstStageInductionCubit() : super(FirstStageInductionInitial()) {
     getFirstInduction();
-
   }
 
   Future<void> getFirstInduction() async {
@@ -29,14 +28,13 @@ class FirstStageInductionCubit extends Cubit<FirstStageInductionState> {
 
       emit(FirstStageInductionSuccess(
           inductionDiagnosticModel:
-          InductionDiagnosticModel.fromJson(res.data)));
-    }  on DioError catch (_) {
-      emit(FirstStageInductionError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+              InductionDiagnosticModel.fromJson(res.data)));
+    } on DioError catch (_) {
+      emit(FirstStageInductionError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(FirstStageInductionError(msg: e.toString()));
     }
   }
-
 }

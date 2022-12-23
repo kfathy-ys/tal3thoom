@@ -61,7 +61,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    HttpOverrides.global =  MyHttpOverrides();
+    HttpOverrides.global = MyHttpOverrides();
     //await EasyLocalization.ensureInitialized();
 
     await App.boot();
@@ -91,8 +91,7 @@ void main() async {
         enableDevtools: false,
         builder: (context) {
           return DevicePreview(
-              enabled: false,
-              builder: (context) => const MyApp());
+              enabled: false, builder: (context) => const MyApp());
         },
       ),
     );
@@ -223,11 +222,14 @@ class MyApp extends StatelessWidget {
 
         BlocProvider<DataAccessPermissionCubit>(
           create: (context) => DataAccessPermissionCubit(),
-        ),  BlocProvider<PreviousSessionsCubit>(
+        ),
+        BlocProvider<PreviousSessionsCubit>(
           create: (context) => PreviousSessionsCubit(),
-        ), BlocProvider<DeleteAccountCubit>(
+        ),
+        BlocProvider<DeleteAccountCubit>(
           create: (context) => DeleteAccountCubit(),
-        ),BlocProvider<ForgetPasswordCubit>(
+        ),
+        BlocProvider<ForgetPasswordCubit>(
           create: (context) => ForgetPasswordCubit(),
         ),
       ],

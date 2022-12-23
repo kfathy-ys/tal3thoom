@@ -13,7 +13,9 @@ class OverAll extends StatelessWidget {
       {Key? key,
       required this.title1,
       required this.title2,
-     required this.name, required this.age, required this.mild})
+      required this.name,
+      required this.age,
+      required this.mild})
       : super(key: key);
 
   @override
@@ -36,7 +38,10 @@ class OverAll extends StatelessWidget {
               ],
             ),
           ),
-          customText7(title: "A total score of the SSI-4 is calculated based on the subscores. The total score for $name during this evaluation was $age indicating the presence of $mild stuttering. The results are summarized on the following table.", color: kBlackText)
+          customText7(
+              title:
+                  "A total score of the SSI-4 is calculated based on the subscores. The total score for $name during this evaluation was $age indicating the presence of $mild stuttering. The results are summarized on the following table.",
+              color: kBlackText)
         ],
       ),
     );

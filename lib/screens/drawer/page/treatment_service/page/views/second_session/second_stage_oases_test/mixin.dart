@@ -13,7 +13,6 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../diagnostic_service/page/views/success_page.dart';
 import '../second_stage_ssrs_test/view.dart';
 
-
 mixin QSecondMixer on State<SecondStageOasesTest> {
   final sections = <AppSectionModel>[
     const AppSectionModel("1- قباس المعلومات العامة في حياتك"),
@@ -124,10 +123,10 @@ mixin QSecondMixer on State<SecondStageOasesTest> {
       selectedQuestion = questionsBySection[sections.first]!.first;
       setState(() {});
       log('${qList.length} loaded from api and filtered by sectionID');
-    }on DioError catch (_) {
-      customText2(title:   "لا يوجد اتصال بالانترنت ",color:kBlackText);
+    } on DioError catch (_) {
+      customText2(title: "لا يوجد اتصال بالانترنت ", color: kBlackText);
     } catch (e) {
-     // Alert.error('الرجاء قيد الإنتظار !!!');
+      // Alert.error('الرجاء قيد الإنتظار !!!');
       Get.snackbar(e.toString(), '');
     } finally {
       setState(() => isSubmiting = false);
@@ -169,15 +168,15 @@ mixin QSecondMixer on State<SecondStageOasesTest> {
     //   selectNextQuestion();
     // } else {
     //  submit();
-  //  }
+    //  }
   }
+
   bool isSubmiting = false;
   Future<void> submit() async {
     try {
       setState(() => isSubmiting = true);
       await SecondOasesAnswers.postSecondOasesAnswers(
         answers: allAnswers,
-
       );
       Get.off(() => SuccessView(
             title1: "لقد تم إنتهاء إختبار OASES بنجاح",
@@ -185,8 +184,8 @@ mixin QSecondMixer on State<SecondStageOasesTest> {
             onTap: () => Get.off(() => const SecondStageSSRSTreatmentScreen()),
           ));
     } on DioError catch (_) {
-      customText2(title:   "لا يوجد اتصال بالانترنت ",color:kBlackText);
-    }catch (e) {
+      customText2(title: "لا يوجد اتصال بالانترنت ", color: kBlackText);
+    } catch (e) {
       Get.snackbar(e.toString(), '');
     } finally {
       setState(() => isSubmiting = true);

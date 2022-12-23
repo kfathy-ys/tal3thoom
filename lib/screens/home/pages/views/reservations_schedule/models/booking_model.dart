@@ -15,14 +15,13 @@ class AllBookingModel extends Equatable {
 
   factory AllBookingModel.fromMap(Map<String, dynamic> map) {
     return AllBookingModel(
-      data:map['data'] == null ?[] :  List<BookingInfo>.from(
-        (map['data'] as List<dynamic>).map<BookingInfo>(
-          (x) => BookingInfo.fromMap(x as Map<String, dynamic>),
-        )
-
-      ) ,
-
-        messages: List<dynamic>.from(
+      data: map['data'] == null
+          ? []
+          : List<BookingInfo>.from(
+              (map['data'] as List<dynamic>).map<BookingInfo>(
+              (x) => BookingInfo.fromMap(x as Map<String, dynamic>),
+            )),
+      messages: List<dynamic>.from(
           (map['messages'] ?? const <dynamic>[]) as List<dynamic>),
       status: (map['status'].toInt() ?? 0) as int,
       dataLength: (map['dataLength'].toInt() ?? 0) as int,

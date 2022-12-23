@@ -142,7 +142,7 @@ Widget CustomCurvedContainer({required String title}) {
   // double height = MediaQuery.of(context).size.height;
   // double width = MediaQuery.of(context).size.width;
   return Container(
-    margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
+    margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
     width: Get.width / 1.8,
     height: Get.height * 0.075,
     decoration: const BoxDecoration(
@@ -179,8 +179,7 @@ Widget customBoldText({required String title, required Color color}) {
 
 Widget customText2({required String title, required Color color}) {
   return Text(title,
-      style:
-      TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
+      style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
 }
 
 Widget customText3({required String title, required Color color}) {
@@ -191,7 +190,6 @@ Widget customText3({required String title, required Color color}) {
 Widget customText4({required String title, required Color color}) {
   return Text(title,
       textAlign: TextAlign.center,
-
       style: TextStyle(color: color, fontSize: 16, fontFamily: 'DinMedium'));
 }
 
@@ -258,6 +256,7 @@ void showAlertDialog(BuildContext context, VoidCallback onTap) {
             ],
           ));
 }
+
 void showAlertDialogDeleteAccount(BuildContext context, VoidCallback onTap) {
   showCupertinoModalPopup<void>(
       context: context,
@@ -269,7 +268,6 @@ void showAlertDialogDeleteAccount(BuildContext context, VoidCallback onTap) {
                   isDefaultAction: true,
                   onPressed: () {
                     onTap();
-
                   },
                   child: const Text("أوافق")),
               CupertinoDialogAction(
@@ -277,25 +275,22 @@ void showAlertDialogDeleteAccount(BuildContext context, VoidCallback onTap) {
                   isDefaultAction: true,
                   onPressed: () async {
                     BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-                    Get.offAll(()=>const HomeTabScreen());
+                    Get.offAll(() => const HomeTabScreen());
                   },
                   child: const Text("لا")),
             ],
           ));
 }
+
 void showAlertDialogVideo(BuildContext context, Widget video) {
   showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-
-            content:Container(
+          content: Container(
               margin: const EdgeInsets.symmetric(vertical: 8),
               width: context.width * 0.8,
               height: context.height * 0.25,
-              child: video
-            )
-
-          ));
+              child: video)));
 }
 
 Widget customSliderText({required String title, required Color color}) {
@@ -409,7 +404,6 @@ Future<void> showConfirmationDialog(BuildContext context,
     required String title,
     required Widget done,
     required Widget cancelled}) {
-
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => CupertinoAlertDialog(
@@ -560,6 +554,7 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
 
   return shouldPop ?? false;
 }
+
 Future<bool> onWillPopWebEmpty(BuildContext context) async {
   final shouldPop = await showDialog(
     context: context,

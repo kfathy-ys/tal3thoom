@@ -396,10 +396,6 @@ class KeysConfig {
 
   static const Fifth = "الخامس";
   static const VI = "السادس";
-
-
-
-
 }
 
 class GetSelectedList {

@@ -33,8 +33,8 @@ class DiagnosticSsrsCubit extends Cubit<DiagnosticSsrsState> {
       print(questionList);
 
       emit(DiagnosticSsrsSuccess(ssrsQuestionModel: questionList));
-    }on DioError catch (_) {
-      emit(DiagnosticSsrsError(msg:   "لا يوجد اتصال بالانترنت "));
+    } on DioError catch (_) {
+      emit(DiagnosticSsrsError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -47,17 +47,15 @@ class DiagnosticSsrsCubit extends Cubit<DiagnosticSsrsState> {
 
     try {
       await DiagnosticSSRSAnswers.postDiagnosticSSRSAnswers(
-          answers: answer,);
-
+        answers: answer,
+      );
 
       emit(DiagnosticSsrsSuccess(ssrsQuestionModel: questionList));
       Get.off(() {
         return SuccessView(
-            title1:
-            "لقد تم إنتهاء إختبار SSRS بنجاح",
+            title1: "لقد تم إنتهاء إختبار SSRS بنجاح",
             title2: "إنتقال إلي إختبار SSI-4",
-            onTap: () =>
-                Get.off(() => const DiagnosticSSI4()));
+            onTap: () => Get.off(() => const DiagnosticSSI4()));
       });
     } catch (e, st) {
       log(e.toString());

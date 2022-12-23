@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-class AllTimeModel extends Equatable{
+class AllTimeModel extends Equatable {
   List<int>? data;
   int? status;
   int? dataLength;
@@ -24,5 +24,5 @@ class AllTimeModel extends Equatable{
   }
 
   @override
-  List<Object?> get props => [data,status,dataLength];
+  List<Object?> get props => [data, status, dataLength];
 }

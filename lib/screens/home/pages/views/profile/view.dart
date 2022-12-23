@@ -53,12 +53,7 @@ class _ProfileState extends State<Profile> {
           key: formKey,
           child: SingleChildScrollView(
             child: BlocConsumer<ProfileCubit, ProfileState>(
-              listener: (context, state) {
-
-
-
-
-              },
+              listener: (context, state) {},
               builder: (context, state) {
                 final cubit = BlocProvider.of<ProfileCubit>(context);
                 if (state is ProfileLoading) {
@@ -87,7 +82,6 @@ class _ProfileState extends State<Profile> {
                         //_profilePic(userName: Prefs.getString('fullName')),
                         CustomTextField(
                           read: true,
-
                           dIcon: Icons.person,
                           label: KeysConfig.userName,
                           hint: KeysConfig.userName,
@@ -302,17 +296,14 @@ class _ProfileState extends State<Profile> {
                                 })
                             : const LoadingFadingCircle(),
 
-
                         GestureDetector(
-
-                            onTap: ()=>Get.to(()=>const DeleteAccount()),
-                            child: customText4(title: "هل تريد حذف الحساب ؟ ", color: kPrimaryColor)),
+                            onTap: () => Get.to(() => const DeleteAccount()),
+                            child: customText4(
+                                title: "هل تريد حذف الحساب ؟ ",
+                                color: kPrimaryColor)),
                         SizedBox(
                           height: context.height * 0.02,
                         ),
-
-
-
                       ],
                     ),
                   );

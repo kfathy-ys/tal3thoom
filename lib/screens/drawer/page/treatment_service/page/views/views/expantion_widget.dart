@@ -34,7 +34,8 @@ class TreatmentServiceExpansion extends StatelessWidget {
   final Widget isSsi4Two;
   final Widget isReservedTwo;
 
-  const TreatmentServiceExpansion({super.key,
+  const TreatmentServiceExpansion({
+    super.key,
     required this.onTapInductions,
     required this.onTapPayment,
     required this.PretreatmentQuestionnaire,
@@ -48,7 +49,18 @@ class TreatmentServiceExpansion extends StatelessWidget {
     required this.onTapSSRS2,
     required this.onTapSSI42,
     required this.onTapBookSpecialist2,
-    required this.isPayment, required this.isQuestionnaire, required this.isFirstSessions, required this.isOases, required this.isSsrs, required this.isSsi4, required this.isReservedFirst, required this.isSessionTwo, required this.isOasesTwo, required this.isSsrsTwo, required this.isSsi4Two, required this.isReservedTwo,
+    required this.isPayment,
+    required this.isQuestionnaire,
+    required this.isFirstSessions,
+    required this.isOases,
+    required this.isSsrs,
+    required this.isSsi4,
+    required this.isReservedFirst,
+    required this.isSessionTwo,
+    required this.isOasesTwo,
+    required this.isSsrsTwo,
+    required this.isSsi4Two,
+    required this.isReservedTwo,
   });
 
   @override
@@ -91,7 +103,6 @@ class TreatmentServiceExpansion extends StatelessWidget {
                   customText4(title: KeysConfig.payment, color: kBlackText),
                 ],
               ),
-
               trailing: isPayment,
             ),
           ),
@@ -156,7 +167,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                             title: KeysConfig.testOases, color: kBlackText),
                       ],
                     ),
-                    trailing:  isOases,
+                    trailing: isOases,
                   ),
                 ),
                 Container(
@@ -204,7 +215,6 @@ class TreatmentServiceExpansion extends StatelessWidget {
                             color: kBlackText),
                       ],
                     ),
-
                     trailing: isReservedFirst,
                   ),
                 ),
@@ -239,7 +249,6 @@ class TreatmentServiceExpansion extends StatelessWidget {
                             color: kBlackText),
                       ],
                     ),
-
                     trailing: isSessionTwo,
                   ),
                 ),
@@ -274,7 +283,6 @@ class TreatmentServiceExpansion extends StatelessWidget {
                     ),
                     trailing: isSsrsTwo,
                   ),
-
                 ),
                 Container(
                   color: kSkyLightsColor.withOpacity(0.2),

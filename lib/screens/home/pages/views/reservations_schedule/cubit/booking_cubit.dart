@@ -12,25 +12,19 @@ import '../models/booking_model.dart';
 part 'booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {
-
-
-  BookingCubit() : super(BookingInitial()){
+  BookingCubit() : super(BookingInitial()) {
     getBookingList();
   }
 
-
   var userId = Prefs.getString("userId");
-  List <AllBookingModel> allSectionSNotes =[];
+  List<AllBookingModel> allSectionSNotes = [];
 
   Future<void> getBookingList() async {
-
-
     emit(BookingLoading());
     try {
       allSectionSNotes.clear();
       final userId = Prefs.getString("userId");
-      final res =
-      await NetWork.get('Patients/getPatientBooking/$userId/1/100');
+      final res = await NetWork.get('Patients/getPatientBooking/$userId/1/100');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -38,16 +32,15 @@ class BookingCubit extends Cubit<BookingState> {
         throw res.data['message'];
       }
 
-      emit(BookingSuccess(bookingInfo:AllBookingModel.fromMap(res.data)));
+      emit(BookingSuccess(bookingInfo: AllBookingModel.fromMap(res.data)));
     } on DioError catch (_) {
       emit(BookingError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(BookingError(msg: e.toString()));
     }
   }
-
 
   Future<void> removeFromBooking({
     required String startTime,
@@ -59,7 +52,6 @@ class BookingCubit extends Cubit<BookingState> {
     required int specialistRate,
     required String zoomInvitationUrl,
     required String scheduledFor,
-
   }) async {
     try {
       final body = {
@@ -74,7 +66,7 @@ class BookingCubit extends Cubit<BookingState> {
         "specialistGender": null,
         "sessienUrl": sessienUrl,
         "specialistRate": specialistRate,
-        "zoomInvitationUrl":zoomInvitationUrl,
+        "zoomInvitationUrl": zoomInvitationUrl,
         "scheduledFor": scheduledFor,
         "patientDiagnosesStatus": null
       };
@@ -84,7 +76,10 @@ class BookingCubit extends Cubit<BookingState> {
       }
       emit(BookingSuccess(bookingInfo: AllBookingModel.fromMap(res.data)));
       await getBookingList();
-      Alert.success("عملية ناجحة",desc: "تم إالغاء الحجز بنجاح",);
+      Alert.success(
+        "عملية ناجحة",
+        desc: "تم إالغاء الحجز بنجاح",
+      );
       print("ovhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
     } catch (e, st) {
       log(e.toString());
@@ -94,8 +89,4 @@ class BookingCubit extends Cubit<BookingState> {
       emit(BookingError(msg: e.toString()));
     }
   }
-
-
-
-
 }

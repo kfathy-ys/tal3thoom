@@ -1,18 +1,13 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:tal3thoom/screens/widgets/alerts.dart';
-import 'package:tal3thoom/screens/widgets/video_page.dart';
 import 'package:timer_count_down/timer_controller.dart';
-import 'package:timer_count_down/timer_count_down.dart';
 
-import 'constants.dart';
 import 'loading.dart';
 
 class CameraPage extends StatefulWidget {
-
   final Function(XFile) onAdd;
   const CameraPage({Key? key, required this.onAdd}) : super(key: key);
 
@@ -27,7 +22,7 @@ class _CameraPageState extends State<CameraPage> {
 
   final _pinController = TextEditingController();
   final CountdownController _countdownController =
-  CountdownController(autoStart: false);
+      CountdownController(autoStart: false);
 
   void _handleConfirmCode() {
     final text = _pinController.text;
@@ -35,7 +30,6 @@ class _CameraPageState extends State<CameraPage> {
       // ConfirmCodeCubit.of(context).checkCode(_pinFieldController.text);
     }
   }
-
 
   @override
   void initState() {
@@ -51,7 +45,8 @@ class _CameraPageState extends State<CameraPage> {
 
   _initCamera() async {
     final cameras = await availableCameras();
-    final front = cameras.firstWhere((camera) => camera.lensDirection == CameraLensDirection.front);
+    final front = cameras.firstWhere(
+        (camera) => camera.lensDirection == CameraLensDirection.front);
     _cameraController = CameraController(front, ResolutionPreset.low);
     await _cameraController.initialize();
     setState(() => _isLoading = false);
@@ -64,24 +59,20 @@ class _CameraPageState extends State<CameraPage> {
 
       widget.onAdd(file);
       Navigator.pop(context);
-
-
-
     } else {
-
       await _cameraController.prepareForVideoRecording();
       await _cameraController.startVideoRecording();
 
       setState(() => _isRecording = true);
-      Future.delayed(const Duration(seconds: 15),(){
+      Future.delayed(const Duration(seconds: 15), () {
         _stopRecordVideo();
         Alert.error("الفيديو المطلوب تعدي عدد الميغا بايت المطلوبة ");
-
       });
     }
   }
-  Future<bool>isStoped(dynamic filepath, int decimals) async {
-    var file = File(filepath) ;
+
+  Future<bool> isStoped(dynamic filepath, int decimals) async {
+    var file = File(filepath);
     int bytes = await file.length();
     if (bytes >= 2040) {
       return true;
@@ -92,6 +83,7 @@ class _CameraPageState extends State<CameraPage> {
     // var i = (log(bytes) / log(1024)).floor();
     // return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
   }
+
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
@@ -106,8 +98,6 @@ class _CameraPageState extends State<CameraPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-
-
             CameraPreview(_cameraController),
             Padding(
               padding: const EdgeInsets.all(25),
@@ -116,7 +106,6 @@ class _CameraPageState extends State<CameraPage> {
                 child: Icon(_isRecording ? Icons.stop : Icons.circle),
                 onPressed: () {
                   _stopRecordVideo();
-
                 },
               ),
             ),
@@ -125,6 +114,4 @@ class _CameraPageState extends State<CameraPage> {
       );
     }
   }
-
-
 }

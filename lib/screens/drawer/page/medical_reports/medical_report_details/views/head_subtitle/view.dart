@@ -21,8 +21,8 @@ class HeadSubHead extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Row(
-       // mainAxisSize: MainAxisSize.min,
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
             // color: Colors.amber,

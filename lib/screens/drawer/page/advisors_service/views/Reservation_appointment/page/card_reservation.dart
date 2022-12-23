@@ -23,7 +23,7 @@ class ReservationsCard extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     //  double width = MediaQuery.of(context).size.width;
     return Column(
-     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CardItems(title: "المتخصص", subTitle: specialistName),
         CardItems(title: "تاريخ الجلسة", subTitle: sessionDate),

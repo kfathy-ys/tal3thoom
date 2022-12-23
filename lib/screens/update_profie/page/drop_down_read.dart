@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../../../config/keys.dart';
 import '../../widgets/constants.dart';
 
-
 enum TypeRead { Read, UnRead }
 
 class DropDownIsRead extends StatefulWidget {
@@ -47,12 +46,11 @@ class _DropDownIsReadState extends State<DropDownIsRead> {
 
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<TypeRead>(
-
           value: selected,
           // autofocus: true,
           // isDense: true,
           isExpanded: true,
-          hint:  const Text(
+          hint: const Text(
             "النوع :",
             style: TextStyle(
               color: kPrimaryColor,
@@ -68,7 +66,7 @@ class _DropDownIsReadState extends State<DropDownIsRead> {
           },
           decoration: InputDecoration(
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: kPrimaryColor, width: 1),
@@ -106,7 +104,7 @@ class _DropDownIsReadState extends State<DropDownIsRead> {
             });
           },
           items:
-          TypeRead.values.map<DropdownMenuItem<TypeRead>>((TypeRead value) {
+              TypeRead.values.map<DropdownMenuItem<TypeRead>>((TypeRead value) {
             return DropdownMenuItem<TypeRead>(
               value: value,
               child: Text(

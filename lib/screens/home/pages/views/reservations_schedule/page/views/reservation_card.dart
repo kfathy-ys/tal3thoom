@@ -44,7 +44,8 @@ class ReservationCard extends StatelessWidget {
           cardItems(title: "التاريخ الإصدار", subTitle: subTitleData),
           cardItems(title: "اليوم", subTitle: subTitleDay),
           cardItems(title: "بدء الجلسة", subTitle: subTitleStartSessionData),
-          cardItems(title: "انتهاء الجلسة", subTitle:subTitleFinishSessionDate ),
+          cardItems(
+              title: "انتهاء الجلسة", subTitle: subTitleFinishSessionDate),
           cardItems(title: "نوع الموعد", subTitle: subTitleTypeAppointment),
           cardItems(title: "التقيم", subTitle: subTitleEvaluation),
           CustomButton(

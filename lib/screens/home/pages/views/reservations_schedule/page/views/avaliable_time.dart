@@ -10,7 +10,8 @@ class AvailableTime extends StatefulWidget {
   final Function(String) onSelect;
   const AvailableTime({
     Key? key,
-    required this.periods, required this.onSelect,
+    required this.periods,
+    required this.onSelect,
   }) : super(key: key);
 
   @override
@@ -21,14 +22,13 @@ class _AvailableTimeState extends State<AvailableTime> {
   // bool isPressed = false;
   dynamic _selectedTimeId = 0;
 
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
       height: height * 0.089,
-      child:  ListView.builder(
+      child: ListView.builder(
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -38,7 +38,7 @@ class _AvailableTimeState extends State<AvailableTime> {
             onTap: () {
               setState(() {
                 _selectedTimeId = widget.periods[index].startTime;
-               widget.onSelect(_selectedTimeId.toString());
+                widget.onSelect(_selectedTimeId.toString());
 
                 Prefs.setBool("isClicked", true);
               });
@@ -58,7 +58,7 @@ class _AvailableTimeState extends State<AvailableTime> {
               child: Center(
                 child: Text(
                   // "6:35 PM\t\t".tr
-                  widget.periods[index].startTime ,
+                  widget.periods[index].startTime,
                   style: TextStyle(
                     color: _selectedTimeId == widget.periods[index].startTime
                         ? kHomeColor

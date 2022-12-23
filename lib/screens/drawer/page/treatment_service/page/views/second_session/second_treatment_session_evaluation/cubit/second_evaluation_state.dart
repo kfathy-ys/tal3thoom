@@ -4,12 +4,15 @@ part of 'second_evaluation_cubit.dart';
 abstract class SecondEvaluationState {}
 
 class SecondEvaluationInitial extends SecondEvaluationState {}
+
 class SecondEvaluationLoading extends SecondEvaluationState {}
+
 class SecondEvaluationSuccess extends SecondEvaluationState {
-  final List <Question> questionEvaluation;
+  final List<Question> questionEvaluation;
 
+  SecondEvaluationSuccess({required this.questionEvaluation});
+}
 
-  SecondEvaluationSuccess({required this.questionEvaluation});}
 class SecondEvaluationError extends SecondEvaluationState {
   final String msg;
 

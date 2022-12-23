@@ -67,9 +67,9 @@ class RegisterCubit extends Cubit<RegisterState> {
       }
 
       emit(RegisterSuccess(RegisterModel.fromJson(res.data)));
-    }  on DioError catch (_) {
+    } on DioError catch (_) {
       emit(RegisterError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, st) {
+    } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(RegisterError(msg: e.toString()));

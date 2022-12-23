@@ -27,7 +27,6 @@ class SmallButtonSizerUploadFile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -41,15 +40,18 @@ class SmallButtonSizerUploadFile extends StatelessWidget {
         child: Center(
           child: isLoading != true
               ? Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset(image!),
                     // SizedBox(width: width*0.02,),
-                    Text(title!,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 14, color: kHomeColor, fontFamily: "DinReguler"),
+                    Text(
+                      title!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          color: kHomeColor,
+                          fontFamily: "DinReguler"),
                     ),
                   ],
                 )

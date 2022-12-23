@@ -10,7 +10,6 @@ import '../../first_session/first_stage_additional_traning/view.dart';
 import '../second_cognitive_session/cubit/second_cognitive_section_cubit.dart';
 import '../second_cognitive_session/view.dart';
 
-
 // ignore: must_be_immutable
 
 class SecondNextSession extends StatefulWidget {
@@ -43,7 +42,7 @@ class _SecondNextSessionState extends State<SecondNextSession> {
             ),
             customText4(
                 title:
-                "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
+                    "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
                 color: kBlackText),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -62,8 +61,9 @@ class _SecondNextSessionState extends State<SecondNextSession> {
             CustomButton(
               title: "الإنتقال إلي المرحلة التالية",
               onPressed: () {
-                BlocProvider.of<SecondCognitiveSectionCubit>(context).getSecondCognitiveSection();
-                Get.off(()=> const SecondTreatmentSession());
+                BlocProvider.of<SecondCognitiveSectionCubit>(context)
+                    .getSecondCognitiveSection();
+                Get.off(() => const SecondTreatmentSession());
                 // ;
               },
             ),

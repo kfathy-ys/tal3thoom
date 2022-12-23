@@ -11,7 +11,7 @@ import '../../../../../treatment_service/page/views/first_session/first_payment_
 part 'diagnostic_payment_state.dart';
 
 class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
-  DiagnosticPaymentCubit() : super(DiagnosticPaymentInitial()){
+  DiagnosticPaymentCubit() : super(DiagnosticPaymentInitial()) {
     getDiagnosticPayment();
   }
 
@@ -31,8 +31,8 @@ class DiagnosticPaymentCubit extends Cubit<DiagnosticPaymentState> {
       emit(DiagnosticPaymentSuccess(
           firstPaymentModel: PaymentAllTreatmentModel.fromJson(res.data)));
     } on DioError catch (_) {
-      emit(DiagnosticPaymentError(msg:  "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+      emit(DiagnosticPaymentError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(DiagnosticPaymentError(msg: e.toString()));

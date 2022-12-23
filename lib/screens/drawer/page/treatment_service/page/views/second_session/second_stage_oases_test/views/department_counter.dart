@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../../../../../widgets/constants.dart';
 
-
 class DepartmentCounter extends StatelessWidget {
   final String head;
   const DepartmentCounter({Key? key, required this.head}) : super(key: key);
@@ -17,7 +16,7 @@ class DepartmentCounter extends StatelessWidget {
       children: [
         Row(
           children: [
-           // customText9(title: "القسم: \t ", color: kPrimaryColor),
+            // customText9(title: "القسم: \t ", color: kPrimaryColor),
             Expanded(child: customText9(title: head, color: kBlackText)),
           ],
         ),

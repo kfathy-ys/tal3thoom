@@ -22,7 +22,7 @@ class EvaluationSectionAnswersService {
           "userId": userId,
           "patientCurrentStage": 2,
           "questionId": q.id,
-          "description":q.description,
+          "description": q.description,
           "sectionId": q.sectionId,
           "examId": q.examId,
           "answerId": buildPatientAnswers(q)

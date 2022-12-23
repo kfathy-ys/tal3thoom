@@ -92,7 +92,6 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                                   labelText: "${index + 1} - " +
                                       state.preQuestionnaireModel[index]
                                           .description,
-
                                 ),
                                 initialValue: cubit
                                     .answer[state.preQuestionnaireModel[index]],
@@ -102,7 +101,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                                   if (value != null) {
                                     setState(() {
                                       cubit.answer[state
-                                          .preQuestionnaireModel[index]] = value;
+                                              .preQuestionnaireModel[index]] =
+                                          value;
                                     });
                                   }
                                 },
@@ -117,7 +117,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                                     .map((lang) => FormBuilderFieldOption(
                                           value: lang,
                                           child: customText3(
-                                              title: lang.answerOption.toString(),
+                                              title:
+                                                  lang.answerOption.toString(),
                                               color: kBlackText),
                                         ))
                                     .toList(growable: false),
@@ -132,11 +133,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
                         title: "الإنتقال إلي المرحلة العلاجيه الأولي",
                         onPressed: () {
                           if (cubit.formKey.currentState!.validate()) {
-                               cubit.postPreQuestionnaireAnswers();
-
+                            cubit.postPreQuestionnaireAnswers();
                           }
-
-
                         },
                       ),
                     ])),

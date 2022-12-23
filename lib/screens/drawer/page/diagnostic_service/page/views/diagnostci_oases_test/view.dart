@@ -38,13 +38,15 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-      bottomNavigationBar: canSubmit? SmallButtonOases(
-        onPressed:submit,
-       // isLoading: isSubmiting,
-        title: "التالي",
-        color: kButtonGreenDark ,
-      ):const SizedBox.shrink(),
+    return Scaffold(
+      bottomNavigationBar: canSubmit
+          ? SmallButtonOases(
+              onPressed: submit,
+              // isLoading: isSubmiting,
+              title: "التالي",
+              color: kButtonGreenDark,
+            )
+          : const SizedBox.shrink(),
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
       appBar: DynamicAppbar(
@@ -53,7 +55,6 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-
           width: context.width,
           color: kHomeColor,
           child: Column(
@@ -88,7 +89,7 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
 
   Widget customDepartmentWidget(Question question) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
           color: kSkyLightColor, borderRadius: BorderRadius.circular(8)),
       child: Column(
@@ -106,7 +107,8 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Center(
-                  child: customText3(title: currentQNumber.toString(), color: kBlackText),
+                  child: customText3(
+                      title: currentQNumber.toString(), color: kBlackText),
                 ),
               ),
               Expanded(
@@ -115,11 +117,10 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
             ],
           ),
           Wrap(
-            children:  question.answers.map((a) {
+            children: question.answers.map((a) {
               return RadioListTile(
                 value: a,
-                title:customText4(
-                    title: a.answerOption, color: kBlackText) ,
+                title: customText4(title: a.answerOption, color: kBlackText),
                 groupValue: allAnswers[question],
                 onChanged: (_) {
                   setState(() {
@@ -133,22 +134,29 @@ class _DiagnosticOasesTestState extends State<DiagnosticOasesTest> with QMixer {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SmallButtonOases(
-                onPressed:enablePreviousButton  ?selectPreviousQuestion: null ,
-               title:"السابق",
-                color: enablePreviousButton ?   kPrimaryColor : kPrimaryColor.withOpacity(0.4),
+                onPressed: enablePreviousButton ? selectPreviousQuestion : null,
+                title: "السابق",
+                color: enablePreviousButton
+                    ? kPrimaryColor
+                    : kPrimaryColor.withOpacity(0.4),
               ),
               SmallButtonOases(
-                  onPressed: enableNextQButton ? selectNextQuestion : null,
-                  title: "التالي",
-                  color: enableNextQButton ? kPrimaryColor : kPrimaryColor.withOpacity(0.4),),
+                onPressed: enableNextQButton ? selectNextQuestion : null,
+                title: "التالي",
+                color: enableNextQButton
+                    ? kPrimaryColor
+                    : kPrimaryColor.withOpacity(0.4),
+              ),
             ],
           ),
-if(!canSubmit)
-  CustomButton(
-            onPressed:enableNextSectionButton? selectNextSection: null,
-            title: "الانتقال الي القسم التالي",
-            color: enableNextSectionButton ? kButtonGreenDark : kPrimaryColor.withOpacity(0.4),
-          ),
+          if (!canSubmit)
+            CustomButton(
+              onPressed: enableNextSectionButton ? selectNextSection : null,
+              title: "الانتقال الي القسم التالي",
+              color: enableNextSectionButton
+                  ? kButtonGreenDark
+                  : kPrimaryColor.withOpacity(0.4),
+            ),
         ],
       ),
     );

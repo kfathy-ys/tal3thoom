@@ -1,14 +1,14 @@
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/loading.dart';
-import '../../../../../../../widgets/video_items.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostci_oases_test/views/alert_message.dart';
 import 'cubit/first_stage_ssrs_cubit.dart';
@@ -26,6 +26,13 @@ class FirstStageSSRSTreatmentScreen extends StatefulWidget {
 class _FirstStageSSRSTreatmentScreenState
     extends State<FirstStageSSRSTreatmentScreen> {
   int? selectedNumber;
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +75,7 @@ class _FirstStageSSRSTreatmentScreenState
                               context: context),
                           customText6(
                             title:
-                            "الإختبار التالت SSRS (أختبار الرضا الكلامي)",
+                                "الإختبار التالت SSRS (أختبار الرضا الكلامي)",
                             color: kBlackText,
                           ),
                           Padding(
@@ -78,11 +85,24 @@ class _FirstStageSSRSTreatmentScreenState
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
-                            child: VideoItems(
-                              videoPlayerController:
-                              VideoPlayerController.network(
-                                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                              ),
+                            child:
+
+                                //         BetterVideoItems(video:      BetterPlayer.network(
+                                // 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                                //
+                                //           betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                //             aspectRatio: 16 / 9,
+                                //           ),
+                                //         ),
+                                //
+                                //
+                                //
+                                //
+                                //         ),
+
+                                const VideoScreen(
+                              url:
+                                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                             ),
                           ),
                           CustomButton(
@@ -97,15 +117,17 @@ class _FirstStageSSRSTreatmentScreenState
                               runSpacing: 10,
                               children: cubit.questionList[0].answers
                                   .map((e) => CardNumber(
-                                  onTap: () {
-                                    cubit.answer= {cubit.questionList[0]: e};
-                                    selectedNumber = e.id;
-                                    print("الرقم"+selectedNumber.toString());
-                                    setState(() {
-                                    });
-                                  },
-                                  title: e.answerOption,
-                                  isSelected: e.id == selectedNumber))
+                                      onTap: () {
+                                        cubit.answer = {
+                                          cubit.questionList[0]: e
+                                        };
+                                        selectedNumber = e.id;
+                                        print("الرقم" +
+                                            selectedNumber.toString());
+                                        setState(() {});
+                                      },
+                                      title: e.answerOption,
+                                      isSelected: e.id == selectedNumber))
                                   .toList()),
                           CustomButton(
                             color: kPrimaryColor,
@@ -114,14 +136,12 @@ class _FirstStageSSRSTreatmentScreenState
                               if (selectedNumber == null) {
                                 Alert.error("عملية التقييم مطلوبة ",
                                     desc:
-                                    "الرجاء الضغط علي المقياس الموجود بالاسفل");
+                                        "الرجاء الضغط علي المقياس الموجود بالاسفل");
                               } else {
                                 Alert.success(
                                   "عملية التقييم ناجحة ",
                                 );
                                 cubit.postFirstSSRSAnswers();
-
-
                               }
                             },
                           ),

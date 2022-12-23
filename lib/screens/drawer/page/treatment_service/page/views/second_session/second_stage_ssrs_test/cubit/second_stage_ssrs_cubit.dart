@@ -15,7 +15,7 @@ import '../../second_stage_treatment_ssi4/views/department_one/view.dart';
 part 'second_stage_ssrs_state.dart';
 
 class SecondStageSsrsCubit extends Cubit<SecondStageSsrsState> {
-  SecondStageSsrsCubit() : super(SecondStageSsrsInitial()){
+  SecondStageSsrsCubit() : super(SecondStageSsrsInitial()) {
     getSecondStageSsrsSSRSQuestions();
   }
 
@@ -27,15 +27,15 @@ class SecondStageSsrsCubit extends Cubit<SecondStageSsrsState> {
   Future<void> getSecondStageSsrsSSRSQuestions() async {
     emit(SecondStageSsrsLoading());
     try {
-      questionList
-          .assignAll(await SecondStageSsrsQuestionService.findManySecondStageSsrs());
+      questionList.assignAll(
+          await SecondStageSsrsQuestionService.findManySecondStageSsrs());
 
       print(questionList);
 
       emit(SecondStageSsrsSuccess(ssrsQuestionModel: questionList));
     } on DioError catch (_) {
       emit(SecondStageSsrsError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(SecondStageSsrsError(msg: e.toString()));
@@ -47,21 +47,19 @@ class SecondStageSsrsCubit extends Cubit<SecondStageSsrsState> {
 
     try {
       await SecondStageSSRSAnswers.postSecondStageSSRSAnswers(
-        answers: answer,);
-
+        answers: answer,
+      );
 
       emit(SecondStageSsrsSuccess(ssrsQuestionModel: questionList));
       Get.off(() {
         return SuccessView(
-            title1:
-            "لقد تم إنتهاء إختبار SSRS بنجاح",
+            title1: "لقد تم إنتهاء إختبار SSRS بنجاح",
             title2: "إنتقال إلي إختبار SSI-4",
-            onTap: () =>
-                Get.off(() => const SecondTreatmentSSI4()));
+            onTap: () => Get.off(() => const SecondTreatmentSSI4()));
       });
     } on DioError catch (_) {
       emit(SecondStageSsrsError(msg: "لا يوجد اتصال بالانترنت "));
-    }catch (e, st) {
+    } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(SecondStageSsrsError(msg: e.toString()));

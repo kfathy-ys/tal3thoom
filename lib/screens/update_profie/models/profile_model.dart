@@ -23,8 +23,9 @@ class ProfileModel extends Equatable {
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
-      data: AllProfile.fromMap(map['data'] as Map<String,dynamic>),
-      messages: List<dynamic>.from((map['messages'] ?? const <dynamic>[]) as List<dynamic>),
+      data: AllProfile.fromMap(map['data'] as Map<String, dynamic>),
+      messages: List<dynamic>.from(
+          (map['messages'] ?? const <dynamic>[]) as List<dynamic>),
       status: (map['status'].toInt() ?? 0) as int,
       dataLength: (map['dataLength'].toInt() ?? 0) as int,
     );
@@ -100,7 +101,6 @@ class AllProfile extends Equatable {
       'country': country,
       'city': city,
       'neighborhood': neighborhood,
-
       'workPlace': workPlace,
       'nationality': nationality,
       'gender': gender,
@@ -130,7 +130,6 @@ class AllProfile extends Equatable {
       country: (map['country'] ?? '') as String,
       city: (map['city'] ?? '') as String,
       neighborhood: (map['neighborhood'] ?? '') as String,
-
       workPlace: (map['workPlace'] ?? '') as String,
       nationality: (map['nationality'] ?? '') as String,
       gender: (map['gender'] ?? '') as String,
@@ -139,10 +138,10 @@ class AllProfile extends Equatable {
       isActive: (map['isActive'] ?? false) as bool,
       randomNumber: (map['randomNumber'] ?? '') as String,
       type: (map['type'] ?? '') as String,
-      currentStage: map['currentStage']??'' ,
-      currentDiagnoses: map['currentDiagnoses'] ??'',
-      allowBooking: map['allowBooking'] ??'',
-      currentDiagnosesStatus: map['currentDiagnosesStatus'] ??'',
+      currentStage: map['currentStage'] ?? '',
+      currentDiagnoses: map['currentDiagnoses'] ?? '',
+      allowBooking: map['allowBooking'] ?? '',
+      currentDiagnosesStatus: map['currentDiagnosesStatus'] ?? '',
     );
   }
 
@@ -161,7 +160,6 @@ class AllProfile extends Equatable {
       country,
       city,
       neighborhood,
-
       workPlace,
       nationality,
       gender,
@@ -177,6 +175,3 @@ class AllProfile extends Equatable {
     ];
   }
 }
-
-
-

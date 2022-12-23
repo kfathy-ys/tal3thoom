@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,12 +9,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
+import 'package:tal3thoom/screens/widgets/better_video_widget.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/loading.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
-
 import 'package:video_player/video_player.dart';
+
 import '../../../../../../../../../config/keys.dart';
 
 import '../../../../../../../../widgets/alerts.dart';
@@ -37,10 +39,12 @@ class DiagnosticSSI4 extends StatefulWidget {
 
 class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
   final _firstController = TextEditingController();
+  final FijkPlayer player = FijkPlayer();
 
   @override
   void dispose() {
     _disposeVideoController();
+    player.release();
     super.dispose();
   }
 
@@ -89,11 +93,9 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
-                            child: VideoItems(
-                              videoPlayerController:
-                                  VideoPlayerController.network(
-                                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                              ),
+                            child: const VideoScreen(
+                              url:
+                                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                             ),
                           ),
                           Padding(
@@ -110,7 +112,9 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                     .request()
                                     .isGranted) {
                                   speech.speak(parseHtmlString(
-                                      state.ssi4QuestionModel[0].description));
+                                      "بعض الاسئلة تبداء بترقيم مبدائي فالاجابات المتاحة هي " +
+                                          state.ssi4QuestionModel[0]
+                                              .description));
                                 } else {
                                   Alert.error(
                                       "يجب الحصول علي تصريح الوصول الي الميكروفون");
@@ -163,13 +167,9 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                       onAdd: (x) {
                                         setState(() {
                                           _file = x;
-
                                         });
-
                                       },
-
-                                ));
-
+                                    ));
                               } else {
                                 Alert.error(
                                     "يجب الحصول علي تصريح الوصول الي الكاميرا");
@@ -293,8 +293,9 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
       setState(() {});
     }
   }
-  Future<dynamic>getFileSize(dynamic filepath, int decimals) async {
-    var file = File(filepath) ;
+
+  Future<dynamic> getFileSize(dynamic filepath, int decimals) async {
+    var file = File(filepath);
     int bytes = await file.length();
     if (bytes <= 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];

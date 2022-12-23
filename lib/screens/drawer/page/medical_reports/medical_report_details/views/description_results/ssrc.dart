@@ -9,13 +9,13 @@ class SSRCCase extends StatelessWidget {
   final String name;
   final String her;
 
-
-  const SSRCCase({Key? key,
+  const SSRCCase({
+    Key? key,
     required this.title1,
     required this.title2,
-    required this.name, required this.her,
-  })
-      : super(key: key);
+    required this.name,
+    required this.her,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,11 @@ class SSRCCase extends StatelessWidget {
             ),
           ),
           customText7(
-              title: "$name was evaluated in relation to $her overall speech satisfaction. This is achieved through the implementation of a self-rating scale, utilising 11 points, with 10 = the best judgement and 0 = the worst judgment. Accordingly, the score was made with consideration of various elements of stuttering, such as negative emotional and cognitive reactions, reactions of listeners, and stuttering severity.",
+              title:
+                  "$name was evaluated in relation to $her overall speech satisfaction. This is achieved through the implementation of a self-rating scale, utilising 11 points, with 10 = the best judgement and 0 = the worst judgment. Accordingly, the score was made with consideration of various elements of stuttering, such as negative emotional and cognitive reactions, reactions of listeners, and stuttering severity.",
               color: kBlackText)
         ],
       ),
     );
   }
 }
-

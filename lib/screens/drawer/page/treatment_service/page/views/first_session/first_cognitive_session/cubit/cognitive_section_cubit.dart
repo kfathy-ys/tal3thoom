@@ -17,7 +17,6 @@ part 'cognitive_section_state.dart';
 
 class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
   CognitiveSectionCubit() : super(CognitiveSectionInitial()) {
-
     getCognitiveSection();
   }
 
@@ -40,6 +39,7 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
     }
     return false;
   }
+
   Future<void> getCognitiveSection() async {
     emit(CognitiveSectionLoading());
     try {
@@ -54,10 +54,14 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
       emit(CognitiveSectionError(msg: e.toString()));
     }
   }
+
   Future<void> sendCognitiveSectionAnswers() async {
     emit(CognitiveSectionLoading());
     try {
-      final res = await CognitiveSectionAnswersService.postCognitiveSectionAnswers(answers: answer,);
+      final res =
+          await CognitiveSectionAnswersService.postCognitiveSectionAnswers(
+        answers: answer,
+      );
       answer.clear();
       emit(CognitiveSectionSuccess(questionModel: questionList));
       if (res!.type == 2) {
@@ -71,7 +75,7 @@ class CognitiveSectionCubit extends Cubit<CognitiveSectionState> {
         return Alert.success("ssssssssss");
       }
     } on DioError catch (_) {
-      emit(CognitiveSectionError(msg:  "لا يوجد اتصال بالانترنت "));
+      emit(CognitiveSectionError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());

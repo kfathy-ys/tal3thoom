@@ -11,9 +11,10 @@ import '../../../../../../../../diagnostic_service/page/views/resevation_diagnos
 
 part 'all_specialist__first_sessions_state.dart';
 
-class AllSpecialistFirstSessionsCubit extends Cubit<AllSpecialistFirstSessionsState> {
-  AllSpecialistFirstSessionsCubit() : super(AllSpecialistFirstSessionsInitial());
-
+class AllSpecialistFirstSessionsCubit
+    extends Cubit<AllSpecialistFirstSessionsState> {
+  AllSpecialistFirstSessionsCubit()
+      : super(AllSpecialistFirstSessionsInitial());
 
   Future<void> getSpecialists(
       {required String startTime, required String date}) async {
@@ -31,7 +32,6 @@ class AllSpecialistFirstSessionsCubit extends Cubit<AllSpecialistFirstSessionsSt
       emit(FirstSessionsSpecialistsSuccess(
         allSpecialistModel: AllSpecialistModel.fromMap(res.data),
       ));
-
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -39,12 +39,8 @@ class AllSpecialistFirstSessionsCubit extends Cubit<AllSpecialistFirstSessionsSt
     }
   }
 
-
-
-
-
-
-  Future<void> firstSessionsCreateReservation({required int specialistId}) async {
+  Future<void> firstSessionsCreateReservation(
+      {required int specialistId}) async {
     try {
       final userId = Prefs.getString("userId");
 
@@ -55,30 +51,26 @@ class AllSpecialistFirstSessionsCubit extends Cubit<AllSpecialistFirstSessionsSt
         throw res.data['message'];
       }
 
-
       emit(FirstSessionsSpecialistsSuccess(
           allSpecialistModel: AllSpecialistModel.fromMap(res.data)));
 
       if (res.data['status'] == 1) {
         Alert.success('تم الحجز مع المتخصص بنجاح',
             desc:
-            "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
+                "زر الحجز مع الأخصائي المختص لن يتم تفعلية مع نفس الأخصائي الا بعد مرور 7 أيام من الموعد");
         // Get.offAll(() => const ReservationsSchedule());
       }
       if (res.data['status'] == 2) {
         Alert.error('تم الحجز مع المتخصص من قبل بنجاح',
             desc: "عذراً..لايمكنك الحجز يجيب انهاء الاختبارا");
       }
-
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
-      Alert.error(e.toString(),
+      Alert.error(
+        e.toString(),
       );
       emit(FirstSessionsSpecialistsError(msg: e.toString()));
     }
   }
-
-
-
 }

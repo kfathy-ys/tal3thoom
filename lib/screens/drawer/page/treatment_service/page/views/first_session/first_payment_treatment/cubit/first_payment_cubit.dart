@@ -33,13 +33,11 @@ class FirstPaymentCubit extends Cubit<FirstPaymentState> {
       emit(FirstPaymentSuccess(
           firstPaymentModel: PaymentAllTreatmentModel.fromJson(res.data)));
     } on DioError catch (_) {
-      emit(FirstPaymentError(msg:   "لا يوجد اتصال بالانترنت "));
-    }catch (e, es) {
+      emit(FirstPaymentError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, es) {
       log(e.toString());
       log(es.toString());
       emit(FirstPaymentError(msg: e.toString()));
     }
   }
-
-
 }

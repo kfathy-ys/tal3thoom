@@ -4,13 +4,17 @@ part of 'secand_available_dates_cubit.dart';
 abstract class SecondAvailableDatesState {}
 
 class SecondAvailableDatesInitial extends SecondAvailableDatesState {}
+
 class SecondAvailableDatesLoading extends SecondAvailableDatesState {}
+
 class SecondAvailableDatesSuccess extends SecondAvailableDatesState {
   final DiagnosticReservationAvailableDateModel availableDatesModel;
   final List<DateTime> dates;
 
-  SecondAvailableDatesSuccess({required this.availableDatesModel,required this.dates});
+  SecondAvailableDatesSuccess(
+      {required this.availableDatesModel, required this.dates});
 }
+
 class SecondAvailableDatesError extends SecondAvailableDatesState {
   final String msg;
 
@@ -18,8 +22,6 @@ class SecondAvailableDatesError extends SecondAvailableDatesState {
 }
 
 class AvailableDatesEmpty extends SecondAvailableDatesState {}
-
-
 
 class AvailablePeriodLoading extends SecondAvailableDatesState {}
 

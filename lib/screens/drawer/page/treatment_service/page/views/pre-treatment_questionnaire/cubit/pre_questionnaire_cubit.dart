@@ -72,16 +72,14 @@ class PreQuestionnaireCubit extends Cubit<PreQuestionnaireState> {
               title2: "إنتقال إلي الرحلة الأولي من العلاج ",
               onTap: () => Get.off(() => const FirstTreatmentSession()),
             ));
-
-
       } else if (res.type == 3) {
         Alert.success(res.body);
       } else {
         return Alert.success("ssssssssss");
       }
-    }on DioError catch (_) {
-      emit(PreQuestionnaireError(msg:   "لا يوجد اتصال بالانترنت "));
-    }  catch (e, st) {
+    } on DioError catch (_) {
+      emit(PreQuestionnaireError(msg: "لا يوجد اتصال بالانترنت "));
+    } catch (e, st) {
       log("[]][][][error from cubit is" + e.toString());
       log(st.toString());
 

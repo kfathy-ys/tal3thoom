@@ -63,10 +63,9 @@ class FirstPaymentTreatment extends StatelessWidget {
                   child: RefreshIndicator(
                     onRefresh: () async {
                       cubit.getFirstPayment();
-                      BlocProvider.of<DataAccessPermissionCubit>(
-                          context).getAccessPermission();
-                      return Future<void>.delayed(
-                          const Duration(seconds: 3));
+                      BlocProvider.of<DataAccessPermissionCubit>(context)
+                          .getAccessPermission();
+                      return Future<void>.delayed(const Duration(seconds: 3));
                     },
                     backgroundColor: kPrimaryColor,
                     color: Colors.white,
@@ -88,7 +87,7 @@ class FirstPaymentTreatment extends StatelessWidget {
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
+                                        "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
                                   ));
                               print("object1");
                             },
@@ -105,7 +104,7 @@ class FirstPaymentTreatment extends StatelessWidget {
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
+                                        "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
                                   ));
 
                               print("object2");
@@ -123,7 +122,7 @@ class FirstPaymentTreatment extends StatelessWidget {
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://dev-sas.cpt-it.com/Sas/PaymentTreatment/$userId",
+                                        "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
                                   ));
                               print("object3");
                             },
@@ -149,7 +148,8 @@ class FirstPaymentTreatment extends StatelessWidget {
                                                 .stagesTreatment!
                                                 .paymentTreatmentOne ==
                                             false) {
-                                          Alert.error("الرجاء إتمام عملية الدفع",
+                                          Alert.error(
+                                              "الرجاء إتمام عملية الدفع",
                                               desc:
                                                   "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
                                         }
@@ -196,8 +196,8 @@ class FirstPaymentTreatment extends StatelessWidget {
                                                     .stagesTreatmentFirst!
                                                     .oases ==
                                                 false) {
-                                          Get.offAll(
-                                              () => const FirstStageOasesTest());
+                                          Get.offAll(() =>
+                                              const FirstStageOasesTest());
                                         }
                                         if (state
                                                     .accessPermissionModel
@@ -205,22 +205,35 @@ class FirstPaymentTreatment extends StatelessWidget {
                                                     .stagesTreatmentFirst!
                                                     .oases ==
                                                 true &&
-                                            state.accessPermissionModel.data!
-                                                    .stagesTreatmentFirst!.ssrs ==
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .ssrs ==
                                                 false) {
                                           Get.offAll(() =>
                                               const FirstStageSSRSTreatmentScreen());
                                         }
-                                        if (state.accessPermissionModel.data!
-                                                    .stagesTreatmentFirst!.ssrs ==
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .ssrs ==
                                                 true &&
-                                            state.accessPermissionModel.data!
-                                                    .stagesTreatmentFirst!.ssi4 ==
+                                            state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .ssi4 ==
                                                 false) {
-                                          Get.offAll(() => const TreatmentSSI4());
+                                          Get.offAll(
+                                              () => const TreatmentSSI4());
                                         }
-                                        if (state.accessPermissionModel.data!
-                                                    .stagesTreatmentFirst!.ssi4 ==
+                                        if (state
+                                                    .accessPermissionModel
+                                                    .data!
+                                                    .stagesTreatmentFirst!
+                                                    .ssi4 ==
                                                 true &&
                                             state
                                                     .accessPermissionModel
@@ -283,8 +296,8 @@ class FirstPaymentTreatment extends StatelessWidget {
                                                     .stagesTreatmentSecond!
                                                     .oases ==
                                                 false) {
-                                          Get.offAll(
-                                              () => const SecondStageOasesTest());
+                                          Get.offAll(() =>
+                                              const SecondStageOasesTest());
                                         }
                                         if (state
                                                     .accessPermissionModel
@@ -313,8 +326,8 @@ class FirstPaymentTreatment extends StatelessWidget {
                                                     .stagesTreatmentSecond!
                                                     .ssi4 ==
                                                 false) {
-                                          Get.offAll(
-                                              () => const SecondTreatmentSSI4());
+                                          Get.offAll(() =>
+                                              const SecondTreatmentSSI4());
                                         }
                                         if (state
                                                     .accessPermissionModel

@@ -9,7 +9,7 @@ class MedicalReportListModel {
     if (json['data'] != null) {
       data = <AllReportsList>[];
       json['data'].forEach((v) {
-        data!.add(new AllReportsList.fromJson(v));
+        data!.add(AllReportsList.fromJson(v));
       });
     }
     status = json['status'];
@@ -17,7 +17,7 @@ class MedicalReportListModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -47,27 +47,23 @@ class AllReportsList {
 
   Patient? patient;
 
-
-  AllReportsList(
-      {this.id,
-        this.reportName,
-        this.patientId,
-        this.specialistId,
-        this.specialistName,
-        this.supervisorId,
-        this.supervisorName,
-
-        this.generatedBy,
-        this.generatedAt,
-
-        this.approvedBy,
-        this.approvedAt,
-        this.isPending,
-        this.isRegenerated,
-        this.isApproved,
-
-        this.patient,
-     });
+  AllReportsList({
+    this.id,
+    this.reportName,
+    this.patientId,
+    this.specialistId,
+    this.specialistName,
+    this.supervisorId,
+    this.supervisorName,
+    this.generatedBy,
+    this.generatedAt,
+    this.approvedBy,
+    this.approvedAt,
+    this.isPending,
+    this.isRegenerated,
+    this.isApproved,
+    this.patient,
+  });
 
   AllReportsList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -88,12 +84,11 @@ class AllReportsList {
     isApproved = json['isApproved'];
 
     patient =
-    json['patient'] != null ? new Patient.fromJson(json['patient']) : null;
-
+        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['reportName'] = reportName;
     data['patientId'] = patientId;
@@ -150,32 +145,32 @@ class Patient {
 
   Patient(
       {this.id,
-        this.firstName,
-        this.middleName,
-        this.lastName,
-        this.fullName,
-        this.email,
-        this.phoneNumber,
-        this.countryPhoneCode,
-        this.idCardNumber,
-        this.country,
-        this.city,
-        this.neighborhood,
-        this.workPlace,
-        this.nationality,
-        this.gender,
-        this.birthDate,
-        this.userId,
-        this.isActive,
-        this.randomNumber,
-        this.type,
-        this.currentStage,
-        this.currentDiagnoses,
-        this.nextSession,
-        this.allowBooking,
-        this.needSsi4Evaluation,
-        this.currentDiagnosesStatus,
-        this.diagnosesStatusUpdatedAt});
+      this.firstName,
+      this.middleName,
+      this.lastName,
+      this.fullName,
+      this.email,
+      this.phoneNumber,
+      this.countryPhoneCode,
+      this.idCardNumber,
+      this.country,
+      this.city,
+      this.neighborhood,
+      this.workPlace,
+      this.nationality,
+      this.gender,
+      this.birthDate,
+      this.userId,
+      this.isActive,
+      this.randomNumber,
+      this.type,
+      this.currentStage,
+      this.currentDiagnoses,
+      this.nextSession,
+      this.allowBooking,
+      this.needSsi4Evaluation,
+      this.currentDiagnosesStatus,
+      this.diagnosesStatusUpdatedAt});
 
   Patient.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -208,7 +203,7 @@ class Patient {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['firstName'] = firstName;
     data['middleName'] = middleName;

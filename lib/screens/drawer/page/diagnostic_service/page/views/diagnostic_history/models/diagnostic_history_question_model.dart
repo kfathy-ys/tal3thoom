@@ -65,12 +65,12 @@ class Question extends Equatable {
         bankId: json["question"]["bankId"],
         language: json["question"]["language"],
         time: json["question"]["time"],
-        evalType: json["question"]["evalType"] ??"",
+        evalType: json["question"]["evalType"] ?? "",
         courseCode: json["question"]["courseCode"],
         examMode: json["question"]["examMode"],
         difficultyLevel: json["question"]["difficultyLevel"],
         questionType: json["question"]["questionType"],
-        description: json["question"]["description"]??"",
+        description: json["question"]["description"] ?? "",
         hint: json["question"]["hint"],
         videoFile: json["question"]["videoFile"],
         audioFile: json["question"]["audioFile"],
@@ -79,7 +79,9 @@ class Question extends Equatable {
         published: json["question"]["published"],
         deleted: json["question"]["deleted"],
         examId: json["question"]["examId"],
-        categoryId: json["question"]["categoryId"]== null ? 0 :(json["question"]["categoryId"]),
+        categoryId: json["question"]["categoryId"] == null
+            ? 0
+            : (json["question"]["categoryId"]),
         sectionId: json["question"]["sectionId"] ?? 0,
         exam: json["question"]["exam"],
         category: json["question"]["category"] == null
@@ -205,20 +207,18 @@ class SectionModel extends Equatable {
       sectionName: (map['sectionName'] ?? '') as String,
       sectionNameEn: (map['sectionNameEn'] ?? '') as String,
       examId: (map['examId'].toInt() ?? 0) as int,
-      lightStart: (map['lightStart'] ?? 0) ,
+      lightStart: (map['lightStart'] ?? 0),
       lightEnd: (map['lightEnd'] ?? 0.0) as double,
-      lightToMediumStart:
-          (map['lightToMediumStart'] ?? 0.0) as double,
+      lightToMediumStart: (map['lightToMediumStart'] ?? 0.0) as double,
       lightToMediumEnd: (map['lightToMediumEnd'] ?? 0.0) as double,
       mediumStart: (map['mediumStart'] ?? 0.0) as double,
       mediumEnd: (map['mediumEnd'] ?? 0.0) as double,
-       mediumToExtremeStart: (map['mediumToExtremeStart'] ?? 0) ,
-      mediumToExtremeEnd:
-          (map['mediumToExtremeEnd'] ?? 0.0) ,
-      extremeStart: (map['extremeStart'] ?? 0.0) ,
-      extremeEnd: (map['extremeEnd'] ?? 0.0) ,
-      exam: map['exam']??"",
-      questions: map['questions']??"",
+      mediumToExtremeStart: (map['mediumToExtremeStart'] ?? 0),
+      mediumToExtremeEnd: (map['mediumToExtremeEnd'] ?? 0.0),
+      extremeStart: (map['extremeStart'] ?? 0.0),
+      extremeEnd: (map['extremeEnd'] ?? 0.0),
+      exam: map['exam'] ?? "",
+      questions: map['questions'] ?? "",
     );
   }
 
@@ -235,7 +235,7 @@ class SectionModel extends Equatable {
       lightToMediumEnd,
       mediumStart,
       mediumEnd,
-   mediumToExtremeStart,
+      mediumToExtremeStart,
       mediumToExtremeEnd,
       extremeStart,
       extremeEnd,
@@ -260,12 +260,15 @@ class CategoryModel extends Equatable {
     return CategoryModel(
       id: (map['id'].toInt() ?? 0) as int,
       category: (map['category'] ?? '') as String,
-      questions:null,
+      questions: null,
     );
   }
 
   @override
-  List<Object> get props => [id, category, ];
+  List<Object> get props => [
+        id,
+        category,
+      ];
 }
 
 class Message extends Equatable {
@@ -285,7 +288,7 @@ class Message extends Equatable {
     return Message(
       code: map['code'] as String,
       body: map['body'] as String,
-      title:  (map['title'] ?? '') as String,
+      title: (map['title'] ?? '') as String,
       type: map['type'].toInt() as int,
     );
   }

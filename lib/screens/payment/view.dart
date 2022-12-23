@@ -41,8 +41,7 @@ class Payment extends StatelessWidget {
                     context,
                     const WebView(
                       javascriptMode: JavascriptMode.unrestricted,
-                      initialUrl:
-                          "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      initialUrl: "http://mcsc-saudi.com/Sas/PaymentTreatment",
                     ));
               }, description: KeysConfig.diagnosis),
               paymentCard(context.width, context.height,
@@ -51,8 +50,7 @@ class Payment extends StatelessWidget {
                     context,
                     const WebView(
                       javascriptMode: JavascriptMode.unrestricted,
-                      initialUrl:
-                          "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      initialUrl: "http://mcsc-saudi.com/Sas/PaymentTreatment",
                     ));
               }, description: KeysConfig.twoSession),
               paymentCard(context.width, context.height,
@@ -61,8 +59,7 @@ class Payment extends StatelessWidget {
                     context,
                     const WebView(
                       javascriptMode: JavascriptMode.unrestricted,
-                      initialUrl:
-                          "http://dev-sas.cpt-it.com/Sas/PaymentTreatment",
+                      initialUrl: "http://mcsc-saudi.com/Sas/PaymentTreatment",
                     ));
               }, description: KeysConfig.DiagnosisTreatment),
               SmallButton(

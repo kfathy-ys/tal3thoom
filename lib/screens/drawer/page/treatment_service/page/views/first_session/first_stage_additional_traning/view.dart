@@ -1,14 +1,13 @@
-
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../../../../home/cubit/home_tabebar_cubit.dart';
 import '../../../../../../../home/view.dart';
+import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
-import '../../../../../../../widgets/video_items.dart';
 
 // ignore: must_be_immutable
 class FirstStageAdditionalTrainingScreen extends StatefulWidget {
@@ -22,6 +21,13 @@ class FirstStageAdditionalTrainingScreen extends StatefulWidget {
 class _FirstStageAdditionalTrainingScreenState
     extends State<FirstStageAdditionalTrainingScreen> {
   final _firstController = TextEditingController();
+  final FijkPlayer player = FijkPlayer();
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.release();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,6 @@ class _FirstStageAdditionalTrainingScreenState
     //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
-
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: context.height,
@@ -47,10 +52,25 @@ class _FirstStageAdditionalTrainingScreenState
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   width: context.width * 0.8,
                   height: context.height * 0.25,
-                  child: VideoItems(
-                    videoPlayerController: VideoPlayerController.network(
-                      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                    ),
+                  child:
+                      // BetterVideoItems(video:      BetterPlayer.network(
+                      //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                      //
+                      //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                      //     aspectRatio: 16 / 9,
+                      //   ),
+                      // ),
+                      //
+                      //
+                      //
+                      //
+                      // ),
+                      //
+                      //
+
+                      const VideoScreen(
+                    url:
+                        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                   ),
                 ),
                 customText3(
@@ -63,20 +83,18 @@ class _FirstStageAdditionalTrainingScreenState
                 SizedBox(
                   height: context.height * 0.3,
                   child: Image.asset("assets/images/t1.jpeg"),
-                ), SizedBox(
+                ),
+                SizedBox(
                   height: context.height * 0.25,
                   child: Image.asset("assets/images/t2.jpeg"),
                 ),
-
                 SizedBox(
                   height: context.height * 0.05,
                 ),
                 MediaButton(
                   onPressed: () {
                     BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(1);
-                    Get.offAll(()=> const HomeTabScreen());
-
-
+                    Get.offAll(() => const HomeTabScreen());
                   },
                   color: kPrimaryColor,
                   title: "خروج",
@@ -86,6 +104,4 @@ class _FirstStageAdditionalTrainingScreenState
       ),
     );
   }
-
-
 }

@@ -25,7 +25,7 @@ class AvailablePeriodsModel extends Equatable {
     return AvailablePeriodsModel(
       data: List<AvailablePeriods>.from(
         (map['data'] as List<int>).map<AvailablePeriods>(
-              (x) => AvailablePeriods.fromMap(x as Map<String, dynamic>),
+          (x) => AvailablePeriods.fromMap(x as Map<String, dynamic>),
         ),
       ),
       messages: List<dynamic>.from(
@@ -63,7 +63,6 @@ class AvailablePeriods extends Equatable {
     required this.day,
   });
 
-
   factory AvailablePeriods.fromMap(Map<String, dynamic> map) {
     return AvailablePeriods(
       id: (map['id'].toInt() ?? 0) as int,
@@ -73,7 +72,7 @@ class AvailablePeriods extends Equatable {
       isActive: (map['isActive'] ?? false) as bool,
       status: (map['status'] ?? '') as String,
       startTime: (map['startTime'] ?? '') as String,
-      endTime: (map['endTime'] ??''),
+      endTime: (map['endTime'] ?? ''),
       availableDate: (map['availableDate'] ?? '') as String,
       day: (map['day'] ?? ''),
     );
@@ -95,5 +94,3 @@ class AvailablePeriods extends Equatable {
     ];
   }
 }
-
-

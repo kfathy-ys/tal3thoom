@@ -19,30 +19,24 @@ class NewPasswordCubit extends Cubit<NewPasswordState> {
     required String code,
     required String password,
   }) async {
-    emit( NewPasswordLoading());
+    emit(NewPasswordLoading());
     try {
       final res = await NetWork.post(
         'Patients/AddForgetPasswordByCode',
-        body: {
-          "email": email,
-          "password":password,
-          "code": code
-        },
+        body: {"email": email, "password": password, "code": code},
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
 
-      emit( NewPasswordSuccess(
+      emit(NewPasswordSuccess(
           forgetPasswordModel: ForgetPasswordModel.fromJson((res.data))));
     } catch (e, st) {
       Alert.error("يجب الحصول علي تصريح الوصول الي الخزينة");
 
       log(e.toString());
       log(st.toString());
-      emit( NewPasswordError(
-          msg: e.toString()));
+      emit(NewPasswordError(msg: e.toString()));
     }
   }
-
 }

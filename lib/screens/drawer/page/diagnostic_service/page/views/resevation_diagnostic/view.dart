@@ -138,8 +138,6 @@ class ReservationDiagnostic extends StatelessWidget {
                                 date: selectedDate!));
                       },
                     )
-
-
                   ]);
             },
           ),

@@ -136,8 +136,9 @@ class CognitiveResult extends Equatable {
   CognitiveResult.fromJson(Map<String, dynamic> json) {
     question =
         json['question'] != null ? Question.fromJson(json['question']) : null;
-    patientAnswers = json["patientAnswers"] == null ? null : List<String>.from(json["patientAnswers"]);
-
+    patientAnswers = json["patientAnswers"] == null
+        ? null
+        : List<String>.from(json["patientAnswers"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -510,7 +511,8 @@ class CurrentEvalution extends Equatable {
   @override
   List<Object?> get props => [name, patientRank, specialistRank];
 }
-class Messages extends Equatable{
+
+class Messages extends Equatable {
   dynamic code;
   dynamic body;
   String? title;
@@ -535,5 +537,5 @@ class Messages extends Equatable{
   }
 
   @override
-  List<Object?> get props => [code, body, title,type];
+  List<Object?> get props => [code, body, title, type];
 }

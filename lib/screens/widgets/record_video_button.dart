@@ -25,7 +25,6 @@ class SmallButtonSizerRecordVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -39,22 +38,25 @@ class SmallButtonSizerRecordVideo extends StatelessWidget {
         child: Center(
           child: isLoading != true
               ? Row(
-           // crossAxisAlignment: CrossAxisAlignment.,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-             Icon(Icons.camera_alt_outlined,color: kHomeColor),
-              // SizedBox(width: width*0.02,),
-              Text("هل ترغب في تسجيل فيديو جديد",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 14, color: kHomeColor, fontFamily: "DinReguler"),
-              ),
-            ],
-          )
+                  // crossAxisAlignment: CrossAxisAlignment.,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    Icon(Icons.camera_alt_outlined, color: kHomeColor),
+                    // SizedBox(width: width*0.02,),
+                    Text(
+                      "هل ترغب في تسجيل فيديو جديد",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: kHomeColor,
+                          fontFamily: "DinReguler"),
+                    ),
+                  ],
+                )
               : SpinKitChasingDots(
-            size: 20,
-            color: loadingColor ?? Colors.white,
-          ),
+                  size: 20,
+                  color: loadingColor ?? Colors.white,
+                ),
         ),
       ),
     );

@@ -17,44 +17,32 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
   final userId = Prefs.getString("userId");
   final passwordController = TextEditingController();
 
-
-
-  Future<Messages?> deleteAccount({
-    required String password
-  }) async {
+  Future<Messages?> deleteAccount({required String password}) async {
     emit(DeleteAccountLoading());
     try {
       final res = await NetWork.post(
         'Patients/deleteAcc',
-        body: {
-          "userId": userId,
-          "password": password
-
-        },
+        body: {"userId": userId, "password": password},
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
-       // throw res.data['messages']['body'];
+        // throw res.data['messages']['body'];
         final _msg = Messages.fromJson(res.data['messages'][0]);
-      //  throw _msg;
-        print("errrrrrrrrrrro"+_msg.toString());
-
-
+        //  throw _msg;
+        print("errrrrrrrrrrro" + _msg.toString());
       }
 
       emit(DeleteAccountSuccess(allMessages: AllMessages.fromJson(res.data)));
       Alert.success("تم حذف الحساب بنجاح");
 
-
-    Future.delayed(const Duration(seconds: 4));
+      Future.delayed(const Duration(seconds: 4));
 
       Prefs.clear();
       exit(0);
-
-
     } catch (e, st) {
-     // Alert.success(res.data['messages']['title'].toString());
-      Alert.error("عفوا ! كلمة المرور غير صحيحة", desc:  "الرجاء التاكد من البيانات المطلوبة حرصا منا علي سلامة بيانتكم والحفاظ عليها ");
-
+      // Alert.success(res.data['messages']['title'].toString());
+      Alert.error("عفوا ! كلمة المرور غير صحيحة",
+          desc:
+              "الرجاء التاكد من البيانات المطلوبة حرصا منا علي سلامة بيانتكم والحفاظ عليها ");
 
       log(e.toString());
       log(st.toString());

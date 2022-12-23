@@ -17,15 +17,17 @@ class SuccessView extends StatelessWidget {
   final String? title3;
   final VoidCallback? onTap;
   final VoidCallback? onTap2;
-   bool? goNext ;
+  bool? goNext;
 
-    SuccessView({
-    Key? key,
-    required this.title1,
-    required this.title2,
-    this.onTap,
-    this.goNext=false, this.title3, this.onTap2
-  }) : super(key: key);
+  SuccessView(
+      {Key? key,
+      required this.title1,
+      required this.title2,
+      this.onTap,
+      this.goNext = false,
+      this.title3,
+      this.onTap2})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,20 +72,21 @@ class SuccessView extends StatelessWidget {
                   }
                 },
                 title: title2),
+            goNext == true
+                ? CustomButton(
+                    color: kPrimaryColor,
+                    onPressed: () {
+                      if (onTap2 != null) {
+                        onTap2!();
+                      }
 
-           goNext == true ?  CustomButton(
-                color: kPrimaryColor,
-                onPressed: () {
-                  if (onTap2 != null) {
-                    onTap2!();
-                  }
-
-                  // else {
-                  //   BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
-                  //   navigateTo(context, const HomeTabScreen());
-                  // }
-                },
-                title: title3):const SizedBox.shrink(),
+                      // else {
+                      //   BlocProvider.of<HomeTabeBarCubit>(context).changeIndex(2);
+                      //   navigateTo(context, const HomeTabScreen());
+                      // }
+                    },
+                    title: title3)
+                : const SizedBox.shrink(),
           ]),
         ),
       ),
