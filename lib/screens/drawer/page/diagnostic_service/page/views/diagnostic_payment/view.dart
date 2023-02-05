@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../../../../../../config/keys.dart';
 import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
@@ -73,10 +72,23 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                       children: [
                         CustomTileContainer(
                             widthh: context.width / 2.5,
-                            title: KeysConfig.payment,
+                            title: "المتابعة",
                             context: context),
                         const AlertMessageToWait(),
-                        PaymentCard(
+                        PaymentCard2(
+                            price: "الإنتقال الي المتصفح لمتابعة العملية",
+                            onTapPay: () {
+                              navigateTo(
+                                  context,
+                                  WebView(
+                                    javascriptMode: JavascriptMode.unrestricted,
+                                    initialUrl:
+                                    "http://mcsc-saudi.com/Sas/PaymentDiagnosis/$userId",
+                                  ));
+                              print("object1");
+                            },
+                            description: "متابعة"),
+                      /*  PaymentCard(
                             price: state.firstPaymentModel.data!
                                     .diagnosisSubscriptions![0].price!
                                     .toString() +
@@ -127,7 +139,9 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                               print("object3");
                             },
                             description: state.firstPaymentModel.data!
-                                .diagnosisSubscriptions![2].title!),
+                                .diagnosisSubscriptions![2].title!),*/
+
+                        SizedBox(height: context.height*0.05,),
                         const AlertMessageToPay(),
                         state is! DiagnosticPaymentLoading
                             ? BlocConsumer<DataAccessPermissionCubit,
@@ -186,10 +200,10 @@ class _DiagnosticPaymentScreenState extends State<DiagnosticPaymentScreen> {
                                                   .stagesDiagnosis!.payment ==
                                               false) {
                                             Alert.error(
-                                                "الرجاء إتمام عملية الدفع",
+                                                "الرجاء إتمام العملية من الموقع",
                                                 desc:
-                                                    "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
-                                          }
+                                                "عزيزي العميل الرجاء الضغط علي زر (إلي المتصفح) المدون واتباع الخطوات اللازمة للاتمام العملية");
+                                                                                         }
 
                                           if (state
                                                       .accessPermissionModel

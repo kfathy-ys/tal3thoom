@@ -70,7 +70,7 @@ class DiagnosticHistoryQuestionCubit
         Get.off(() => SuccessView(
               title1: "لقد تم إنتهاء إختبار التاريخ المرضي بنجاح",
               title2: "إنتقال إلي إختبار Oases",
-              onTap: () => Get.off(() => const DiagnosticOasesTest()),
+              onTap: () => Get.offAll(() => const DiagnosticOasesTest()),
             ));
       } else if (res.type == 3) {
         Alert.success(res.body);
@@ -87,9 +87,11 @@ class DiagnosticHistoryQuestionCubit
           desc:
               "الرجاء المحاولة مرة أخري وتاكيد اجابات الممكنة المطلوبة وفقا لمعاير التشخيص");
       log("[]][][][error from cubit is" + e.toString());
+
       log(st.toString());
 
-      emit(DiagnosticHistoryQuestionError(msg: e.toString()));
+
+      emit(DiagnosticHistoryQuestionError(msg: e.toString(), ));
     }
   }
 }

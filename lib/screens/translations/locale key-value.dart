@@ -391,7 +391,7 @@ class LocaleString extends Translations {
           "enterId": "الرجاء إدخال رقم الهوية الخاص بك!",
           "enterPassword": "من فضلك أدخل رقمك السري!",
           "id": "رقمك الخاص",
-          "minPassword": " الحد الأدني لكلمه المرور 11 أنماط ",
+          "minPassword": " الحد الأدني لكلمه المرور 6 أنماط ",
           // notifications
           "notification": "الإشعارات",
           "periods": " من الفترات  أدخل المدة المطلوبة من : إلي",

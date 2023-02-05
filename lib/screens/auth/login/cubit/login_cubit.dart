@@ -23,6 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
   }) async {
     emit(LoginLoading());
     try {
+
       final res = await NetWork.post(
         'Auth/login',
         body: {
@@ -30,6 +31,8 @@ class LoginCubit extends Cubit<LoginState> {
           "password": password,
         },
       );
+      print(res.statusCode.toString() + "khallllllllled");
+      print(res.data.toString() + "khallllllllled");
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         print(res.data['messages'][0]['title']);
         throw res.data['messages'][0]['title'].toString();
@@ -51,14 +54,15 @@ class LoginCubit extends Cubit<LoginState> {
       log("${res.data["data"]["userName"]}");
       log("${res.data["data"]["email"]}");
       log("${res.data["data"]["phoneNumber"]}");
+      print("foooooooooooooor");
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
     } on DioError catch (_) {
-      emit(LoginError("لا يوجد اتصال بالانترنت "));
+      emit(LoginError(msg: "لا يوجد اتصال بالانترنت "));
     } catch (e, st) {
       Alert.error(e.toString());
       log(e.toString());
       log(st.toString());
-      emit(LoginError(e.toString()));
+      emit(LoginError(msg: e.toString()));
     }
   }
 }

@@ -15,5 +15,7 @@ class LoginSuccess extends LoginState {
 
 class LoginError extends LoginState {
   final String msg;
-  LoginError(this.msg);
+ final Messages? messages;
+  //final LoginModel model;
+  LoginError({required this.msg ,this.messages});
 }

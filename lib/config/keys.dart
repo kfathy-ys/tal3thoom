@@ -61,7 +61,7 @@ class KeysConfig {
   static const enterId = "الرجاء إدخال رقم الهوية الخاص بك!";
   static const enterPassword = "من فضلك أدخل رقمك السري!";
   static const id = "رقمك الخاص";
-  static const minPassword = " الحد الأدني لكلمه المرور 11 أنماط ";
+  static const minPassword = " الحد الأدني لكلمه المرور 6 أنماط ";
   static const notification = "الإشعارات";
   static const periods = " من الفتراتstatic contsأدخل المدة المطلوبة من : إلي";
   static const addComment = "أضف تعليق";
@@ -196,7 +196,7 @@ class KeysConfig {
   static const refuseReason = "سبب الرفض";
   static const visitDate = "تاريخ الزيارة";
   static const saveUpdates = "حفظ التعديلات";
-  static const thisFieldRequired = "هذا الحقل مطلوب";
+  static const thisFieldRequired = "* هذا الحقل مطلوب";
   static const resent = "إعادة الإرسال";
   static const orderName = " إسم الطلب";
   static const requestLibrarian = "طلب إسال موظف المكتبة";

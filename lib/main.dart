@@ -57,15 +57,15 @@ import 'screens/translations/locale key-value.dart';
 import 'screens/widgets/constants.dart';
 import 'dart:async';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-void main() async {
+import 'package:firebase_core/firebase_core.dart';
+Future<void> main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     HttpOverrides.global = MyHttpOverrides();
     //await EasyLocalization.ensureInitialized();
 
     await App.boot();
-    //await Firebase.initializeApp();
+    await Firebase.initializeApp();
     await GetStorage.init();
 
     Bloc.observer = MyBlocObserver();

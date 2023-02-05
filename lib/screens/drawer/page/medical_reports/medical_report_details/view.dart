@@ -112,14 +112,21 @@ class MedicalReportsDetails extends StatelessWidget {
                             HeadSubHead(
                               head1: "تاريخ التسجيل ",
                               head2: "Date of enrolment",
-                              sunHead: pContent.enrolmentDate.toString(),
+                              sunHead: DateConverter.dateConverterMonth(state
+                                  .allReports.data!.enrolmentDate!
+                                  .toString()),
                             ),
                             //DateConverter.dateConverterMonth(pContent.enrolmentDate!.toString())??""),
-                            HeadSubHead(
-                                head1: "تاريخ الخروج ",
-                                head2: "Discharge date",
-                                sunHead: state.allReports.data!.dischargeDate
-                                    .toString()),
+                            // (state.allReports.data!.dischargeDate!
+                            //         .toString().isEmpty)
+                            //     ? const SizedBox.shrink()
+                            //     : HeadSubHead(
+                            //         head1: "تاريخ الخروج ",
+                            //         head2: "Discharge date",
+                            //         sunHead: DateConverter.dateConverterMonth(
+                            //             state.allReports.data!.dischargeDate!
+                            //                 .toString() ??""),
+                            //       ),
                             ConcernResult(
                               title1: " Area of",
                               title2: "Concern",

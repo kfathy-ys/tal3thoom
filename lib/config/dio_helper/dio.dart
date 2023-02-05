@@ -27,10 +27,10 @@ abstract class NetWork {
   static Response _validate(Response res) {
     // print("-=-=-=-=-=${  res.data['messages'][0]["body"]}");
 
-    if (res.data['status'] == 0 ||
-        res.data['status'] == -1 ||
-        res.statusCode != 200) {
-      throw res.data['messages'][0]["body"];
+    if ((res.data['status'] == 0 ||
+        res.data['status'] == -1 )&&
+        res.statusCode == 200) {
+      throw res.data['messages'][0]["title"] ??res.data['messages'][0]["body"] ;
     }
     return res;
   }

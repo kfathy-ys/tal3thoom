@@ -53,6 +53,11 @@ class _AdviserInductionState extends State<AdviserInduction> {
                   child: Image.asset("assets/images/advisorInduction.png"),
                 ),
               ),
+
+  
+              SizedBox(
+                height: context.height * 0.02,
+              ),
               SizedBox(
                 width: context.width * 0.8,
                 height: context.height * 0.25,

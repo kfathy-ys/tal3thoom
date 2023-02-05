@@ -20,6 +20,7 @@ class DiagnosticHistoryQuestionMessage extends DiagnosticHistoryQuestionState {
 
 class DiagnosticHistoryQuestionError extends DiagnosticHistoryQuestionState {
   final String msg;
+  Message? message;
 
-  DiagnosticHistoryQuestionError({required this.msg});
+  DiagnosticHistoryQuestionError({required this.msg,this.message});
 }

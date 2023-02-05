@@ -32,18 +32,23 @@ class DataAccessPermissionModel extends Equatable {
 }
 
 class DataAccessPermission extends Equatable {
+  bool? fakeP;
   StagesDiagnosis? stagesDiagnosis;
   StagesTreatment? stagesTreatment;
   StagesTreatmentFirst? stagesTreatmentFirst;
   StagesTreatmentFirst? stagesTreatmentSecond;
 
   DataAccessPermission(
-      {this.stagesDiagnosis,
+      {
+        this.fakeP,
+        this.stagesDiagnosis,
       this.stagesTreatment,
       this.stagesTreatmentFirst,
       this.stagesTreatmentSecond});
 
   DataAccessPermission.fromJson(Map<String, dynamic> json) {
+
+    fakeP = json["fakeP"];
     stagesDiagnosis = json['stagesDiagnosis'] != null
         ? StagesDiagnosis.fromJson(json['stagesDiagnosis'])
         : null;
@@ -60,6 +65,8 @@ class DataAccessPermission extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data["fakeP"] = fakeP;
+
     if (stagesDiagnosis != null) {
       data['stagesDiagnosis'] = stagesDiagnosis!.toJson();
     }
@@ -77,6 +84,7 @@ class DataAccessPermission extends Equatable {
 
   @override
   List<Object?> get props => [
+        fakeP,
         stagesDiagnosis,
         stagesTreatment,
         stagesTreatmentFirst,

@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:tal3thoom/screens/auth/register/model/models.dart';
 import 'package:meta/meta.dart';
-import 'package:tal3thoom/screens/widgets/alerts.dart';
 
 import '../../../../config/dio_helper/dio.dart';
 
@@ -26,6 +25,9 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String firstName,
     required String middleName,
     required String lastName,
+    required String firstNameEn,
+    required String middleNameEn,
+    required String lastNameEn,
     required String email,
     required String password,
     required String phoneNumber,
@@ -34,10 +36,11 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String nationality,
     required String country,
     required String city,
-    required String workPlace,
+   String? workPlace,
   }) async {
     emit(RegisterLoading());
     try {
+
       final res = await NetWork.post(
         'Patients/AddPatient',
         body: {
@@ -45,6 +48,9 @@ class RegisterCubit extends Cubit<RegisterState> {
           "firstName": firstName,
           "middleName": middleName,
           "lastName": lastName,
+          "firstNameEn": firstNameEn,
+          "middleNameEn": middleNameEn,
+          "lastNameEn": lastNameEn,
           "fullName": "",
           "email": email,
           "password": password,
@@ -61,11 +67,11 @@ class RegisterCubit extends Cubit<RegisterState> {
           "type": typeReadId
         },
       );
-      if (res.data['status'] == 0 || res.data['status'] == -1) {
-        //throw res.data['message'];
-        Alert.error("يجب إكمال الحقول المطلوبة");
-      }
 
+      if ((res.data['status'] == 0 || res.data['status'] == -1)  ) {
+        //throw res.data['message'];
+        res.data['messages'][0]['body'].toString() + "khallllllllled";
+      }
       emit(RegisterSuccess(RegisterModel.fromJson(res.data)));
     } on DioError catch (_) {
       emit(RegisterError(msg: "لا يوجد اتصال بالانترنت "));

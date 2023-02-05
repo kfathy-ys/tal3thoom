@@ -17,7 +17,7 @@ class AnswersService {
     }
 
     final userId = Prefs.getString("userId");
-
+    final Message? _m;
     final res = await NetWork.post(
       'CaseHistory/AddCaseHistory2',
       body: <Question>{
@@ -38,8 +38,18 @@ class AnswersService {
     );
     if (res.data['status'] == 1 || res.data['status'] == 200) {
       final _msg = Message.fromMap(res.data['messages'][0]);
+      print("$_msgكده المسيدج جت");
       return _msg;
     }
-    return null;
+
+    /*
+    *   // print(res.statusCode.toString() + "khallllllllled");
+    // print(res.data.toString() + "khallllllllled");
+    //  if (res.data['status'] == -1) {
+    //   print(res.data['messages'][0]['body']);
+    //   throw  res.data['messages'][0]['body'].toString();
+    * */
+    throw  res.data['messages'][0]['body'].toString();
+   // return Future.value(Message.fromMap(res.data['messages'][0]['body']+"ززززززززززفت"));
   }
 }

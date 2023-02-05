@@ -15,7 +15,6 @@ import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
-import '../diagnostic_induction/view.dart';
 import 'models/diagnostic_history_question_model.dart';
 
 // ignore: must_be_immutable
@@ -70,9 +69,11 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                       maxLines: 2,
                     ),
                     FormBuilder(
+
                       autoFocusOnValidationFailure: true,
                       autovalidateMode: AutovalidateMode.always,
                       child: FormBuilderRadioGroup<Answers>(
+
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
                               onTap: () async {
@@ -106,6 +107,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                                           : TextInputType.text))
                               : null,
                         ),
+
                         initialValue: cubit.answer[currentQuestion],
                         name: 'best_language',
                         onChanged: (value) {
@@ -233,7 +235,11 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionError) {
-                  return Center(
+                  BlocProvider.of<DiagnosticHistoryQuestionCubit>(context)
+                      .getDiagnosticHistoryQuestion();
+
+
+               /*  return   Center(
                       child: Column(
                     children: [
                       SizedBox(height: context.height * 0.3),
@@ -243,12 +249,18 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                               "الرجاءالرجوع إلي القائمة السابقه\n  والإجابة علي كافة الأسئلة",
                           color: kBlackText),
                       MediaButton(
-                        onPressed: () =>
-                            Get.off(() => const InductionDiagnostic()),
+                        onPressed: () {
+                          Alert.error(state.msg);
+
+
+                          Get.offAll(() => const HomeTabScreen());
+                          BlocProvider.of<DiagnosticHistoryQuestionCubit>(context)
+                              .getDiagnosticHistoryQuestion();
+                        },
                         title: 'إلي القائمة السابقه ',
                       )
                     ],
-                  ));
+                  ));*/
                 }
                 return const SizedBox();
               },

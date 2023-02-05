@@ -65,7 +65,7 @@ class _DropDownSixState extends State<DropDownSix> {
 
           isDense: true,
           hint: const Text(
-            "الجنس" ' :',
+            "الجنس" ' :'" *",
             style: TextStyle(
               color: kPrimaryColor,
               fontSize: 16,

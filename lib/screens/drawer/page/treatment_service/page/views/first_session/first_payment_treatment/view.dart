@@ -73,61 +73,75 @@ class FirstPaymentTreatment extends StatelessWidget {
                       children: [
                         CustomTileContainer(
                             widthh: context.width / 2.5,
-                            title: KeysConfig.payment,
+                            title: "العروض",
                             context: context),
                         const AlertMessageToWait(),
-                        PaymentCard(
-                            price: state.firstPaymentModel.data!
-                                    .treatmentSubscriptions![0].price!
-                                    .toString() +
-                                "ريال ",
+                        PaymentCard2(
+                            price: "الإنتقال الي المتصفح لمتابعة العملية",
                             onTapPay: () {
                               navigateTo(
                                   context,
                                   WebView(
                                     javascriptMode: JavascriptMode.unrestricted,
                                     initialUrl:
-                                        "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
+                                    "http://mcsc-saudi.com/Sas/PaymentDiagnosis/$userId",
                                   ));
                               print("object1");
                             },
-                            description: state.firstPaymentModel.data!
-                                .treatmentSubscriptions![0].title!),
-                        PaymentCard(
-                            price: state.firstPaymentModel.data!
-                                    .treatmentSubscriptions![1].price!
-                                    .toString() +
-                                "ريال ",
-                            onTapPay: () {
-                              navigateTo(
-                                  context,
-                                  WebView(
-                                    javascriptMode: JavascriptMode.unrestricted,
-                                    initialUrl:
-                                        "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
-                                  ));
-
-                              print("object2");
-                            },
-                            description: state.firstPaymentModel.data!
-                                .treatmentSubscriptions![1].title!),
-                        PaymentCard(
-                            price: state.firstPaymentModel.data!
-                                    .treatmentSubscriptions![2].price!
-                                    .toString() +
-                                " ريال",
-                            onTapPay: () {
-                              navigateTo(
-                                  context,
-                                  WebView(
-                                    javascriptMode: JavascriptMode.unrestricted,
-                                    initialUrl:
-                                        "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
-                                  ));
-                              print("object3");
-                            },
-                            description: state.firstPaymentModel.data!
-                                .treatmentSubscriptions![2].title!),
+                            description: "متابعة العروض"),
+                        SizedBox(height: context.height*0.15,),
+                        // PaymentCard(
+                        //     price: state.firstPaymentModel.data!
+                        //             .treatmentSubscriptions![0].price!
+                        //             .toString() +
+                        //         "ريال ",
+                        //     onTapPay: () {
+                        //       navigateTo(
+                        //           context,
+                        //           WebView(
+                        //             javascriptMode: JavascriptMode.unrestricted,
+                        //             initialUrl:
+                        //                 "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
+                        //           ));
+                        //       print("object1");
+                        //     },
+                        //     description: state.firstPaymentModel.data!
+                        //         .treatmentSubscriptions![0].title!),
+                        // PaymentCard(
+                        //     price: state.firstPaymentModel.data!
+                        //             .treatmentSubscriptions![1].price!
+                        //             .toString() +
+                        //         "ريال ",
+                        //     onTapPay: () {
+                        //       navigateTo(
+                        //           context,
+                        //           WebView(
+                        //             javascriptMode: JavascriptMode.unrestricted,
+                        //             initialUrl:
+                        //                 "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
+                        //           ));
+                        //
+                        //       print("object2");
+                        //     },
+                        //     description: state.firstPaymentModel.data!
+                        //         .treatmentSubscriptions![1].title!),
+                        // PaymentCard(
+                        //     price: state.firstPaymentModel.data!
+                        //             .treatmentSubscriptions![2].price!
+                        //             .toString() +
+                        //         " ريال",
+                        //     onTapPay: () {
+                        //       navigateTo(
+                        //           context,
+                        //           WebView(
+                        //             javascriptMode: JavascriptMode.unrestricted,
+                        //             initialUrl:
+                        //                 "http://mcsc-saudi.com/Sas/PaymentTreatment/$userId",
+                        //           ));
+                        //       print("object3");
+                        //     },
+                        //     description: state.firstPaymentModel.data!
+                        //         .treatmentSubscriptions![2].title!),
                         const AlertMessageToPay(),
                         state is! FirstPaymentLoading
                             ? BlocConsumer<DataAccessPermissionCubit,
@@ -149,9 +163,9 @@ class FirstPaymentTreatment extends StatelessWidget {
                                                 .paymentTreatmentOne ==
                                             false) {
                                           Alert.error(
-                                              "الرجاء إتمام عملية الدفع",
+                                              "الرجاء إتمام العملية من الموقع",
                                               desc:
-                                                  "عزيزي العميل الرجاء الضغط علي الباقة المدونه واتباع الخطوات اللازمة للاتمام العملية");
+                                                  "عزيزي العميل الرجاء الضغط علي زر (إلي المتصفح) المدون واتباع الخطوات اللازمة للاتمام العملية");
                                         }
 
                                         if (state

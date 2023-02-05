@@ -14,6 +14,7 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-t
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/view.dart';
 import '../../../../../../config/keys.dart';
+import '../../config/remote_config.dart';
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';
 import '../widgets/loading.dart';
@@ -46,9 +47,19 @@ class MenuItems extends StatefulWidget {
 }
 
 class _MenuItemsState extends State<MenuItems> {
+  //final bool _isAvailable = Prefs.getBool("isAvailable");
+  RemoteConfigSetup remoteConfigSetup = RemoteConfigSetup();
+@override
+  void initState() {
+  remoteConfigSetup.setupRemoteConfig();
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<DataAccessPermissionCubit>(context).getAccessPermission();
+
+
     return Container(
       margin: const EdgeInsets.only(bottom: 50, top: 65),
       child: Drawer(
@@ -73,7 +84,7 @@ class _MenuItemsState extends State<MenuItems> {
               );
             }
             if (state is DataAccessPermissionSuccess) {
-              return ListView(
+              return  remoteConfigSetup.isAvailable == null  ? const LoadingFadingCircleWhite(): ListView(
                   physics: const BouncingScrollPhysics(),
                   children: [
                     ListTile(
@@ -98,14 +109,19 @@ class _MenuItemsState extends State<MenuItems> {
                           ? doneWidget(context)
                           : const Text(""),
                       onTapPayment: () {
-                        if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .payment ==
-                            false) {
-                          Get.back();
-                          Get.to(() => const DiagnosticPaymentScreen());
-                        } else {
-                          return;
-                        }
+                               if(remoteConfigSetup.isAvailable == false){
+                                 if (state.accessPermissionModel.data?.stagesDiagnosis!
+                                     .payment ==
+                                     false) {
+                                   Get.back();
+                                   Get.to(() => const DiagnosticPaymentScreen());
+                                 } else {
+                                   return;
+                                 }
+                               }else{
+                                 Get.back();
+                                 Get.to(() => const DiagnosticHistory());
+                               }
                       },
                       isCaseHistory: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.caseHistory ==
@@ -221,14 +237,24 @@ class _MenuItemsState extends State<MenuItems> {
                           ? doneWidget(context)
                           : const Text(""),
                       onTapPayment: () {
-                        if (state.accessPermissionModel.data?.stagesDiagnosis!
-                                .closeBooking ==
-                            true) {
-                          Get.back();
-                          Get.to(() => FirstPaymentTreatment());
-                        } else {
-                          return;
-                        }
+                       if(remoteConfigSetup.isAvailable  == false){
+                         if (state.accessPermissionModel.data?.stagesDiagnosis!
+                             .closeBooking ==
+                             true) {
+                           Get.back();
+                           Get.to(() => FirstPaymentTreatment());
+                         } else {
+                           return;
+                         }
+                       }else if(remoteConfigSetup.isAvailable  == true && state.accessPermissionModel.data?.stagesDiagnosis!
+                           .closeBooking ==
+                           true){
+                         Get.back();
+                         Get.to(() => const PretreatmentQuestionnaire());
+                       }
+
+
+
                       },
                       isQuestionnaire: state.accessPermissionModel.data
                                   ?.stagesTreatment!.preTreatment ==

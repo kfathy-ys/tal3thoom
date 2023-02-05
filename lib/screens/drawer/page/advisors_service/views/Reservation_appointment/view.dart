@@ -38,6 +38,9 @@ class _ReservationAppointmentScreenState
 
   @override
   Widget build(BuildContext context) {
+     bool _isAvailable = Prefs.getBool("isAvailable");
+
+    // BlocProvider.of<AdvisorProfileCubit>(context).selectedAdvisor;
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -59,13 +62,20 @@ class _ReservationAppointmentScreenState
                       widthh: context.width * 0.5,
                       title: "حجز المواعيد",
                       context: context),
-                  const HeadTitles(
+                  adviserIdInt == null? const SizedBox.shrink():    const HeadTitles(
                       headTitle: " 1- من فضلك قم بأختيار الأخصائي :"),
-                  Row(
+                  // adviserIdInt == null? Center(
+                  //
+                  //   child: customBoldText(
+                  //       title: "لا توجد مستشارين متاحين الاّن",
+                  //       color: kBlackText),
+                  //
+                  // ):
+              Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      DropDownSpecialist(onChanged: (value) {
+                       DropDownSpecialist(onChanged: (value) {
                         cubit.onAdvChange(value);
                         adviserId = value.userId;
                         adviserIdInt = value.id;
@@ -192,15 +202,25 @@ class _ReservationAppointmentScreenState
                                                   .data![index]
                                                   .endTime!,
                                               onTap: () {
-                                                navigateTo(
-                                                    context,
-                                                    WebView(
-                                                      javascriptMode:
-                                                          JavascriptMode
-                                                              .unrestricted,
-                                                      initialUrl:
-                                                          "http://mcsc-saudi.com/Sas/PaymentConsultant/$userId/${state.allAdvisorToReservedModel.data![index].id!}",
-                                                    ));
+                                               if(_isAvailable == true){
+                                                 navigateTo(
+                                                     context,
+                                                     const WebView(
+                                                       javascriptMode: JavascriptMode.unrestricted,
+                                                       initialUrl: "https://mcsc-saudi.com/intro-videos",
+                                                     ));
+                                               }else if(_isAvailable == false){
+                                                 navigateTo(
+                                                     context,
+                                                     WebView(
+                                                       javascriptMode:
+                                                       JavascriptMode
+                                                           .unrestricted,
+                                                       initialUrl:
+                                                       "http://mcsc-saudi.com/Sas/PaymentConsultant/$userId/${state.allAdvisorToReservedModel.data![index].id!}",
+                                                     ));
+                                               }
+
                                               }),
                                         );
                                       },

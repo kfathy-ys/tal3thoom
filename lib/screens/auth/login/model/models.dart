@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
@@ -111,7 +113,8 @@ class Data extends Equatable {
 // ignore: must_be_immutable
 class LoginModel extends Equatable {
   Data? data;
-  List<dynamic>? messages;
+ // List<dynamic>? messages;
+  List<Messages>? messages;
   int? status;
   int? dataLength;
 
@@ -119,7 +122,9 @@ class LoginModel extends Equatable {
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     data = json["data"] == null ? null : Data.fromJson(json["data"]);
-    messages = json["messages"] ?? [];
+  //  messages = json["messages"] ?? [];
+    messages = json["messages"] == null ? null : (json["messages"] as List).map((e) => Messages.fromJson(e)).toList();
+
     status = json["status"];
     dataLength = json["dataLength"];
   }
@@ -130,7 +135,9 @@ class LoginModel extends Equatable {
       data["data"] = this.data?.toJson();
     }
     if (messages != null) {
-      data["messages"] = messages;
+     // data["messages"] = messages;
+      data["messages"] = messages?.map((e) => e.toJson()).toList();
+
     }
     data["status"] = status;
     data["dataLength"] = dataLength;
@@ -250,4 +257,31 @@ class RolesDetails extends Equatable {
 
   @override
   List<Object?> get props => [roleCode, enRoleName, arRoleName];
+}
+class Messages extends Equatable{
+  String? code;
+  String? body;
+  String? title;
+  int? type;
+
+  Messages({this.code, this.body, this.title, this.type});
+
+  Messages.fromJson(Map<String, dynamic> json) {
+    code = json["code"];
+    body = json["body"];
+    title = json["title"];
+    type = json["type"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["code"] = code;
+    _data["body"] = body;
+    _data["title"] = title;
+    _data["type"] = type;
+    return _data;
+  }
+
+  @override
+  List<Object?> get props => [code,body,title,type];
 }

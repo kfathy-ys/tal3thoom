@@ -88,33 +88,42 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                         );
                       }
                       if (state is FirstStageInductionSuccess) {
-                        return SizedBox(
-                          width: context.width * 0.8,
-                          height: context.height * 0.25,
+                        return Column(
+                          children: [
 
-                          ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
-                          child:
+                
+                            SizedBox(
+                              height: context.height * 0.02,
+                            ),
+                            SizedBox(
+                              width: context.width * 0.8,
+                              height: context.height * 0.25,
 
-                              // BetterVideoItems(video:      BetterPlayer.network(
-                              //   "http://mcsc-saudi.com/api/" +
-                              //       state.inductionDiagnosticModel.data!
-                              //           .videoUrl
-                              //           .toString(),
-                              //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                              //     aspectRatio: 16 / 9,
-                              //   ),
-                              // ),
-                              //
-                              //
-                              //
-                              //
-                              // ),
+                              ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
+                              child:
 
-                              VideoScreen(
-                                  url: "http://mcsc-saudi.com/api/" +
-                                      state.inductionDiagnosticModel.data!
-                                          .videoUrl
-                                          .toString()),
+                                  // BetterVideoItems(video:      BetterPlayer.network(
+                                  //   "http://mcsc-saudi.com/api/" +
+                                  //       state.inductionDiagnosticModel.data!
+                                  //           .videoUrl
+                                  //           .toString(),
+                                  //   betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                  //     aspectRatio: 16 / 9,
+                                  //   ),
+                                  // ),
+                                  //
+                                  //
+                                  //
+                                  //
+                                  // ),
+
+                                  VideoScreen(
+                                      url: "http://mcsc-saudi.com/api/" +
+                                          state.inductionDiagnosticModel.data!
+                                              .videoUrl
+                                              .toString()),
+                            ),
+                          ],
                         );
                       }
                       if (state is FirstStageInductionError) {

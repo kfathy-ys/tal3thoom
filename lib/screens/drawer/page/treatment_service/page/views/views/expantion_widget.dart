@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../../config/keys.dart';
 
@@ -66,6 +67,8 @@ class TreatmentServiceExpansion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    bool _isAvailable = Prefs.getBool("isAvailable");
+
     // double width = MediaQuery.of(context).size.width;
     return ExpansionTile(
         backgroundColor: kPrimaryColor,
@@ -100,7 +103,7 @@ class TreatmentServiceExpansion extends StatelessWidget {
                 children: [
                   Image.asset("assets/images/wallet.png"),
                   buildSizedBox(),
-                  customText4(title: KeysConfig.payment, color: kBlackText),
+                  _isAvailable == false ? customText4(title: KeysConfig.payment, color: kBlackText): customText4(title :  "متابعة", color: kBlackText),
                 ],
               ),
               trailing: isPayment,

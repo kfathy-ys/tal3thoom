@@ -180,6 +180,9 @@ Widget customBoldText({required String title, required Color color}) {
 Widget customText2({required String title, required Color color}) {
   return Text(title,
       style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
+}Widget customText16({required String title, required Color color}) {
+  return Text(title,
+      style: TextStyle(color: color, fontSize: 22, fontFamily: 'DinBold'));
 }
 
 Widget customText3({required String title, required Color color}) {
@@ -207,7 +210,7 @@ Widget customText5({required String title, required Color color}) {
 }
 
 Widget customText6({required String title, required Color color}) {
-  return Text(title,
+  return Text(title,textAlign: TextAlign.center,
       style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
 }
 
@@ -221,6 +224,10 @@ Widget customText8({required String title, required Color color}) {
   return Text(title,
       textAlign: TextAlign.center,
       style: TextStyle(color: color, fontSize: 17, fontFamily: 'DinReguler'));
+}Widget customText18({required String title, required Color color}) {
+  return Text(title,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: color, fontSize: 22, fontFamily: 'DinReguler'));
 }
 
 Widget customText9({required String title, required Color color}) {

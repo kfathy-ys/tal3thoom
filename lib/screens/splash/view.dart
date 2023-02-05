@@ -10,9 +10,11 @@ import 'package:tal3thoom/screens/widgets/constants.dart';
 import 'package:tal3thoom/screens/widgets/network_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../auth/login/view.dart';
 import '../home/cubit/home_tabebar_cubit.dart';
+import '../widgets/fast_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -27,20 +29,109 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    //goToHomePage(context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Image.asset(
-          "assets/images/splash.png",
-          fit: BoxFit.fill,
+    return
+
+      Scaffold(
+        body: SingleChildScrollView(
+        child: Container(
+          height: context.height,
+          width: context.width,
+          color: kHomeColor,
+          child: Column(
+            children: [
+              SizedBox(height: context.height*0.05,),
+
+              // Padding(
+              //   padding:  EdgeInsetsDirectional.only(end: context.width*0.7),
+              //   child: SizedBox(width: context.width*0.3,height: context.height*0.1,child: Image.asset("assets/images/sideLogo.jpg",)),
+              // ),
+              // SizedBox(height: context.height*0.03,),
+
+              SizedBox(height: context.height*0.35,width: context.width,child: Image.asset("assets/images/all.png",fit: BoxFit.cover,)),
+
+              SizedBox(height: context.height*0.07,),
+
+              customText16(title: " \"كلامي\"", color: kDarklyColor),
+              customText18(title: " \"Mytalk\"", color: kDarklyColor),
+              SizedBox(height: context.height*0.02,),
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: context.width * 0.09),
+                child: InkWell(
+                  onTap: () {
+                    navigateTo(
+                        context,
+                        const WebView(
+                          javascriptMode: JavascriptMode.unrestricted,
+                          initialUrl: "https://mcsc-saudi.com/intro-videos",
+                        ));
+                  },
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
+                      text:
+                      ' هو تطبيق يعني في علاج إضطراب التلعثم / التأتأة يمكنك الاطلاع علي مقاطع  ',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "DinMedium",
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.bold),
+                      children: [
+                        TextSpan(
+                          text: ' الفيديو التالية ',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: "DinMedium",
+                              color: kSkyButton,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                            text: ' لمعرفة المزيد عن التطبيق وخدماتة ',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: "DinMedium",
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: context.height*0.1,),
+              FadeInUpBig(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  color: kPrimaryColor,
+                  child: InkWell(
+                    onTap: () => userId.isNotEmpty
+                        ? {
+                      BlocProvider.of<HomeTabeBarCubit>(context)
+                          .changeIndex(1),
+                      Get.offAll(() => const HomeTabScreen()),
+                    }
+                        : Get.offAll(() => LoginScreen()),
+                    child: Image.asset(
+                      'assets/images/arrow splash icon.png',
+                      scale: 1.2,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        FadeInUpBig(
+    ),
+      );
+  }
+
+  /* FadeInUpBig(
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -66,10 +157,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
+        ),*/
 
   void goToHomePage(BuildContext context) async {
     try {

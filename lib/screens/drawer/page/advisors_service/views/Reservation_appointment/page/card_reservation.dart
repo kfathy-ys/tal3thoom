@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/mediaButton.dart';
 import 'card_item.dart';
@@ -9,7 +10,7 @@ class ReservationsCard extends StatelessWidget {
   final String start;
   final String end;
   final VoidCallback onTap;
-  const ReservationsCard(
+   ReservationsCard(
       {Key? key,
       required this.specialistName,
       required this.sessionDate,
@@ -17,6 +18,9 @@ class ReservationsCard extends StatelessWidget {
       required this.end,
       required this.onTap})
       : super(key: key);
+
+   final bool _isAvailable = Prefs.getBool("isAvailable");
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +33,13 @@ class ReservationsCard extends StatelessWidget {
         CardItems(title: "تاريخ الجلسة", subTitle: sessionDate),
         CardItems(title: "وقت البداية", subTitle: start),
         CardItems(title: "وقت النهاية", subTitle: end),
-        MediaButton(
+        _isAvailable != null ? MediaButton(
           onPressed: onTap,
 
-          //     () {
-          //   navigateTo(context, PaymentAdvisor());
-          // },
+
           color: kButtonGreenDark,
           title: "حجز جلسة",
-        ),
+        ):const CircularProgressIndicator(),
       ],
     );
   }

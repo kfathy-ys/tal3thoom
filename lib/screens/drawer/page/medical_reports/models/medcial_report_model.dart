@@ -37,7 +37,7 @@ class AllReports extends Equatable {
   int? supervisorId;
   String? supervisorName;
   String? enrolmentDate;
-  dynamic dischargeDate;
+  dynamic? dischargeDate;
   String? stutteringWasBecoming;
   String? bornWith;
   String? stutteringNoticedAge;

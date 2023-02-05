@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fijkplayer/fijkplayer.dart';
+import 'package:get/get.dart';
+
 // class BetterVideoItems extends StatefulWidget {
 //   final Widget video;
 //   const BetterVideoItems({Key? key, required this.video}) : super(key: key);
@@ -61,9 +64,7 @@ import 'package:flutter/material.dart';
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Normal player page"),
-//       ),
+//
 //       body: Column(
 //         children: [
 //           const SizedBox(height: 8),
@@ -77,7 +78,6 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
-import 'package:fijkplayer/fijkplayer.dart';
 
 class VideoScreen extends StatefulWidget {
   final String url;
@@ -97,19 +97,28 @@ class _VideoScreenState extends State<VideoScreen> {
   void initState() {
     super.initState();
     player.setDataSource(widget.url, autoPlay: false);
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return FijkView(
-      fit: FijkFit.fill,
-      player: player,
-    );
+    return
+
+      FijkView(
+        fit: FijkFit.fill,
+        player: player,
+        cover: const AssetImage("assets/images/icon 01.png",),
+
+
+
+      );
   }
 
   @override
   void dispose() {
     super.dispose();
     player.release();
+
   }
 }
+
