@@ -46,9 +46,12 @@ class _TreatmentServiceInductionState extends State<TreatmentServiceInduction> {
                   padding: const EdgeInsets.all(12.0),
                   child: Image.asset("assets/images/treatmentDis.png"),
                 ),
-                SizedBox(
+                Container(
+                  margin: const EdgeInsets
+                      .symmetric(vertical: 8),
                   width: context.width * 0.8,
-                  height: context.height * 0.25,
+                  height:
+                  context.height * 0.25,
                   child:
 
                       // BetterVideoItems(video:      BetterPlayer.network(

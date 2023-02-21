@@ -1,6 +1,5 @@
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tal3thoom/screens/widgets/better_video_widget.dart';
 import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,31 +81,7 @@ class _SSRSDiagnosticsScreenState extends State<SSRSDiagnosticsScreen> {
                               padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Image.asset("assets/images/255.png"),
                             ),
-                            SizedBox(
-                              width: context.width * 0.8,
-                              height: context.height * 0.25,
-                              child:
 
-                                  //         BetterVideoItems(video:      BetterPlayer.network(
-                                  // 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                                  //
-                                  //           betterPlayerConfiguration: const BetterPlayerConfiguration(
-                                  //             aspectRatio: 16 / 9,
-                                  //           ),
-                                  //         ),
-                                  //
-                                  //
-                                  //
-                                  //
-                                  //         ),
-                                  //
-                                  //
-
-                                  const VideoScreen(
-                                url:
-                                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                              ),
-                            ),
                             CustomButton(
                               onPressed: () {},
                               title: state.ssrsQuestionModel[index].description,

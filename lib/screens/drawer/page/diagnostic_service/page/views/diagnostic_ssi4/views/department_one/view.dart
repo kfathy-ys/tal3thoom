@@ -9,7 +9,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:queen/queen.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
-import 'package:tal3thoom/screens/widgets/better_video_widget.dart';
 import 'package:tal3thoom/screens/widgets/fast_widget.dart';
 import 'package:tal3thoom/screens/widgets/loading.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
@@ -88,16 +87,9 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                                Image.asset("assets/images/Fourth test1.png"),
+                                Image.asset("assets/images/test4updated.png"),
                           ),
-                          SizedBox(
-                            width: context.width * 0.8,
-                            height: context.height * 0.25,
-                            child: const VideoScreen(
-                              url:
-                                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                            ),
-                          ),
+
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Image.asset("assets/images/first_class.png"),
@@ -150,7 +142,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                               if (await Permission.storage
                                   .request()
                                   .isGranted) {
-                                pickVideo();
+                                 pickVideo();
                               } else {
                                 Alert.error(
                                     "يجب الحصول علي تصريح الوصول الي الخزينة");
@@ -169,6 +161,8 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                           _file = x;
                                         });
                                       },
+                                      text: parseHtmlString(state
+                                          .ssi4QuestionModel[0].description),
                                     ));
                               } else {
                                 Alert.error(
@@ -242,14 +236,27 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
   }
 */
 
+
   void pickVideo() async {
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
-        setState(() {
-          _file = value;
-        });
-        _playVideo(value);
+        final file = File(value.path);
+        if (file.existsSync()) {
+          final fileLength = file.lengthSync();
+          if (fileLength > 150 * 1024 * 1024) {
+            Alert.error("هذا الفيديو كبير جدًا. الرجاء تحديد مقطع فيديو بحجم أقل.");
+          } else {
+            setState(() {
+              _file = value;
+            });
+            _playVideo(value);
+          }
+        } else {
+          Alert.error("لم يتم العثور على الملف.");
+        }
       }
+    }).catchError((error) {
+      Alert.error("خطأ في اختيار الفيديو: $error");
     });
   }
 
@@ -275,9 +282,13 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
       await _disposeVideoController();
       late VideoPlayerController controller;
       if (kIsWeb) {
-        controller = VideoPlayerController.network(file.path);
+        controller = VideoPlayerController.network(file.path,);
       } else {
-        controller = VideoPlayerController.file(File(file.path));
+        controller = VideoPlayerController.file(
+          File(file.path),
+          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+
+        );
       }
       _controller = controller;
       // In web, most browsers won't honor a programmatic call to .play
@@ -289,7 +300,10 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
       await controller.setVolume(volume);
       await controller.initialize();
       await controller.setLooping(false);
-      await controller.play();
+      await controller.pause();
+      //await controller.play();
+
+
       setState(() {});
     }
   }

@@ -74,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     const String sCharacters =
-        "المطلوب أحرف كبيرة,صغيرة,أرقام,علامات خاصة";
+        "المطلوب 8 حروف كبيرة,صغيرة وأرقام";
 
     return BlocProvider(
       create: (context) => RegisterCubit(),
@@ -537,18 +537,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _passController,
                     validator: qValidator([
                       IsRequired(KeysConfig.enterPass),
-                      // ContainsAny([r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'],sCharacters),
+                     //  ContainsAny([r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'],sCharacters),
                       RegExpRule(
-                          RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),
+                          RegExp('[a-zA-Z0-9]')
+                          ,
                           sCharacters),
+
+
                       MinLength(6, sCharacters),
                       MaxLength(30),
                     ]),
                     // type: TextInputType.text,
 
                     textInputFormatter: [
-                      FilteringTextInputFormatter.deny(
-                          RegExp(r'[^A-Za-z0-9]+')),
+                      FilteringTextInputFormatter.allow(
+                          RegExp('[a-zA-Z0-9]')),
                     ],
                   ),
                   CustomTextField(
@@ -567,7 +570,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
 
-                    type: TextInputType.text,
+                    textInputFormatter: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp('[a-zA-Z0-9]')),
+                    ],
                   ),
                   /* Container(
                     height: context.height * 0.13,

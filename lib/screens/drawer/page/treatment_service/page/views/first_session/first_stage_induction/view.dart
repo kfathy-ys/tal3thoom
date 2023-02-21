@@ -4,11 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../../config/keys.dart';
+import '../../../../../../../../config/remote_config.dart';
 import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
+import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../../view.dart';
@@ -38,7 +41,12 @@ class FirstTreatmentInduction extends StatefulWidget {
 
 class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
   final FijkPlayer player = FijkPlayer();
-
+  RemoteConfigSetup remoteConfigSetup = RemoteConfigSetup();
+  @override
+  void initState() {
+    remoteConfigSetup.setupRemoteConfig();
+    super.initState();
+  }
   @override
   void dispose() {
     super.dispose();
@@ -91,38 +99,23 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                         return Column(
                           children: [
 
-                
+                            customTextWatchVideo(
+                                onTap: () {
+                                  navigateTo(
+                                      context,
+                                      const WebView(
+                                        javascriptMode:
+                                        JavascriptMode.unrestricted,
+                                        initialUrl:
+                                        "https://mcsc-saudi.com/intro-videos",
+                                      ));
+                                },
+                                title: "إضغط هنا لمشاهدة الفيديوهات التعريفية",
+                                color: kButtonDashBoard),
                             SizedBox(
                               height: context.height * 0.02,
                             ),
-                            SizedBox(
-                              width: context.width * 0.8,
-                              height: context.height * 0.25,
 
-                              ///TODO:: i wanna looking to commitment URL pass , Something in release may be failed
-                              child:
-
-                                  // BetterVideoItems(video:      BetterPlayer.network(
-                                  //   "http://mcsc-saudi.com/api/" +
-                                  //       state.inductionDiagnosticModel.data!
-                                  //           .videoUrl
-                                  //           .toString(),
-                                  //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                                  //     aspectRatio: 16 / 9,
-                                  //   ),
-                                  // ),
-                                  //
-                                  //
-                                  //
-                                  //
-                                  // ),
-
-                                  VideoScreen(
-                                      url: "http://mcsc-saudi.com/api/" +
-                                          state.inductionDiagnosticModel.data!
-                                              .videoUrl
-                                              .toString()),
-                            ),
                           ],
                         );
                       }
@@ -141,136 +134,271 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                       return const LoadingFadingCircle();
                     }
                     if (state is DataAccessPermissionSuccess) {
-                      return MediaButton(
+                      return  remoteConfigSetup.isAvailable != null  ? MediaButton(
                         onPressed: () {
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                      .closeBooking ==
-                                  true &&
-                              state.accessPermissionModel.data!.stagesTreatment!
-                                      .paymentTreatmentOne ==
-                                  false) {
-                            Get.offAll(() => FirstPaymentTreatment());
-                          }
 
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                                      .closeBooking ==
-                                  true &&
-                              state.accessPermissionModel.data!.stagesTreatment!
-                                      .paymentTreatmentOne ==
-                                  true &&
-                              state.accessPermissionModel.data!.stagesTreatment!
-                                      .preTreatment ==
-                                  false) {
-                            Get.offAll(() => const PretreatmentQuestionnaire());
-                          }
-                          if (state.accessPermissionModel.data!.stagesTreatment!
-                                      .preTreatment ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.sessions ==
-                                  false) {
-                            Get.offAll(() => const FirstTreatmentSession());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.sessions ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.oases ==
-                                  false) {
-                            Get.offAll(() => const FirstStageOasesTest());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.oases ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.ssrs ==
-                                  false) {
-                            Get.offAll(
-                                () => const FirstStageSSRSTreatmentScreen());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.ssrs ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.ssi4 ==
-                                  false) {
-                            Get.offAll(() => const TreatmentSSI4());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.ssi4 ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.booking ==
-                                  false) {
-                            Get.offAll(() => FirstStageTreatmentReservation());
-                          }
+                          if(  remoteConfigSetup.isAvailable == false  ){
+                            print("الحقيييييييييييييييييييقي");
 
-                          // ///////////////////////////////////////
-                          //
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.closeBooking ==
-                                  true &&
-                              state.accessPermissionModel.data!.stagesTreatment!
-                                      .paymentTreatmentTwo ==
-                                  false) {
-                            Get.offAll(() => FirstPaymentTreatment());
-                          }
+                            if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                .closeBooking ==
+                                true &&
+                                state.accessPermissionModel.data!.stagesTreatment!
+                                    .paymentTreatmentOne ==
+                                    false) {
+                              Get.offAll(() => FirstPaymentTreatment());
+                            }
 
-                          if (state.accessPermissionModel.data!.stagesTreatment!
-                                      .paymentTreatmentTwo ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentFirst!.closeBooking ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.sessions ==
-                                  false) {
-                            Get.offAll(() => const SecondTreatmentSession());
+                            if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                .closeBooking ==
+                                true &&
+                                state.accessPermissionModel.data!.stagesTreatment!
+                                    .paymentTreatmentOne ==
+                                    true &&
+                                state.accessPermissionModel.data!.stagesTreatment!
+                                    .preTreatment ==
+                                    false) {
+                              Get.offAll(() => const PretreatmentQuestionnaire());
+                            }
+                            if (state.accessPermissionModel.data!.stagesTreatment!
+                                .preTreatment ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.sessions ==
+                                    false) {
+                              Get.offAll(() => const FirstTreatmentSession());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.sessions ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.oases ==
+                                    false) {
+                              Get.offAll(() => const FirstStageOasesTest());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.oases ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.ssrs ==
+                                    false) {
+                              Get.offAll(
+                                      () => const FirstStageSSRSTreatmentScreen());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.ssrs ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.ssi4 ==
+                                    false) {
+                              Get.offAll(() => const TreatmentSSI4());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.ssi4 ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.booking ==
+                                    false) {
+                              Get.offAll(() => FirstStageTreatmentReservation());
+                            }
+
+                            // ///////////////////////////////////////
+                            //
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.closeBooking ==
+                                true &&
+                                state.accessPermissionModel.data!.stagesTreatment!
+                                    .paymentTreatmentTwo ==
+                                    false) {
+                              Get.offAll(() => FirstPaymentTreatment());
+                            }
+
+                            if (state.accessPermissionModel.data!.stagesTreatment!
+                                .paymentTreatmentTwo ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.closeBooking ==
+                                    true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.sessions ==
+                                    false) {
+                              Get.offAll(() => const SecondTreatmentSession());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.sessions ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.oases ==
+                                    false) {
+                              Get.offAll(() => const SecondStageOasesTest());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.oases ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.ssrs ==
+                                    false) {
+                              Get.offAll(
+                                      () => const SecondStageSSRSTreatmentScreen());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.ssrs ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.ssi4 ==
+                                    false) {
+                              Get.offAll(() => const SecondTreatmentSSI4());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.ssi4 ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.booking ==
+                                    false) {
+                              Get.offAll(() => SecondStageTreatmentReservation());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.booking ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.closeBooking ==
+                                    true) {
+                              Get.offAll(() => const GameOver());
+                            }
+
                           }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.sessions ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.oases ==
-                                  false) {
-                            Get.offAll(() => const SecondStageOasesTest());
+                          else if(remoteConfigSetup.isAvailable== true  ){
+
+                            print("faaaaaaaaaaaaaaaaaaake");
+                            // if (state.accessPermissionModel.data!.stagesDiagnosis!
+                            //     .closeBooking ==
+                            //     true &&
+                            //     state.accessPermissionModel.data!.stagesTreatment!
+                            //         .paymentTreatmentOne ==
+                            //         false) {
+                            //   Get.offAll(() => FirstPaymentTreatment());
+                            // }
+
+                            if (state.accessPermissionModel.data!.stagesDiagnosis!
+                                .closeBooking ==
+                                true &&
+                                state.accessPermissionModel.data!.fakeP ==
+                                    true &&
+                                state.accessPermissionModel.data!.stagesTreatment!
+                                    .preTreatment ==
+                                    false) {
+                              Get.offAll(() => const PretreatmentQuestionnaire());
+                            }
+                            if (state.accessPermissionModel.data!.stagesTreatment!
+                                .preTreatment ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.sessions ==
+                                    false) {
+                              Get.offAll(() => const FirstTreatmentSession());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.sessions ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.oases ==
+                                    false) {
+                              Get.offAll(() => const FirstStageOasesTest());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.oases ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.ssrs ==
+                                    false) {
+                              Get.offAll(
+                                      () => const FirstStageSSRSTreatmentScreen());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.ssrs ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.ssi4 ==
+                                    false) {
+                              Get.offAll(() => const TreatmentSSI4());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.ssi4 ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.booking ==
+                                    false) {
+                              Get.offAll(() => FirstStageTreatmentReservation());
+                            }
+
+                            // ///////////////////////////////////////
+                            //
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentFirst!.closeBooking ==
+                                true &&
+                                state.accessPermissionModel.data!.stagesTreatment!
+                                    .paymentTreatmentTwo ==
+                                    false) {
+                              Get.offAll(() => FirstPaymentTreatment());
+                            }
+
+                            if (state.accessPermissionModel.data!.stagesTreatment!
+                                .paymentTreatmentTwo ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentFirst!.closeBooking ==
+                                    true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.sessions ==
+                                    false) {
+                              Get.offAll(() => const SecondTreatmentSession());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.sessions ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.oases ==
+                                    false) {
+                              Get.offAll(() => const SecondStageOasesTest());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.oases ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.ssrs ==
+                                    false) {
+                              Get.offAll(
+                                      () => const SecondStageSSRSTreatmentScreen());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.ssrs ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.ssi4 ==
+                                    false) {
+                              Get.offAll(() => const SecondTreatmentSSI4());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.ssi4 ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.booking ==
+                                    false) {
+                              Get.offAll(() => SecondStageTreatmentReservation());
+                            }
+                            if (state.accessPermissionModel.data!
+                                .stagesTreatmentSecond!.booking ==
+                                true &&
+                                state.accessPermissionModel.data!
+                                    .stagesTreatmentSecond!.closeBooking ==
+                                    true) {
+                              Get.offAll(() => const GameOver());
+                            }
+
                           }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.oases ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.ssrs ==
-                                  false) {
-                            Get.offAll(
-                                () => const SecondStageSSRSTreatmentScreen());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.ssrs ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.ssi4 ==
-                                  false) {
-                            Get.offAll(() => const SecondTreatmentSSI4());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.ssi4 ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.booking ==
-                                  false) {
-                            Get.offAll(() => SecondStageTreatmentReservation());
-                          }
-                          if (state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.booking ==
-                                  true &&
-                              state.accessPermissionModel.data!
-                                      .stagesTreatmentSecond!.closeBooking ==
-                                  true) {
-                            Get.offAll(() => const GameOver());
-                          }
-                        },
+                                               },
                         title: KeysConfig.next,
-                      );
+                      ):const LoadingFadingCircle();
                     }
                     if (state is DataAccessPermissionError) {
                       return Text(state.msg);

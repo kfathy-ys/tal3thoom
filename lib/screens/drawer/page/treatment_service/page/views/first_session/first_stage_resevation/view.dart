@@ -51,16 +51,13 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12.0, vertical: 4),
                       child: Image.asset(
-                        "assets/images/box.png",
+                        "assets/images/boxnew.png",
                       ),
                     ),
-                    customText8(
-                        title:
-                            "ملاحظة يرجي الرجوع لجدول الحجوزات لمعرفة حجوزاتك للمقابلات",
-                        color: kButtonDashBoard),
+
                     state is! FirstAvailableDatesLoading
                         ? Container(
-                            height: context.height * 0.42,
+                            height: context.height * 0.35,
                             width: context.width * 0.8,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 4),
@@ -106,7 +103,7 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                     //   //  cubit.getAvailableDatesDiagnostic();
                     //   cubit.onSexTypeChanged(value);
                     // }),
-                    customText8(
+                    customText9(
                         title: "تم إغلاق جميع الايام الغير متاح بيها مواعيد ",
                         color: kButtonDashBoard),
                     const HintAvailableTime(),

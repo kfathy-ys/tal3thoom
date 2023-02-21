@@ -63,7 +63,7 @@ class PreQuestionnaireCubit extends Cubit<PreQuestionnaireState> {
               answers: answer, answersTxt: answersTxt);
       emit(PreQuestionnaireSuccess(preQuestionnaireModel: questionList));
 
-      if (res!.type == 2) {
+      if (res!.type == 2 || (res.type == 3)) {
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
@@ -79,9 +79,13 @@ class PreQuestionnaireCubit extends Cubit<PreQuestionnaireState> {
       }
     } on DioError catch (_) {
       emit(PreQuestionnaireError(msg: "لا يوجد اتصال بالانترنت "));
-    } catch (e, st) {
+    } catch (e) {
+      Alert.error(e.toString(),
+          desc:
+          "الرجاء المحاولة مرة أخري وتاكيد اجابات الممكنة المطلوبة وفقا لمعاير التشخيص");
       log("[]][][][error from cubit is" + e.toString());
-      log(st.toString());
+
+
 
       emit(PreQuestionnaireError(msg: e.toString()));
     }

@@ -19,7 +19,15 @@ class ReservationsSchedule extends StatefulWidget {
   State<ReservationsSchedule> createState() => _ReservationsScheduleState();
 }
 
+
+
 class _ReservationsScheduleState extends State<ReservationsSchedule> {
+ @override
+  void initState() {
+   BlocProvider.of<BookingCubit>(context).getBookingList();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<BookingCubit>(context).getBookingList();
@@ -63,15 +71,31 @@ class _ReservationsScheduleState extends State<ReservationsSchedule> {
                               return FadeInUpBig(
                                 child: ReservationCard(
                                     onPressStart: () {
-                                      state.bookingInfo.data[index]
-                                              .zoomInvitationUrl.isEmpty
-                                          ? Alert.success(
-                                              "'عزيزي العميل الرجاء الإنتظار'",
-                                              desc:
-                                                  "هذا الاجتماع مؤجل لحين مراجعة البيانات",
-                                            )
-                                          : Launch.url(state.bookingInfo
-                                              .data[index].zoomInvitationUrl);
+                                      setState(() {
+                                      if(  ((state
+                                          .bookingInfo
+                                          .data[index]
+                                          .zoomInvitationUrl
+                                          .isEmpty) ||
+                                          (state.bookingInfo.data[index]
+                                              .allowEnterZoomSession ==
+                                              false))){
+                                        Alert.success(
+                                          "'عزيزي العميل الرجاء الإنتظار'",
+                                          desc:
+                                          "هذا الاجتماع مؤجل لحين بدء الوقت الفعلي و مراجعة البيانات",
+                                        );
+
+                                      }else if(
+                                          (state.bookingInfo.data[index]
+                                              .allowEnterZoomSession ==
+                                              true)){
+                                        Launch.url(state.bookingInfo
+                                            .data[index].zoomInvitationUrl);
+
+                                      }
+
+                                      });
                                     },
                                     onPressEnd: () {
                                       cubit.removeFromBooking(

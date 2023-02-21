@@ -42,7 +42,7 @@ class AlertVideoMessage extends StatelessWidget {
                   textStyle: buildTextStyle(),
                 ),
                 TyperAnimatedText(
-                  "يرجاء عند رفع الفيديو المسجل",
+                  "برجاء عند رفع الفيديو المسجل",
                   textStyle: buildAccentTextStyle(),
                 ),
                 TyperAnimatedText("الالتزام بالقواعد التالية",
@@ -50,7 +50,7 @@ class AlertVideoMessage extends StatelessWidget {
                 TyperAnimatedText("لابد حجم الفيديو المسجل",
                     textStyle: buildAccentTextStyle()),
                 TyperAnimatedText(
-                  "لا يتجاوز 2 ميغا بايت",
+                  "لا يتجاوز 20 ميغا بايت",
                   textStyle: const TextStyle(
                       color: kButtonRedDark,
                       fontSize: 20,

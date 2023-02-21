@@ -16,7 +16,6 @@ import 'package:video_player/video_player.dart';
 import '../../../../../../../../../../config/keys.dart';
 import '../../../../../../../../../widgets/alerts.dart';
 import '../../../../../../../../../widgets/appBar.dart';
-import '../../../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
@@ -88,32 +87,9 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                                Image.asset("assets/images/Fourth test1.png"),
+                                Image.asset("assets/images/test4updated.png"),
                           ),
-                          SizedBox(
-                            width: context.width * 0.8,
-                            height: context.height * 0.25,
-                            child:
 
-                                // BetterVideoItems(video:      BetterPlayer.network(
-                                //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                                //
-                                //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                                //     aspectRatio: 16 / 9,
-                                //   ),
-                                // ),
-                                //
-                                //
-                                //
-                                //
-                                // ),
-                                //
-
-                                const VideoScreen(
-                              url:
-                                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                            ),
-                          ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Image.asset("assets/images/first_class.png"),
@@ -200,6 +176,8 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                                           _file = x;
                                         });
                                       },
+                                  text:   parseHtmlString(
+                                      state.ssi4QuestionModel[0].description),
                                     ));
                               } else {
                                 Alert.error(
@@ -275,6 +253,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
   }
 */
 
+
   void pickVideo() async {
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
@@ -308,9 +287,13 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
       await _disposeVideoController();
       late VideoPlayerController controller;
       if (kIsWeb) {
-        controller = VideoPlayerController.network(file.path);
+        controller = VideoPlayerController.network(file.path,);
       } else {
-        controller = VideoPlayerController.file(File(file.path));
+        controller = VideoPlayerController.file(
+          File(file.path),
+          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+
+        );
       }
       _controller = controller;
       // In web, most browsers won't honor a programmatic call to .play
@@ -322,7 +305,10 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
       await controller.setVolume(volume);
       await controller.initialize();
       await controller.setLooping(false);
-      await controller.play();
+      await controller.pause();
+      //await controller.play();
+
+
       setState(() {});
     }
   }

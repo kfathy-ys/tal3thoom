@@ -14,10 +14,10 @@ import '../success_page.dart';
 
 mixin QMixer on State<DiagnosticOasesTest> {
   final sections = <AppSectionModel>[
-    const AppSectionModel("1- قباس المعلومات العامة في حياتك"),
-    const AppSectionModel("2- قباس رد فعلك بالنسبة لاضطراب التلعثم"),
-    const AppSectionModel("3- قباس التواصل مع المواقف اليومية"),
-    const AppSectionModel("4- قباس جودة الحياة"),
+    const AppSectionModel("1- قياس المعلومات العامة في حياتك"),
+    const AppSectionModel("2- قياس رد فعلك بالنسبة لاضطراب التلعثم"),
+    const AppSectionModel("3- قياس التواصل مع المواقف اليومية"),
+    const AppSectionModel("4- قياس جودة الحياة"),
   ];
 
   final questionsBySection = <AppSectionModel, List<Question>>{};

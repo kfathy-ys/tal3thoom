@@ -461,7 +461,7 @@ class Answers extends Equatable {
 class Conclution extends Equatable {
   int? totalCognitiveQuestions;
   int? correctCognitiveAnswers;
-  String? answerdVideo;
+  dynamic? answerdVideo;
 
   Conclution(
       {this.totalCognitiveQuestions,

@@ -42,7 +42,7 @@ class AlertMessage extends StatelessWidget {
                   textStyle: buildTextStyle(),
                 ),
                 TyperAnimatedText(
-                  "يرجاء التقيم المبادي للمرحلة",
+                  "برجاء التقيم المبادي للمرحلة",
                   textStyle: buildAccentTextStyle(),
                 ),
                 TyperAnimatedText("التقيم يعطي انطباع مبدائ المختص",

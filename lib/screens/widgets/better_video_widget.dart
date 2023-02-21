@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fijkplayer/fijkplayer.dart';
-import 'package:get/get.dart';
 
 // class BetterVideoItems extends StatefulWidget {
 //   final Widget video;
@@ -97,6 +96,10 @@ class _VideoScreenState extends State<VideoScreen> {
   void initState() {
     super.initState();
     player.setDataSource(widget.url, autoPlay: false);
+    player.setOption(FijkOption.hostCategory, "max-resolution", "426x240");
+
+
+
 
   }
 
@@ -105,9 +108,10 @@ class _VideoScreenState extends State<VideoScreen> {
     return
 
       FijkView(
+
         fit: FijkFit.fill,
         player: player,
-        cover: const AssetImage("assets/images/icon 01.png",),
+        cover: const AssetImage("assets/images/icon 003.png",),
 
 
 

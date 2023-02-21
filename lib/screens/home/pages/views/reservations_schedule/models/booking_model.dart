@@ -47,6 +47,7 @@ class BookingInfo extends Equatable {
   final String zoomInvitationUrl;
   final String scheduledFor;
   final Object? patientDiagnosesStatus;
+  final  bool? allowEnterZoomSession;
 
   const BookingInfo({
     required this.status,
@@ -63,6 +64,7 @@ class BookingInfo extends Equatable {
     required this.zoomInvitationUrl,
     required this.scheduledFor,
     required this.patientDiagnosesStatus,
+    required this.allowEnterZoomSession
   });
 
   Map<String, dynamic> toMap() {
@@ -81,6 +83,7 @@ class BookingInfo extends Equatable {
       'zoomInvitationUrl': zoomInvitationUrl,
       'scheduledFor': scheduledFor,
       'patientDiagnosesStatus': patientDiagnosesStatus,
+      'allowEnterZoomSession': allowEnterZoomSession,
     };
   }
 
@@ -100,6 +103,8 @@ class BookingInfo extends Equatable {
       zoomInvitationUrl: (map['zoomInvitationUrl'] ?? '') as String,
       scheduledFor: (map['scheduledFor'] ?? '') as String,
       patientDiagnosesStatus: map['patientDiagnosesStatus'],
+      allowEnterZoomSession: map['allowEnterZoomSession']
+
     );
   }
 
@@ -120,6 +125,7 @@ class BookingInfo extends Equatable {
       zoomInvitationUrl,
       scheduledFor,
       patientDiagnosesStatus!,
+      allowEnterZoomSession!
     ];
   }
 }

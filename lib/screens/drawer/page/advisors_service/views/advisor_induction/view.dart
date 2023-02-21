@@ -3,6 +3,7 @@ import 'package:fijkplayer/fijkplayer.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../widgets/appBar.dart';
 import '../../../../../widgets/better_video_widget.dart';
 import '../../../../../widgets/constants.dart';
@@ -56,14 +57,23 @@ class _AdviserInductionState extends State<AdviserInduction> {
 
   
               SizedBox(
-                height: context.height * 0.02,
+                height: context.height * 0.01,
               ),
+              customTextWatchVideo(
+                  onTap: () {
+                    navigateTo(
+                        context,
+                        const WebView(
+                          javascriptMode:
+                          JavascriptMode.unrestricted,
+                          initialUrl:
+                          "https://mcsc-saudi.com/intro-videos",
+                        ));
+                  },
+                  title: "إضغط هنا لمشاهدة الفيديوهات التعريفية",
+                  color: kButtonDashBoard),
               SizedBox(
-                width: context.width * 0.8,
-                height: context.height * 0.25,
-                child: const VideoScreen(
-                  url: 'http://mcsc-saudi.com/api/media/Introduction.mp4',
-                ),
+                height: context.height * 0.01,
               ),
               MediaButton(
                 onPressed: () {

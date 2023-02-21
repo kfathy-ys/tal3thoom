@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 
 import '../../../../../../../home/cubit/home_tabebar_cubit.dart';
 import '../../../../../../../home/view.dart';
+import '../../../../../../../widgets/appBar.dart';
 import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/mediaButton.dart';
+import '../../../../../../view.dart';
 
 // ignore: must_be_immutable
 class FirstStageAdditionalTrainingScreen extends StatefulWidget {
@@ -35,6 +37,11 @@ class _FirstStageAdditionalTrainingScreenState
     //  double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kHomeColor,
+      drawer: const MenuItems(),
+      appBar: DynamicAppbar(
+          context: context,
+          press: (context) => Scaffold.of(context).openDrawer()),
+
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         height: context.height,
@@ -44,6 +51,9 @@ class _FirstStageAdditionalTrainingScreenState
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                SizedBox(
+                  height: context.height * 0.05,
+                ),
                 CustomTileContainer(
                     widthh: context.width / 1.8,
                     title: "تتدريب إضافي",
@@ -53,20 +63,7 @@ class _FirstStageAdditionalTrainingScreenState
                   width: context.width * 0.8,
                   height: context.height * 0.25,
                   child:
-                      // BetterVideoItems(video:      BetterPlayer.network(
-                      //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                      //
-                      //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                      //     aspectRatio: 16 / 9,
-                      //   ),
-                      // ),
-                      //
-                      //
-                      //
-                      //
-                      // ),
-                      //
-                      //
+
 
                       const VideoScreen(
                     url:

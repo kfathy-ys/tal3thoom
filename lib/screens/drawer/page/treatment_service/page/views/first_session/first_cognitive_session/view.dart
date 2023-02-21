@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -155,74 +156,92 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
                                                                 ),
                                                                 color:
                                                                     kBackgroundButton),
-                                                        child: FormBuilder(
-                                                          autovalidateMode:
-                                                              AutovalidateMode
-                                                                  .always,
-                                                          child:
-                                                              FormBuilderRadioGroup<
-                                                                  dynamic>(
-                                                            decoration:
-                                                                InputDecoration(
-                                                              labelStyle: const TextStyle(
-                                                                  color:
-                                                                      kBlackText,
-                                                                  fontSize: 18,
-                                                                  fontFamily:
-                                                                      'DinBold'),
-                                                              labelText: "${index + 1} " +
-                                                                  state
-                                                                      .questionModel[
-                                                                          index]
-                                                                      .description,
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+
+                                                            AutoSizeText(
+                                                        "$index - " +
+                                                        state
+                                                            .questionModel[
+                                                        index]
+                                                            .description,
+                                                              style: const TextStyle(
+                                                                  color: kBlackText,
+                                                                  fontSize: 14,
+                                                                  fontFamily: 'DinBold'),
+                                                              maxLines: 2,
                                                             ),
-                                                            initialValue: cubit
-                                                                .answer[state
+                                                            FormBuilder(
+                                                              autovalidateMode:
+                                                                  AutovalidateMode
+                                                                      .always,
+                                                              child:
+                                                                  FormBuilderRadioGroup<
+                                                                      dynamic>(
+                                                                decoration:
+                                                                    const InputDecoration(
+                                                                  labelStyle: TextStyle(
+                                                                      color:
+                                                                          kBlackText,
+                                                                      fontSize: 18,
+                                                                      fontFamily:
+                                                                          'DinBold'),
+                                                                  // labelText: "${index + 1} " +
+                                                                  //     state
+                                                                  //         .questionModel[
+                                                                  //             index]
+                                                                  //         .description,
+                                                                ),
+                                                                initialValue: cubit
+                                                                    .answer[state
+                                                                        .questionModel[
+                                                                    index]],
+                                                                name:
+                                                                    'best_language',
+                                                                onChanged: (value) {
+                                                                  log('$value');
+                                                                  if (value !=
+                                                                      null) {
+                                                                    setState(() {
+                                                                      cubit
+                                                                          .answer[state
+                                                                              .questionModel[
+                                                                          index]] = value;
+                                                                    });
+                                                                  }
+                                                                },
+                                                                validator: (value) {
+                                                                  if (value ==
+                                                                      null) {
+                                                                    return 'من فضلك أجب علي المدون أعلاة ';
+                                                                  }
+                                                                  return '';
+                                                                },
+                                                                options: state
                                                                     .questionModel[
-                                                                index]],
-                                                            name:
-                                                                'best_language',
-                                                            onChanged: (value) {
-                                                              log('$value');
-                                                              if (value !=
-                                                                  null) {
-                                                                setState(() {
-                                                                  cubit
-                                                                      .answer[state
-                                                                          .questionModel[
-                                                                      index]] = value;
-                                                                });
-                                                              }
-                                                            },
-                                                            validator: (value) {
-                                                              if (value ==
-                                                                  null) {
-                                                                return 'من فضلك أجب علي المدون أعلاة ';
-                                                              }
-                                                              return '';
-                                                            },
-                                                            options: state
-                                                                .questionModel[
-                                                                    index]
-                                                                .answers
-                                                                .map((lang) =>
-                                                                    FormBuilderFieldOption(
-                                                                      value:
-                                                                          lang,
-                                                                      child: customText3(
-                                                                          title: lang
-                                                                              .answerOption
-                                                                              .toString(),
-                                                                          color:
-                                                                              kBlackText),
-                                                                    ))
-                                                                .toList(
-                                                                    growable:
-                                                                        false),
-                                                            controlAffinity:
-                                                                ControlAffinity
-                                                                    .trailing,
-                                                          ),
+                                                                        index]
+                                                                    .answers
+                                                                    .map((lang) =>
+                                                                        FormBuilderFieldOption(
+                                                                          value:
+                                                                              lang,
+                                                                          child: customText3(
+                                                                              title: lang
+                                                                                  .answerOption
+                                                                                  .toString(),
+                                                                              color:
+                                                                                  kBlackText),
+                                                                        ))
+                                                                    .toList(
+                                                                        growable:
+                                                                            false),
+                                                                controlAffinity:
+                                                                    ControlAffinity
+                                                                        .trailing,
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ],

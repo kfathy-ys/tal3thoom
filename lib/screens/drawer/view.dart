@@ -13,10 +13,12 @@ import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/first
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/pre-treatment_questionnaire/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_oases_test/view.dart';
 import 'package:tal3thoom/screens/drawer/page/treatment_service/page/views/second_session/second_stage_ssrs_test/view.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../../config/keys.dart';
 import '../../config/remote_config.dart';
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';
+import '../widgets/fast_widget.dart';
 import '../widgets/loading.dart';
 import 'cubit/data_access_permission_cubit.dart';
 import 'page/advisors_service/views/Reservation_appointment/view.dart';
@@ -92,16 +94,30 @@ class _MenuItemsState extends State<MenuItems> {
                         Get.back();
                         BlocProvider.of<HomeTabeBarCubit>(context)
                             .changeIndex(1);
-                        Get.to(() => const HomeTabScreen());
+                        Get.offAll(() => const HomeTabScreen());
                       },
-                      leading: Image.asset("assets/images/main.png"),
+                      leading: Image.asset("assets/images/homenewicon.png",width: context.width*0.07,height: context.height*0.04,),
                       title: customText2(
                           title: KeysConfig.home, color: kHomeColor),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Get.back();
+                        navigateTo(
+                            context,
+                            const WebView(
+                              javascriptMode: JavascriptMode.unrestricted,
+                              initialUrl: "https://mcsc-saudi.com/intro-videos",
+                            ));
+                      },
+                      leading: Image.asset("assets/images/video icon.png",width: context.width*0.07,height: context.height*0.04,),
+                      title: customText2(
+                          title: KeysConfig.videosInfo, color: kHomeColor),
                     ),
                     DiagnosticServices(
                       onTapInductions: () {
                         Get.back();
-                        Get.to(() => const InductionDiagnostic());
+                        Get.offAll(() => const InductionDiagnostic());
                       },
                       isPayment: state.accessPermissionModel.data
                                   ?.stagesDiagnosis!.payment ==
@@ -114,13 +130,13 @@ class _MenuItemsState extends State<MenuItems> {
                                      .payment ==
                                      false) {
                                    Get.back();
-                                   Get.to(() => const DiagnosticPaymentScreen());
+                                   Get.offAll(() => const DiagnosticPaymentScreen());
                                  } else {
                                    return;
                                  }
                                }else{
                                  Get.back();
-                                 Get.to(() => const DiagnosticHistory());
+                                 Get.offAll(() => const DiagnosticHistory());
                                }
                       },
                       isCaseHistory: state.accessPermissionModel.data
@@ -136,7 +152,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .payment ==
                                 true) {
                           Get.back();
-                          Get.to(() => const DiagnosticHistory());
+                          Get.offAll(() => const DiagnosticHistory());
                         } else {
                           return;
                         }
@@ -154,7 +170,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .caseHistory ==
                                 true) {
                           Get.back();
-                          Get.to(() => const DiagnosticOasesTest());
+                          Get.offAll(() => const DiagnosticOasesTest());
                         } else {
                           return;
                         }
@@ -172,7 +188,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .oases ==
                                 true) {
                           Get.back();
-                          Get.to(() => const SSRSDiagnosticsScreen());
+                          Get.offAll(() => const SSRSDiagnosticsScreen());
                         } else {
                           return;
                         }
@@ -190,7 +206,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .ssrs ==
                                 true) {
                           Get.back();
-                          Get.to(() => const DiagnosticSSI4());
+                          Get.offAll(() => const DiagnosticSSI4());
                         } else {
                           return;
                         }
@@ -208,7 +224,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .ssi4 ==
                                 true) {
                           Get.back();
-                          Get.to(() => ReservationDiagnostic());
+                          Get.offAll(() => ReservationDiagnostic());
                         } else {
                           return;
                         }
@@ -220,7 +236,7 @@ class _MenuItemsState extends State<MenuItems> {
                         BlocProvider.of<HomeTabeBarCubit>(context)
                             .changeIndex(2);
 
-                        Get.to(() => const HomeTabScreen());
+                        Get.offAll(() => const HomeTabScreen());
                       },
                       leading: Image.asset("assets/images/calendar.png"),
                       title: customText2(
@@ -229,7 +245,7 @@ class _MenuItemsState extends State<MenuItems> {
                     TreatmentServiceExpansion(
                       onTapInductions: () {
                         Get.back();
-                        Get.to(() => const FirstTreatmentInduction());
+                        Get.offAll(() => const FirstTreatmentInduction());
                       },
                       isPayment: state.accessPermissionModel.data
                                   ?.stagesTreatment!.paymentTreatmentAll ==
@@ -242,7 +258,7 @@ class _MenuItemsState extends State<MenuItems> {
                              .closeBooking ==
                              true) {
                            Get.back();
-                           Get.to(() => FirstPaymentTreatment());
+                           Get.offAll(() => FirstPaymentTreatment());
                          } else {
                            return;
                          }
@@ -250,7 +266,7 @@ class _MenuItemsState extends State<MenuItems> {
                            .closeBooking ==
                            true){
                          Get.back();
-                         Get.to(() => const PretreatmentQuestionnaire());
+                         Get.offAll(() => const PretreatmentQuestionnaire());
                        }
 
 
@@ -269,7 +285,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .paymentTreatmentOne ==
                                 true) {
                           Get.back();
-                          Get.to(() => const PretreatmentQuestionnaire());
+                          Get.offAll(() => const PretreatmentQuestionnaire());
                         } else {
                           return;
                         }
@@ -287,7 +303,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .preTreatment ==
                                 true) {
                           Get.back();
-                          Get.to(() => const FirstTreatmentSession());
+                          Get.offAll(() => const FirstTreatmentSession());
                         } else {
                           return;
                         }
@@ -305,7 +321,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentFirst!.sessions ==
                                 true) {
                           Get.back();
-                          Get.to(() => const FirstStageOasesTest());
+                          Get.offAll(() => const FirstStageOasesTest());
                         } else {
                           return;
                         }
@@ -323,7 +339,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentFirst!.oases ==
                                 true) {
                           Get.back();
-                          Get.to(() => const FirstStageSSRSTreatmentScreen());
+                          Get.offAll(() => const FirstStageSSRSTreatmentScreen());
                         } else {
                           return;
                         }
@@ -341,7 +357,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentFirst!.ssrs ==
                                 true) {
                           Get.back();
-                          Get.to(() => const TreatmentSSI4());
+                          Get.offAll(() => const TreatmentSSI4());
                         } else {
                           return;
                         }
@@ -359,7 +375,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentFirst!.ssi4 ==
                                 true) {
                           Get.back();
-                          Get.to(() => FirstStageTreatmentReservation());
+                          Get.offAll(() => FirstStageTreatmentReservation());
                         } else {
                           return;
                         }
@@ -380,7 +396,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     .paymentTreatmentAll ==
                                 true) {
                           Get.back();
-                          Get.to(() => const SecondTreatmentSession());
+                          Get.offAll(() => const SecondTreatmentSession());
                         } else {
                           return;
                         }
@@ -398,7 +414,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentSecond!.sessions ==
                                 true) {
                           Get.back();
-                          Get.to(() => const SecondStageOasesTest());
+                          Get.offAll(() => const SecondStageOasesTest());
                         } else {
                           return;
                         }
@@ -416,7 +432,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentSecond!.oases ==
                                 true) {
                           Get.back();
-                          Get.to(() => const SecondStageSSRSTreatmentScreen());
+                          Get.offAll(() => const SecondStageSSRSTreatmentScreen());
                         } else {
                           return;
                         }
@@ -434,7 +450,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentSecond!.ssrs ==
                                 true) {
                           Get.back();
-                          Get.to(() => const SecondTreatmentSSI4());
+                          Get.offAll(() => const SecondTreatmentSSI4());
                         } else {
                           return;
                         }
@@ -452,7 +468,7 @@ class _MenuItemsState extends State<MenuItems> {
                                     ?.stagesTreatmentSecond!.ssi4 ==
                                 true) {
                           Get.back();
-                          Get.to(() => SecondStageTreatmentReservation());
+                          Get.offAll(() => SecondStageTreatmentReservation());
                         } else {
                           return;
                         }
@@ -461,7 +477,7 @@ class _MenuItemsState extends State<MenuItems> {
                     ListTile(
                       onTap: () {
                         Get.back();
-                        Get.to(() => const ResultsPreviousTreatmentSessions());
+                        Get.offAll(() => const ResultsPreviousTreatmentSessions());
                       },
                       leading: Image.asset("assets/images/Files.png"),
                       title: customText2(
@@ -471,7 +487,7 @@ class _MenuItemsState extends State<MenuItems> {
                     ListTile(
                       onTap: () {
                         Get.back();
-                        Get.to(() => const MedicalReports());
+                        Get.offAll(() => const MedicalReports());
                       },
                       leading: Image.asset("assets/images/document.png"),
                       title: customText2(
@@ -479,10 +495,10 @@ class _MenuItemsState extends State<MenuItems> {
                     ),
                     AdvisorsService(onTapInductions: () {
                       Get.back();
-                      Get.to(() => const AdviserInduction());
+                      Get.offAll(() => const AdviserInduction());
                     }, onTapAppointmentReservation: () {
                       Get.back();
-                      Get.to(() => const ReservationAppointmentScreen());
+                      Get.offAll(() => const ReservationAppointmentScreen());
                     }),
                     ListTile(
                       onTap: () {
@@ -490,7 +506,7 @@ class _MenuItemsState extends State<MenuItems> {
                         BlocProvider.of<HomeTabeBarCubit>(context)
                             .changeIndex(0);
 
-                        Get.to(() => const HomeTabScreen());
+                        Get.offAll(() => const HomeTabScreen());
                       },
                       leading: Image.asset("assets/images/personal file.png"),
                       title: customText2(
@@ -499,7 +515,7 @@ class _MenuItemsState extends State<MenuItems> {
                     ListTile(
                       onTap: () {
                         Get.back();
-                        Get.to(() => const WhoWEAreScreen());
+                        Get.offAll(() => const WhoWEAreScreen());
                       },
                       leading:
                           Image.asset("assets/images/Exclamation mark.png"),
@@ -517,7 +533,7 @@ class _MenuItemsState extends State<MenuItems> {
                     ListTile(
                       onTap: () {
                         Get.back();
-                        Get.to(() => LoginScreen());
+                        Get.offAll(() => LoginScreen());
 
                         Prefs.clear();
                       },
@@ -537,7 +553,7 @@ class _MenuItemsState extends State<MenuItems> {
     );
   }
 
-  Container doneWidget(BuildContext context) {
+  Widget  doneWidget(BuildContext context) {
     return Container(
       height: context.height * 0.04,
       width: context.height * 0.04,

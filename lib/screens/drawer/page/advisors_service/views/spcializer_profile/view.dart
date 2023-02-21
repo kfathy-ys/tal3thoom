@@ -98,10 +98,10 @@ class SpecializerProfile extends StatelessWidget {
                               ProfileItems(
                                   title: "جهة العمل : ",
                                   subTitle: state.advisorProfile.employer!),
-                              ProfileItems(
-                                  title: "السيرة الذاتية : ",
-                                  subTitle: state.advisorProfile.attachmentName
-                                      .toString()),
+                              // ProfileItems(
+                              //     title: "السيرة الذاتية : ",
+                              //     subTitle: state.advisorProfile.attachmentName
+                              //         .toString()),
                               ProfileItems(
                                   title: "الجنسية : ",
                                   subTitle: state.advisorProfile.nationality

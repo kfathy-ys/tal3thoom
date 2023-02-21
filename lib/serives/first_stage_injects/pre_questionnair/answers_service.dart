@@ -34,8 +34,14 @@ class PreQuestionnaireAnswersService {
     );
     if (res.data['status'] == 1 || res.data['status'] == 200) {
       final _msg = Message.fromMap(res.data['messages'][0]);
+      print("$_msgكده المسيدج جت");
       return _msg;
     }
-    return null;
+
+
+    throw  res.data['messages'][0]['body'].toString();
+
+
+
   }
 }

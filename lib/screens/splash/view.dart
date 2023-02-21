@@ -15,6 +15,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../auth/login/view.dart';
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../widgets/fast_widget.dart';
+import '../widgets/smallButton.dart';
+import '../widgets/small_splash_button.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -75,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     textAlign: TextAlign.center,
                     text: const TextSpan(
                       text:
-                      ' هو تطبيق يعني في علاج إضطراب التلعثم / التأتأة يمكنك الاطلاع علي مقاطع  ',
+                      ' ( هو تطبيق ُيعنى بعلاج اضطراب التلعثم/التأتأة ويمكنك الاطلاع على  ',
                       style: TextStyle(
                           fontSize: 14,
                           fontFamily: "DinMedium",
@@ -83,15 +85,16 @@ class _SplashScreenState extends State<SplashScreen> {
                           fontWeight: FontWeight.bold),
                       children: [
                         TextSpan(
-                          text: ' الفيديو التالية ',
+                          text: ' الفيديوهات التالية ',
                           style: TextStyle(
                               fontSize: 14,
                               fontFamily: "DinMedium",
                               color: kSkyButton,
+                              decoration: TextDecoration.underline,
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
-                            text: ' لمعرفة المزيد عن التطبيق وخدماتة ',
+                            text: '  للتعرف أكثر على طريقة العلاج التي نقدمها لك أو الاستمرار بالتسجيل ) ',
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: "DinMedium",
@@ -105,23 +108,29 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(height: context.height*0.1,),
               FadeInUpBig(
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  color: kPrimaryColor,
-                  child: InkWell(
-                    onTap: () => userId.isNotEmpty
-                        ? {
-                      BlocProvider.of<HomeTabeBarCubit>(context)
-                          .changeIndex(1),
-                      Get.offAll(() => const HomeTabScreen()),
-                    }
-                        : Get.offAll(() => LoginScreen()),
-                    child: Image.asset(
-                      'assets/images/arrow splash icon.png',
-                      scale: 1.2,
-                    ),
-                  ),
+
+                  child: SmallSplashButton(onPressed:   () => userId.isNotEmpty
+                ? {
+                BlocProvider.of<HomeTabeBarCubit>(context)
+                    .changeIndex(1),
+                Get.offAll(() => const HomeTabScreen()),
+                }
+                    : Get.offAll(() => LoginScreen()),color: kDarklyColor,title: "سجل الآن")
+
+
+                  // InkWell(
+                  //   onTap: () => userId.isNotEmpty
+                  //       ? {
+                  //     BlocProvider.of<HomeTabeBarCubit>(context)
+                  //         .changeIndex(1),
+                  //     Get.offAll(() => const HomeTabScreen()),
+                  //   }
+                  //       : Get.offAll(() => LoginScreen()),
+                  //   child: Image.asset(
+                  //     'assets/images/arrow splash icon.png',
+                  //     scale: 1.2,
+                  //   ),
+                  // ),
                 ),
               ),
             ],

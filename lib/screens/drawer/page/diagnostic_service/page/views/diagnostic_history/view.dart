@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:queen/validation.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_history/cubit/diagnostic_history_question_cubit.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/question.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
@@ -13,6 +14,7 @@ import '../../../../../../../config/keys.dart';
 import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/custom_text_filed_history_numbers.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../view.dart';
 import 'models/diagnostic_history_question_model.dart';
@@ -91,20 +93,37 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                               },
                               child: Image.asset("assets/images/Earphone.png")),
                           suffix: cubit.shouldShowTextField(currentQuestion)
-                              ? SizedBox(
-                                  height: 60,
-                                  width: 150,
-                                  child: TextFormField(
-                                      controller: TextEditingController(
-                                          text: cubit
-                                              .answersTxt[currentQuestion]),
-                                      onChanged: (str) => cubit
-                                          .answersTxt[currentQuestion] = str,
-                                      keyboardType: currentQuestion.description
-                                              .toString()
-                                              .contains("10")
-                                          ? TextInputType.number
-                                          : TextInputType.text))
+                              ? CustomTextFieldHistory(
+
+
+                                  controller: TextEditingController(
+                                      text: cubit
+                                          .answersTxt[currentQuestion]),
+                                // textInputFormatter: [
+                                //   FilteringTextInputFormatter.deny(
+                                //       RegExp(r'[^A-Za-z0-9]+')),
+                                // ],
+
+                                  onsave: (str) {
+                                    cubit
+                                      .answersTxt[currentQuestion] = str;
+                                    print(str);
+                                  },
+
+                                  // type: currentQuestion.description.toString()
+                                  //         .contains("-")
+                                  //     ? TextInputType.number
+                                  //     : TextInputType.text ,
+
+                                   validator: qValidator([
+                                     IsRequired(KeysConfig.thisFieldRequired),
+                                     MinLength(1),
+                                     MaxLength(40),
+                                   ]),
+
+
+
+                          )
                               : null,
                         ),
 
@@ -126,12 +145,14 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                             });
                           }
                         },
-                        validator: (value) {
-                          if (value == null) {
-                            return 'من فضلك أجب علي المدون أعلاة ';
-                          }
-                          return '';
-                        },
+
+                        //TODO:: The Client Want To Disable the Validation In All Fields
+                        // validator: (value) {
+                        //   if (value == null) {
+                        //     return 'من فضلك أجب علي المدون أعلاة ';
+                        //   }
+                        //   return '';
+                        // },
                         options: currentQuestion.answers
                             .map((lang) => FormBuilderFieldOption(
                                   value: lang,
@@ -169,9 +190,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
             child: BlocConsumer<DiagnosticHistoryQuestionCubit,
                 DiagnosticHistoryQuestionState>(
               listener: (context, state) {
-                // if(  state is DiagnosticHistoryQuestionError){
-                //   Alert.error("الرجاء التحقق من الإجابات الممكنة والمدونة بالأسفل",desc: " حقل إجابات المريض مطلوب ، ولا يمكن أن يكون خاليًا أو فارغًا ");
-                // }
+
               },
               builder: (context, state) {
                 final cubit =
@@ -207,7 +226,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                                       color: kBlackText)),
                             ),
                             Image.asset(
-                              "assets/images/255.png",
+                              "assets/images/test 10.png",
                             ),
                             buildSizedBoxed(context.height),
                             ...List.generate(6, buildCategoryItem).toList(),

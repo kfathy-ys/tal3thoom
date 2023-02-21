@@ -42,7 +42,7 @@ class AlertMessageToPay extends StatelessWidget {
                   textStyle: buildTextStyle(),
                 ),
                 TyperAnimatedText(
-                  "يرجاء الضغط علي زر المتابعه 👇",
+                  "برجاء الضغط علي زر المتابعه 👇",
                   textStyle: buildAccentTextStyle(),
                 ),
                 TyperAnimatedText(" لتاكيد عملية المسبقة",

@@ -10,7 +10,7 @@ class HintAvailableTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      height: context.height * 0.079,
+      height: context.height * 0.049,
       width: context.width * 0.8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),

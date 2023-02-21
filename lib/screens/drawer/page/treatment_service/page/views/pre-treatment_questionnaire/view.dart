@@ -141,8 +141,8 @@ class _PretreatmentQuestionnaireState extends State<PretreatmentQuestionnaire> {
               );
             }
             if (state is PreQuestionnaireError) {
-              return const PretreatmentQuestionnaire();
-            }
+              BlocProvider.of<PreQuestionnaireCubit>(context)
+                  .getPreQuestionnaire();            }
             return const SizedBox();
           },
         ),

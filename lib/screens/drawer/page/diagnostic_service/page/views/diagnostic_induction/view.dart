@@ -7,10 +7,12 @@ import 'package:queen/core/helpers/prefs.dart';
 import 'package:tal3thoom/config/keys.dart';
 import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../widgets/appBar.dart';
 import '../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../widgets/constants.dart';
+import '../../../../../../widgets/fast_widget.dart';
 import '../../../../../../widgets/loading.dart';
 import '../../../../../cubit/data_access_permission_cubit.dart';
 import '../../../../../view.dart';
@@ -33,11 +35,13 @@ class InductionDiagnostic extends StatefulWidget {
 
 class _InductionDiagnosticState extends State<InductionDiagnostic> {
   final FijkPlayer player = FijkPlayer();
-@override
+
+  @override
   void initState() {
-  setupRemoteConfig();
-  super.initState();
+    setupRemoteConfig();
+    super.initState();
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -83,25 +87,47 @@ class _InductionDiagnosticState extends State<InductionDiagnostic> {
                       );
                     }
                     if (state is DiagnosticInductionSuccess) {
+                      print("http://mcsc-saudi.com/api/" +
+                          state.inductionDiagnosticModel.data!.videoUrl
+                              .toString() +
+                          "فووووول");
                       return Column(
-
                         children: [
-
-              
+                          customTextWatchVideo(
+                              onTap: () {
+                                navigateTo(
+                                    context,
+                                    const WebView(
+                                      javascriptMode:
+                                          JavascriptMode.unrestricted,
+                                      initialUrl:
+                                          "https://mcsc-saudi.com/intro-videos",
+                                    ));
+                              },
+                              title: "إضغط هنا لمشاهدة الفيديوهات التعريفية",
+                              color: kButtonDashBoard),
                           SizedBox(
                             height: context.height * 0.02,
                           ),
-                          SizedBox(
-                            width: context.width * 0.8,
-                            height: context.height * 0.25,
-                            child: VideoScreen(
-                                url:"http://mcsc-saudi.com/api/" +
-                                    state.inductionDiagnosticModel.data!.videoUrl
-                                        .toString()
-
-
-                            ),
-                          ),
+                          // Container(
+                          //
+                          //   margin: const EdgeInsets
+                          //       .symmetric(vertical: 8),
+                          //   width: context.width * 0.8,
+                          //   height:
+                          //   context.height * 0.25,
+                          //   child: VideoScreen(
+                          //       url:
+                          //
+                          //       "http://mcsc-saudi.com/api/" +
+                          //         state.inductionDiagnosticModel.data!.videoUrl
+                          //             .toString()
+                          //
+                          //           .toString()
+                          //
+                          //
+                          //   ),
+                          // ),
                         ],
                       );
                     }
@@ -120,120 +146,121 @@ class _InductionDiagnosticState extends State<InductionDiagnostic> {
                     return const LoadingFadingCircle();
                   }
                   if (state is DataAccessPermissionSuccess) {
-                    return  _isAvailable != null  ?  MediaButton(
-                      onPressed: () {
-
-                        if(  _isAvailable == false  ){
-                          print("زي الفل");
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .payment ==
-                              false) {
-                            Get.offAll(() => const DiagnosticPaymentScreen());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .payment ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .caseHistory ==
-                                  false) {
-                            Get.offAll(() => const DiagnosticHistory());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .caseHistory ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .oases ==
-                                  false) {
-                            Get.offAll(() => const DiagnosticOasesTest());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .oases ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .ssrs ==
-                                  false) {
-                            Get.offAll(() => const SSRSDiagnosticsScreen());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .ssrs ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .ssi4 ==
-                                  false) {
-                            Get.offAll(() => const DiagnosticSSI4());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .ssi4 ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .booking ==
-                                  false) {
-                            Get.offAll(() => ReservationDiagnostic());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .booking ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .closeBooking ==
-                                  true) {
-                            Get.offAll(() => const FirstTreatmentInduction());
-                          }
-                        }
-
-
-                        else if(_isAvailable == true  ){
-
-                          print("فيييييييييييييييييمص");
-                          if (
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .caseHistory ==
-                                  false) {
-                            Get.offAll(() => const DiagnosticHistory());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .caseHistory ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .oases ==
-                                  false) {
-                            Get.offAll(() => const DiagnosticOasesTest());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .oases ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .ssrs ==
-                                  false) {
-                            Get.offAll(() => const SSRSDiagnosticsScreen());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .ssrs ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .ssi4 ==
-                                  false) {
-                            Get.offAll(() => const DiagnosticSSI4());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .ssi4 ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .booking ==
-                                  false) {
-                            Get.offAll(() => ReservationDiagnostic());
-                          }
-                          if (state.accessPermissionModel.data!.stagesDiagnosis!
-                              .booking ==
-                              true &&
-                              state.accessPermissionModel.data!.stagesDiagnosis!
-                                  .closeBooking ==
-                                  true) {
-                            Get.offAll(() => const FirstTreatmentInduction());
-                          }
-                        }
-                      },
-                      title: KeysConfig.next,
-                    ) :const LoadingFadingCircle();
+                    return _isAvailable != null
+                        ? MediaButton(
+                            onPressed: () {
+                              if (_isAvailable == false) {
+                                print("زي الفل");
+                                if (state.accessPermissionModel.data!
+                                        .stagesDiagnosis!.payment ==
+                                    false) {
+                                  Get.offAll(
+                                      () => const DiagnosticPaymentScreen());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.payment ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.caseHistory ==
+                                        false) {
+                                  Get.offAll(() => const DiagnosticHistory());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.caseHistory ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.oases ==
+                                        false) {
+                                  Get.offAll(() => const DiagnosticOasesTest());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.oases ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssrs ==
+                                        false) {
+                                  Get.offAll(
+                                      () => const SSRSDiagnosticsScreen());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssrs ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssi4 ==
+                                        false) {
+                                  Get.offAll(() => const DiagnosticSSI4());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssi4 ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.booking ==
+                                        false) {
+                                  Get.offAll(() => ReservationDiagnostic());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.booking ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.closeBooking ==
+                                        true) {
+                                  Get.offAll(
+                                      () => const FirstTreatmentInduction());
+                                }
+                              } else if (_isAvailable == true) {
+                                print("فيييييييييييييييييمص");
+                                if (state.accessPermissionModel.data!
+                                        .stagesDiagnosis!.caseHistory ==
+                                    false) {
+                                  Get.offAll(() => const DiagnosticHistory());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.caseHistory ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.oases ==
+                                        false) {
+                                  Get.offAll(() => const DiagnosticOasesTest());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.oases ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssrs ==
+                                        false) {
+                                  Get.offAll(
+                                      () => const SSRSDiagnosticsScreen());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssrs ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssi4 ==
+                                        false) {
+                                  Get.offAll(() => const DiagnosticSSI4());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.ssi4 ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.booking ==
+                                        false) {
+                                  Get.offAll(() => ReservationDiagnostic());
+                                }
+                                if (state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.booking ==
+                                        true &&
+                                    state.accessPermissionModel.data!
+                                            .stagesDiagnosis!.closeBooking ==
+                                        true) {
+                                  Get.offAll(
+                                      () => const FirstTreatmentInduction());
+                                }
+                              }
+                            },
+                            title: KeysConfig.next,
+                          )
+                        : const LoadingFadingCircle();
                   }
                   if (state is DataAccessPermissionError) {
                     return Text(state.msg);
@@ -270,7 +297,7 @@ class _InductionDiagnosticState extends State<InductionDiagnostic> {
     setState(() {
       _isAvailable = remoteConfig.getBool("isAvailable");
     });
-     Prefs.setBool("isAvailable", remoteConfig.getBool("isAvailable"));
+    Prefs.setBool("isAvailable", remoteConfig.getBool("isAvailable"));
     print("-=-=-=-=-=-=-=-= ${remoteConfig.getBool("isAvailable")}");
     return remoteConfig;
   }

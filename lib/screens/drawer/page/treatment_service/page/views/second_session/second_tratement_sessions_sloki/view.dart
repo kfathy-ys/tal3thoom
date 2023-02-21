@@ -173,7 +173,9 @@ class _SecondTreatmentSessionsSlokiScreenState
                                       _file = x;
                                     });
                                   },
-                                ));
+                              text: "                                                                                                 ",
+
+                            ));
                           } else {
                             Alert.error(
                                 "يجب الحصول علي تصريح الوصول الي الكاميرا");
@@ -258,11 +260,23 @@ class _SecondTreatmentSessionsSlokiScreenState
   void pickVideo() async {
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
-        setState(() {
-          _file = value;
-        });
-        _playVideo(value);
+        final file = File(value.path);
+        if (file.existsSync()) {
+          final fileLength = file.lengthSync();
+          if (fileLength > 150 * 1024 * 1024) {
+            Alert.error("هذا الفيديو كبير جدًا. الرجاء تحديد مقطع فيديو بحجم أقل.");
+          } else {
+            setState(() {
+              _file = value;
+            });
+            _playVideo(value);
+          }
+        } else {
+          Alert.error("لم يتم العثور على الملف.");
+        }
       }
+    }).catchError((error) {
+      Alert.error("خطأ في اختيار الفيديو: $error");
     });
   }
 
@@ -288,9 +302,13 @@ class _SecondTreatmentSessionsSlokiScreenState
       await _disposeVideoController();
       late VideoPlayerController controller;
       if (kIsWeb) {
-        controller = VideoPlayerController.network(file.path);
+        controller = VideoPlayerController.network(file.path,);
       } else {
-        controller = VideoPlayerController.file(File(file.path));
+        controller = VideoPlayerController.file(
+          File(file.path),
+          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+
+        );
       }
       _controller = controller;
       // In web, most browsers won't honor a programmatic call to .play
@@ -302,8 +320,12 @@ class _SecondTreatmentSessionsSlokiScreenState
       await controller.setVolume(volume);
       await controller.initialize();
       await controller.setLooping(false);
-      await controller.play();
+      await controller.pause();
+      //await controller.play();
+
+
       setState(() {});
     }
   }
+
 }

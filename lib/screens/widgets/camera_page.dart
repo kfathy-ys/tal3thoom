@@ -2,14 +2,16 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:tal3thoom/screens/widgets/alerts.dart';
+import 'package:get/get.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
+import 'constants.dart';
 import 'loading.dart';
 
 class CameraPage extends StatefulWidget {
   final Function(XFile) onAdd;
-  const CameraPage({Key? key, required this.onAdd}) : super(key: key);
+  String? text;
+   CameraPage({Key? key, required this.onAdd,this.text}) : super(key: key);
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -64,9 +66,11 @@ class _CameraPageState extends State<CameraPage> {
       await _cameraController.startVideoRecording();
 
       setState(() => _isRecording = true);
-      Future.delayed(const Duration(seconds: 15), () {
+      Future.delayed(const Duration(minutes: 3), () {
         _stopRecordVideo();
-        Alert.error("الفيديو المطلوب تعدي عدد الميغا بايت المطلوبة ");
+
+       //TODO:: The Client wanted to disable the validation of video size
+       // Alert.error("الفيديو المطلوب تعدي عدد الميغا بايت المطلوبة ");
       });
     }
   }
@@ -98,16 +102,35 @@ class _CameraPageState extends State<CameraPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
+
             CameraPreview(_cameraController),
-            Padding(
-              padding: const EdgeInsets.all(25),
-              child: FloatingActionButton(
-                backgroundColor: Colors.red,
-                child: Icon(_isRecording ? Icons.stop : Icons.circle),
-                onPressed: () {
-                  _stopRecordVideo();
-                },
+          if(widget.text == null)  Card(
+              color: Colors.transparent,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 50.0),
+                child: SizedBox(
+                  height: context.height*0.25,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                    child: Text(
+
+
+                      widget.text! ,style: const TextStyle(color: kHomeColor,fontSize: 12,  fontFamily: 'DinMedium'),
+
+                    ),
+                  ),
+
+
+
+                ),
               ),
+            ),
+            FloatingActionButton(
+              backgroundColor: Colors.red,
+              child: Icon(_isRecording ? Icons.stop : Icons.circle),
+              onPressed: () {
+                _stopRecordVideo();
+              },
             ),
           ],
         ),

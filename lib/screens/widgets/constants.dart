@@ -189,6 +189,13 @@ Widget customText3({required String title, required Color color}) {
   return Text(title,
       style: TextStyle(color: color, fontSize: 14, fontFamily: 'DinLight'));
 }
+Widget customTextWatchVideo({required String title, required Color color ,required VoidCallback onTap}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Text(title,
+        style: TextStyle(color: color, decoration: TextDecoration.underline, fontSize: 16, fontFamily: 'DinMedium')),
+  );
+}
 
 Widget customText4({required String title, required Color color}) {
   return Text(title,

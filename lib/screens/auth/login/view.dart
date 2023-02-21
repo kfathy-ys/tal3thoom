@@ -114,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                             controller: _passwordController,
                             validator: qValidator([
                               IsRequired(KeysConfig.enterPassword),
-                              MinLength(6, KeysConfig.minPassword),
+                              MinLength(8, KeysConfig.minPassword),
                               MaxLength(30),
                             ]),
                             type: TextInputType.text,

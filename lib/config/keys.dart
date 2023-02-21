@@ -41,6 +41,7 @@ class KeysConfig {
   static const myOrders = "طلباتي";
   static const myProfile = "الملف الشخصي";
   static const contactsUs = "تواصل معنا";
+  static const videosInfo = "فيديوهات تعريفية";
   static const languages = "اللغة";
   static const settingsV = "الإعداءات";
   static const logout = "تسجيل الخروج";
@@ -61,7 +62,7 @@ class KeysConfig {
   static const enterId = "الرجاء إدخال رقم الهوية الخاص بك!";
   static const enterPassword = "من فضلك أدخل رقمك السري!";
   static const id = "رقمك الخاص";
-  static const minPassword = " الحد الأدني لكلمه المرور 6 أنماط ";
+  static const minPassword = " الحد الأدني لكلمه المرور 8 أنماط ";
   static const notification = "الإشعارات";
   static const periods = " من الفتراتstatic contsأدخل المدة المطلوبة من : إلي";
   static const addComment = "أضف تعليق";

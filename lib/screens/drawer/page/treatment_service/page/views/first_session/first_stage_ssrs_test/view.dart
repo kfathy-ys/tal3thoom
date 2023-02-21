@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
-import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../view.dart';
@@ -85,7 +84,7 @@ class _FirstStageSSRSTreatmentScreenState
                           SizedBox(
                             width: context.width * 0.8,
                             height: context.height * 0.25,
-                            child:
+                           // child:
 
                                 //         BetterVideoItems(video:      BetterPlayer.network(
                                 // 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -100,10 +99,10 @@ class _FirstStageSSRSTreatmentScreenState
                                 //
                                 //         ),
 
-                                const VideoScreen(
-                              url:
-                                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                            ),
+                            //     const VideoScreen(
+                            //   url:
+                            //       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                            // ),
                           ),
                           CustomButton(
                             onPressed: () {},
