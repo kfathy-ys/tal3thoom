@@ -181,7 +181,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         label: KeysConfig.email,
                         controller: cubit.emailController,
                         validator: qValidator([
-                          IsRequired("thisFieldRequired"),
+                          IsRequired(KeysConfig.thisFieldRequired),
                           //  IsOptional(),
                           MaxLength(30),
                         ]),

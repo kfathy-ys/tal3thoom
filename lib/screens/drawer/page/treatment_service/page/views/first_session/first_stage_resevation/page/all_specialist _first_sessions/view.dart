@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../../../home/cubit/home_tabebar_cubit.dart';
+import '../../../../../../../../../home/pages/views/reservations_schedule/cubit/booking_cubit.dart';
 import '../../../../../../../../../home/view.dart';
 import '../../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../../widgets/constants.dart';
@@ -199,6 +200,8 @@ class _AllSpecialistsFirstSessionsState
                                               BlocProvider.of<HomeTabeBarCubit>(
                                                       context)
                                                   .changeIndex(2);
+                                              BlocProvider.of<BookingCubit>(context).getBookingList();
+
 
                                               Get.to(
                                                   () => const HomeTabScreen());

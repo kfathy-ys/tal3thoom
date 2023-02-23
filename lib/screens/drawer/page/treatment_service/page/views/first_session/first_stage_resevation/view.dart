@@ -78,6 +78,8 @@ class FirstStageTreatmentReservation extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8)),
                             child: CalendarDatePicker(
                               firstDate: DateTime.now(),
+
+                            //initialDate:  DateTime.now().add(Duration(days: 1)),
                               initialDate: DateTime.now(),
                               lastDate: DateTime(2031),
                               onDateChanged: (value) {

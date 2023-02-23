@@ -8,8 +8,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../../config/keys.dart';
 import '../../../../../../../../config/remote_config.dart';
+import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
-import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
@@ -201,7 +201,18 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                                     false) {
                               Get.offAll(() => FirstStageTreatmentReservation());
                             }
+                            if (state.accessPermissionModel.data?.stagesDiagnosis!.booking == true ||
 
+                                state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true ||
+                                state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true
+
+
+                            ) {
+                              Get.back();
+                              Alert.error(
+                                'تم الحجز مع المتخصص من قبل بنجاح',
+                              );
+                            }
                             // ///////////////////////////////////////
                             //
                             if (state.accessPermissionModel.data!
@@ -305,6 +316,7 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                                     false) {
                               Get.offAll(() => const FirstStageOasesTest());
                             }
+
                             if (state.accessPermissionModel.data!
                                 .stagesTreatmentFirst!.oases ==
                                 true &&
@@ -330,7 +342,18 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                                     false) {
                               Get.offAll(() => FirstStageTreatmentReservation());
                             }
+                            if (state.accessPermissionModel.data?.stagesDiagnosis!.booking == true ||
 
+                                state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true ||
+                                state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true
+
+
+                            ) {
+                              Get.back();
+                              Alert.error(
+                                'تم الحجز مع المتخصص من قبل بنجاح',
+                              );
+                            }
                             // ///////////////////////////////////////
                             //
                             if (state.accessPermissionModel.data!

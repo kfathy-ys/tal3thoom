@@ -183,6 +183,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
             context: context,
             press: (context) => Scaffold.of(context).openDrawer()),
         body: SingleChildScrollView(
+
           child: Container(
             height: context.height,
             width: context.width,
@@ -204,6 +205,8 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   return Form(
                     key: cubit.formKey,
                     child: SingleChildScrollView(
+                      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12.0, vertical: 4),
@@ -258,28 +261,6 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                       .getDiagnosticHistoryQuestion();
 
 
-               /*  return   Center(
-                      child: Column(
-                    children: [
-                      SizedBox(height: context.height * 0.3),
-                      customText2(
-                          title: state.msg +
-                              "\n" +
-                              "الرجاءالرجوع إلي القائمة السابقه\n  والإجابة علي كافة الأسئلة",
-                          color: kBlackText),
-                      MediaButton(
-                        onPressed: () {
-                          Alert.error(state.msg);
-
-
-                          Get.offAll(() => const HomeTabScreen());
-                          BlocProvider.of<DiagnosticHistoryQuestionCubit>(context)
-                              .getDiagnosticHistoryQuestion();
-                        },
-                        title: 'إلي القائمة السابقه ',
-                      )
-                    ],
-                  ));*/
                 }
                 return const SizedBox();
               },

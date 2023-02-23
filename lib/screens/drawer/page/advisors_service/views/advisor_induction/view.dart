@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../../widgets/appBar.dart';
-import '../../../../../widgets/better_video_widget.dart';
 import '../../../../../widgets/constants.dart';
 import '../../../../../widgets/fast_widget.dart';
 import '../../../../view.dart';

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -104,19 +105,23 @@ class _CameraPageState extends State<CameraPage> {
           children: [
 
             CameraPreview(_cameraController),
-          if(widget.text == null)  Card(
+          if(widget.text != null)  Card(
               color: Colors.transparent,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 50.0),
                 child: SizedBox(
                   height: context.height*0.25,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
-                    child: Text(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                      child: AutoSizeText(
+                        minFontSize: 10,
+                        maxFontSize: 12,
+                        maxLines: 10,
 
+                        "( عند تسجيلك للفيديو يرجى أن تكون صورتك في وسط الشاشة )\n"+  widget.text! ,style: const TextStyle(color: kHomeColor,  fontFamily: 'DinMedium'),
 
-                      widget.text! ,style: const TextStyle(color: kHomeColor,fontSize: 12,  fontFamily: 'DinMedium'),
-
+                      ),
                     ),
                   ),
 

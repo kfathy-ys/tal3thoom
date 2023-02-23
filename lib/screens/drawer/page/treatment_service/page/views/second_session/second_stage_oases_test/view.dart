@@ -40,7 +40,7 @@ class _SecondStageOasesTestState extends State<SecondStageOasesTest>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: canSubmit
+      bottomNavigationBar: hasSelectedQuestion && canSubmit
           ? SmallButtonOases(
               onPressed: submit,
               // isLoading: isSubmiting,

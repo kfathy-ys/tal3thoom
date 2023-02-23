@@ -538,21 +538,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: qValidator([
                       IsRequired(KeysConfig.enterPass),
                      //  ContainsAny([r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'],sCharacters),
+                     //  RegExpRule(
+                     //      RegExp('[a-zA-Z0-9]')
+                     //      ,
+                     //      sCharacters),
+
                       RegExpRule(
-                          RegExp('[a-zA-Z0-9]')
-                          ,
+                          RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])[A-Za-z0-9!@#\$&*~-]*$'),
                           sCharacters),
-
-
                       MinLength(6, sCharacters),
                       MaxLength(30),
                     ]),
                     // type: TextInputType.text,
 
-                    textInputFormatter: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp('[a-zA-Z0-9]')),
-                    ],
+                    // textInputFormatter: [
+                    //   FilteringTextInputFormatter.allow(
+                    //       RegExp('[a-zA-Z0-9]')),
+                    // ],
                   ),
                   CustomTextField(
                     hint: KeysConfig.confirmPass,
@@ -570,10 +572,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
 
-                    textInputFormatter: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp('[a-zA-Z0-9]')),
-                    ],
+                    // textInputFormatter: [
+                    //   FilteringTextInputFormatter.allow(
+                    //       RegExp('[a-zA-Z0-9]')),
+                    // ],
                   ),
                   /* Container(
                     height: context.height * 0.13,

@@ -9,8 +9,8 @@ import 'package:tal3thoom/screens/widgets/mediaButton.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../../../../widgets/alerts.dart';
 import '../../../../../../widgets/appBar.dart';
-import '../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../widgets/constants.dart';
 import '../../../../../../widgets/fast_widget.dart';
 import '../../../../../../widgets/loading.dart';
@@ -198,6 +198,19 @@ class _InductionDiagnosticState extends State<InductionDiagnostic> {
                                         false) {
                                   Get.offAll(() => ReservationDiagnostic());
                                 }
+
+                                if (state.accessPermissionModel.data?.stagesDiagnosis!.booking == true ||
+
+                                    state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true ||
+                                    state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true
+
+
+                                ) {
+                                  Get.back();
+                                  Alert.error(
+                                    'تم الحجز مع المتخصص من قبل بنجاح',
+                                  );
+                                }
                                 if (state.accessPermissionModel.data!
                                             .stagesDiagnosis!.booking ==
                                         true &&
@@ -247,6 +260,20 @@ class _InductionDiagnosticState extends State<InductionDiagnostic> {
                                         false) {
                                   Get.offAll(() => ReservationDiagnostic());
                                 }
+
+                                if (state.accessPermissionModel.data?.stagesDiagnosis!.booking == true ||
+
+                                    state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true ||
+                                    state.accessPermissionModel.data?.stagesTreatmentFirst!.booking == true
+
+
+                                ) {
+                                  Get.back();
+                                  Alert.error(
+                                    'تم الحجز مع المتخصص من قبل بنجاح',
+                                  );
+                                }
+
                                 if (state.accessPermissionModel.data!
                                             .stagesDiagnosis!.booking ==
                                         true &&

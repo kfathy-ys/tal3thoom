@@ -15,7 +15,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../auth/login/view.dart';
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../widgets/fast_widget.dart';
-import '../widgets/smallButton.dart';
 import '../widgets/small_splash_button.dart';
 
 class SplashScreen extends StatefulWidget {
