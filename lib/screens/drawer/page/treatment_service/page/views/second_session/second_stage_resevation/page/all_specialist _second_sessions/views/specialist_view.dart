@@ -200,7 +200,7 @@ class _AllSpecialistsSecondSessionsState
                                                       context)
                                                   .changeIndex(2);
 
-                                              Get.to(
+                                              Get.offAll(
                                                   () => const HomeTabScreen());
                                             },
                                             color: kButtonGreenDark,

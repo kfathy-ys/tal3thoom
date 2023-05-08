@@ -48,6 +48,27 @@ class _VideoItemsState extends State<VideoItems> {
 
   @override
   Widget build(BuildContext context) {
+    _chewieController = ChewieController(
+      videoPlayerController: widget.videoPlayerController,
+      aspectRatio: 16 / 9,
+
+      showControls: true,
+
+      // Prepare the video to be played and display the first frame
+      autoInitialize: true,
+
+      looping: false,
+      // Errors can occur for example when trying to play a video
+      // from a non-existent URL
+      errorBuilder: (context, errorMessage) {
+        return Center(
+          child: Text(
+            errorMessage,
+            style: const TextStyle(color: Colors.white),
+          ),
+        );
+      },
+    );
     return Container(
       //padding: EdgeInsets.symmetric(vertical: 4,),
       decoration: BoxDecoration(
@@ -66,5 +87,6 @@ class _VideoItemsState extends State<VideoItems> {
     // IMPORTANT to dispose of all the used resources
     widget.videoPlayerController.dispose();
     _chewieController!.dispose();
+
   }
 }

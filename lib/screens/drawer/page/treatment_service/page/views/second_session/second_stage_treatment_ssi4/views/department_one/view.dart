@@ -20,10 +20,9 @@ import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../../widgets/record_video_button.dart';
-import '../../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../../widgets/video_upload_record.dart';
 import '../../../../../../../../view.dart';
 
-import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/alert_vedio_size.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../department_two/view.dart';
 import 'cubit/second_stage_ssi4_one_cubit.dart';
@@ -87,7 +86,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                                Image.asset("assets/images/test4updated.png"),
+                                Image.asset("assets/images/SSI4 01.png"),
                           ),
 
                           Padding(
@@ -129,25 +128,14 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                                         // borderRadius: BorderRadius.circular(4)
                                         ),
                                   )
-                                :
+                                :VideoUploadRecordScreen(url:_file!.path.toString() ,)
 
-                                // BetterVideoItems(video:      BetterPlayer.file(
-                                //   "${File(_file!.path)}",
-                                //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                                //     aspectRatio: 16 / 9,
+
+                                // VideoItems(
+                                //     videoPlayerController:
+                                //         VideoPlayerController.file(
+                                //             File(_file!.path)),
                                 //   ),
-                                // ),
-                                //
-                                //
-                                //
-                                //
-                                // ),
-
-                                VideoItems(
-                                    videoPlayerController:
-                                        VideoPlayerController.file(
-                                            File(_file!.path)),
-                                  ),
                           ),
                           CardUploadVideo(
                             height: context.height * 0.18,
@@ -170,6 +158,11 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                           SmallButtonSizerRecordVideo(
                             onPressed: () async {
                               if (await Permission.camera.request().isGranted) {
+
+                                setState(() {
+                                  _file = null;
+                                  _controller?.dispose();
+                                });
                                 Get.to(() => CameraPage(
                                       onAdd: (x) {
                                         setState(() {
@@ -185,7 +178,9 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                               }
                             },
                           ),
-                          const AlertVideoMessage(),
+                          //const AlertVideoMessage(),
+                          ScrollText(title: '  -  يرجى إعادة تسجيل الفيديو بالضغط على الزر أعلاه مرة أخرى عند عدم قناعتك بالفيديو الذي قمت بتسجيله     ...    '),
+
                           state is! SecondStageSsi4OneLoading
                               ? MediaButton(
                                   onPressed: () {
@@ -193,7 +188,7 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
                                         ? Alert.error(' الفيديو المسجل مطلوب',
                                             desc:
                                                 "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                        : Get.off(() {
+                                        : Get.offAll(() {
                                             cubit
                                                 .postUploadVideoSSI4SecondFirstStage(
                                                     id: state
@@ -255,13 +250,33 @@ class _SecondTreatmentSSI4State extends State<SecondTreatmentSSI4> {
 
 
   void pickVideo() async {
+
+    setState(() {
+      _file = null;
+      _controller?.dispose();
+    });
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
-        setState(() {
-          _file = value;
-        });
-        _playVideo(value);
+
+        final file = File(value.path);
+        print("File = "+file.path.toString());
+        if (file.existsSync()) {
+          final fileLength = file.lengthSync();
+          if (fileLength > 150 * 1024 * 1024) {
+            Alert.error("هذا الفيديو كبير جدًا. الرجاء تحديد مقطع فيديو بحجم أقل.");
+          } else {
+            setState(() {
+              _file = value;
+            });
+            _playVideo(value);
+
+          }
+        } else {
+          Alert.error("لم يتم العثور على الملف.");
+        }
       }
+    }).catchError((error) {
+      Alert.error("خطأ في اختيار الفيديو: $error");
     });
   }
 

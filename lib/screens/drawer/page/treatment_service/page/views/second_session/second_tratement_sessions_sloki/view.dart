@@ -19,7 +19,7 @@ import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/loading.dart';
 import '../../../../../../../widgets/mediaButton.dart';
 import '../../../../../../../widgets/record_video_button.dart';
-import '../../../../../../../widgets/video_items.dart';
+import '../../../../../../../widgets/video_upload_record.dart';
 import '../../../../../../view.dart';
 import '../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../second_treatment_session_evaluation/cubit/second_evaluation_cubit.dart';
@@ -110,6 +110,13 @@ class _SecondTreatmentSessionsSlokiScreenState
                                     state.behavioralSection[0].videoFile,
                               ),
                             ),
+
+                      Padding(
+
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14.0, vertical: 4),
+                        child: Image.asset("assets/images/card.png"),
+                      ),
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 8),
                         width: context.width * 0.8,
@@ -126,26 +133,16 @@ class _SecondTreatmentSessionsSlokiScreenState
                                       // : BorderRadius.circular(4)
                                       ),
                                 )
-                              :
+                              :VideoUploadRecordScreen(url:_file!.path.toString() ,)
 
-                              // BetterVideoItems(video:      BetterPlayer.file(
-                              //   "${File(_file!.path)}",
-                              //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                              //     aspectRatio: 16 / 9,
+
+
+                              // VideoItems(
+                              //     videoPlayerController:
+                              //         VideoPlayerController.file(
+                              //       File(_file!.path),
+                              //     ),
                               //   ),
-                              // ),
-                              //
-                              //
-                              //
-                              //
-                              // ),
-
-                              VideoItems(
-                                  videoPlayerController:
-                                      VideoPlayerController.file(
-                                    File(_file!.path),
-                                  ),
-                                ),
                         ),
                       ),
                       CardUploadVideo(
@@ -167,10 +164,17 @@ class _SecondTreatmentSessionsSlokiScreenState
                       SmallButtonSizerRecordVideo(
                         onPressed: () async {
                           if (await Permission.camera.request().isGranted) {
+
+                            setState(() {
+                              _file = null;
+                              _controller?.dispose();
+                            });
                             Get.to(() => CameraPage(
                                   onAdd: (x) {
                                     setState(() {
                                       _file = x;
+                                      print("File = Recorded => "+_file!.path.toString());
+
                                     });
                                   },
                               text: "                                                                                                 ",
@@ -182,6 +186,8 @@ class _SecondTreatmentSessionsSlokiScreenState
                           }
                         },
                       ),
+                      ScrollText(title: '  -  يرجى إعادة تسجيل الفيديو بالضغط على الزر أعلاه مرة أخرى عند عدم قناعتك بالفيديو الذي قمت بتسجيله     ...    '),
+
                       SizedBox(
                         height: context.height * 0.05,
                       ),
@@ -224,17 +230,20 @@ class _SecondTreatmentSessionsSlokiScreenState
                                     ? Alert.error(' الفيديو المسجل مطلوب',
                                         desc:
                                             "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                    : "";
-                                cubit.postUploadVideo(
-                                    questionId: state.behavioralSection[0].id,
-                                    examId: state.behavioralSection[0].examId,
-                                    video: _file);
-                                BlocProvider.of<SecondEvaluationCubit>(context)
-                                    .getSecondEvaluationSection();
+                                    : {
 
-                                Get.to(() =>
-                                    const SecondTreatmentSessionEvaluation());
-                              },
+                                  cubit.postUploadVideo(
+                                      questionId: state.behavioralSection[0].id,
+                                      examId: state.behavioralSection[0].examId,
+                                      video: _file),
+                                  BlocProvider.of<SecondEvaluationCubit>(context)
+                                      .getSecondEvaluationSection(),
+
+                                  Get.to(() =>
+                                  const SecondTreatmentSessionEvaluation()),
+
+                                };
+                                                           },
                               title: "متابعة",
                             )
                           : const LoadingFadingCircle(),
@@ -258,9 +267,16 @@ class _SecondTreatmentSessionsSlokiScreenState
   XFile? _file;
 
   void pickVideo() async {
+
+    setState(() {
+      _file = null;
+      _controller?.dispose();
+    });
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
+
         final file = File(value.path);
+        print("File = "+file.path.toString());
         if (file.existsSync()) {
           final fileLength = file.lengthSync();
           if (fileLength > 150 * 1024 * 1024) {
@@ -270,6 +286,7 @@ class _SecondTreatmentSessionsSlokiScreenState
               _file = value;
             });
             _playVideo(value);
+
           }
         } else {
           Alert.error("لم يتم العثور على الملف.");
@@ -311,11 +328,7 @@ class _SecondTreatmentSessionsSlokiScreenState
         );
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
+
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();

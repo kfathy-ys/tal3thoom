@@ -77,7 +77,6 @@ import 'package:fijkplayer/fijkplayer.dart';
 //   }
 // }
 
-
 class VideoScreen extends StatefulWidget {
   final String url;
 
@@ -97,32 +96,22 @@ class _VideoScreenState extends State<VideoScreen> {
     super.initState();
     player.setDataSource(widget.url, autoPlay: false);
     player.setOption(FijkOption.hostCategory, "max-resolution", "426x240");
-
-
-
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return
-
-      FijkView(
-
-        fit: FijkFit.fill,
-        player: player,
-        cover: const AssetImage("assets/images/icon 003.png",),
-
-
-
-      );
+    return FijkView(
+      fit: FijkFit.fill,
+      player: player,
+      cover: const AssetImage(
+        "assets/images/icon 003.png",
+      ),
+    );
   }
 
   @override
   void dispose() {
     super.dispose();
     player.release();
-
   }
 }
-

@@ -74,7 +74,7 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
                         title1:
                             "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
                         title2: "تدريب وتعليم إضافي",
-                        onTap: () => Get.off(
+                        onTap: () => Get.offAll(
                             () => const FirstStageAdditionalTrainingScreen()),
                         goNext: true,
                         title3: "الجلسة العلاجية التالية",
@@ -82,7 +82,7 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
                           BlocProvider.of<CognitiveSectionCubit>(context)
                               .getCognitiveSection();
 
-                          Get.off(() => const FirstTreatmentSession());
+                          Get.offAll(() => const FirstTreatmentSession());
                         },
                       )
                     : (state.questionModel[0].examMode.toString() ==
@@ -93,7 +93,7 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
                                 "لقد اتممت الجلسة العلاجية وسيتم تحويلك إلي الجلسة التالية عن طريق المختص بعد تقييمة لنتائج الجلسة والفيديو التي قمت بارسالة",
                             title2: "الإنتقال إلي إختبار ال Oases",
                             onTap: () =>
-                                Get.off(() => const FirstStageOasesTest()),
+                                Get.offAll(() => const FirstStageOasesTest()),
                           )
                         : SingleChildScrollView(
                             child: Column(
@@ -258,23 +258,7 @@ class _FirstTreatmentSessionState extends State<FirstTreatmentSession> {
                                                         context.height * 0.25,
                                                     child:
 
-                                                        // BetterVideoItems(video:      BetterPlayer.network(
-                                                        //   "http://mcsc-saudi.com/api/" +
-                                                        //       state
-                                                        //           .questionModel[
-                                                        //       index]
-                                                        //           .videoFile
-                                                        //           .toString(),
-                                                        //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                                                        //     aspectRatio: 16 / 9,
-                                                        //   ),
-                                                        // ),
-                                                        //
-                                                        //
-                                                        //
-                                                        //
-                                                        // ),
-                                                        //
+
 
                                                         VideoScreen(
                                                       url: "http://mcsc-saudi.com/api/" +

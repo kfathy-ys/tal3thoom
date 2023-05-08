@@ -193,6 +193,7 @@ class KeysConfig {
   static const requiredDate = "التاريخ المطلوب :";
   static const from = "من";
   static const to = "إلي";
+  static const policy = "الشروط والأحكام";
   static const visitReason = "سبب الزيارة :";
   static const refuseReason = "سبب الرفض";
   static const visitDate = "تاريخ الزيارة";

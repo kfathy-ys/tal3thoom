@@ -21,9 +21,8 @@ import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../../widgets/record_video_button.dart';
-import '../../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../../widgets/video_upload_record.dart';
 import '../../../../../../../../view.dart';
-import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/alert_vedio_size.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_two/view/questions_card.dart';
 import '../../../first_stage_resevation/view.dart';
@@ -102,7 +101,7 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                             context: context),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
-                          child: Image.asset("assets/images/test4updated.png"),
+                          child: Image.asset("assets/images/SSI4 02.png"),
                         ),
 
                         Padding(
@@ -151,39 +150,29 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                             )),
 
                         Container(
-                          margin: const EdgeInsets.symmetric(vertical: 8),
-                          width: context.width * 0.8,
-                          height: context.height * 0.25,
-                          child: _file == null
-                              ? Container(
-                                  //padding: EdgeInsets.symmetric(vertical: 4,),
-                                  decoration: BoxDecoration(
-                                      color: kBlackText,
-                                      border: Border.all(
-                                          color: kPrimaryColor, width: 3)
-                                      // borderRadius: BorderRadius.circular(4)
-                                      ),
-                                )
-                              :
+                            margin: const EdgeInsets.symmetric(vertical: 8),
+                            width: context.width * 0.8,
+                            height: context.height * 0.25,
+                            child: _file == null
+                                ? Container(
+                                    //padding: EdgeInsets.symmetric(vertical: 4,),
+                                    decoration: BoxDecoration(
+                                        color: kBlackText,
+                                        border: Border.all(
+                                            color: kPrimaryColor, width: 3)
+                                        // borderRadius: BorderRadius.circular(4)
+                                        ),
+                                  )
+                                : VideoUploadRecordScreen(
+                                    url: _file!.path.toString(),
+                                  )
 
-                              // BetterVideoItems(video:      BetterPlayer.file(
-                              //   "${File(_file!.path)}",
-                              //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                              //     aspectRatio: 16 / 9,
-                              //   ),
-                              // ),
-                              //
-                              //
-                              //
-                              //
-                              // ),
-
-                              VideoItems(
-                                  videoPlayerController:
-                                      VideoPlayerController.file(
-                                          File(_file!.path)),
-                                ),
-                        ),
+                            // VideoItems(
+                            //     videoPlayerController:
+                            //         VideoPlayerController.file(
+                            //             File(_file!.path)),
+                            //   ),
+                            ),
                         CardUploadVideo(
                           height: context.height * 0.18,
                           title: "fullMessage",
@@ -203,13 +192,17 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                         SmallButtonSizerRecordVideo(
                           onPressed: () async {
                             if (await Permission.camera.request().isGranted) {
+                              setState(() {
+                                _file = null;
+                                _controller?.dispose();
+                              });
                               Get.to(() => CameraPage(
                                     onAdd: (x) {
                                       setState(() {
                                         _file = x;
                                       });
                                     },
-                                text: joinedString,
+                                    text: joinedString,
                                   ));
                             } else {
                               Alert.error(
@@ -223,7 +216,8 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
                           child: Image.asset("assets/images/record.png"),
                         ),
 
-                        const AlertVideoMessage(),
+                        //const AlertVideoMessage(),
+                        ScrollText(title: '  -  يرجى إعادة تسجيل الفيديو بالضغط على الزر أعلاه مرة أخرى عند عدم قناعتك بالفيديو الذي قمت بتسجيله     ...    '),
 
                         state is! FirstStageSsi4OneLoading
                             ? MediaButton(
@@ -270,15 +264,20 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
 
   XFile? _file;
 
-
   void pickVideo() async {
+    setState(() {
+      _file = null;
+      _controller?.dispose();
+    });
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
         final file = File(value.path);
+        print("File = " + file.path.toString());
         if (file.existsSync()) {
           final fileLength = file.lengthSync();
           if (fileLength > 150 * 1024 * 1024) {
-            Alert.error("هذا الفيديو كبير جدًا. الرجاء تحديد مقطع فيديو بحجم أقل.");
+            Alert.error(
+                "هذا الفيديو كبير جدًا. الرجاء تحديد مقطع فيديو بحجم أقل.");
           } else {
             setState(() {
               _file = value;
@@ -293,7 +292,6 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
       Alert.error("خطأ في اختيار الفيديو: $error");
     });
   }
-
 
   bool isVideo = false;
   VideoPlayerController? _controller;
@@ -317,27 +315,23 @@ class _TreatmentSSI4TwoState extends State<TreatmentSSI4Two> {
       await _disposeVideoController();
       late VideoPlayerController controller;
       if (kIsWeb) {
-        controller = VideoPlayerController.network(file.path,);
+        controller = VideoPlayerController.network(
+          file.path,
+        );
       } else {
         controller = VideoPlayerController.file(
           File(file.path),
           videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
-
         );
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
+
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();
       await controller.setLooping(false);
       await controller.pause();
       //await controller.play();
-
 
       setState(() {});
     }

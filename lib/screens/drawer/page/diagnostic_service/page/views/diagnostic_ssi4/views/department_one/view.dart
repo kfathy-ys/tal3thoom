@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:get/get.dart' hide Trans, ContextExtensionss;
 import 'package:flutter/foundation.dart';
@@ -22,11 +21,10 @@ import '../../../../../../../../widgets/appBar.dart';
 import '../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/record_video_button.dart';
-import '../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../widgets/video_upload_record.dart';
 import '../../../../../../../view.dart';
 import '../../cubit/diagnostic_ssi4_first_cubit.dart';
 import '../department_two/view.dart';
-import 'views/alert_vedio_size.dart';
 
 // ignore: must_be_immutable
 class DiagnosticSSI4 extends StatefulWidget {
@@ -49,8 +47,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    //  double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: const MenuItems(),
@@ -87,7 +84,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                                Image.asset("assets/images/test4updated.png"),
+                                Image.asset("assets/images/SSI4 01.png"),
                           ),
 
                           Padding(
@@ -128,11 +125,14 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                         border: Border.all(
                                             color: kPrimaryColor, width: 3)),
                                   )
-                                : VideoItems(
-                                    videoPlayerController:
-                                        VideoPlayerController.file(
-                                            File(_file!.path)),
-                                  ),
+                                : VideoUploadRecordScreen(url:_file!.path.toString() ,)
+
+
+                            // VideoItems(
+                            //         videoPlayerController:
+                            //             VideoPlayerController.file(
+                            //                 File(_file!.path)),
+                            //       ),
                           ),
                           CardUploadVideo(
                             height: context.height * 0.18,
@@ -155,10 +155,15 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                           SmallButtonSizerRecordVideo(
                             onPressed: () async {
                               if (await Permission.camera.request().isGranted) {
+                                setState(() {
+                                  _file = null;
+                                  _controller?.dispose();
+                                });
                                 Get.to(() => CameraPage(
                                       onAdd: (x) {
                                         setState(() {
                                           _file = x;
+                                          print("File = Recorded => "+_file!.path.toString());
                                         });
                                       },
                                       text: parseHtmlString(state
@@ -170,7 +175,8 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                               }
                             },
                           ),
-                          const AlertVideoMessage(),
+                          ScrollText(title: '  -  يرجى إعادة تسجيل الفيديو بالضغط على الزر أعلاه مرة أخرى عند عدم قناعتك بالفيديو الذي قمت بتسجيله     ...    '),
+                          //const AlertVideoMessage(),
                           state is! DiagnosticSsi4FirstLoading
                               ? MediaButton(
                                   onPressed: () {
@@ -178,7 +184,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
                                         ? Alert.error(' الفيديو المسجل مطلوب',
                                             desc:
                                                 "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                        : Get.off(() {
+                                        : Get.offAll(() {
                                             cubit.postUploadVideoSSI4(
                                                 id: state
                                                     .ssi4QuestionModel[0].id,
@@ -213,34 +219,20 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
 
   XFile? _file;
 
-/*
-  void _uploadFile(int step) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'pdf', 'doc', 'png'],
-    );
 
-    if (result != null) {
-      File? file = File(result.files.single.path!);
-
-      log("-=-=-=-=- selected file is => ${file.toString()}");
-      setState(() {
-        _file1 = file;
-        //  filesInputData.thesisFile = file;
-
-        _firstController.text = file.path;
-      });
-    } else {
-      log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
-    }
-  }
-*/
 
 
   void pickVideo() async {
+
+       setState(() {
+         _file = null;
+         _controller?.dispose();
+       });
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
+
         final file = File(value.path);
+       print("File = "+file.path.toString());
         if (file.existsSync()) {
           final fileLength = file.lengthSync();
           if (fileLength > 150 * 1024 * 1024) {
@@ -250,6 +242,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
               _file = value;
             });
             _playVideo(value);
+
           }
         } else {
           Alert.error("لم يتم العثور على الملف.");
@@ -291,11 +284,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
         );
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
+
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();
@@ -308,75 +297,7 @@ class _DiagnosticSSI4State extends State<DiagnosticSSI4> {
     }
   }
 
-  Future<dynamic> getFileSize(dynamic filepath, int decimals) async {
-    var file = File(filepath);
-    int bytes = await file.length();
-    if (bytes <= 0) return "0 B";
-    const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    var i = (log(bytes) / log(1024)).floor();
-    return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
-  }
-// void _uploadVideo() async {
-//   FilePickerResult? result = await FilePicker.platform.pickFiles(
-//     type: FileType.custom,
-//     allowedExtensions: [
-//       "MP4",
-//       "MOV",
-//       "WMV",
-//       "AVI",
-//       "AVCHD",
-//       "FLV",
-//       "F4V",
-//       "SWF",
-//       "MKV",
-//       "WEBM",
-//       "HTML5"
-//     ],
-//   );
-//
-//   if (result != null) {
-//     File file = File(result.files.single.path!);
-//     print("-=-=-=-=- selected file is ${file.toString()}");
-//     setState(() {
-//       _file1 = file;
-//       //_inputData.video = file;
-//       _firstController.text = file.path;
-//     });
-//   } else {
-//     // User canceled the picker
-//   }
-// }
-//
-//
-// Widget selectVideosStaticContainer(BuildContext context, VoidCallback onTap,
-//     bool isNull) {
-//   return Column(
-//     children: [
-//       Padding(
-//         padding: const EdgeInsets.all(8.0),
-//         child: Align(
-//             alignment: Alignment.centerRight,
-//             child: Text(isNull
-//                 ? "Auctions_YouCanAddVideo"
-//                 : context.locale.languageCode == "en"
-//                 ? "Video uploaded successfully"
-//                 : "تم رفع الفيديو بنجاح")
-//         ),
-//       ),
-//       Padding(
-//         padding: const EdgeInsets.only(bottom: 40),
-//         child: InkWell(
-//           onTap: onTap,
-//           child: const Center(
-//               child: Icon(
-//                 Icons.video_collection_rounded,
-//                 size: 30,
-//               )),
-//         ),
-//       ),
-//     ],
-//   );
-// }
+
 }
 
 SizedBox buildSizedBox(double height) => SizedBox(

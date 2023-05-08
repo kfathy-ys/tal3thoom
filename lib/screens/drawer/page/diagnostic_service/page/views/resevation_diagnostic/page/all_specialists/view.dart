@@ -123,7 +123,7 @@ class _DiagnosticAllSpecialistsState extends State<DiagnosticAllSpecialists> {
                                                   title: state
                                                       .allSpecialistModel
                                                       .data[index]
-                                                      .gender,
+                                                      .gender.toString()=="F" ? "أنثى":"ذكر",
                                                   color: kTextFieldColor)
                                             ],
                                           ),
@@ -199,7 +199,7 @@ class _DiagnosticAllSpecialistsState extends State<DiagnosticAllSpecialists> {
                                                       context)
                                                   .changeIndex(2);
 
-                                              Get.to(
+                                              Get.offAll(
                                                   () => const HomeTabScreen());
                                             },
                                             color: kButtonGreenDark,

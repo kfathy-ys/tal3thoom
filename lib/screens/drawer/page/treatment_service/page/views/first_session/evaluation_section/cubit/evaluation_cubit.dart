@@ -75,7 +75,7 @@ class EvaluationCubit extends Cubit<EvaluationState> {
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
-        Get.off(() => const NextSession());
+        Get.offAll(() => const NextSession());
       } else if (res.type == 3) {
         Alert.success(res.body);
       } else {

@@ -22,11 +22,10 @@ import '../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../widgets/record_video_button.dart';
-import '../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../widgets/video_upload_record.dart';
 import '../../../../../../../view.dart';
 import '../../../resevation_diagnostic/view.dart';
 import '../../cubit/diagnostic_ssi4_first_cubit.dart';
-import '../department_one/views/alert_vedio_size.dart';
 import '../department_one/views/upload_video.dart';
 
 // ignore: must_be_immutable
@@ -102,7 +101,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                             context: context),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
-                          child: Image.asset("assets/images/test4updated.png"),
+                          child: Image.asset("assets/images/SSI4 02.png"),
                         ),
 
                         Padding(
@@ -155,19 +154,19 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           height: context.height * 0.25,
                           child: _file == null
                               ? Container(
-                                  //padding: EdgeInsets.symmetric(vertical: 4,),
                                   decoration: BoxDecoration(
                                       color: kBlackText,
                                       border: Border.all(
                                           color: kPrimaryColor, width: 3)
-                                      // borderRadius: BorderRadius.circular(4)
                                       ),
                                 )
-                              : VideoItems(
-                                  videoPlayerController:
-                                      VideoPlayerController.file(
-                                          File(_file!.path)),
-                                ),
+                              : VideoUploadRecordScreen(url:_file!.path.toString() ,)
+
+                          // VideoItems(
+                          //         videoPlayerController:
+                          //             VideoPlayerController.file(
+                          //                 File(_file!.path)),
+                          //       ),
                         ),
                         CardUploadVideo(
                           height: context.height * 0.18,
@@ -188,10 +187,16 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                         SmallButtonSizerRecordVideo(
                           onPressed: () async {
                             if (await Permission.camera.request().isGranted) {
+                              setState(() {
+                                _file = null;
+                                _controller?.dispose();
+                              });
                               Get.to(() => CameraPage(
                                     onAdd: (x) {
                                       setState(() {
                                         _file = x;
+                                        print("File = Recorded => "+_file!.path.toString());
+
                                       });
                                     },
                                   text:   joinedString
@@ -207,7 +212,9 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset("assets/images/record.png"),
                         ),
-                        const AlertVideoMessage(),
+                        //const AlertVideoMessage(),
+                        ScrollText(title: '  -  يرجى إعادة تسجيل الفيديو بالضغط على الزر أعلاه مرة أخرى عند عدم قناعتك بالفيديو الذي قمت بتسجيله     ...    '),
+
                         state is! DiagnosticSsi4FirstLoading
                             ? MediaButton(
                                 onPressed: () {
@@ -215,7 +222,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                                       ? Alert.error(' الفيديو المسجل مطلوب',
                                           desc:
                                               "الرجاء اتباع التعلميات المقدمة طبقا للمرحلة العلاجية")
-                                      : Get.off(() {
+                                      : Get.offAll(() {
                                           cubit.postUploadVideoSSI4(
                                               id: state.ssi4QuestionModel[1].id,
                                               examId: state
@@ -225,7 +232,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
                                               title1:
                                                   "لقد تم إنتهاء إختبار SSI-4 بنجاح",
                                               title2: "إنتقال إلي حجز موعد",
-                                              onTap: () => Get.off(() =>
+                                              onTap: () => Get.offAll(() =>
                                                   ReservationDiagnostic()));
                                         });
                                 },
@@ -277,9 +284,16 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
 */
 
   void pickVideo() async {
+
+    setState(() {
+      _file = null;
+      _controller?.dispose();
+    });
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
+
         final file = File(value.path);
+        print("File = "+file.path.toString());
         if (file.existsSync()) {
           final fileLength = file.lengthSync();
           if (fileLength > 150 * 1024 * 1024) {
@@ -289,6 +303,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
               _file = value;
             });
             _playVideo(value);
+
           }
         } else {
           Alert.error("لم يتم العثور على الملف.");
@@ -298,7 +313,6 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
       Alert.error("خطأ في اختيار الفيديو: $error");
     });
   }
-
 
   bool isVideo = false;
   VideoPlayerController? _controller;
@@ -331,11 +345,7 @@ class _DiagnosticSSI4TwoState extends State<DiagnosticSSI4Two> {
         );
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
+
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();

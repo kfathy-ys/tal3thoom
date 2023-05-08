@@ -56,14 +56,14 @@ class _NextTwoSessionState extends State<NextTwoSession> {
             CustomButton(
               title: "تتدريب وتعليم اضافي",
               onPressed: () =>
-                  Get.off(() => const SecondStageAdditionalTrainingScreen()),
+                  Get.offAll(() => const SecondStageAdditionalTrainingScreen()),
             ),
             CustomButton(
               title: "الإنتقال إلي المرحلة التالية",
               onPressed: () {
                 BlocProvider.of<SecondCognitiveSectionCubit>(context)
                     .getSecondCognitiveSection();
-                Get.off(() => const SecondTreatmentSession());
+                Get.offAll(() => const SecondTreatmentSession());
                 // ;
               },
             ),

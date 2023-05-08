@@ -22,6 +22,7 @@ import '../../widgets/donotHave.dart';
 import '../../widgets/loading.dart';
 import '../login/view.dart';
 import '../policy_privacy/view.dart';
+import '../termination_conditions/view.dart';
 import 'cubit/register_cubit.dart';
 import 'page/back_icon.dart';
 import '../../../../../../config/keys.dart';
@@ -713,7 +714,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     trailing: GestureDetector(
                       onTap: () {
-                        Get.to(() => const PolicyAndPrivacy());
+                        Get.to(() => const TerminationConditions());
                       },
                       child: const Text(KeysConfig.conditions,
                           style: TextStyle(
@@ -770,7 +771,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     text: KeysConfig.login,
                     route: () => navigateTo(context, LoginScreen()),
                     have: KeysConfig.donHave,
-                  )
+                  ),
+
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const PrivacyPolicy());
+                    },
+                    child: const Text(KeysConfig.policy,
+                        style: TextStyle(
+                            fontSize: 10,
+                            decoration: TextDecoration.underline,
+                            fontFamily: "DinMedium",
+                            color: kSkyButton,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  SizedBox(height: context.height*0.03,),
+                  
                 ],
               ),
             ),

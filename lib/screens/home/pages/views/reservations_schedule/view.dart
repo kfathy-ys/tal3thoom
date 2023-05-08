@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:queen/core/helpers/url_luncher.dart';
 import 'package:tal3thoom/screens/home/pages/views/reservations_schedule/page/views/reservation_card.dart';
 
+import '../../../../finished_sessions/view.dart';
 import '../../../../widgets/alerts.dart';
 import '../../../../widgets/constants.dart';
 import '../../../../widgets/date_convertors.dart';
@@ -42,6 +43,14 @@ class _ReservationsScheduleState extends State<ReservationsSchedule> {
                 widthh: context.width * 0.5,
                 title: "جدول الحجوزات",
                 context: context),
+            Align(
+              alignment: Alignment.center,
+
+              child: customTextWatchVideo(
+                  onTap: ()=>Get.to(const FinishedSessions()),
+                  title: " الإنتقال إلي المواعيد المنتهية",
+                  color: kButtonDashBoard),
+            ),
             BlocConsumer<BookingCubit, BookingState>(
               listener: (context, state) {},
               builder: (context, state) {

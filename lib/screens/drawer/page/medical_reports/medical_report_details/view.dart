@@ -83,7 +83,7 @@ class MedicalReportsDetails extends StatelessWidget {
                             HeadSubHead(
                                 head1: "أسم المريض  ",
                                 head2: "Client Name",
-                                sunHead: content!.fullName!.toString()),
+                                sunHead: content!.firstNameEn!+" "+content.lastName!.toString()),
                             HeadSubHead(
                                 head1: "رقم الهوية  ",
                                 head2: "ID No",
@@ -130,7 +130,7 @@ class MedicalReportsDetails extends StatelessWidget {
                             ConcernResult(
                               title1: " Area of",
                               title2: "Concern",
-                              name: content.firstName!,
+                              name: content.firstNameEn!,
                               age: state.allReports.data!.patientAge.toString(),
                               sex: content.gender!,
                               fav: state.allReports.data!.heOrShe.toString(),

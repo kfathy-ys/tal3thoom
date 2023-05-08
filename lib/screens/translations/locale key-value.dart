@@ -361,7 +361,7 @@ class LocaleString extends Translations {
           "responded": "تم الرد",
 
           'Male': 'ذكر',
-          'Female': "أنثي",
+          'Female': "أنثى",
           "Read": "قارئ",
           'UnRead': "غير قارئ",
 

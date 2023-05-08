@@ -258,6 +258,7 @@ class AllReports extends Equatable {
 class Patient extends Equatable {
   int? id;
   String? firstName;
+  String? firstNameEn;
   String? middleName;
   String? lastName;
   String? fullName;
@@ -288,6 +289,7 @@ class Patient extends Equatable {
   Patient(
       {this.id,
       this.firstName,
+        this.firstNameEn,
       this.middleName,
       this.lastName,
       this.fullName,
@@ -318,6 +320,8 @@ class Patient extends Equatable {
   Patient.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     firstName = json['firstName'];
+    firstNameEn = json['firstNameEn'];
+
     middleName = json['middleName'];
     lastName = json['lastName'];
     fullName = json['fullName'];
@@ -350,6 +354,7 @@ class Patient extends Equatable {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['firstName'] = firstName;
+    data['firstNameEn'] = firstNameEn;
     data['middleName'] = middleName;
     data['lastName'] = lastName;
     data['fullName'] = fullName;
@@ -383,6 +388,7 @@ class Patient extends Equatable {
   List<Object?> get props => [
         id,
         firstName,
+        firstNameEn,
         middleName,
         lastName,
         fullName,

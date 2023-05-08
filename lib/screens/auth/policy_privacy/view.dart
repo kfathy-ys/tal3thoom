@@ -4,8 +4,8 @@ import 'package:tal3thoom/screens/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PolicyAndPrivacy extends StatelessWidget {
-  const PolicyAndPrivacy({Key? key}) : super(key: key);
+class PrivacyPolicy extends StatelessWidget {
+  const PrivacyPolicy({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class PolicyAndPrivacy extends StatelessWidget {
               height: context.height * 0.04,
             ),
             FadeInUpBig(
-                child: Image.asset("assets/images/personal information.png")),
+                child: Image.asset("assets/images/privcay.png",width:context.width)),
             CustomButton(
               color: kPrimaryColor,
               title: "تخطي",

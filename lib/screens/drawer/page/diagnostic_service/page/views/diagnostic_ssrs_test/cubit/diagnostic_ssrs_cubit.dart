@@ -51,11 +51,11 @@ class DiagnosticSsrsCubit extends Cubit<DiagnosticSsrsState> {
       );
 
       emit(DiagnosticSsrsSuccess(ssrsQuestionModel: questionList));
-      Get.off(() {
+      Get.offAll(() {
         return SuccessView(
             title1: "لقد تم إنتهاء إختبار SSRS بنجاح",
             title2: "إنتقال إلي إختبار SSI-4",
-            onTap: () => Get.off(() => const DiagnosticSSI4()));
+            onTap: () => Get.offAll(() => const DiagnosticSSI4()));
       });
     } catch (e, st) {
       log(e.toString());

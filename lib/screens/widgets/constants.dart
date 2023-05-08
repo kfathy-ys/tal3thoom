@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:queen/core/helpers/prefs.dart';
+import 'package:text_scroll/text_scroll.dart';
 
 import '../home/cubit/home_tabebar_cubit.dart';
 import '../home/view.dart';
@@ -87,6 +88,27 @@ final headingStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.black,
 );
+
+Widget ScrollText({required String title}){
+  return     Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8.0),
+    child: TextScroll(
+      textDirection: TextDirection.rtl,
+      title,
+      mode: TextScrollMode.endless,
+      velocity:  const Velocity(pixelsPerSecond: Offset(150, 0)),
+      delayBefore:  const Duration(seconds: 2),
+      numberOfReps: 10,
+      pauseBetween:  const Duration(seconds: 2),
+      style:  const TextStyle(  fontFamily: 'DinMedium',
+          fontSize: 14,
+          color: kButtonRedDark),
+      textAlign: TextAlign.right,
+      selectable: true,
+    ),
+  );
+}
+
 
 Widget customNormalText({required BuildContext context, String? title}) {
   return Text(

@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen/core/helpers/prefs.dart';
-import 'package:tal3thoom/screens/auth/login/view.dart';
 import 'package:tal3thoom/screens/drawer/page/advisors_service/views/expention_card/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_induction/view.dart';
 import 'package:tal3thoom/screens/drawer/page/diagnostic_service/page/views/diagnostic_ssrs_test/view.dart';
@@ -579,9 +580,10 @@ class _MenuItemsState extends State<MenuItems> {
                       ListTile(
                         onTap: () {
                           Get.back();
-                          Get.offAll(() => LoginScreen());
+                        //  Get.offAll(() => LoginScreen());
 
                           Prefs.clear();
+                          exit(0);
                         },
                         leading: Image.asset("assets/images/Exit.png"),
                         title: customText2(

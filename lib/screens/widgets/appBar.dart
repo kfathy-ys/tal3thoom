@@ -15,12 +15,15 @@ class DynamicAppbar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Stack(
         children: [
-          Image.asset("assets/images/RectangleAppBar.png"),
+          Image.asset("assets/images/RectangleAppBar.png",),
           ListTile(
+
               leading: InkWell(
                   onTap: () => press(context),
                   child: Image.asset("assets/images/side menu.png")),

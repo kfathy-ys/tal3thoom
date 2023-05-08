@@ -10,6 +10,7 @@ import '../../../../../../../../config/keys.dart';
 import '../../../../../../../../config/remote_config.dart';
 import '../../../../../../../widgets/alerts.dart';
 import '../../../../../../../widgets/appBar.dart';
+import '../../../../../../../widgets/better_video_widget.dart';
 import '../../../../../../../widgets/constants.dart';
 import '../../../../../../../widgets/fast_widget.dart';
 import '../../../../../../../widgets/loading.dart';
@@ -98,7 +99,26 @@ class _FirstTreatmentInductionState extends State<FirstTreatmentInduction> {
                       if (state is FirstStageInductionSuccess) {
                         return Column(
                           children: [
+                            Container(
 
+                              margin: const EdgeInsets
+                                  .symmetric(vertical: 8),
+                              width: context.width * 0.8,
+                              height:
+                              context.height * 0.25,
+
+                              child: VideoScreen(
+                                  url:
+
+                                  "http://mcsc-saudi.com/api/" +
+                                    state.inductionDiagnosticModel.data!.videoUrl
+                                        .toString()
+
+                                      .toString()
+
+
+                              ),
+                            ),
                             customTextWatchVideo(
                                 onTap: () {
                                   navigateTo(

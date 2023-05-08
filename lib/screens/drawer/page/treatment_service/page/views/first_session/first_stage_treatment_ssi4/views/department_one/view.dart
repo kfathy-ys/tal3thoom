@@ -18,10 +18,9 @@ import '../../../../../../../../../widgets/camera_page.dart';
 import '../../../../../../../../../widgets/constants.dart';
 import '../../../../../../../../../widgets/loading.dart';
 import '../../../../../../../../../widgets/record_video_button.dart';
-import '../../../../../../../../../widgets/video_items.dart';
+import '../../../../../../../../../widgets/video_upload_record.dart';
 import '../../../../../../../../view.dart';
 
-import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/alert_vedio_size.dart';
 import '../../../../../../../diagnostic_service/page/views/diagnostic_ssi4/views/department_one/views/upload_video.dart';
 import '../department_two/view.dart';
 import 'cubit/first_stage_ssi4_one_cubit.dart';
@@ -83,7 +82,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child:
-                                Image.asset("assets/images/test4updated.png"),
+                                Image.asset("assets/images/SSI4 01.png"),
                           ),
 
                           Padding(
@@ -125,24 +124,13 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                                         // borderRadius: BorderRadius.circular(4)
                                         ),
                                   )
-                                :
+                                :VideoUploadRecordScreen(url:_file!.path.toString() ,)
 
-                                // BetterVideoItems(video:      BetterPlayer.file(
-                                //   "${File(_file!.path)}",
-                                //   betterPlayerConfiguration: const BetterPlayerConfiguration(
-                                //     aspectRatio: 16 / 9,
+                                // VideoItems(
+                                //     videoPlayerController:
+                                //         VideoPlayerController.file(
+                                //             File(_file!.path)),
                                 //   ),
-                                // ),
-                                //
-                                //
-                                //
-                                //
-                                // ),
-                                VideoItems(
-                                    videoPlayerController:
-                                        VideoPlayerController.file(
-                                            File(_file!.path)),
-                                  ),
                           ),
                           CardUploadVideo(
                             height: context.height * 0.18,
@@ -152,7 +140,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                               if (await Permission.storage
                                   .request()
                                   .isGranted) {
-                                pickVideo();
+                                _pickVideo();
                               } else {
                                 Alert.error(
                                     "يجب الحصول علي تصريح الوصول الي الخزينة");
@@ -165,10 +153,17 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                           SmallButtonSizerRecordVideo(
                             onPressed: () async {
                               if (await Permission.camera.request().isGranted) {
+                                setState(() {
+                                  _file = null;
+                                  _controller?.dispose();
+                                });
+
                                 Get.to(() => CameraPage(
                                       onAdd: (x) {
                                         setState(() {
                                           _file = x;
+                                          print("File = Recorded => "+_file!.path.toString());
+
                                         });
                                       },
                                   text:   parseHtmlString(
@@ -181,7 +176,9 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
                               }
                             },
                           ),
-                          const AlertVideoMessage(),
+                          //const AlertVideoMessage(),
+                          ScrollText(title: '  -  يرجى إعادة تسجيل الفيديو بالضغط على الزر أعلاه مرة أخرى عند عدم قناعتك بالفيديو الذي قمت بتسجيله     ...    '),
+
                           state is! FirstStageSsi4OneLoading
                               ? MediaButton(
                                   onPressed: () {
@@ -247,10 +244,17 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
   }
 */
 
-  void pickVideo() async {
+  void _pickVideo() async {
+
+    setState(() {
+      _file = null;
+      _controller?.dispose();
+    });
     _picker.pickVideo(source: ImageSource.gallery).then((value) {
       if (value != null) {
+
         final file = File(value.path);
+        print("File = "+file.path.toString());
         if (file.existsSync()) {
           final fileLength = file.lengthSync();
           if (fileLength > 150 * 1024 * 1024) {
@@ -260,6 +264,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
               _file = value;
             });
             _playVideo(value);
+
           }
         } else {
           Alert.error("لم يتم العثور على الملف.");
@@ -269,7 +274,6 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
       Alert.error("خطأ في اختيار الفيديو: $error");
     });
   }
-
 
   bool isVideo = false;
   VideoPlayerController? _controller;
@@ -302,11 +306,7 @@ class _TreatmentSSI4State extends State<TreatmentSSI4> {
         );
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
+
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();

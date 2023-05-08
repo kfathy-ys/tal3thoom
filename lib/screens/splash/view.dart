@@ -76,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     textAlign: TextAlign.center,
                     text: const TextSpan(
                       text:
-                      ' ( هو تطبيق ُيعنى بعلاج اضطراب التلعثم/التأتأة ويمكنك الاطلاع على  ',
+                      '  هو تطبيق ُيعنى بعلاج اضطراب التلعثم/التأتأة ويمكنك الاطلاع على  ',
                       style: TextStyle(
                           fontSize: 14,
                           fontFamily: "DinMedium",
@@ -93,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> {
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
-                            text: '  للتعرف أكثر على طريقة العلاج التي نقدمها لك أو الاستمرار بالتسجيل ) ',
+                            text: '  للتعرف أكثر على طريقة العلاج التي نقدمها لك أو الاستمرار بالتسجيل  ',
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: "DinMedium",

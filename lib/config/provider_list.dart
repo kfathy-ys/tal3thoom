@@ -33,6 +33,7 @@ import '../screens/drawer/page/treatment_service/page/views/second_session/secon
 import '../screens/drawer/page/treatment_service/page/views/second_session/second_stage_treatment_ssi4/views/department_two/cubit/second_stage_ssi4_two_dart_cubit.dart';
 import '../screens/drawer/page/treatment_service/page/views/second_session/second_tratement_sessions_sloki/cubit/second_behavioral_cubit.dart';
 import '../screens/drawer/page/treatment_service/page/views/second_session/second_treatment_session_evaluation/cubit/second_evaluation_cubit.dart';
+import '../screens/finished_sessions/cubit/finished_sessions_cubit.dart';
 import '../screens/home/cubit/home_tabebar_cubit.dart';
 import '../screens/home/pages/views/profile/cubit/profile_cubit.dart';
 import '../screens/home/pages/views/reservations_schedule/cubit/booking_cubit.dart';
@@ -151,6 +152,9 @@ class ProviderList {
       ),
       BlocProvider<ForgetPasswordCubit>(
         create: (context) => ForgetPasswordCubit(),
+      ),
+      BlocProvider<FinishedSessionsCubit>(
+        create: (context) => FinishedSessionsCubit(),
       ),
     ];
   }

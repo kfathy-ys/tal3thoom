@@ -54,7 +54,7 @@ class _DropDownReadState extends State<DropDownRead> {
           // isDense: true,
           isExpanded: true,
           hint: const Text(
-            "النوع" ' :'" *",
+            "قارئ / غير قارئ" ' :'" *",
             style: TextStyle(
               color: kPrimaryColor,
               fontSize: 16,

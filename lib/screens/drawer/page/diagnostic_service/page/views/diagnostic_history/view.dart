@@ -183,6 +183,7 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
             context: context,
             press: (context) => Scaffold.of(context).openDrawer()),
         body: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
 
           child: Container(
             height: context.height,
@@ -202,11 +203,11 @@ class _DiagnosticHistoryState extends State<DiagnosticHistory> {
                   );
                 }
                 if (state is DiagnosticHistoryQuestionSuccess) {
-                  return Form(
-                    key: cubit.formKey,
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                  return SingleChildScrollView(
+                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
 
+                    child: Form(
+                      key: cubit.formKey,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12.0, vertical: 4),

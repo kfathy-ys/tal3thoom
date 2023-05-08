@@ -67,10 +67,10 @@ class PreQuestionnaireCubit extends Cubit<PreQuestionnaireState> {
         Alert.error(res.body);
       } else if (res.type == 1) {
         Alert.success(res.body);
-        Get.off(() => SuccessView(
+        Get.offAll(() => SuccessView(
               title1: "لقد تم إنتهاء إستبيان ما قبل العلاج بنجاح",
               title2: "إنتقال إلي الرحلة الأولي من العلاج ",
-              onTap: () => Get.off(() => const FirstTreatmentSession()),
+              onTap: () => Get.offAll(() => const FirstTreatmentSession()),
             ));
       } else if (res.type == 3) {
         Alert.success(res.body);

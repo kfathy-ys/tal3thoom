@@ -203,7 +203,7 @@ class _AllSpecialistsFirstSessionsState
                                               BlocProvider.of<BookingCubit>(context).getBookingList();
 
 
-                                              Get.to(
+                                              Get.offAll(
                                                   () => const HomeTabScreen());
                                             },
                                             color: kButtonGreenDark,

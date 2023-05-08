@@ -43,7 +43,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
+    BlocProvider.of<ProfileCubit>(context).getProfile();
     return Card(
       color: kHomeColor,
       child: Container(

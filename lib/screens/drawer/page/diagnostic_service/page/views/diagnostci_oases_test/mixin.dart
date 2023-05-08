@@ -175,10 +175,10 @@ mixin QMixer on State<DiagnosticOasesTest> {
       await DiagnosticOasesAnswers.postDiagnosticOasesAnswers(
         answers: allAnswers,
       );
-      Get.off(() => SuccessView(
+      Get.offAll(() => SuccessView(
             title1: "لقد تم إنتهاء إختبار OASES بنجاح",
             title2: "إنتقال إلي إختبار SSRS",
-            onTap: () => Get.off(() => const SSRSDiagnosticsScreen()),
+            onTap: () => Get.offAll(() => const SSRSDiagnosticsScreen()),
           ));
     } on DioError catch (_) {
       customText2(title: "لا يوجد اتصال بالانترنت ", color: kBlackText);
